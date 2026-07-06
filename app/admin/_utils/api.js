@@ -91,7 +91,7 @@ export const jobsApi = {
 
 // Career Applications API
 export const careerApi = {
-  getAll: () => api.get('/career').then(res => ({ data: Array.isArray(res.data) ? res.data : [] })),
+  getAll: (params) => api.get('/career', { params }).then(res => ({ data: Array.isArray(res.data) ? res.data : [] })),
   getById: (id) => api.get(`/career/${id}`),
   create: async (formData) => {
     const baseURL = getBaseURL()

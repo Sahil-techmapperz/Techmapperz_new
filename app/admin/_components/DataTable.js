@@ -12,11 +12,13 @@ export default function DataTable({
   data = [],
   onEdit,
   onDelete,
+  onBulkDelete,
   actions = [],
   loading = false,
   emptyMessage = "No data available",
   defaultSort = null // { key: 'columnKey', direction: 'asc' | 'desc' }
 }) {
+  const [selectedIds, setSelectedIds] = useState([])
   const [sortConfig, setSortConfig] = useState(
     defaultSort || { key: null, direction: 'asc' }
   )
@@ -105,9 +107,43 @@ export default function DataTable({
   return (
     <div className="w-full">
       <div className="rounded-lg border bg-white">
+        {onBulkDelete && selectedIds.length > 0 && (
+          <div className="px-6 py-3 border-b bg-red-50 flex justify-between items-center">
+            <span className="text-sm font-medium text-red-800">{selectedIds.length} items selected</span>
+            <button 
+              onClick={() => {
+                if(window.confirm('Are you sure you want to delete selected items?')) {
+                  onBulkDelete(selectedIds);
+                  setSelectedIds([]);
+                }
+              }} 
+              className="px-3 py-1 bg-red-600 text-white rounded text-sm hover:bg-red-700"
+            >
+              Delete Selected
+            </button>
+          </div>
+        )}
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b bg-gray-50">
+              {onBulkDelete && (
+                <th className="px-6 py-3 text-left w-12">
+                  <input 
+                    type="checkbox" 
+                    checked={paginatedData.length > 0 && paginatedData.every(row => selectedIds.includes(row._id || row.id))}
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        const newIds = new Set([...selectedIds, ...paginatedData.map(r => r._id || r.id)]);
+                        setSelectedIds(Array.from(newIds));
+                      } else {
+                        const pageIds = paginatedData.map(r => r._id || r.id);
+                        setSelectedIds(selectedIds.filter(id => !pageIds.includes(id)));
+                      }
+                    }}
+                    className="rounded border-gray-300 cursor-pointer"
+                  />
+                </th>
+              )}
               {columns.map((column) => (
                 <th
                   key={column.key}
@@ -136,6 +172,23 @@ export default function DataTable({
                   key={row._id || row.id || index}
                   className="border-b bg-white hover:bg-gray-50"
                 >
+                  {onBulkDelete && (
+                    <td className="px-6 py-4 w-12">
+                      <input 
+                        type="checkbox"
+                        checked={selectedIds.includes(row._id || row.id)}
+                        onChange={(e) => {
+                          const id = row._id || row.id;
+                          if (e.target.checked) {
+                            setSelectedIds([...selectedIds, id]);
+                          } else {
+                            setSelectedIds(selectedIds.filter(item => item !== id));
+                          }
+                        }}
+                        className="rounded border-gray-300 cursor-pointer"
+                      />
+                    </td>
+                  )}
                   {columns.map((column) => (
                     <td
                       key={column.key}
