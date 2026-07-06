@@ -44,6 +44,10 @@ const nextConfig = {
             value: 'camera=(), microphone=(), geolocation=()'
           },
           {
+            key: 'Cross-Origin-Opener-Policy',
+            value: 'same-origin-allow-popups'
+          },
+          {
             key: 'Content-Security-Policy',
             value: [
               "default-src 'self'",
@@ -59,6 +63,15 @@ const nextConfig = {
               "frame-ancestors 'self'"
             ].join('; ')
           }
+        ],
+      },
+      {
+        source: '/(.*\\.(?:webp|jpg|jpeg|gif|png|svg|ico|avif|woff2|woff|ttf|css))',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
         ],
       },
     ];
@@ -97,6 +110,16 @@ const nextConfig = {
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     unoptimized: process.env.NODE_ENV === 'development', // Disable optimization in development to avoid localhost issues
     remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'via.placeholder.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        pathname: '/**',
+      },
       {
         protocol: 'https',
         hostname: 'ik.imagekit.io',

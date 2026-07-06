@@ -1,6 +1,7 @@
 'use client'
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { FiX, FiMaximize2 } from 'react-icons/fi';
 
 import img1 from '@/public/lifeatTechmapperz/img_1.webp';
@@ -24,6 +25,26 @@ import img18 from '@/public/lifeatTechmapperz/img_18.webp';
 
 const OfficeLive = () => {
 	const [selectedIndex, setSelectedIndex] = useState(null);
+	const [mounted, setMounted] = useState(false);
+	const carouselRef = useRef(null);
+
+	useEffect(() => {
+		setMounted(true);
+	}, []);
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			if (carouselRef.current && window.innerWidth < 640) {
+				const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
+				if (scrollLeft + clientWidth >= scrollWidth - 10) {
+					carouselRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+				} else {
+					carouselRef.current.scrollBy({ left: clientWidth, behavior: 'smooth' });
+				}
+			}
+		}, 3000);
+		return () => clearInterval(interval);
+	}, []);
 
 	const images = [
 		{ src: img1, alt: 'Team at Techmapperz', height: 280 },
@@ -32,18 +53,18 @@ const OfficeLive = () => {
 		{ src: img4, alt: 'GIS work session', height: 320 },
 		{ src: img5, alt: 'Team meeting', height: 280 },
 		{ src: img6, alt: 'Drone survey team', height: 360 },
-		{ src: img7, alt: 'Office environment', height: 300 },
-		{ src: img8, alt: 'Development team', height: 360 },
-		{ src: img9, alt: 'Field operations', height: 320 },
-		{ src: img10, alt: 'Office culture', height: 280 },
-		{ src: img11, alt: 'Tech lab', height: 360 },
-		{ src: img12, alt: 'Team celebration', height: 240 },
-		{ src: img13, alt: 'Project presentation', height: 320 },
-		{ src: img14, alt: 'Workshop session', height: 280 },
-		{ src: img15, alt: 'Creative workspace', height: 360 },
-		{ src: img16, alt: 'Innovation lab', height: 300 },
-		{ src: img17, alt: 'Team outing', height: 360 },
-		{ src: img18, alt: 'Office life', height: 320 },
+		// { src: img7, alt: 'Office environment', height: 300 },
+		// { src: img8, alt: 'Development team', height: 360 },
+		// { src: img9, alt: 'Field operations', height: 320 },
+		// { src: img10, alt: 'Office culture', height: 280 },
+		// { src: img11, alt: 'Tech lab', height: 360 },
+		// { src: img12, alt: 'Team celebration', height: 240 },
+		// { src: img13, alt: 'Project presentation', height: 320 },
+		// { src: img14, alt: 'Workshop session', height: 280 },
+		// { src: img15, alt: 'Creative workspace', height: 360 },
+		// { src: img16, alt: 'Innovation lab', height: 300 },
+		// { src: img17, alt: 'Team outing', height: 360 },
+		// { src: img18, alt: 'Office life', height: 320 },
 	];
 
 	const goNext = (e) => {
@@ -58,14 +79,13 @@ const OfficeLive = () => {
 
 	return (
 		<>
-			{/* Masonry gallery */}
-			<div className="columns-1 md:columns-2 lg:columns-3 gap-4 [column-fill:_balance] mx-auto">
+			{/* Grid/Carousel gallery */}
+			<div ref={carouselRef} className="flex overflow-x-auto snap-x snap-mandatory sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mx-auto pb-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
 				{images.map((image, index) => (
 					<div
 						key={index}
-						className="break-inside-avoid cursor-pointer overflow-hidden rounded-2xl group mb-4 relative border border-white/5 hover:border-[#00B0FE]/30 transition-all duration-300"
+						className="shrink-0 w-full sm:w-auto snap-center cursor-pointer overflow-hidden rounded-2xl group relative border border-white/5 hover:border-[#00B0FE]/30 transition-all duration-300 aspect-square"
 						onClick={() => setSelectedIndex(index)}
-						style={{ height: `${image.height}px` }}
 						role="button"
 						aria-label={`View ${image.alt}`}
 						tabIndex={0}
@@ -94,9 +114,9 @@ const OfficeLive = () => {
 			</div>
 
 			{/* Lightbox */}
-			{selectedIndex !== null && (
+			{mounted && selectedIndex !== null && typeof document !== 'undefined' && createPortal(
 				<div
-					className="fixed inset-0 bg-black/95 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+					className="fixed inset-0 bg-black/95 backdrop-blur-sm flex items-center justify-center z-[9999] p-4"
 					onClick={() => setSelectedIndex(null)}
 					role="dialog"
 					aria-modal="true"
@@ -149,7 +169,8 @@ const OfficeLive = () => {
 							{selectedIndex + 1} / {images.length}
 						</div>
 					</div>
-				</div>
+				</div>,
+				document.body
 			)}
 		</>
 	);
