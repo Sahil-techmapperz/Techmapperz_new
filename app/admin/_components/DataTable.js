@@ -16,14 +16,26 @@ export default function DataTable({
   actions = [],
   loading = false,
   emptyMessage = "No data available",
-  defaultSort = null // { key: 'columnKey', direction: 'asc' | 'desc' }
+  defaultSort = null, // { key: 'columnKey', direction: 'asc' | 'desc' }
+  currentPage: externalCurrentPage,
+  onPageChange
 }) {
   const [selectedIds, setSelectedIds] = useState([])
   const [sortConfig, setSortConfig] = useState(
     defaultSort || { key: null, direction: 'asc' }
   )
-  const [currentPage, setCurrentPage] = useState(1)
+  const [internalCurrentPage, setInternalCurrentPage] = useState(1)
   const itemsPerPage = 10
+
+  const currentPage = externalCurrentPage !== undefined ? externalCurrentPage : internalCurrentPage
+
+  const handlePageChange = (newPage) => {
+    if (onPageChange) {
+      onPageChange(newPage)
+    } else {
+      setInternalCurrentPage(newPage)
+    }
+  }
 
   // Ensure data is always an array and filter out any undefined/null items
   const safeData = Array.isArray(data) ? data.filter(item => item != null) : []
@@ -249,32 +261,32 @@ export default function DataTable({
       <div className="flex items-center justify-between px-4 py-3 bg-white border-t">
         <div className="flex items-center gap-2">
           <button
-            onClick={() => setCurrentPage(1)}
+            onClick={() => handlePageChange(1)}
             disabled={currentPage === 1}
             className="p-1 rounded-md hover:bg-gray-100 disabled:opacity-50 text-black"
           >
             <ChevronsLeft className="h-5 w-5" />
           </button>
           <button
-            onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+            onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
             disabled={currentPage === 1}
             className="p-1 rounded-md hover:bg-gray-100 disabled:opacity-50 text-black"
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
           <span className="text-sm text-black">
-            Page {currentPage} of {totalPages}
+            Page {currentPage} of {Math.max(1, totalPages)}
           </span>
           <button
-            onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
-            disabled={currentPage === totalPages}
+            onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
+            disabled={currentPage >= totalPages}
             className="p-1 rounded-md hover:bg-gray-100 disabled:opacity-50 text-black"
           >
             <ChevronRight className="h-5 w-5" />
           </button>
           <button
-            onClick={() => setCurrentPage(totalPages)}
-            disabled={currentPage === totalPages}
+            onClick={() => handlePageChange(totalPages)}
+            disabled={currentPage >= totalPages}
             className="p-1 rounded-md hover:bg-gray-100 disabled:opacity-50 text-black"
           >
             <ChevronsRight className="h-5 w-5" />

@@ -32,6 +32,9 @@ export default function CareerPage() {
   const [error, setError] = useState(null)
   const [searchQuery, setSearchQuery] = useState(searchParams.get('search') || '')
 
+  const pageParam = parseInt(searchParams.get('page') || '1', 10)
+  const currentPage = isNaN(pageParam) ? 1 : pageParam
+
   useEffect(() => {
     fetchApplications()
   }, [searchParams])
@@ -66,6 +69,13 @@ export default function CareerPage() {
     } else {
       params.delete('search')
     }
+    params.set('page', '1') // reset to page 1 on search
+    router.push(`${pathname}?${params.toString()}`)
+  }
+
+  const handlePageChange = (newPage) => {
+    const params = new URLSearchParams(searchParams)
+    params.set('page', newPage.toString())
     router.push(`${pathname}?${params.toString()}`)
   }
 
@@ -166,6 +176,8 @@ export default function CareerPage() {
           data={applications}
           onDelete={handleDelete}
           onBulkDelete={handleBulkDelete}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
           defaultSort={{ key: 'Date', direction: 'desc' }} // Sort by Application Date, latest first
           actions={[
             {
