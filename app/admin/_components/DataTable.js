@@ -12,16 +12,30 @@ export default function DataTable({
   data = [],
   onEdit,
   onDelete,
+  onBulkDelete,
   actions = [],
   loading = false,
   emptyMessage = "No data available",
-  defaultSort = null // { key: 'columnKey', direction: 'asc' | 'desc' }
+  defaultSort = null, // { key: 'columnKey', direction: 'asc' | 'desc' }
+  currentPage: externalCurrentPage,
+  onPageChange
 }) {
+  const [selectedIds, setSelectedIds] = useState([])
   const [sortConfig, setSortConfig] = useState(
     defaultSort || { key: null, direction: 'asc' }
   )
-  const [currentPage, setCurrentPage] = useState(1)
+  const [internalCurrentPage, setInternalCurrentPage] = useState(1)
   const itemsPerPage = 10
+
+  const currentPage = externalCurrentPage !== undefined ? externalCurrentPage : internalCurrentPage
+
+  const handlePageChange = (newPage) => {
+    if (onPageChange) {
+      onPageChange(newPage)
+    } else {
+      setInternalCurrentPage(newPage)
+    }
+  }
 
   // Ensure data is always an array and filter out any undefined/null items
   const safeData = Array.isArray(data) ? data.filter(item => item != null) : []
@@ -105,9 +119,43 @@ export default function DataTable({
   return (
     <div className="w-full">
       <div className="rounded-lg border bg-white">
+        {onBulkDelete && selectedIds.length > 0 && (
+          <div className="px-6 py-3 border-b bg-red-50 flex justify-between items-center">
+            <span className="text-sm font-medium text-red-800">{selectedIds.length} items selected</span>
+            <button 
+              onClick={() => {
+                if(window.confirm('Are you sure you want to delete selected items?')) {
+                  onBulkDelete(selectedIds);
+                  setSelectedIds([]);
+                }
+              }} 
+              className="px-3 py-1 bg-red-600 text-white rounded text-sm hover:bg-red-700"
+            >
+              Delete Selected
+            </button>
+          </div>
+        )}
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b bg-gray-50">
+              {onBulkDelete && (
+                <th className="px-6 py-3 text-left w-12">
+                  <input 
+                    type="checkbox" 
+                    checked={paginatedData.length > 0 && paginatedData.every(row => selectedIds.includes(row._id || row.id))}
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        const newIds = new Set([...selectedIds, ...paginatedData.map(r => r._id || r.id)]);
+                        setSelectedIds(Array.from(newIds));
+                      } else {
+                        const pageIds = paginatedData.map(r => r._id || r.id);
+                        setSelectedIds(selectedIds.filter(id => !pageIds.includes(id)));
+                      }
+                    }}
+                    className="rounded border-gray-300 cursor-pointer"
+                  />
+                </th>
+              )}
               {columns.map((column) => (
                 <th
                   key={column.key}
@@ -136,6 +184,23 @@ export default function DataTable({
                   key={row._id || row.id || index}
                   className="border-b bg-white hover:bg-gray-50"
                 >
+                  {onBulkDelete && (
+                    <td className="px-6 py-4 w-12">
+                      <input 
+                        type="checkbox"
+                        checked={selectedIds.includes(row._id || row.id)}
+                        onChange={(e) => {
+                          const id = row._id || row.id;
+                          if (e.target.checked) {
+                            setSelectedIds([...selectedIds, id]);
+                          } else {
+                            setSelectedIds(selectedIds.filter(item => item !== id));
+                          }
+                        }}
+                        className="rounded border-gray-300 cursor-pointer"
+                      />
+                    </td>
+                  )}
                   {columns.map((column) => (
                     <td
                       key={column.key}
@@ -196,32 +261,32 @@ export default function DataTable({
       <div className="flex items-center justify-between px-4 py-3 bg-white border-t">
         <div className="flex items-center gap-2">
           <button
-            onClick={() => setCurrentPage(1)}
+            onClick={() => handlePageChange(1)}
             disabled={currentPage === 1}
             className="p-1 rounded-md hover:bg-gray-100 disabled:opacity-50 text-black"
           >
             <ChevronsLeft className="h-5 w-5" />
           </button>
           <button
-            onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+            onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
             disabled={currentPage === 1}
             className="p-1 rounded-md hover:bg-gray-100 disabled:opacity-50 text-black"
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
           <span className="text-sm text-black">
-            Page {currentPage} of {totalPages}
+            Page {currentPage} of {Math.max(1, totalPages)}
           </span>
           <button
-            onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
-            disabled={currentPage === totalPages}
+            onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
+            disabled={currentPage >= totalPages}
             className="p-1 rounded-md hover:bg-gray-100 disabled:opacity-50 text-black"
           >
             <ChevronRight className="h-5 w-5" />
           </button>
           <button
-            onClick={() => setCurrentPage(totalPages)}
-            disabled={currentPage === totalPages}
+            onClick={() => handlePageChange(totalPages)}
+            disabled={currentPage >= totalPages}
             className="p-1 rounded-md hover:bg-gray-100 disabled:opacity-50 text-black"
           >
             <ChevronsRight className="h-5 w-5" />
