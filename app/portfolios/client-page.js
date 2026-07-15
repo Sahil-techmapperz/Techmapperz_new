@@ -1,268 +1,42 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import ScrollToTop from "../_Components/ScrollToTop";
-import Portfolio_banner from "@/public/Photos/portfolio_hero_bg.png";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import { 
-  Camera, 
-  Cpu, 
-  MapPin, 
-  Calendar, 
-  ArrowUpRight, 
-  BarChart3, 
-  Layers, 
-  Gauge, 
-  Search, 
-  X, 
-  Building2, 
-  Rocket,
-  Filter,
-  Code,
-  Briefcase,
-  MessageSquare,
-  Users,
-  ShieldCheck
-} from "lucide-react";
-
-function Badge({ children }) {
-  return (
-    <span style={{ color: "#67e8f9", borderColor: "rgba(6, 182, 212, 0.5)", backgroundColor: "rgba(6, 182, 212, 0.1)" }} className="inline-flex items-center gap-1.5 rounded-full border border-cyan-500/20 bg-cyan-500/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-cyan-300 backdrop-blur-sm">
-      {children}
-    </span>
-  );
-}
-
-function Metric({ icon, label, value }) {
-  return (
-    <div className="flex items-center gap-3">
-      <div className="flex size-8 items-center justify-center rounded-lg border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 shadow-[0_0_10px_rgba(5,215,222,0.1)]">
-        {icon}
-      </div>
-      <div className="leading-tight">
-        <div className="text-[11px] font-medium uppercase tracking-wider text-slate-400">{label}</div>
-        <div className="text-sm font-bold text-slate-100">{value}</div>
-      </div>
-    </div>
-  );
-}
-
-function ProjectCard({ item, onOpen, index }) {
-  return (
-    <motion.div 
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      style={{ border: "1px solid rgba(5, 215, 222, 0.4)", backgroundColor: "rgba(15, 23, 42, 0.8)", boxShadow: "0 4px 20px rgba(0,0,0,0.5)" }}
-      className="group relative flex flex-col overflow-hidden rounded-2xl border border-slate-700/50 bg-slate-900/40 backdrop-blur-md shadow-lg transition-all duration-300 hover:-translate-y-1.5 hover:border-cyan-500/50 hover:shadow-[0_8px_30px_#05d7de26] hover:bg-slate-800/60"
-    >
-      <div className="relative aspect-video w-full overflow-hidden bg-slate-800">
-        <Image
-          src={item.image}
-          alt={item.title}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-110"
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent opacity-80" />
-        
-        {/* Category Pill Over Image */}
-        <div className="absolute left-4 top-4">
-          <div className="inline-flex items-center gap-1.5 rounded-full bg-slate-900/80 px-3 py-1.5 text-xs font-medium text-slate-200 backdrop-blur-md border border-slate-700/50">
-            {item.category === "IT" ? <Cpu className="h-3.5 w-3.5 text-cyan-400" /> : item.category === "GIS" ? <Camera className="h-3.5 w-3.5 text-cyan-400" /> : <Building2 className="h-3.5 w-3.5 text-cyan-400" />}
-            {item.category}
-          </div>
-        </div>
-      </div>
-
-      <div className="flex flex-1 flex-col p-5">
-        <h3 style={{ color: "white" }} className="mb-2 line-clamp-2 text-lg font-bold text-slate-100 group-hover:text-cyan-300 transition-colors">
-          {item.title}
-        </h3>
-        <p style={{ color: "#cbd5e1" }} className="mb-4 line-clamp-2 text-sm leading-relaxed text-slate-400">{item.description}</p>
-        
-        <div className="mt-auto">
-          <div className="mb-4 flex flex-wrap gap-2">
-            {item.techStack && item.techStack.split(',').slice(0, 3).map((tech) => (
-              <Badge key={tech.trim()}>
-                {tech.trim()}
-              </Badge>
-            ))}
-          </div>
-          
-          <div className="flex items-center justify-between border-t border-slate-700/50 pt-4">
-            <div className="text-xs font-medium text-slate-500 uppercase tracking-wider">Techmapperz</div>
-            <div className="flex gap-2">
-              <button
-                style={{ backgroundColor: "#1e293b", color: "white", border: "1px solid #334155" }}
-                onClick={() => onOpen(item)}
-                className="inline-flex items-center justify-center rounded-xl bg-slate-800 px-3 py-1.5 text-sm font-semibold text-slate-300 transition-all hover:bg-slate-700 hover:text-white"
-              >
-                Quick view
-              </button>
-              <Link
-                href={item.link}
-                style={{ backgroundColor: "#06b6d4", color: "#020617" }}
-                className="inline-flex items-center justify-center rounded-xl bg-cyan-500 px-3 py-1.5 text-sm font-semibold text-slate-950 transition-all hover:bg-cyan-400 hover:shadow-[0_0_15px_#05d7de66]"
-              >
-                Case <ArrowUpRight className="ml-1 h-3.5 w-3.5" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
-
-function ProjectDrawer({ open, onClose, item }) {
-  return (
-    <AnimatePresence>
-      {open && item && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm"
-            onClick={onClose}
-          />
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl bg-slate-900 shadow-2xl border border-slate-700/50 scrollbar-thin scrollbar-track-slate-800 scrollbar-thumb-slate-600"
-          >
-            <div className="sticky top-0 z-20 flex items-center justify-between border-b border-slate-700/50 bg-slate-900/80 backdrop-blur-md p-5 sm:px-8">
-              <div>
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="flex h-2 w-2 rounded-full bg-cyan-500 shadow-[0_0_8px_rgba(5,215,222,0.8)]"></span>
-                  <div className="text-xs font-semibold uppercase tracking-wider text-slate-400">Project Details</div>
-                </div>
-                <h3 className="text-xl font-bold text-slate-100">{item.title}</h3>
-              </div>
-              <button
-                onClick={onClose}
-                className="group rounded-full border border-slate-700/50 bg-slate-800/50 p-2 text-slate-400 transition-all hover:bg-slate-700 hover:text-white"
-                aria-label="Close"
-              >
-                <X className="h-5 w-5 transition-transform group-hover:rotate-90" />
-              </button>
-            </div>
-            
-            <div className="p-5 sm:p-8">
-              <div className="mb-8 grid gap-8 md:grid-cols-2">
-                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-800 border border-slate-700/50">
-                  <Image src={item.image} alt={item.title} fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
-                </div>
-                
-                <div className="flex flex-col justify-center space-y-6">
-                  <div className="flex flex-wrap items-center gap-3">
-                    <Badge><Building2 className="mr-1 h-3.5 w-3.5" /> {item.category || "Technology"}</Badge>
-                    <Badge><Calendar className="mr-1 h-3.5 w-3.5" /> {item.period || "2024"}</Badge>
-                  </div>
-                  
-                  <div className="space-y-3">
-                    <h4 className="text-sm font-semibold uppercase tracking-wider text-slate-400">About the Project</h4>
-                    <p className="text-sm leading-relaxed text-slate-300">{item.description}</p>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-4">
-                    {item.category === "GIS" ? (
-                      <>
-                        <div className="rounded-xl border border-slate-700/50 bg-slate-800/30 p-4 transition-colors hover:bg-slate-800/50">
-                          <Metric icon={<MapPin size={16} />} label="Type" value="GIS/Mapping" />
-                        </div>
-                        <div className="rounded-xl border border-slate-700/50 bg-slate-800/30 p-4 transition-colors hover:bg-slate-800/50">
-                          <Metric icon={<BarChart3 size={16} />} label="Impact" value="High Precision" />
-                        </div>
-                      </>
-                    ) : (
-                      <>
-                        <div className="rounded-xl border border-slate-700/50 bg-slate-800/30 p-4 transition-colors hover:bg-slate-800/50">
-                          <Metric icon={<Layers size={16} />} label="Status" value="Live & Active" />
-                        </div>
-                        <div className="rounded-xl border border-slate-700/50 bg-slate-800/30 p-4 transition-colors hover:bg-slate-800/50">
-                          <Metric icon={<Rocket size={16} />} label="Performance" value="Optimized" />
-                        </div>
-                      </>
-                    )}
-                  </div>
-                </div>
-              </div>
-
-              <div className="mb-8 rounded-2xl border border-slate-700/50 bg-slate-800/20 p-6">
-                <h4 className="mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-slate-400">
-                  <Code className="h-4 w-4" /> Technology Stack
-                </h4>
-                <div className="flex flex-wrap gap-2.5">
-                  {item.techStack && item.techStack.split(',').map((tech, index) => (
-                    <Badge key={index}>{tech.trim()}</Badge>
-                  ))}
-                </div>
-              </div>
-
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-6 rounded-2xl border border-cyan-500/20 bg-gradient-to-r from-cyan-500/10 to-slate-800/30 p-6 relative overflow-hidden">
-                <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 rounded-full bg-cyan-500/10 blur-2xl pointer-events-none"></div>
-                <div className="relative z-10 text-center sm:text-left">
-                  <div className="mb-1 text-sm font-semibold text-cyan-400">Interested in this solution?</div>
-                  <div className="text-base font-bold text-slate-100">Explore the full case study for deeper insights.</div>
-                </div>
-                <div className="flex w-full sm:w-auto gap-3 relative z-10">
-                  <button
-                    onClick={onClose}
-                    className="flex-1 sm:flex-none justify-center inline-flex items-center gap-2 rounded-xl border border-slate-600 bg-slate-800 px-5 py-2.5 text-sm font-semibold text-slate-300 hover:bg-slate-700 transition-all"
-                  >
-                    Close
-                  </button>
-                  <Link
-                    href={item.link || "#"}
-                    className="flex-1 sm:flex-none justify-center inline-flex items-center gap-2 rounded-xl bg-cyan-500 px-5 py-2.5 text-sm font-bold text-slate-950 hover:bg-cyan-400 hover:shadow-[0_0_20px_rgba(5,215,222,0.4)] transition-all"
-                  >
-                    View Case <ArrowUpRight className="h-4 w-4" />
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      )}
-    </AnimatePresence>
-  );
-}
+import "./projects.css";
 
 const Casestudies = ({ 
   portfolioData, 
-  defaultCategory = "All", 
-  hideFilters = false, 
-  customTitle = null 
+  defaultCategory = "All"
 }) => {
-  const [filter, setFilter] = useState(defaultCategory);
-  const [query, setQuery] = useState("");
-  const [drawerOpen, setDrawerOpen] = useState(false);
-  const [currentProject, setCurrentProject] = useState(null);
-
-  const getMobileDescription = (description, category) => {
-    if (typeof description !== 'string') return '';
-    return description.length > 150 ? description.substring(0, 150) + '...' : description;
-  };
+  const [filter, setFilter] = useState("all");
 
   const transformedProjects = portfolioData.map((item, index) => {
     const slug = item.slug || item.link?.replace('/portfolios/', '') || 
                 item.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
     
+    // Attempt to map older categories to new filter names
+    let categoryClass = "";
+    const catLower = item.category?.toLowerCase() || "";
+    if (catLower.includes("gis")) categoryClass += "gis ";
+    if (catLower.includes("drone") || catLower.includes("lidar")) categoryClass += "drone ";
+    if (catLower.includes("infrastructure") || catLower.includes("railway") || catLower.includes("mining")) categoryClass += "infrastructure ";
+    if (catLower.includes("web") || catLower.includes("app") || catLower.includes("it")) categoryClass += "digital ";
+    
+    // Ensure all has something, if not just default to gis or digital based on "IT" vs "GIS"
+    if (categoryClass === "") {
+        if (item.category === "IT") categoryClass = "digital";
+        else categoryClass = "gis";
+    }
+
     return {
       id: index,
       title: item.name,
       category: item.category,
+      categoryClass: categoryClass.trim(),
       techStack: item.techStack,
       description: Array.isArray(item.details) ? item.details[0] : item.description,
-      mobileDescription: getMobileDescription(Array.isArray(item.details) ? item.details[0] : item.description, item.category),
       image: item.image,
-      technologies: item.techStack || "React, Node.js, MongoDB",
       link: `/portfolios/${slug}`,
       period: item.projectDetails?.year || "2024",
       location: item.projectDetails?.location || "India",
@@ -271,295 +45,414 @@ const Casestudies = ({
   });
 
   const filteredProjects = useMemo(() => {
-    let filtered = transformedProjects;
-    
-    if (filter !== "All") {
-      filtered = filtered.filter(project => project.category === filter);
-    }
-    
-    if (query.trim()) {
-      const q = query.trim().toLowerCase();
-      filtered = filtered.filter(project =>
-        [project.title, project.description, project.techStack, project.category]
-          .join(" ")
-          .toLowerCase()
-          .includes(q)
-      );
-    }
-    
-    return filtered;
-  }, [transformedProjects, filter, query]);
-
-  const openProjectDrawer = (project) => {
-    setCurrentProject(project);
-    setDrawerOpen(true);
-  };
+    if (filter === "all") return transformedProjects;
+    return transformedProjects.filter(project => project.categoryClass.includes(filter));
+  }, [transformedProjects, filter]);
 
   return (
-    <div className="bg-slate-950 min-h-screen text-slate-200 font-sans selection:bg-cyan-500/30 selection:text-cyan-200">
-      <ScrollToTop />
-      
-      {/* PREMIUM HERO BANNER */}
-      <div className="relative w-full min-h-[90vh] md:min-h-[90vh] lg:min-h-[90vh] flex items-center overflow-hidden">
-        <Image
-          src={Portfolio_banner}
-          fill
-          className="object-contain object-top"
-          alt="Portfolio Banner"
-          priority
-          sizes="100vw"
-        />
-        
-        
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-8 py-20 flex flex-col justify-center">
-          <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-            style={{ fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}
-            className="max-w-2xl flex flex-col items-start text-left"
-          >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-6 leading-[1.2]">
-              Transforming Businesses with<br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fda4af] to-[#60a5fa] drop-shadow-[0_0_20px_rgba(96,165,250,0.2)]">
-                Smart IT, GIS & Drone Solutions
-              </span>
-            </h1>
-            
-            <p className="text-base md:text-lg text-slate-300 max-w-xl mb-10 leading-relaxed font-medium">
-              We combine IT development, GIS mapping, and drone intelligence to help organisations improve planning, operations, and decision-making.
-            </p>
-            
-            <div className="flex flex-wrap gap-4">
-              <Link 
-                href="/contact" 
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#4f46e5] to-[#db2777] px-8 py-4 text-sm md:text-base font-bold text-white shadow-[0_0_20px_rgba(79,70,229,0.3)] hover:shadow-[0_0_30px_rgba(219,39,119,0.5)] transition-all hover:scale-[1.02]"
-              >
-                Request a Free Project Consultation &rarr;
-              </Link>
-              <a 
-                href="#portfolio-grid" 
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-700/80 bg-slate-950/40 px-8 py-4 text-sm md:text-base font-bold text-slate-100 hover:bg-slate-900/50 transition-all hover:scale-[1.02]"
-              >
-                Explore Our Services
-              </a>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Stats Bar at the bottom */}
-        <div className="absolute bottom-0 left-0 w-full bg-slate-900/60 backdrop-blur-md border-t border-slate-800/80">
-          <div className="max-w-7xl mx-auto px-4 py-4 flex flex-wrap items-center justify-center gap-x-12 gap-y-4">
-            
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-400">
-                <Rocket className="h-5 w-5" />
+    <div className="projects-page-wrapper">
+      <main>
+        <section className="hero">
+          <div className="container hero-grid">
+            <div>
+              <div className="breadcrumb">Home <b>›</b> <span>Projects</span></div>
+              <div className="eyebrow">Selected Project Experience</div>
+              <h1 style={{marginTop: '13px'}}>Real geospatial work.<br/><em>Clear project evidence.</em></h1>
+              <p className="lead">Explore GIS mapping, drone survey, LiDAR, feature extraction, pipeline, land-use and geospatial application projects delivered for infrastructure, utilities, mining, government and commercial organisations.</p>
+              <div className="hero-actions">
+                <a className="btn btn-primary" href="#projects">Explore Projects</a>
+                <a className="btn btn-secondary" href="/contact">Share Your Requirement</a>
               </div>
-              <div className="leading-tight">
-                <div className="text-lg font-bold text-white">100+</div>
-                <div className="text-xs text-slate-400 font-medium uppercase tracking-wider">Projects Delivered</div>
+              <div className="hero-tags">
+                <span><i></i>GIS & CAD</span>
+                <span><i></i>Drone & LiDAR</span>
+                <span><i></i>Raster & Point Cloud</span>
+                <span><i></i>Web & Mobile GIS</span>
               </div>
             </div>
-
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-400">
-                <Users className="h-5 w-5" />
+            <div className="hero-visual">
+              <div className="map-window">
+                <div className="window-top">
+                  <div className="dots"><i></i><i></i><i></i></div>
+                  <span>TECHMAPPERZ · PROJECT ATLAS</span>
+                  <span>LIVE LAYERS</span>
+                </div>
+                <div className="map-stage">
+                  <svg viewBox="0 0 660 520" preserveAspectRatio="none" aria-hidden="true">
+                    <defs>
+                      <linearGradient id="land" x1="0" x2="1">
+                        <stop stopColor="#dbeadf"/>
+                        <stop offset="1" stopColor="#c8dfd4"/>
+                      </linearGradient>
+                      <linearGradient id="water" x1="0" x2="0" y1="0" y2="1">
+                        <stop stopColor="#9acbe1"/>
+                        <stop offset="1" stopColor="#72b4d4"/>
+                      </linearGradient>
+                      <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+                        <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#fff" strokeOpacity=".38" strokeWidth="1"/>
+                      </pattern>
+                    </defs>
+                    <rect width="660" height="520" fill="url(#land)"/>
+                    <path d="M-30 440 C80 330 125 360 210 280 C300 195 305 110 400 70 C510 25 570 90 690 25 L690 540 L-30 540Z" fill="url(#water)" opacity=".78"/>
+                    <g fill="none" stroke="#9ab39f" strokeWidth="2" opacity=".65">
+                      <path d="M0 145 C120 80 190 190 300 135 S510 60 690 130"/>
+                      <path d="M-20 255 C90 210 195 290 325 240 S500 150 690 235"/>
+                      <path d="M0 365 C120 300 240 420 390 340 S540 270 690 330"/>
+                    </g>
+                    <g fill="#e7c98f" stroke="#b18a45" strokeWidth="1.5">
+                      <path d="M130 80 L270 56 L310 160 L175 190Z"/>
+                      <path d="M355 190 L520 145 L575 245 L400 275Z"/>
+                      <path d="M95 290 L245 250 L285 365 L130 400Z"/>
+                    </g>
+                    <path d="M30 470 C150 390 220 410 305 300 S440 210 625 95" fill="none" stroke="#fff" strokeWidth="16"/>
+                    <path d="M30 470 C150 390 220 410 305 300 S440 210 625 95" fill="none" stroke="#e33434" strokeWidth="4" strokeDasharray="10 8"/>
+                    <path d="M75 38 L580 465" fill="none" stroke="#1267b1" strokeWidth="4" strokeDasharray="7 9"/>
+                    <g fill="#fff" stroke="#1267b1" strokeWidth="4">
+                      <circle cx="92" cy="52" r="9"/>
+                      <circle cx="230" cy="170" r="9"/>
+                      <circle cx="365" cy="286" r="9"/>
+                      <circle cx="565" cy="450" r="9"/>
+                    </g>
+                    <rect width="660" height="520" fill="url(#grid)"/>
+                  </svg>
+                  <div className="map-panel">
+                    <b>PROJECT LAYERS</b>
+                    <div><i></i>Railway corridor</div>
+                    <div><i></i>Mine features</div>
+                    <div><i></i>Land use</div>
+                    <div><i></i>Pipeline assets</div>
+                  </div>
+                </div>
               </div>
-              <div className="leading-tight">
-                <div className="text-lg font-bold text-white">50+</div>
-                <div className="text-xs text-slate-400 font-medium uppercase tracking-wider">Happy Clients</div>
+              <div className="floating float-a">
+                <strong>10+ flagship projects</strong>
+                <span>Geospatial work featured first</span>
+                <div className="progress"><i></i></div>
+              </div>
+              <div className="floating float-b">
+                <strong>Project-ready outputs</strong>
+                <span>GIS · CAD · LAS · GeoTIFF · Dashboards</span>
               </div>
             </div>
-
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-400">
-                <Building2 className="h-5 w-5" />
-              </div>
-              <div className="leading-tight">
-                <div className="text-lg font-bold text-white">5+</div>
-                <div className="text-xs text-slate-400 font-medium uppercase tracking-wider">Industries Served</div>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-400">
-                <ShieldCheck className="h-5 w-5" />
-              </div>
-              <div className="leading-tight">
-                <div className="text-sm font-bold text-slate-200">End-to-End</div>
-                <div className="text-xs text-slate-400 font-medium uppercase tracking-wider">Solutions & Support</div>
-              </div>
-            </div>
-
           </div>
-        </div>
-      </div>
+        </section>
 
-      <div className="bg-slate-950">
-        <header className="relative mx-auto max-w-7xl px-4 py-12 md:py-16 lg:px-6">
-          <div className="flex flex-col md:flex-row gap-8 justify-between items-start md:items-end">
-            <div className="max-w-2xl">
-              <h2 style={{ color: "white" }} className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                Transforming ideas into <span style={{ color: "#22d3ee" }} className="text-cyan-400">digital reality.</span>
-              </h2>
-              <p style={{ color: "#cbd5e1" }} className="mt-4 text-base leading-relaxed text-slate-400">
-                Discover our curated collection of enterprise applications, scalable systems, and precise GIS mapping projects.
-              </p>
+
+        <section className="featured">
+          <div className="container">
+            <div className="section-head">
+              <div className="copy">
+                <div className="eyebrow">Featured Case Study</div>
+                <h2 style={{marginTop: '12px'}}>Lead with the work that best represents Techmapperz today.</h2>
+                <p>The projects page should open with a technically strong geospatial assignment rather than a general website or software card.</p>
+              </div>
+              <div className="side-note">
+                Replace the illustrative map with approved project imagery, classified point-cloud views and final deliverable screenshots before publishing.
+              </div>
+            </div>
+            <article className="feature-card">
+              <div className="feature-visual">
+                <svg viewBox="0 0 720 540" preserveAspectRatio="none" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="fbg" x1="0" x2="1" y1="0" y2="1">
+                      <stop stopColor="#b8d8c3"/>
+                      <stop offset=".48" stopColor="#e2d8aa"/>
+                      <stop offset="1" stopColor="#92b7ca"/>
+                    </linearGradient>
+                    <pattern id="fg" width="38" height="38" patternUnits="userSpaceOnUse">
+                      <path d="M38 0H0V38" fill="none" stroke="#fff" strokeOpacity=".26"/>
+                    </pattern>
+                  </defs>
+                  <rect width="720" height="540" fill="url(#fbg)"/>
+                  <g fill="none" stroke="#809b78" strokeWidth="2" opacity=".65">
+                    <path d="M-20 130 C120 45 245 195 365 105 S570 10 750 120"/>
+                    <path d="M-20 240 C100 170 230 310 370 220 S580 125 750 220"/>
+                    <path d="M-20 365 C130 275 270 435 410 340 S610 260 750 335"/>
+                    <path d="M-20 470 C150 380 280 520 455 435 S610 375 750 430"/>
+                  </g>
+                  <g fill="#d6b879" stroke="#a88c52" strokeWidth="2">
+                    <path d="M72 115 L235 80 L282 195 L115 230Z"/>
+                    <path d="M410 95 L590 70 L633 180 L455 206Z"/>
+                    <path d="M335 302 L515 265 L568 397 L380 425Z"/>
+                  </g>
+                  <path d="M45 485 C135 420 185 435 252 365 S335 295 395 225 S500 165 675 45" fill="none" stroke="#f8fbfd" strokeWidth="31"/>
+                  <path d="M45 485 C135 420 185 435 252 365 S335 295 395 225 S500 165 675 45" fill="none" stroke="#202d3b" strokeWidth="7"/>
+                  <path d="M45 485 C135 420 185 435 252 365 S335 295 395 225 S500 165 675 45" fill="none" stroke="#e33434" strokeWidth="2.5" strokeDasharray="13 10"/>
+                  <g fill="#fff" stroke="#1267b1" strokeWidth="4">
+                    <circle cx="74" cy="466" r="9"/>
+                    <circle cx="252" cy="365" r="9"/>
+                    <circle cx="395" cy="225" r="9"/>
+                    <circle cx="638" cy="72" r="9"/>
+                  </g>
+                  <rect width="720" height="540" fill="url(#fg)"/>
+                </svg>
+                <span className="feature-badge">Railway & Infrastructure</span>
+                <div className="feature-layer">
+                  <b>Integrated geospatial workflow</b>
+                  <p>Drone LiDAR · DGPS control · Point-cloud processing · Terrain products · CAD/GIS delivery</p>
+                </div>
+              </div>
+              <div className="feature-copy">
+                <div className="project-category"><i></i> Drone LiDAR & Corridor Mapping</div>
+                <h2>Topographic survey and mapping for a 173 km railway corridor</h2>
+                <p>A large linear-infrastructure assignment covering a 100 m corridor, integrating drone LiDAR data, terrain processing, contours and engineering-ready geospatial deliverables.</p>
+                <div className="metric-grid">
+                  <div className="metric"><b>173 km</b><span>Project corridor</span></div>
+                  <div className="metric"><b>100 m</b><span>Survey width</span></div>
+                  <div className="metric"><b>LiDAR + DGPS</b><span>Acquisition workflow</span></div>
+                  <div className="metric"><b>DEM · DSM · CAD</b><span>Key outputs</span></div>
+                </div>
+                <div className="feature-tags">
+                  <span>Point Cloud</span>
+                  <span>Contours</span>
+                  <span>Orthomosaic</span>
+                  <span>Cross Sections</span>
+                  <span>GIS & CAD</span>
+                </div>
+                <Link className="btn btn-dark" href="/portfolios/lidar-case-study">View Full Case Study →</Link>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="projects">
+          <div className="container projects-shell">
+            <div className="section-head">
+              <div className="copy">
+                <div className="eyebrow">Project Portfolio</div>
+                <h2 style={{marginTop: '12px'}}>Browse work by service and project type.</h2>
+                <p>Each card summarises the client problem, project scale, technical workflow and final outputs. Dedicated case-study pages can provide the complete methodology and results.</p>
+              </div>
+              <div className="side-note">
+                Use the category taxonomy across cards, case-study pages and URLs.
+              </div>
             </div>
             
-            {/* Filters */}
-            <div className="flex items-center gap-2 rounded-full border border-slate-800 bg-slate-900/50 p-1.5 shadow-xl backdrop-blur-lg w-full md:w-auto overflow-x-auto scrollbar-hide">
-              {["All", "IT", "GIS"].map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setFilter(category)}
-                  style={filter === category ? { backgroundColor: "#06b6d4", color: "#020617", boxShadow: "0 0 15px rgba(5,215,222,0.4)" } : { color: "#94a3b8", backgroundColor: "rgba(15, 23, 42, 0.5)" }}
-                  className={`whitespace-nowrap flex-1 md:flex-none inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-300 ${
-                    filter === category
-                      ? "bg-cyan-500 text-slate-950"
-                      : "text-slate-400 hover:bg-slate-800 hover:text-slate-200"
-                  }`}
-                >
-                  {category === "IT" ? <Cpu className="w-4 h-4" /> : category === "GIS" ? <Camera className="w-4 h-4" /> : <Layers className="w-4 h-4" />}
-                  {category === "IT" ? "IT Solutions" : category === "GIS" ? "GIS & Drone" : "All Projects"}
-                </button>
+            <div className="filter-bar" aria-label="Project filters">
+              <button className={`filter-btn ${filter === 'all' ? 'active' : ''}`} onClick={() => setFilter('all')}>All Projects</button>
+              <button className={`filter-btn ${filter === 'gis' ? 'active' : ''}`} onClick={() => setFilter('gis')}>GIS & Mapping</button>
+              <button className={`filter-btn ${filter === 'drone' ? 'active' : ''}`} onClick={() => setFilter('drone')}>Drone & LiDAR</button>
+              <button className={`filter-btn ${filter === 'infrastructure' ? 'active' : ''}`} onClick={() => setFilter('infrastructure')}>Infrastructure</button>
+              <button className={`filter-btn ${filter === 'webgis' ? 'active' : ''}`} onClick={() => setFilter('webgis')}>Web & Mobile GIS</button>
+              <button className={`filter-btn ${filter === 'digital' ? 'active' : ''}`} onClick={() => setFilter('digital')}>Websites & Apps</button>
+            </div>
+            
+            <div className="project-grid">
+              {filteredProjects.map((project) => (
+                <article key={project.id} className="project-card" onClick={() => window.location.href = project.link}>
+                  <div className="thumb">
+                    <Image 
+                      src={project.image} 
+                      alt={project.title} 
+                      fill 
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover"
+                    />
+                    <span className="thumb-label">{project.category || 'Techmapperz'}</span>
+                  </div>
+                  <div className="project-body">
+                    <h3>{project.title}</h3>
+                    <p className="line-clamp-3 text-sm text-slate-500 mt-2">{project.description}</p>
+                    <div className="project-meta">
+                      {project.techStack?.split(',').slice(0, 3).map((tech, idx) => (
+                        <span key={idx}>{tech.trim()}</span>
+                      ))}
+                    </div>
+                    <Link className="project-link" href={project.link}>View Case Study <i>→</i></Link>
+                  </div>
+                </article>
               ))}
             </div>
-          </div>
-
-          {/* Search Bar */}
-          <div className="mt-10 relative max-w-2xl group">
-            <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-cyan-500/20 to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur"></div>
-            <div className="relative flex items-center">
-              <Search style={{ color: "#94a3b8" }} className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-500 group-focus-within:text-cyan-400 transition-colors" />
-              <input
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder={`Search ${filter === "All" ? "all" : filter} projects by tech stack, name, or description...`}
-                style={{ backgroundColor: "rgba(15, 23, 42, 0.8)", color: "white", border: "1px solid rgba(51, 65, 85, 0.8)" }}
-                className="w-full rounded-2xl border border-slate-700/50 bg-slate-900/80 py-3.5 pl-12 pr-4 text-sm text-slate-200 placeholder-slate-500 backdrop-blur-sm outline-none transition-all focus:border-cyan-500/50 focus:bg-slate-900"
-              />
-            </div>
-          </div>
-        </header>
-
-        {/* PROJECT GRID */}
-        <main className="mx-auto max-w-7xl px-4 pb-20 lg:px-6">
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <AnimatePresence mode="popLayout">
-              {filteredProjects.map((project, index) => (
-                <ProjectCard key={project.id} item={project} onOpen={openProjectDrawer} index={index} />
-              ))}
-            </AnimatePresence>
             
             {filteredProjects.length === 0 && (
-              <motion.div 
-                initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                className="col-span-full rounded-3xl border border-dashed border-slate-700 bg-slate-900/30 p-12 text-center"
-              >
-                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-slate-800 text-slate-400 mb-4">
-                  <Search className="h-8 w-8" />
-                </div>
-                <h3 className="text-lg font-bold text-slate-200 mb-2">No projects found</h3>
-                <p className="text-sm text-slate-400">Try adjusting your search terms or filter to find what you're looking for.</p>
-                <button 
-                  onClick={() => { setFilter("All"); setQuery(""); }}
-                  className="mt-6 inline-flex items-center gap-2 rounded-xl bg-slate-800 px-4 py-2 text-sm font-semibold text-slate-300 hover:bg-slate-700 transition-colors"
-                >
-                  Clear all filters
-                </button>
-              </motion.div>
+              <p className="projects-note py-8 text-center">No projects found for the selected category.</p>
             )}
-          </div>
 
-          {/* PREMIUM TESTIMONIAL STRIP */}
-          <div className="mt-20">
-            <h3 className="text-2xl font-bold text-white mb-8 text-center">What Our Clients Say</h3>
-            <div className="grid gap-6 md:grid-cols-3">
-              {[
-                {
-                  quote: "Techmapperz delivered exceptional GIS mapping solutions that completely transformed our land management and planning processes.",
-                  client: "Government Client",
-                  role: "Urban Planning Division"
-                },
-                {
-                  quote: "Their custom CRM solution increased our operational efficiency by 40% within the first quarter. Truly impressive engineering.",
-                  client: "Enterprise Client",
-                  role: "Operations Director"
-                },
-                {
-                  quote: "Professional drone surveys with highly accurate deliverables. We highly recommend them for large infrastructure projects.",
-                  client: "Construction Company",
-                  role: "Lead Engineer"
-                }
-              ].map((testimonial, i) => (
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                  key={i} 
-                  className="relative rounded-2xl border border-slate-800 bg-slate-900/50 p-8 shadow-lg backdrop-blur-sm group hover:bg-slate-800/80 transition-colors"
-                >
-                  <div className="absolute -top-4 -left-2 text-6xl text-cyan-500/20 font-serif group-hover:text-cyan-500/30 transition-colors">"</div>
-                  <p className="relative z-10 text-sm leading-relaxed text-slate-300 mb-6 font-medium italic">
-                    "{testimonial.quote}"
-                  </p>
-                  <div className="flex items-center gap-3 border-t border-slate-700/50 pt-4">
-                    <div className="h-10 w-10 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold text-sm">
-                      {testimonial.client.charAt(0)}
-                    </div>
-                    <div>
-                      <div className="text-sm font-bold text-white">{testimonial.client}</div>
-                      <div className="text-xs text-cyan-400">{testimonial.role}</div>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+            <p className="projects-note">Only publish projects with approved descriptions, imagery and non-confidential information. Sensitive client names and locations can remain anonymised.</p>
           </div>
+        </section>
 
-          {/* CTA SECTION */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-            style={{ backgroundColor: "#0b111a", border: "1px solid #1e293b", borderRadius: "1.5rem" }}
-            className="mt-20 relative overflow-hidden py-16 px-6"
-          >
-            <div className="relative z-10 flex flex-col items-center text-center max-w-4xl mx-auto">
-              <h3 style={{ color: "white" }} className="text-2xl md:text-3xl font-bold mb-4">Looking for a Similar Solution?</h3>
-              <p style={{ color: "#94a3b8" }} className="text-base md:text-lg mb-10 leading-relaxed max-w-3xl">
-                Share your project requirement with Techmapperz. Our team can help you plan the right approach for 
-                GIS mapping, drone survey, web development, mobile app development, CRM, or custom software projects.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a
-                  href="/contact"
-                  style={{ 
-                    background: "linear-gradient(to right, #6366f1, #ec4899)", 
-                    color: "white", 
-                    boxShadow: "0 10px 25px -5px rgba(99, 102, 241, 0.4)" 
-                  }}
-                  className="inline-flex items-center justify-center rounded-full px-8 py-3.5 text-sm font-bold transition-all hover:-translate-y-1 hover:shadow-lg"
-                >
-                  Discuss Your Project
-                </a>
-                
-                <a
-                  href="/portfolios"
-                  style={{ 
-                    backgroundColor: "#1e293b", 
-                    border: "1px solid #334155", 
-                    color: "white" 
-                  }}
-                  className="inline-flex items-center justify-center rounded-full px-8 py-3.5 text-sm font-bold transition-all hover:bg-slate-800"
-                >
-                  View All Case Studies
-                </a>
+        <section className="case-structure">
+          <div className="container">
+            <div className="section-head">
+              <div className="copy">
+                <div className="eyebrow" style={{color: '#8ed4ff'}}>Case Study Structure</div>
+                <h2 style={{marginTop: '12px'}}>Every project deserves more than a thumbnail and two generic sentences.</h2>
+                <p>Dedicated case-study pages should explain the work in a consistent, buyer-friendly order.</p>
               </div>
             </div>
-          </motion.div>
-        </main>
-      </div>
+            <div className="case-grid">
+              <div className="case-item">
+                <b>01 · Context</b>
+                <h3>Challenge & objective</h3>
+                <p>Industry, location, scale, business problem, project objective and client acceptance criteria.</p>
+              </div>
+              <div className="case-item">
+                <b>02 · Delivery</b>
+                <h3>Scope & methodology</h3>
+                <p>Inputs, survey plan, processing steps, feature classes, software and production approach.</p>
+              </div>
+              <div className="case-item">
+                <b>03 · Quality</b>
+                <h3>QA/QC & review</h3>
+                <p>Projection, topology, attributes, accuracy, completeness, revision stages and final validation.</p>
+              </div>
+              <div className="case-item">
+                <b>04 · Result</b>
+                <h3>Deliverables & outcome</h3>
+                <p>Output formats, quantities, measurable results and how the data supports planning or operations.</p>
+              </div>
+            </div>
+          </div>
+        </section>
 
-      <ProjectDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} item={currentProject} />
+        <section>
+          <div className="container">
+            <div className="section-head">
+              <div className="copy">
+                <div className="eyebrow">Our Delivery Path</div>
+                <h2 style={{marginTop: '12px'}}>A repeatable process behind every successful project.</h2>
+                <p>The portfolio should show not only what was delivered, but also how Techmapperz manages scope, production and quality.</p>
+              </div>
+            </div>
+            <div className="workflow-grid">
+              <div className="work-card">
+                <b>01</b>
+                <h3>Review</h3>
+                <p>Understand objectives, source data, geography, formats, accuracy and timelines.</p>
+              </div>
+              <div className="work-card">
+                <b>02</b>
+                <h3>Plan</h3>
+                <p>Define survey or production methodology, team, checkpoints and acceptance criteria.</p>
+              </div>
+              <div className="work-card">
+                <b>03</b>
+                <h3>Produce</h3>
+                <p>Execute acquisition, processing, digitisation, modelling or application development.</p>
+              </div>
+              <div className="work-card">
+                <b>04</b>
+                <h3>Validate</h3>
+                <p>Check geometry, topology, attributes, projection, completeness and usability.</p>
+              </div>
+              <div className="work-card">
+                <b>05</b>
+                <h3>Deliver</h3>
+                <p>Share review data, close comments and hand over project-ready outputs.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="quality">
+          <div className="container quality-grid">
+            <div className="quality-panel">
+              <div className="check-row">
+                <div className="check-icon">01</div>
+                <div><b>Projection & coordinate system</b><span>Correct spatial reference and units</span></div>
+                <div className="status">CHECKED</div>
+              </div>
+              <div className="check-row">
+                <div className="check-icon">02</div>
+                <div><b>Geometry & topology</b><span>Gaps, overlaps, dangles and closure rules</span></div>
+                <div className="status">CHECKED</div>
+              </div>
+              <div className="check-row">
+                <div className="check-icon">03</div>
+                <div><b>Attributes & coding</b><span>Feature codes, domains and required values</span></div>
+                <div className="status">CHECKED</div>
+              </div>
+              <div className="check-row">
+                <div className="check-icon">04</div>
+                <div><b>Completeness & formats</b><span>Coverage, naming and output compatibility</span></div>
+                <div className="status">CHECKED</div>
+              </div>
+              <div className="check-row">
+                <div className="check-icon">05</div>
+                <div><b>Final review package</b><span>Client comments and acceptance record</span></div>
+                <div className="status">READY</div>
+              </div>
+            </div>
+            <div className="quality-copy">
+              <div className="eyebrow">Quality Is Part of the Story</div>
+              <h2 style={{marginTop: '12px'}}>Show the controls behind the final map, model or application.</h2>
+              <p>A strong project page should demonstrate that Techmapperz understands production quality, not simply attractive screenshots. Include non-confidential examples of QA reports, topology checks, classified point clouds and review workflows.</p>
+              <div className="quality-list">
+                <div><i></i>Independent production checks</div>
+                <div><i></i>Client-defined specifications</div>
+                <div><i></i>Controlled review cycles</div>
+                <div><i></i>Multi-format validation</div>
+                <div><i></i>Data naming standards</div>
+                <div><i></i>Final delivery register</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="digital">
+          <div className="container digital-grid">
+            <div className="screens">
+              <div className="screen-main">
+                <svg viewBox="0 0 600 400" preserveAspectRatio="none">
+                  <rect width="600" height="400" fill="#f5f8fa"/>
+                  <rect width="600" height="42" fill="#0b2341"/>
+                  <rect x="20" y="62" width="118" height="315" rx="10" fill="#fff" stroke="#d8e3eb"/>
+                  <rect x="158" y="62" width="422" height="210" rx="11" fill="#d9e8ef"/>
+                  <path d="M165 250C250 170 300 230 365 150S475 100 570 130" fill="none" stroke="#1267b1" strokeWidth="10"/>
+                  <g fill="#fff" stroke="#e33434" strokeWidth="4">
+                    <circle cx="250" cy="190" r="9"/>
+                    <circle cx="365" cy="150" r="9"/>
+                    <circle cx="520" cy="120" r="9"/>
+                  </g>
+                  <rect x="158" y="291" width="125" height="86" rx="10" fill="#e7f1f8"/>
+                  <rect x="297" y="291" width="125" height="86" rx="10" fill="#e9f5f2"/>
+                  <rect x="436" y="291" width="144" height="86" rx="10" fill="#fbefef"/>
+                </svg>
+              </div>
+              <div className="screen-phone">
+                <svg viewBox="0 0 250 500" preserveAspectRatio="none">
+                  <rect width="250" height="500" fill="#fff"/>
+                  <rect width="250" height="55" fill="#0b2341"/>
+                  <rect x="18" y="75" width="214" height="205" rx="16" fill="#d9e8ef"/>
+                  <path d="M25 250C70 195 105 225 145 165S195 135 228 110" fill="none" stroke="#1267b1" strokeWidth="7"/>
+                  <circle cx="145" cy="165" r="9" fill="#fff" stroke="#e33434" strokeWidth="4"/>
+                  <rect x="18" y="300" width="214" height="60" rx="13" fill="#edf5fa"/>
+                  <rect x="18" y="375" width="102" height="95" rx="13" fill="#eaf5f2"/>
+                  <rect x="130" y="375" width="102" height="95" rx="13" fill="#fbefef"/>
+                </svg>
+              </div>
+            </div>
+            <div className="digital-copy">
+              <div className="eyebrow">From Project Data to Digital Access</div>
+              <h2 style={{marginTop: '12px'}}>Connect selected projects to Web and Mobile GIS solutions.</h2>
+              <p>The Projects page can also demonstrate how survey, mapping and asset data can evolve into searchable dashboards, geoportals and field applications.</p>
+              <div className="digital-list">
+                <div><i>01</i><span><b>Project dashboards:</b> progress, quantities, status and map-based reporting.</span></div>
+                <div><i>02</i><span><b>Asset applications:</b> search, inspect and update geotagged assets.</span></div>
+                <div><i>03</i><span><b>Field workflows:</b> mobile data collection, photographs and validation.</span></div>
+                <div><i>04</i><span><b>Secure sharing:</b> role-based access to selected project layers and reports.</span></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="cta" id="contact">
+          <div className="container">
+            <div className="cta-card">
+              <div className="cta-copy">
+                <div className="eyebrow" style={{color: '#8ed4ff'}}>Start a Project Conversation</div>
+                <h2 style={{marginTop: '12px', color: '#fff'}}>Have a GIS, drone survey or geospatial application requirement?</h2>
+                <p>Share the project location, area or corridor length, available inputs, required accuracy, expected deliverables and timeline. Our team can review the scope and suggest a practical delivery approach.</p>
+              </div>
+              <div className="cta-actions">
+                <Link className="btn btn-primary" href="/contact">Discuss Your Project</Link>
+                <Link className="btn btn-secondary" href="/contact">Send Your Scope of Work</Link>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
     </div>
   );
 };

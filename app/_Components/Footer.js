@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { FaPinterest, FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter, FaYoutube } from "react-icons/fa";
+import { FaPinterest, FaFacebookF, FaInstagram, FaLinkedinIn, FaYoutube, FaMapMarkerAlt, FaPhone, FaEnvelope } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
 import Gotop from './Gotop';
 import Image from 'next/image';
@@ -19,19 +19,14 @@ const Footer = () => {
       setSubscribeStatus('Please enter an email address');
       return;
     }
-
     setIsSubscribing(true);
     try {
       const response = await fetch('/api/newsletter/subscribe', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
       });
-
       const data = await response.json();
-      
       if (response.ok) {
         setSubscribeStatus(data.message || 'Successfully subscribed!');
         setEmail('');
@@ -39,7 +34,6 @@ const Footer = () => {
         setSubscribeStatus(data.error || data.message || 'Failed to subscribe. Please try again.');
       }
     } catch (error) {
-      console.error('Newsletter subscription error:', error);
       setSubscribeStatus('An error occurred. Please try again later.');
     } finally {
       setIsSubscribing(false);
@@ -48,121 +42,197 @@ const Footer = () => {
 
   const currentYear = new Date().getFullYear();
 
+  const navLinks = [
+    { label: 'Home', href: '/' },
+    { label: 'Services', href: '/service' },
+    { label: 'About Us', href: '/about' },
+    { label: 'Career', href: '/career' },
+    { label: 'Contact', href: '/contact' },
+  ];
+  const resourceLinks = [
+    { label: 'Blog & Insights', href: '/blog' },
+    { label: 'Events', href: '/events' },
+    { label: 'Portfolio', href: '/portfolios' },
+    { label: 'Privacy Policy', href: '/privacy' },
+    { label: 'Sitemap', href: '/sitemap' },
+  ];
+
+  const socials = [
+    { icon: <FaLinkedinIn />, href: 'https://www.linkedin.com/company/techmapperz/', label: 'LinkedIn' },
+    { icon: <FaInstagram />, href: 'https://www.instagram.com/techmapperz/', label: 'Instagram' },
+    { icon: <BsTwitterX />, href: 'https://x.com/Techmapperzllp', label: 'Twitter' },
+    { icon: <FaFacebookF />, href: 'https://www.facebook.com/techmapperz', label: 'Facebook' },
+    { icon: <FaYoutube />, href: 'https://www.youtube.com/channel/UCWogNBwwxTvoX8Ax24j6c6Q', label: 'YouTube' },
+    { icon: <FaPinterest />, href: 'https://pin.it/2nsXnBd', label: 'Pinterest' },
+  ];
+
   return (
     <>
-      <footer className="w-full bg-gray-100 p-8 max-sm:p-1 max-sm:px-4 relative" role="contentinfo">
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-[50px] justify-between text-black">
-          {/* Left Section */}
-          <div className="flex flex-col justify-center gap-4">
-            {/* Logo */}
-            <Link href="/">
-              <Image
-                src={footer_logo}
-                alt="footer_logo"
-                className="object-fill mb-6 max-sm:mx-auto"
-                width={300}
-                height={300}
-                priority={true} // Preload image for better performance
-              />
-            </Link>
-            <p className='text-black font-semibold max-sm:text-[14px]'>
-              Chasing the Vision for a better tomorrow where <br />
-              technology simplifies complex functions.
-            </p>
-            {/* Subscribe Section */}
-            <div className='flex max-sm:w-full max-sm:justify-between  border-[2px] text-black w-fit px-2 py-1 rounded-md gap-2 max-sm:gap-0'>
-              <label htmlFor="newsletter-email" className="sr-only">Email address</label>
-              <input
-                id="newsletter-email"
-                className='border-none max-sm:w-[50%] bg-white text-black placeholder:text-gray-500'
-                placeholder='Enter your email...'
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                type="email"
-                required
-                aria-describedby="newsletter-status"
-              />
-              <button
-                className="w-fit px-4 py-2 h-[40px] text-white font-bold border-none rounded-md btn-gradient"
-                onClick={handleSubscribe}
-                disabled={isSubscribing}
-              >
-                {isSubscribing ? 'Subscribing...' : 'Subscribe'}
-              </button>
-            </div>
-            {subscribeStatus && (
-              <p id="newsletter-status" className={`mt-2 text-sm ${subscribeStatus.includes('Successfully') ? 'text-green-600' : 'text-red-600'}`} role="status" aria-live="polite">
-                {subscribeStatus}
+      <footer
+        className="w-full relative overflow-hidden"
+        style={{ background: 'linear-gradient(160deg, #0a1f40 0%, #0c2e60 50%, #0d3875 100%)' }}
+        role="contentinfo"
+      >
+        {/* Decorative Blobs */}
+        <div className="pointer-events-none absolute -top-20 -right-20 w-80 h-80 rounded-full opacity-10"
+          style={{ background: 'radial-gradient(circle, #3b82f6, transparent)' }} />
+        <div className="pointer-events-none absolute -bottom-16 -left-16 w-64 h-64 rounded-full opacity-10"
+          style={{ background: 'radial-gradient(circle, #e33434, transparent)' }} />
+
+        {/* Main Content */}
+        <div className="relative z-10 max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12 pt-16 pb-10">
+
+          {/* Top Row — Brand + Nav + Resources + Newsletter */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+
+            {/* Col 1 — Brand */}
+            <div className="flex flex-col gap-5">
+              <Link href="/" className="inline-block bg-white rounded-2xl px-4 py-3 w-fit shadow-lg shadow-black/20 hover:shadow-xl transition-shadow">
+                <Image
+                  src={footer_logo}
+                  alt="Techmapperz"
+                  width={180}
+                  height={55}
+                  className="h-10 w-auto object-contain"
+                  priority
+                />
+              </Link>
+              <p className="text-sm leading-7 max-w-[260px]" style={{ color: '#a8c4e8' }}>
+                Chasing the vision for a better tomorrow — where technology simplifies complex business functions.
               </p>
-            )}
+
+              {/* Contact Info */}
+              <ul className="flex flex-col gap-3 mt-1">
+                <li className="flex items-start gap-3 text-sm" style={{ color: '#a8c4e8' }}>
+                  <FaMapMarkerAlt className="mt-0.5 shrink-0 text-[#e33434]" />
+                  <span>Kolkata &amp; New Delhi, India</span>
+                </li>
+                <li className="flex items-center gap-3 text-sm" style={{ color: '#a8c4e8' }}>
+                  <FaPhone className="shrink-0 text-[#e33434]" />
+                  <a href="tel:+919643002065" className="hover:text-white transition-colors">+91 96430 02065</a>
+                </li>
+                <li className="flex items-center gap-3 text-sm" style={{ color: '#a8c4e8' }}>
+                  <FaEnvelope className="shrink-0 text-[#e33434]" />
+                  <a href="mailto:info@techmapperz.com" className="hover:text-white transition-colors">info@techmapperz.com</a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Col 2 — Company Links */}
+            <div>
+              <h3 className="text-white font-bold text-[15px] uppercase tracking-widest mb-6 relative pb-3 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-8 after:h-0.5 after:bg-[#e33434] after:rounded-full">
+                Company
+              </h3>
+              <ul className="flex flex-col gap-3">
+                {navLinks.map(link => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="group flex items-center gap-2 text-sm transition-all duration-200"
+                      style={{ color: '#a8c4e8' }}
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#e33434] opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
+                      <span className="group-hover:text-white group-hover:translate-x-1 transition-all duration-200 inline-block">{link.label}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Col 3 — Resources Links */}
+            <div>
+              <h3 className="text-white font-bold text-[15px] uppercase tracking-widest mb-6 relative pb-3 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-8 after:h-0.5 after:bg-[#e33434] after:rounded-full">
+                Resources
+              </h3>
+              <ul className="flex flex-col gap-3">
+                {resourceLinks.map(link => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="group flex items-center gap-2 text-sm transition-all duration-200"
+                      style={{ color: '#a8c4e8' }}
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#e33434] opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
+                      <span className="group-hover:text-white group-hover:translate-x-1 transition-all duration-200 inline-block">{link.label}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Col 4 — Newsletter */}
+            <div>
+              <h3 className="text-white font-bold text-[15px] uppercase tracking-widest mb-6 relative pb-3 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-8 after:h-0.5 after:bg-[#e33434] after:rounded-full">
+                Stay Updated
+              </h3>
+              <p className="text-sm mb-5 leading-6" style={{ color: '#a8c4e8' }}>
+                Get the latest news, tips, and updates from Techmapperz delivered to your inbox.
+              </p>
+
+              <div className="flex flex-col gap-3">
+                <label htmlFor="footer-email" className="sr-only">Email address</label>
+                <input
+                  id="footer-email"
+                  type="email"
+                  placeholder="Your email address"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full rounded-xl px-4 py-3 text-sm text-white outline-none focus:ring-2 focus:ring-white/20 transition-all"
+                  style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)' }}
+                  onKeyDown={(e) => e.key === 'Enter' && handleSubscribe(e)}
+                />
+                <button
+                  onClick={handleSubscribe}
+                  disabled={isSubscribing}
+                  className="w-full py-3 rounded-xl text-white font-bold text-sm transition-all duration-200 hover:opacity-90 active:scale-95 disabled:opacity-60 shadow-lg"
+                  style={{ background: 'linear-gradient(135deg, #e33434, #c22020)' }}
+                >
+                  {isSubscribing ? 'Subscribing...' : 'Subscribe →'}
+                </button>
+              </div>
+
+              {subscribeStatus && (
+                <p className={`mt-3 text-sm font-medium ${subscribeStatus.toLowerCase().includes('success') ? 'text-green-400' : 'text-red-400'}`}>
+                  {subscribeStatus}
+                </p>
+              )}
+            </div>
           </div>
 
-          {/* Right Section */}
-          <div className='flex gap-4 justify-between'>
-            {/* Company Links */}
-            <div className=" max-sm:text-[12px]">
-              <h3 className="pb-4 font-bold">Company</h3>
-              <ul className="grid grid-cols-1 gap-5">
-                <li><Link href="/">Home</Link></li>
-                <li><Link href="/service">Service</Link></li>
-                <li><Link href="/blog?page=1">Resources</Link></li>
-                <li><Link href="/about">About Us</Link></li>
-                <li><Link href="/career">Career</Link></li>
-              </ul>
+          {/* Divider */}
+          <div className="mt-12 mb-8" style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)' }} />
+
+          {/* Bottom Row — Socials + Copyright */}
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-5">
+
+            {/* Social Icons */}
+            <div className="flex items-center gap-2.5">
+              {socials.map(({ icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="w-9 h-9 rounded-full flex items-center justify-center text-sm transition-all duration-200 hover:scale-110"
+                  style={{ background: 'rgba(255,255,255,0.08)', color: '#a8c4e8', border: '1px solid rgba(255,255,255,0.1)' }}
+                  onMouseEnter={e => { e.currentTarget.style.background = '#e33434'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.borderColor = '#e33434'; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.08)'; e.currentTarget.style.color = '#a8c4e8'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'; }}
+                >
+                  {icon}
+                </a>
+              ))}
             </div>
 
-            {/* Resources Links */}
-            <div className="ml-15 max-sm:text-[12px]">
-              <h3 className="pb-4 font-bold">Resources</h3>
-              <ul className="grid grid-cols-1 gap-5">
-                <li><Link href="/blog">Blogs</Link></li>
-                <li><Link href="/events">Events</Link></li>
-                <li><Link href="/portfolios">Portfolio</Link></li>
-                <li><Link href="/contact">Contact Us</Link></li>
-              </ul>
-            </div>
-
-            {/* Utility Links */}
-            <div className="ml-15 max-sm:text-[12px]">
-              <h3 className="pb-4 font-bold">Utility</h3>
-              <ul className="grid grid-cols-1 gap-5">
-                <li><Link href="/privacy">Privacy Policy</Link></li>
-                <li><Link href="/help">Help</Link></li>
-                <li><Link href="/sitemap">Sitemap</Link></li>
-              </ul>
-            </div>
+            {/* Copyright */}
+            <p className="text-sm text-center" style={{ color: '#7a9bc4' }}>
+              © {currentYear} <span className="text-white font-semibold">Techmapperz</span>. All Rights Reserved.
+            </p>
           </div>
         </div>
+
         <Gotop />
       </footer>
-
-      {/* Footer Bottom */}
-      <div className="w-full h-10 bg-black text-white flex justify-between items-center font-medium px-[70px] max-sm:justify-center max-sm:items-center max-sm:px-0">
-        <div className="flex gap-2 justify-center items-center max-sm:hidden">
-          {/* Social Links */}
-          <a href="https://www.linkedin.com/company/techmapperz/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-            <FaLinkedinIn className="text-white text-2xl" />
-          </a>
-          <a href="https://www.instagram.com/techmapperz/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-            <FaInstagram className="text-white text-2xl" />
-          </a>
-          <a href="https://x.com/Techmapperzllp" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-            <BsTwitterX className="text-white text-2xl" />
-          </a>
-          <a href="https://www.facebook.com/techmapperz" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-            <FaFacebookF className="text-white text-2xl" />
-          </a>
-          <a href="https://www.youtube.com/channel/UCWogNBwwxTvoX8Ax24j6c6Q" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-            <FaYoutube className="text-white text-2xl" />
-          </a>
-          <a href="https://pin.it/2nsXnBd" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">
-            <FaPinterest className="text-white text-2xl" />
-          </a>
-        </div>
-        <div className="max-sm:text-[12px]">
-          Copyright &copy; {currentYear} Techmapperz All Rights Reserved
-        </div>
-      </div>
     </>
   );
 };

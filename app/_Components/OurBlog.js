@@ -3,6 +3,10 @@ import Card from './Card';
 import Link from 'next/link';
 import { FaArrowRight } from 'react-icons/fa';
 
+const sansSerifStyle = {
+  fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+};
+
 const OurBlog = async () => {
   let page = 1;
   let parpage = 3;
@@ -17,19 +21,19 @@ const OurBlog = async () => {
         : [];
   
   return (
-    <section className="relative bg-[#070A11] py-24 px-4 overflow-hidden border-t border-white/5 max-sm:hidden">
+    <section className="relative bg-white py-24 px-4 overflow-hidden border-t border-gray-100 max-sm:hidden" style={sansSerifStyle}>
       
       {/* Background Glows */}
-      <div className="absolute top-0 right-1/4 w-[400px] h-[400px] bg-[#2d5689]/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-[#05D7DE]/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 right-1/4 w-[400px] h-[400px] bg-[#1267b1]/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-[#078a86]/5 rounded-full blur-[120px] pointer-events-none" />
 
       {/* Header */}
       <div className="relative z-10 text-center mb-16">
-        <span className="text-[#05D7DE] text-sm font-bold tracking-[0.2em] uppercase">Techmapperz Insights</span>
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mt-4 mb-6 tracking-tight">
+        <span className="text-[#078a86] text-xs md:text-sm font-bold tracking-[0.15em] uppercase">Techmapperz Insights</span>
+        <h2 className="text-3xl md:text-4xl lg:text-[42px] font-bold text-[#0c2e60] mt-4 mb-4 tracking-tight">
           Our Latest Blogs
         </h2>
-        <div className="w-24 h-[3px] bg-gradient-to-r from-[#2d5689] to-[#05D7DE] mx-auto rounded-full" />
+        <div className="w-12 h-[3px] bg-[#078a86] mx-auto rounded-full" />
       </div>
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6">
@@ -39,8 +43,8 @@ const OurBlog = async () => {
               <Card post={post} />
             </div>
           )) : (
-            <div className="col-span-3 text-center py-12 bg-[#111622] border border-white/5 rounded-3xl">
-              <p className="text-lg text-gray-400 font-light">No blog posts available at the moment.</p>
+            <div className="col-span-3 text-center py-12 bg-gray-50 border border-gray-100 rounded-3xl">
+              <p className="text-sm md:text-base text-gray-500 font-light">No blog posts available at the moment.</p>
             </div>
           )}
         </div>
@@ -50,10 +54,10 @@ const OurBlog = async () => {
       <div className="relative z-10 flex justify-center mt-16 mb-8">
         <Link
           href="/blog"
-          className="group relative inline-flex items-center gap-3 px-8 py-3.5 bg-[#111622] border border-[#05D7DE]/30 rounded-full hover:bg-[#05D7DE]/10 transition-all duration-300 shadow-[0_0_15px_rgba(5,215,222,0.1)] hover:shadow-[0_0_30px_rgba(5,215,222,0.2)]"
+          className="group relative inline-flex items-center gap-3 px-8 py-3.5 bg-white border border-gray-150 rounded-full hover:bg-gray-50 transition-all duration-300 shadow-md hover:shadow-lg"
         >
-          <span className="text-white text-sm font-bold tracking-wide uppercase transition-colors group-hover:text-[#05D7DE]">Explore More Blogs</span>
-          <FaArrowRight className="text-[#05D7DE] group-hover:translate-x-1 transition-transform duration-300" />
+          <span className="text-[#0c2e60] text-sm font-bold tracking-wide uppercase transition-colors group-hover:text-[#1267b1]">Explore More Blogs</span>
+          <FaArrowRight className="text-[#1267b1] group-hover:translate-x-1 transition-transform duration-300" />
         </Link>
       </div>
     </section>

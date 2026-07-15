@@ -1,13 +1,8 @@
 "use client";
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import { Pagination } from "swiper/modules";
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingCart, GraduationCap, Landmark, HeartPulse, Truck, Factory, Store, Plane } from 'lucide-react';
 
 import Ecommerce from "@/public/Industry/E-commerce.webp";
@@ -18,10 +13,6 @@ import Logistics from "@/public/Industry/Logistic-Supply-Chain.webp";
 import Manufacturing from "@/public/Industry/Manufacturing.webp";
 import Retail from "@/public/Industry/Retail.webp";
 import Travel from "@/public/Industry/Travel-Hospitality.webp";
-
-if (typeof window !== 'undefined') {
-    gsap.registerPlugin(ScrollTrigger);
-}
 
 export const categoryData = [
     {
@@ -98,177 +89,242 @@ export const categoryData = [
     }
 ];
 
+const industryTabs = [
+  {
+    id: 'government',
+    name: 'Government',
+    tag: 'SPACE',
+    title: 'AGiSAC Facilitates Effective Governance in Himachal Pradesh with ArcGIS',
+    description: 'AGiSAC works to identify decision-making applications with the help of user departments and provides tailor-made GIS solutions for better decision-making in government departments using ArcGIS.',
+    buttonText: 'Read the story',
+    buttonLink: '/industry/government',
+    mainImage: '/Industry/himachal_landscape.png',
+    overlayImage: '/Industry/himachal_map.png'
+  },
+  {
+    id: 'utilities',
+    name: 'Utilities',
+    tag: 'ENERGY & WATER',
+    title: 'Real-time Asset Mapping & Outage Management for Smart Grids',
+    description: 'Deploying secure cloud Web GIS solutions to map electricity distribution lines, water pipelines, and gas networks. Automating asset inspections and field dispatch workflows.',
+    buttonText: 'Read the story',
+    buttonLink: '/industry/utilities',
+    mainImage: '/Industry/himachal_landscape.png',
+    overlayImage: '/gis_images/Gas Pipeline.webp'
+  },
+  {
+    id: 'infra-aec',
+    name: 'Infra & AEC',
+    tag: 'CONSTRUCTION',
+    title: 'Highway Alignment Feasibility & BIM-GIS Integration',
+    description: 'Accelerating corridor design and pre-construction surveys with drone photogrammetry and high-resolution DTMs. Linking BIM files directly to spatial web maps.',
+    buttonText: 'Read the story',
+    buttonLink: '/industry/infra-aec',
+    mainImage: '/Industry/himachal_landscape.png',
+    overlayImage: '/gis_images/Urban & Rural.webp'
+  },
+  {
+    id: 'enterprise',
+    name: 'Enterprise',
+    tag: 'BUSINESS INTELLIGENCE',
+    title: 'Empowering Spatial Decisions with Enterprise GIS Solutions',
+    description: 'Integrating geographic data with CRM and ERP platforms to enable market research, customer profiling, and routing intelligence for global operations.',
+    buttonText: 'Read the story',
+    buttonLink: '/industry/enterprise',
+    mainImage: '/Industry/himachal_landscape.png',
+    overlayImage: '/gis_images/Web_GIS_Development_Banner.webp'
+  },
+  {
+    id: 'water',
+    name: 'Water',
+    tag: 'HYDROLOGY',
+    title: 'Watershed Conservation & Flood Hazard Mapping',
+    description: 'Utilizing DEM and terrain analysis to monitor catchment area runoffs, estimate basin capacities, and generate high-precision flood risk maps for municipal authorities.',
+    buttonText: 'Read the story',
+    buttonLink: '/industry/water',
+    mainImage: '/Industry/himachal_landscape.png',
+    overlayImage: '/Industry/himachal_map.png'
+  },
+  {
+    id: 'natural-resources',
+    name: 'Natural Resources',
+    tag: 'ENVIRONMENT',
+    title: 'Forest Canopy Density Mapping & Mineral Resource Tracking',
+    description: 'Using remote sensing algorithms and multispectral satellite imaging to analyze forest health and support environmental impact assessments for mine planning.',
+    buttonText: 'Read the story',
+    buttonLink: '/industry/natural-resources',
+    mainImage: '/Industry/himachal_landscape.png',
+    overlayImage: '/Industry/himachal_map.png'
+  },
+  {
+    id: 'telecom',
+    name: 'Telecom',
+    tag: 'NETWORK PLANNING',
+    title: '5G Propagation Analysis & Fiber Route Optimization',
+    description: 'Planning optimal fiber optic lines and cell tower viewsheds by modeling urban terrain and foliage interference using high-density 3D LiDAR point clouds.',
+    buttonText: 'Read the story',
+    buttonLink: '/industry/telecom',
+    mainImage: '/Industry/himachal_landscape.png',
+    overlayImage: '/Industry/himachal_map.png'
+  },
+  {
+    id: 'transportation',
+    name: 'Transportation',
+    tag: 'TRANSIT SYSTEMS',
+    title: 'Railway Infrastructure & Multi-Modal Transit GIS Dashboards',
+    description: 'Enabling railway operators to inspect track conditions, monitor rolling stock positions, and coordinate maintenance logistics via connected spatial dashboards.',
+    buttonText: 'Read the story',
+    buttonLink: '/industry/transportation',
+    mainImage: '/Industry/himachal_landscape.png',
+    overlayImage: '/Industry/himachal_map.png'
+  }
+];
+
+const sansSerifStyle = {
+  fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+};
+
 const IndustryExpertise = () => {
-    const containerRef = useRef(null);
-    const [activeIdx, setActiveIdx] = useState(0); // Set first panel as active by default for desktop
+  const [activeIdx, setActiveIdx] = useState(0);
+  const activeTab = industryTabs[activeIdx];
 
-    useEffect(() => {
-        if (typeof window === 'undefined' || !containerRef.current) return;
-        
-        let ctx = gsap.context(() => {
-            gsap.fromTo('.industry-section', 
-                { opacity: 0, y: 50 },
-                { 
-                    opacity: 1, 
-                    y: 0, 
-                    duration: 1, 
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: containerRef.current,
-                        start: "top 80%",
-                    }
-                }
-            );
-        }, containerRef);
+  return (
+    <section className="relative text-white overflow-hidden" style={sansSerifStyle}>
 
-        return () => ctx.revert();
-    }, []);
+      {/* ── HEADER SECTION ── */}
+      <div 
+        className="py-16 text-center border-b relative z-10"
+        style={{ backgroundColor: '#1a1a1a', borderColor: '#2d2d2d' }}
+      >
+        <div className="max-w-4xl mx-auto px-6">
+          <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4" style={sansSerifStyle}>
+            Who uses Esri technology?
+          </h2>
+          <p className="text-gray-400 text-sm md:text-[15px] max-w-3xl mx-auto leading-relaxed" style={sansSerifStyle}>
+            Leading organizations in virtually every field use Esri technology to support daily operations and
+            guide long-term strategies. Explore stories of organizations innovating with ArcGIS.
+          </p>
+        </div>
+      </div>
 
-    return (
-        <section className="w-full bg-black relative py-24 overflow-hidden industry-section" ref={containerRef}>
-            {/* Background Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#2d5689] rounded-full blur-[200px] opacity-10 pointer-events-none"></div>
+      {/* ── TABS BAR ── */}
+      <div 
+        className="border-b relative z-10 overflow-x-auto scrollbar-none"
+        style={{ backgroundColor: '#1a1a1a', borderColor: '#2d2d2d' }}
+      >
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex gap-8 md:gap-10 min-w-max">
+            {industryTabs.map((tab, index) => {
+              const isActive = activeIdx === index;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveIdx(index)}
+                  className="py-4 px-1 text-sm font-medium tracking-wide relative transition-colors duration-300 whitespace-nowrap hover:text-white"
+                  style={{
+                    ...sansSerifStyle,
+                    color: isActive ? '#007ac2' : '#9ca3af'
+                  }}
+                >
+                  {tab.name}
+                  {isActive && (
+                    <motion.div 
+                      layoutId="activeTabUnderline" 
+                      className="absolute bottom-0 left-0 right-0 h-[2px]" 
+                      style={{ backgroundColor: '#007ac2' }}
+                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    />
+                  )}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </div>
 
-            <div className="max-w-[1500px] mx-auto px-6 relative z-10">
-                
-                {/* Header */}
-                <div className="text-center mb-16">
-                    <span className="text-[#a82123] text-sm font-bold tracking-[0.2em] uppercase">Our Domains</span>
-                    <h2 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mt-4 mb-6">
-                        Industry Expertise
-                    </h2>
-                    <div className="w-24 h-[3px] bg-gradient-to-r from-[#2d5689] to-[#a82123] mx-auto rounded-full" />
-                </div>
+      {/* ── SCENIC CONTENT PANEL ── */}
+      <div className="relative min-h-[500px] md:min-h-[580px] w-full flex items-center justify-center py-16 md:py-20">
 
-                {/* Desktop Interactive Expanding Accordion Grid */}
-                <div className="hidden lg:flex w-full h-[600px] gap-4">                    
-                    {categoryData.map((category, index) => {
-                        const isActive = activeIdx === index;
-                        return (
-                            <Link
-                                key={index}
-                                href={`/industry/${category.name.toLowerCase().replace(/[&\s]+/g, '-')}`}
-                                onMouseEnter={() => setActiveIdx(index)}
-                                className={`relative h-full rounded-[2.5rem] overflow-hidden cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group
-                                    ${isActive ? 'flex-[6] shadow-2xl shadow-[#2d5689]/30' : 'flex-1 border border-white/5 bg-gray-900/50 hover:border-white/20'}
-                                `}
-                            >
-                                {/* Background Image */}
-                                <div className="absolute inset-0 z-0">
-                                    <Image
-                                        src={category.image}
-                                        alt={category.name}
-                                        fill
-                                        className={`object-cover transition-all duration-1000 ease-out 
-                                            ${isActive ? 'opacity-100 scale-105 filter-none' : 'opacity-30 scale-100 grayscale-[50%] blur-[2px]'}
-                                        `}
-                                    />
-                                    {/* Gradient Overlay */}
-                                    <div className={`absolute inset-0 transition-all duration-700
-                                        ${isActive 
-                                            ? 'bg-gradient-to-t from-black via-black/60 to-transparent' 
-                                            : 'bg-black/60'}
-                                    `} />
-                                </div>
+        {/* Full-width dark background image */}
+        <div className="absolute inset-0 z-0">
+          <Image 
+            src="/Industry/forest_silhouette_bg.png" 
+            alt="Dark mountain landscape" 
+            fill 
+            className="object-cover object-center" 
+            priority
+          />
+          {/* Dark gradient overlay for a premium look */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/75 to-black/45 z-[1]" />
+        </div>
 
-                                {/* Content Layer */}
-                                <div className="relative z-10 h-full w-full flex flex-col justify-end p-8">
-                                    
-                                    {/* Inactive State Content (Vertical/Small) */}
-                                    <div className={`absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-6 transition-all duration-500 w-full
-                                        ${isActive ? 'opacity-0 scale-90 pointer-events-none' : 'opacity-100 scale-100'}
-                                    `}>
-                                        <div className="w-12 h-12 rounded-full bg-black/50 border border-white/10 flex items-center justify-center text-white/70 backdrop-blur-md">
-                                            {category.icon}
-                                        </div>
-                                        <h3 className="text-white/70 font-semibold text-sm tracking-widest uppercase whitespace-nowrap -rotate-90 origin-center mb-20 transform translate-y-12">
-                                            {category.shortName}
-                                        </h3>
-                                    </div>
-
-                                    {/* Active State Content (Expanded) */}
-                                    <div className={`flex flex-col h-full justify-between transition-all duration-700 delay-100
-                                        ${isActive ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8 pointer-events-none absolute'}
-                                    `}>
-                                        {/* Top Icon & Accent */}
-                                        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br p-[1px] shadow-2xl" style={{ backgroundImage: `linear-gradient(to bottom right, var(--tw-gradient-stops))` }}>
-                                            <div className={`w-full h-full rounded-2xl flex items-center justify-center text-white bg-gradient-to-br ${category.accent}`}>
-                                                {category.icon}
-                                            </div>
-                                        </div>
-
-                                        {/* Bottom Text Area */}
-                                        <div className="max-w-md bg-black/40 backdrop-blur-md border border-white/10 p-6 rounded-3xl transform translate-y-0 opacity-100">
-                                            <h3 className="text-3xl font-bold text-white mb-3 leading-tight drop-shadow-lg">
-                                                {category.name}
-                                            </h3>
-                                            <p className="text-gray-300 text-base leading-relaxed mb-6 drop-shadow-md">
-                                                {category.desc}
-                                            </p>
-                                            
-                                            <div className="inline-flex items-center gap-3 bg-white text-black px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-gray-200 transition-colors">
-                                                Explore Solutions
-                                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                                </svg>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </Link>
-                        );
-                    })}
-                </div>
-
-                {/* Mobile & Tablet Slider (Unchanged logic, just styled to match) */}
-                <div className="lg:hidden -mx-6 px-6">
-                    <Swiper
-                        slidesPerView={1.15}
-                        spaceBetween={16}
-                        pagination={{ clickable: true }}
-                        modules={[Pagination]}
-                        className="w-full pb-14"
-                        breakpoints={{
-                            640: { slidesPerView: 2.15 }
-                        }}
-                    >
-                        {categoryData.map((category, index) => (
-                            <SwiperSlide key={index}>
-                                <Link 
-                                    href={`/industry/${category.name.toLowerCase().replace(/[&\s]+/g, '-')}`} 
-                                    className="industry-card relative block h-[400px] rounded-[2rem] overflow-hidden border border-white/10 group"
-                                >
-                                    <div className="absolute inset-0 z-0">
-                                        <Image
-                                            src={category.image}
-                                            alt={category.name}
-                                            fill
-                                            className="object-cover opacity-60 group-hover:scale-110 transition-transform duration-700"
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
-                                    </div>
-                                    
-                                    <div className="relative z-10 h-full flex flex-col justify-end p-6">
-                                        <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${category.accent} flex items-center justify-center text-white mb-4 shadow-lg`}>
-                                            {category.icon}
-                                        </div>
-                                        
-                                        <h3 className="text-2xl font-bold text-white mb-2">{category.name}</h3>
-                                        <p className="text-gray-300 text-sm leading-relaxed mb-6">{category.desc}</p>
-                                        
-                                        <span className="text-[#799ccc] font-bold text-xs uppercase tracking-wider inline-flex items-center gap-2">
-                                            Explore Solutions <span className="text-white">→</span>
-                                        </span>
-                                    </div>
-                                </Link>
-                            </SwiperSlide>
-                        ))}
-                    </Swiper>
-                </div>
+        {/* Content grid */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab.id}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
+            className="relative z-10 max-w-6xl w-full mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center"
+          >
+            {/* Left Column — Text content */}
+            <div className="flex flex-col items-start text-left z-10">
+              <span className="text-gray-400 text-xs font-bold tracking-[0.15em] uppercase mb-3" style={sansSerifStyle}>
+                {activeTab.tag}
+              </span>
+              <h3 className="text-2xl md:text-3xl lg:text-[34px] font-bold text-white leading-snug mb-5" style={sansSerifStyle}>
+                {activeTab.title}
+              </h3>
+              <p className="text-gray-300 text-sm md:text-[15px] leading-relaxed mb-8 max-w-lg" style={sansSerifStyle}>
+                {activeTab.description}
+              </p>
+              
+              <Link 
+                href={activeTab.buttonLink} 
+                className="inline-flex items-center gap-2 text-white text-sm font-semibold px-6 py-3 rounded hover:opacity-90 transition-all duration-300 shadow-md"
+                style={{
+                  ...sansSerifStyle,
+                  backgroundColor: '#007ac2'
+                }}
+              >
+                {activeTab.buttonText}
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </Link>
             </div>
-        </section>
-    );
+
+            {/* Right Column — Overlapping image composition */}
+            <div className="relative flex justify-center md:justify-end items-center w-full h-[360px] md:h-[420px]">
+              {/* ① Large main landscape photo */}
+              <div className="relative rounded-sm overflow-hidden shadow-2xl border border-white/10 w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] md:w-[360px] md:h-[360px] z-0">
+                <Image 
+                  src={activeTab.mainImage} 
+                  alt={activeTab.title} 
+                  fill 
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover object-center" 
+                  priority
+                />
+              </div>
+
+              {/* ② Map card — overlaps from the left, vertically centered */}
+              <div className="absolute left-[5%] bottom-[10px] sm:left-[10%] sm:bottom-0 md:left-[15%] md:bottom-[-20px] rounded-sm overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.6)] border border-gray-200 bg-white w-[160px] h-[160px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px] z-10">
+                <Image 
+                  src={activeTab.overlayImage} 
+                  alt="GIS Map Overlay" 
+                  fill 
+                  sizes="(max-width: 768px) 100vw, 40vw"
+                  className="object-cover object-center p-1.5" 
+                />
+              </div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </section>
+  );
 };
 
 export default IndustryExpertise;

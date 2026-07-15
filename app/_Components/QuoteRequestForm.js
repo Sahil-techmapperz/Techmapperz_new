@@ -117,7 +117,7 @@ const RequestQuoteForm = ({ closeForm }) => {
                     &times;
                 </button>
                 <div>
-                    <h1 className="text-black text-[34px] font-bold">Request a <span className="text-blue-500 ">QUOTE</span></h1>
+                    <h2 className="text-[#0c2e60] text-3xl md:text-4xl font-extrabold mb-6">Discuss Your <span className="text-[#396BA9]">Project</span></h2>
                 </div>
 
                 <div className="grid grid-cols-1">

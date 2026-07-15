@@ -86,7 +86,7 @@ const Sitemap = () => {
       color: 'from-orange-500 to-red-500',
       mainLink: '/service',
       links: [
-        { name: 'Mobile App Development', href: '/service/it/mobiledevelopment' },
+        { name: 'Mobile App Development', href: '/service/it/mobile-app-development' },
         { name: 'Website Development', href: '/service/it/webdevelopment' },
         { name: 'CRM Software Solution', href: '/service/it/crmservice' },
         { name: 'IT Consultancy', href: '/service/it/itconsultingservice' },

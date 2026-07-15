@@ -12,22 +12,46 @@ const caseStudies = [
         stats: [
             { value: "40%", label: "Faster workflow" },
             { value: "3x", label: "Better visibility" }
-        ]
+        ],
+        ctaDescription: "Let Techmapperz build a website, GIS dashboard, CRM, app or automation system based on your business requirement.",
+        link: "/portfolios",
+        tabLabel: "Business Web Solution"
     },
     {
-        title: "GIS Mapping and Asset Management Portal",
-        description: "We created a high-precision GIS mapping platform that enables real-time asset tracking, data visualization, and field reporting for infrastructure management.",
-        image: "/Photos/Agricultural_Mapping.webp",
-        badges: ["GIS Mapping", "Asset Management", "Web Portal", "Real-Time Data"],
+        title: "Drone based LiDAR Topographic Survey for Railway Corridor Mapping",
+        description: "We conducted a detailed topographic and elevation survey of a 173 KM proposed elevated railway track corridor in Uttar Pradesh. Using advanced drone aerial LiDAR, we provided high-density point cloud datasets and centimeter-level accuracy mapping for infrastructure planning.",
+        image: "/Photos/GIS_portfolio/Topographical Survey & Mapping of Proposed Railway Track/1.webp",
+        badges: ["LiDAR Survey", "Railway Corridor Mapping", "Elevation Profiling", "Point Cloud Data"],
         stats: [
-            { value: "95%", label: "Accuracy rate" },
-            { value: "50%", label: "Time saved" }
-        ]
+            { value: "Centimeter", label: "Elevation Accuracy" },
+            { value: "173 KM", label: "Corridor Covered" }
+        ],
+        ctaDescription: "Let Techmapperz build drone services, GIS services, GIS development, web or app developments based on your business requirement.",
+        link: "/portfolios/topographical_railway_survey",
+        tabLabel: "Railway LiDAR Survey"
+    },
+    {
+        title: "Ammonia and Water Pipeline Drone Survey & Digitization Project",
+        description: "We created a high-resolution, digitized geospatial database of a 45 KM pipeline network in Gujarat. The project integrated drone-based aerial mapping, high-precision orthophotos, and GIS digitization tools for pipeline asset tracking, safety, and maintenance planning.",
+        image: "/Photos/GIS_portfolio/Ammonia and Water Pipeline Drone Survey & Digitization Project/1.webp",
+        badges: ["Drone Survey", "Pipeline Mapping", "Asset Digitization", "UAV Mapping"],
+        stats: [
+            { value: "45 KM", label: "Pipeline Surveyed" },
+            { value: "100%", label: "Digital Database" }
+        ],
+        ctaDescription: "Let Techmapperz build drone services, GIS services, GIS development, web or app developments based on your business requirement.",
+        link: "/portfolios/ammonia_water_pipeline",
+        tabLabel: "Pipeline Digitization"
     }
 ];
 
-const FeaturedCaseStudy = () => {
-    const currentStudy = caseStudies[0];
+const FeaturedCaseStudy = ({ studyIndex = 0 }) => {
+    const [activeTabIndex, setActiveTabIndex] = useState(studyIndex);
+    const currentStudy = caseStudies[activeTabIndex];
+
+    React.useEffect(() => {
+        setActiveTabIndex(studyIndex);
+    }, [studyIndex]);
 
     return (
         <section className="w-full py-16 text-white bg-black">
@@ -55,6 +79,23 @@ const FeaturedCaseStudy = () => {
             <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Main Card Container */}
                 <div className="relative bg-[#0b0f19] border border-white/5 rounded-[2rem] p-6 md:p-10 lg:p-12 overflow-hidden shadow-2xl">
+                    {/* Tab Navigation */}
+                    <div className="flex flex-wrap items-center gap-3 border-b border-white/10 pb-6 mb-8 w-full">
+                        <span className="text-xs font-bold text-gray-400 uppercase tracking-widest mr-2">Featured Projects:</span>
+                        {caseStudies.map((study, i) => (
+                            <button
+                                key={i}
+                                onClick={() => setActiveTabIndex(i)}
+                                className={`px-5 py-2.5 rounded-full text-xs font-bold tracking-wide transition-all duration-300 cursor-pointer ${
+                                    activeTabIndex === i
+                                        ? "bg-gradient-to-r from-[#5278ff] to-[#e42e57] text-white shadow-lg shadow-[#5278ff]/20 scale-105"
+                                        : "bg-white/[0.03] border border-white/10 text-gray-400 hover:text-white hover:bg-white/[0.08]"
+                                }`}
+                            >
+                                {study.tabLabel}
+                            </button>
+                        ))}
+                    </div>
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                         {/* Case Study Content */}
                         <div className="lg:col-span-8 relative w-full">
@@ -127,7 +168,7 @@ const FeaturedCaseStudy = () => {
                                     {/* View Case Study Link */}
                                     <div>
                                         <Link 
-                                            href="/portfolios" 
+                                            href={currentStudy.link || "/portfolios"} 
                                             className="inline-flex items-center gap-2 text-[#05d7de] font-semibold text-sm hover:text-white transition-colors duration-300"
                                         >
                                             View Case Study
@@ -146,7 +187,7 @@ const FeaturedCaseStudy = () => {
                                 Want a similar solution?
                             </h4>
                             <p className="text-gray-400 text-sm md:text-base leading-relaxed mb-6">
-                                Let Techmapperz build a website, GIS dashboard, CRM, app or automation system based on your business requirement.
+                                {currentStudy.ctaDescription}
                             </p>
 
                             <div className="flex flex-col gap-4">

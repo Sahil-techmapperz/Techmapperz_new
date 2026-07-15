@@ -15,6 +15,15 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        'theme-bg': '#FFFFFF',
+        'theme-alt': '#F4F7FA',
+        'theme-dark': '#0B2341',
+        'theme-blue': '#1267B1',
+        'theme-teal': '#078A86',
+        'theme-text': '#17202A',
+        'theme-text-sec': '#5A6673',
+      },
       fontFamily: {
         sans: ['"GT Sectra Fine"', 'Palatino', 'serif'],
       },

@@ -36,11 +36,11 @@ const AboutUs = () => {
   ];
 
   return (
-    <section className="bg-gray-800">
+    <section className="bg-theme-bg border-t border-gray-200">
       <div className='w-full h-full  py-8 max-sm:py-2 max-sm:px-4 '>
         <div className="max-w-7xl mx-auto relative">
           <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-100 mb-4">Why Choose Us</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-theme-text mb-4">Why Choose Us</h2>
           </div>
 
           {/* Center Logo - Hidden on mobile */}
@@ -64,15 +64,15 @@ const AboutUs = () => {
                 <div className={`flex flex-col md:flex-row items-center md:items-start gap-4 ${feature.id % 2 === 0 ? 'md:justify-start' : 'md:justify-end'
                   }`}>
                   <div className={`md:order-${feature.id % 2 === 0 ? '1' : '2'}`}>
-                    <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center text-xl font-semibold">
+                    <div className="w-10 h-10 rounded-full bg-theme-blue text-white flex items-center justify-center text-xl font-semibold">
                       {feature.id}
                     </div>
                   </div>
-                  <div className={`md:order-${feature.id % 2 === 0 ? '2' : '1'} border border-gray-500  shadow-xl rounded-md p-4 md:p-6`}>
-                    <h3 className="text-lg md:text-xl font-bold text-gray-200 mb-2">
+                  <div className={`md:order-${feature.id % 2 === 0 ? '2' : '1'} border border-gray-200 bg-white shadow-xl rounded-md p-4 md:p-6`}>
+                    <h3 className="text-lg md:text-xl font-bold text-theme-text mb-2">
                       {feature.title}
                     </h3>
-                    <p className="text-gray-400 text-sm md:text-base">
+                    <p className="text-theme-text-sec text-sm md:text-base">
                       {feature.description}
                     </p>
                   </div>
