@@ -85,18 +85,18 @@ const Navbar = () => {
     <>
       <div className="fixed top-0 w-full z-[200] flex flex-col">
         {/* Top Info Bar */}
-        <div className="bg-[#0c2e60] text-white text-[11px] md:text-xs py-2 px-6 md:px-14 flex flex-col md:flex-row justify-between items-center gap-2 font-medium z-[201]">
-          <div>
-            <span className="opacity-95">GIS-first technology company</span>
-            <span className="mx-2 opacity-50">|</span>
-            <span className="opacity-80">Kolkata & New Delhi, India</span>
+        <div className="bg-[#0c2e60] text-white text-[10px] sm:text-[11px] md:text-xs py-1.5 sm:py-2 px-3 sm:px-6 md:px-14 flex flex-col md:flex-row justify-between items-center gap-1 sm:gap-2 font-medium z-[201] text-center md:text-left">
+          <div className="flex flex-wrap justify-center items-center gap-x-2 gap-y-0.5">
+            <span className="opacity-95 whitespace-nowrap">GIS-first technology company</span>
+            <span className="opacity-50">|</span>
+            <span className="opacity-80 whitespace-nowrap">Kolkata &amp; New Delhi, India</span>
           </div>
-          <div className="flex items-center gap-4">
-            <a href="mailto:info@techmapperz.com" className="hover:text-gray-300 transition-colors">
+          <div className="flex items-center justify-center gap-2 sm:gap-4 flex-wrap">
+            <a href="mailto:info@techmapperz.com" className="hover:text-gray-300 transition-colors whitespace-nowrap">
               info@techmapperz.com
             </a>
             <span className="opacity-50">|</span>
-            <a href="tel:+919643002065" className="hover:text-gray-300 transition-colors">
+            <a href="tel:+919643002065" className="hover:text-gray-300 transition-colors whitespace-nowrap">
               +91 96430 02065
             </a>
           </div>

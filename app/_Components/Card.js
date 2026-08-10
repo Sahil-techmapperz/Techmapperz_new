@@ -18,7 +18,7 @@ const Card = ({ post }) => {
 
   return (
     <div 
-      className="group h-full flex flex-col bg-white text-gray-800 text-left mx-auto rounded-[2rem] border border-gray-150 hover:border-[#1267b1]/30 shadow-md hover:shadow-xl transition-all duration-500 overflow-hidden"
+      className="group h-full flex flex-col bg-white text-gray-800 text-left w-full rounded-2xl border border-gray-100 hover:border-[#1267b1]/30 shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden"
       style={sansSerifStyle}
     >
       

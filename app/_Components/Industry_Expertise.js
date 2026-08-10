@@ -91,90 +91,79 @@ export const categoryData = [
 
 const industryTabs = [
   {
+    id: 'infrastructure-aec',
+    name: 'Infrastructure & AEC',
+    tag: 'CONSTRUCTION',
+    title: 'Topographic surveys, corridor mapping, construction monitoring, terrain models, cross-sections, asset inventories and GIS/CAD deliverables for roads, railways and civil-engineering projects.',
+    description: '',
+    buttonText: 'Explore Industries',
+    buttonLink: '/industry/infrastructure-aec',
+    mainImage: '/Industry/himachal_landscape.png',
+    overlayImage: '/gis_images/Urban & Rural.webp'
+  },
+  {
     id: 'government',
-    name: 'Government',
-    tag: 'SPACE',
-    title: 'AGiSAC Facilitates Effective Governance in Himachal Pradesh with ArcGIS',
-    description: 'AGiSAC works to identify decision-making applications with the help of user departments and provides tailor-made GIS solutions for better decision-making in government departments using ArcGIS.',
-    buttonText: 'Read the story',
-    buttonLink: '/industry/government',
+    name: 'Government & Land Administration',
+    tag: 'SPACE & CADASTRAL',
+    title: 'Cadastral mapping, property mapping, municipal GIS, land-record digitisation, public asset inventories, georeferencing and land-use databases.',
+    description: '',
+    buttonText: 'Explore Industries',
+    buttonLink: '/industry/government-public-sector',
     mainImage: '/Industry/himachal_landscape.png',
     overlayImage: '/Industry/himachal_map.png'
   },
   {
     id: 'utilities',
-    name: 'Utilities',
+    name: 'Utilities & Energy',
     tag: 'ENERGY & WATER',
-    title: 'Real-time Asset Mapping & Outage Management for Smart Grids',
-    description: 'Deploying secure cloud Web GIS solutions to map electricity distribution lines, water pipelines, and gas networks. Automating asset inspections and field dispatch workflows.',
-    buttonText: 'Read the story',
-    buttonLink: '/industry/utilities',
+    title: 'GIS mapping and asset databases for water, wastewater, power, oil and gas pipelines, renewable energy, telecom and associated network infrastructure.',
+    description: '',
+    buttonText: 'Explore Industries',
+    buttonLink: '/industry/logistics-supply-chain',
     mainImage: '/Industry/himachal_landscape.png',
     overlayImage: '/gis_images/Gas Pipeline.webp'
   },
   {
-    id: 'infra-aec',
-    name: 'Infra & AEC',
-    tag: 'CONSTRUCTION',
-    title: 'Highway Alignment Feasibility & BIM-GIS Integration',
-    description: 'Accelerating corridor design and pre-construction surveys with drone photogrammetry and high-resolution DTMs. Linking BIM files directly to spatial web maps.',
-    buttonText: 'Read the story',
-    buttonLink: '/industry/infra-aec',
+    id: 'mining',
+    name: 'Mining & Natural Resources',
+    tag: 'MINERALS & REMOTE SENSING',
+    title: 'Mine feature extraction, topographic mapping, stockpile and volumetric analysis, haul-road mapping, terrain models, operational assets and environmental monitoring.',
+    description: '',
+    buttonText: 'Explore Industries',
+    buttonLink: '/industry/manufacturing',
+    mainImage: '/Industry/himachal_landscape.png',
+    overlayImage: '/Industry/himachal_map.png'
+  },
+  {
+    id: 'architecture-planning',
+    name: 'Architecture, Planning & Urban Development',
+    tag: 'URBAN DEVELOPMENT',
+    title: 'Base mapping, existing-condition surveys, building footprints, land-use mapping, utility inventories, drainage maps and planning-support databases.',
+    description: '',
+    buttonText: 'Explore Industries',
+    buttonLink: '/industry/retail',
     mainImage: '/Industry/himachal_landscape.png',
     overlayImage: '/gis_images/Urban & Rural.webp'
   },
   {
-    id: 'enterprise',
-    name: 'Enterprise',
-    tag: 'BUSINESS INTELLIGENCE',
-    title: 'Empowering Spatial Decisions with Enterprise GIS Solutions',
-    description: 'Integrating geographic data with CRM and ERP platforms to enable market research, customer profiling, and routing intelligence for global operations.',
-    buttonText: 'Read the story',
-    buttonLink: '/industry/enterprise',
-    mainImage: '/Industry/himachal_landscape.png',
-    overlayImage: '/gis_images/Web_GIS_Development_Banner.webp'
-  },
-  {
-    id: 'water',
-    name: 'Water',
-    tag: 'HYDROLOGY',
-    title: 'Watershed Conservation & Flood Hazard Mapping',
-    description: 'Utilizing DEM and terrain analysis to monitor catchment area runoffs, estimate basin capacities, and generate high-precision flood risk maps for municipal authorities.',
-    buttonText: 'Read the story',
-    buttonLink: '/industry/water',
-    mainImage: '/Industry/himachal_landscape.png',
-    overlayImage: '/Industry/himachal_map.png'
-  },
-  {
-    id: 'natural-resources',
-    name: 'Natural Resources',
-    tag: 'ENVIRONMENT',
-    title: 'Forest Canopy Density Mapping & Mineral Resource Tracking',
-    description: 'Using remote sensing algorithms and multispectral satellite imaging to analyze forest health and support environmental impact assessments for mine planning.',
-    buttonText: 'Read the story',
-    buttonLink: '/industry/natural-resources',
-    mainImage: '/Industry/himachal_landscape.png',
-    overlayImage: '/Industry/himachal_map.png'
-  },
-  {
-    id: 'telecom',
-    name: 'Telecom',
-    tag: 'NETWORK PLANNING',
-    title: '5G Propagation Analysis & Fiber Route Optimization',
-    description: 'Planning optimal fiber optic lines and cell tower viewsheds by modeling urban terrain and foliage interference using high-density 3D LiDAR point clouds.',
-    buttonText: 'Read the story',
-    buttonLink: '/industry/telecom',
-    mainImage: '/Industry/himachal_landscape.png',
-    overlayImage: '/Industry/himachal_map.png'
-  },
-  {
-    id: 'transportation',
-    name: 'Transportation',
+    id: 'transportation-rail',
+    name: 'Transportation & Rail',
     tag: 'TRANSIT SYSTEMS',
-    title: 'Railway Infrastructure & Multi-Modal Transit GIS Dashboards',
-    description: 'Enabling railway operators to inspect track conditions, monitor rolling stock positions, and coordinate maintenance logistics via connected spatial dashboards.',
-    buttonText: 'Read the story',
-    buttonLink: '/industry/transportation',
+    title: 'Railway and highway corridor mapping, navigation datasets, road assets, route networks, terrain products and transport-infrastructure inventories.',
+    description: '',
+    buttonText: 'Explore Industries',
+    buttonLink: '/industry/travel-hospitality',
+    mainImage: '/Industry/himachal_landscape.png',
+    overlayImage: '/Industry/himachal_map.png'
+  },
+  {
+    id: 'agriculture-environment',
+    name: 'Agriculture & Environment',
+    tag: 'FORESTRY & HYDROLOGY',
+    title: 'Plantation mapping, crop and vegetation inventories, land-use classification, terrain analysis, drainage, water-body mapping and change detection.',
+    description: '',
+    buttonText: 'Explore Industries',
+    buttonLink: '/industry/healthcare',
     mainImage: '/Industry/himachal_landscape.png',
     overlayImage: '/Industry/himachal_map.png'
   }
@@ -193,16 +182,18 @@ const IndustryExpertise = () => {
 
       {/* ── HEADER SECTION ── */}
       <div
-        className="py-16 text-center border-b relative z-10"
+        className="py-10 md:py-16 text-center border-b relative z-10"
         style={{ backgroundColor: '#1a1a1a', borderColor: '#2d2d2d' }}
       >
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4" style={sansSerifStyle}>
-            Industry
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <span className="text-[#6ac045] text-xs md:text-[13px] font-bold uppercase tracking-[0.15em] mb-2 block">
+            INDUSTRIES WE SUPPORT
+          </span>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4" style={sansSerifStyle}>
+            Tailored Geospatial Workflows for Diverse Sectors
           </h2>
-          <p className="text-gray-400 text-sm md:text-[15px] max-w-3xl mx-auto leading-relaxed" style={sansSerifStyle}>
-            Leading organizations in virtually every field use Esri technology to support daily operations and
-            guide long-term strategies. Explore stories of organizations innovating with ArcGIS.
+          <p className="text-gray-400 text-xs sm:text-sm md:text-[15px] max-w-3xl mx-auto leading-relaxed" style={sansSerifStyle}>
+            Our methodology, feature structure and deliverables are planned around how each industry collects, reviews and uses spatial information.
           </p>
         </div>
       </div>
@@ -212,18 +203,18 @@ const IndustryExpertise = () => {
         className="border-b relative z-10 overflow-x-auto scrollbar-none"
         style={{ backgroundColor: '#1a1a1a', borderColor: '#2d2d2d' }}
       >
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex gap-8 md:gap-10 min-w-max">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="flex gap-4 sm:gap-8 md:gap-10 min-w-max">
             {industryTabs.map((tab, index) => {
               const isActive = activeIdx === index;
               return (
                 <button
                   key={tab.id}
                   onClick={() => setActiveIdx(index)}
-                  className="py-4 px-1 text-sm font-medium tracking-wide relative transition-colors duration-300 whitespace-nowrap hover:text-white"
+                  className="py-3 sm:py-4 px-1 text-xs sm:text-sm font-medium tracking-wide relative transition-colors duration-300 whitespace-nowrap hover:text-white"
                   style={{
                     ...sansSerifStyle,
-                    color: isActive ? '#007ac2' : '#9ca3af'
+                    color: isActive ? '#1656b8' : '#9ca3af'
                   }}
                 >
                   {tab.name}
@@ -231,7 +222,7 @@ const IndustryExpertise = () => {
                     <motion.div
                       layoutId="activeTabUnderline"
                       className="absolute bottom-0 left-0 right-0 h-[2px]"
-                      style={{ backgroundColor: '#007ac2' }}
+                      style={{ backgroundColor: '#1656b8' }}
                       transition={{ type: "spring", stiffness: 300, damping: 30 }}
                     />
                   )}
@@ -243,7 +234,7 @@ const IndustryExpertise = () => {
       </div>
 
       {/* ── SCENIC CONTENT PANEL ── */}
-      <div className="relative min-h-[500px] md:min-h-[580px] w-full flex items-center justify-center py-16 md:py-20">
+      <div className="relative min-h-0 md:min-h-[580px] w-full flex items-center justify-center py-6 md:py-20">
 
         {/* Full-width dark background image */}
         <div className="absolute inset-0 z-0">
@@ -266,56 +257,53 @@ const IndustryExpertise = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3 }}
-            className="relative z-10 max-w-6xl w-full mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center"
+            className="relative z-10 max-w-6xl w-full mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8 md:gap-16 items-center"
           >
             {/* Left Column — Text content */}
             <div className="flex flex-col items-start text-left z-10">
-              <span className="text-gray-400 text-xs font-bold tracking-[0.15em] uppercase mb-3" style={sansSerifStyle}>
+              <span className="text-gray-400 text-xs font-bold tracking-[0.15em] uppercase mb-1.5 sm:mb-3" style={sansSerifStyle}>
                 {activeTab.tag}
               </span>
-              <h3 className="text-2xl md:text-3xl lg:text-[34px] font-bold text-white leading-snug mb-5" style={sansSerifStyle}>
+              <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-bold text-white leading-snug mb-2 sm:mb-5" style={sansSerifStyle}>
                 {activeTab.title}
               </h3>
-              <p className="text-gray-300 text-sm md:text-[15px] leading-relaxed mb-8 max-w-lg" style={sansSerifStyle}>
+              <p className="text-gray-300 text-xs sm:text-sm md:text-[15px] leading-relaxed mb-4 sm:mb-8 max-w-lg" style={sansSerifStyle}>
                 {activeTab.description}
               </p>
 
               <Link
                 href={activeTab.buttonLink}
-                className="inline-flex items-center gap-2 text-white text-sm font-semibold px-6 py-3 rounded hover:opacity-90 transition-all duration-300 shadow-md"
-                style={{
-                  ...sansSerifStyle,
-                  backgroundColor: '#007ac2'
-                }}
+                className="inline-flex justify-center items-center gap-2 bg-[#082046] hover:bg-[#061836] text-white font-bold text-sm sm:text-base px-8 py-3.5 rounded-xl transition-all duration-300 shadow-md hover:-translate-y-0.5"
+                style={sansSerifStyle}
               >
                 {activeTab.buttonText}
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
               </Link>
             </div>
 
             {/* Right Column — Overlapping image composition */}
-            <div className="relative flex justify-center md:justify-end items-center w-full h-[360px] md:h-[420px]">
+            <div className="hidden sm:flex relative justify-center md:justify-end items-center w-full h-[230px] sm:h-[360px] md:h-[420px]">
               {/* ① Large main landscape photo */}
-              <div className="relative rounded-sm overflow-hidden shadow-2xl border border-white/10 w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] md:w-[360px] md:h-[360px] z-0">
+              <div className="relative rounded-sm overflow-hidden shadow-2xl border border-white/10 w-[200px] h-[200px] sm:w-[320px] sm:h-[320px] md:w-[360px] md:h-[360px] z-0">
                 <Image
                   src={activeTab.mainImage}
                   alt={activeTab.title}
                   fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  sizes="(max-width: 768px) 80vw, 50vw"
                   className="object-cover object-center"
                   priority
                 />
               </div>
 
               {/* ② Map card — overlaps from the left, vertically centered */}
-              <div className="absolute left-[5%] bottom-[10px] sm:left-[10%] sm:bottom-0 md:left-[15%] md:bottom-[-20px] rounded-sm overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.6)] border border-gray-200 bg-white w-[160px] h-[160px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px] z-10">
+              <div className="absolute left-2 bottom-0 sm:left-[10%] sm:bottom-0 md:left-[15%] md:bottom-[-20px] rounded-sm overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.6)] border border-gray-200 bg-white w-[115px] h-[115px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px] z-10">
                 <Image
                   src={activeTab.overlayImage}
                   alt="GIS Map Overlay"
                   fill
-                  sizes="(max-width: 768px) 100vw, 40vw"
+                  sizes="(max-width: 768px) 50vw, 40vw"
                   className="object-cover object-center p-1.5"
                 />
               </div>

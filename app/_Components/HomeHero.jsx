@@ -28,31 +28,29 @@ const HomeHero = ({ bannerData }) => {
                 <div className="flex-grow flex flex-col justify-center max-w-3xl gap-6 mt-12 md:mt-24">
                     {/* Subtitle Tag */}
                     <div className="text-[#6ac045] text-xs md:text-[14px] font-bold uppercase tracking-[0.15em]">
-                        NEXT-GENERATION GEOSPATIAL INTELLIGENCE
+                        GIS MAPPING • DRONE SURVEY • GEOSPATIAL SOLUTIONS
                     </div>
 
                     {/* Heading */}
                     <h1 className="text-4xl md:text-5xl lg:text-[60px] font-bold text-white tracking-tight leading-[1.15]">
-                        Empowering the <br />
-                        Future with <span className="text-[#6ac045]">Advanced</span><br />
-                        <span className="text-[#6ac045]">Spatial Data</span>
+                        Transforming Survey Data into Usable Geospatial Insights
                     </h1>
 
                     {/* Paragraph */}
                     <p className="text-gray-200 text-base md:text-[17px] max-w-2xl leading-relaxed mt-2">
-                        Unlock the power of location intelligence with our cutting-edge GIS, drone, and web mapping solutions designed to drive growth and efficiency.
+                        Techmapperz supports infrastructure, mining, utility, government, architecture and planning projects with GIS mapping, drone surveys, LiDAR and point-cloud processing, terrain modelling, spatial data analysis, and Web GIS solutions across India.
                     </p>
 
                     {/* Buttons */}
                     <div className="flex flex-wrap gap-5 mt-4">
-                        <Link href="/services">
+                        <Link href="/service">
                             <button className="py-[12px] px-8 rounded-full border border-[#1656b8] bg-[#1656b8]/30 text-white font-semibold text-[15px] hover:bg-[#1656b8] transition-all duration-300">
-                                Explore Solutions
+                                Explore Our Services
                             </button>
                         </Link>
                         <Link href="/contact">
                             <button className="py-[12px] px-8 rounded-full border border-gray-300 bg-transparent text-white font-semibold text-[15px] hover:bg-white/10 transition-all duration-300">
-                                Get a Quote
+                                Discuss Your Project
                             </button>
                         </Link>
                     </div>

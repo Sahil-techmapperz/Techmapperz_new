@@ -1,737 +1,143 @@
 "use client";
+import React, { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import DronePartnership from "../../_Components/DronePartnership";
 
-import React, { useState } from 'react';
-import Link from 'next/link';
+const droneServices = [
+  { number: "01", title: "Drone Survey & Topographic Mapping", description: "Drone-based survey data can provide detailed information about terrain, existing features and site conditions over project areas and linear corridors. Techmapperz supports topographic and base-mapping requirements for infrastructure, mining, land-development and planning assignments.", items: ["Existing-condition mapping","Topographic base mapping","Land and site mapping","Road and railway corridors","Pipeline corridors","Mining areas","Construction sites","Planning and development areas"], cta: "Explore Drone Survey & Mapping", link: "/service/droneservice/dronesurveyandmapping", image: "/gis_images/drone_services/drone_surveying_mapping/corridor_mapping.webp" },
+  { number: "02", title: "Drone Data Processing & Photogrammetry", description: "Already have raw drone photographs? Techmapperz can process client-supplied imagery and available positioning or survey-control information into usable geospatial products. Before processing begins, we review image coverage, overlap, available metadata, control information, coordinate reference system and required outputs.", items: ["Image alignment","Photogrammetric processing","Orthophoto generation","Orthomosaic preparation","Dense point-cloud generation","DSM generation","Terrain-product preparation","Contour generation","3D surface or mesh preparation","GIS/CAD feature extraction"], cta: "Explore Drone Data Processing", link: "/service/droneservice/dronedataprocessing", image: "/gis_images/drone_services/drone_surveying_mapping/3D_Drone_Terrain.webp" },
+  { number: "03", title: "Drone LiDAR & Point-Cloud Processing", description: "Drone LiDAR can provide detailed three-dimensional information for terrain, corridor and infrastructure projects. Depending on the sensor, survey configuration, vegetation, control information and project specification, LiDAR data can be processed into classified point clouds and terrain-related outputs.", items: ["LAS/LAZ data review","Noise identification and cleaning","Point-cloud classification","Ground/non-ground separation","Terrain extraction","2D and 3D feature extraction","Profiles and cross-sections","DEM/DTM preparation","Contour generation","GIS/CAD conversion"], cta: "Explore LiDAR & Point-Cloud Services", link: "/service/lidar", image: "/gis_images/Gas Pipeline.webp" },
+  { number: "04", title: "DEM, DTM, DSM & Contour Mapping", description: "Elevation data from suitable drone, LiDAR or survey inputs can be converted into terrain products for engineering, mining, drainage, planning and land-development applications.", items: ["DEM: Digital representation of elevation information","DSM: Surface elevation including visible objects","DTM: Terrain-focused ground surface representation","Contours at agreed intervals","Spot heights","Hillshade and slope maps","Longitudinal profiles","Cross-sections","Surface comparison","Cut-and-fill outputs"], cta: "Discuss a Terrain Mapping Requirement", link: "/contact", image: "/gis_images/drone_services/drone_surveying_mapping/corridor_mapping.webp" },
+  { number: "05", title: "Mining Mapping & Volumetric Analysis", description: "Drone and point-cloud data can support mapping and measurement requirements across mine sites, stockyards and related infrastructure. Techmapperz can prepare terrain, feature and surface information from suitable drone or point-cloud datasets for mine planning and operational mapping.", items: ["Mine-feature extraction","Mine boundary mapping","Haul-road mapping","Infrastructure and asset mapping","Water-body and sump mapping","Terrain modelling","Contour generation","Stockpile volume calculation","Surface comparison","CAD and GIS preparation"], cta: "Explore Mining Geospatial Services", link: "/service/gisservice", image: "/gis_images/drone_services/drone_surveying_mapping/3D_Drone_Terrain.webp" },
+  { number: "06", title: "Corridor, Utility & Asset Mapping", description: "Linear infrastructure requires a different production approach from conventional block-area mapping. Techmapperz supports drone-data and GIS workflows for transportation, pipeline and utility corridors, where outputs may need to combine terrain information with mapped infrastructure and project-specific features.", items: ["Railway corridors","Roads and highways","Pipelines","Drainage","Utility alignments","Industrial corridors","Transmission infrastructure","Asset inventories"], cta: "Discuss a Corridor Mapping Project", link: "/contact", image: "/gis_images/Gas Pipeline.webp" },
+];
+
+const processingBenefits = [
+  { title: "Scalable Support", desc: "Add processing capacity according to project workload." },
+  { title: "Structured QA/QC", desc: "Outputs reviewed against the agreed project specification." },
+  { title: "Multi-Format Delivery", desc: "GIS, CAD, raster and point-cloud formats according to client requirements." },
+  { title: "Defined Production Workflow", desc: "Inputs, samples, review stages and final delivery agreed before full-scale production." },
+];
+
+const processingServices = ["Orthophoto and orthomosaic generation","Dense point-cloud processing","DEM, DTM and DSM preparation","Contour generation","LiDAR point-cloud classification","2D and 3D feature extraction","Topographic and asset mapping","GIS and CAD conversion","Mining volumetric analysis","QA/QC and final delivery-package preparation"];
+
+const workflowSteps = [
+  { num: "01", title: "Requirement Review", desc: "We understand the project location, area or corridor, objective, available data, coordinate system, expected outputs, acceptance requirements and timeline." },
+  { num: "02", title: "Survey or Processing Plan", desc: "Based on the project requirement, we define the acquisition or data-processing approach, required inputs, production stages and review checkpoints." },
+  { num: "03", title: "Data Acquisition or Input Review", desc: "For field assignments, project data is acquired according to the approved survey methodology. For processing-only assignments, the supplied imagery, point cloud and associated project information are reviewed before production begins." },
+  { num: "04", title: "Photogrammetry, LiDAR & GIS Processing", desc: "The workflow may include image processing, point-cloud production or classification, terrain generation, feature extraction, mapping and spatial-data preparation." },
+  { num: "05", title: "QA/QC & Client Review", desc: "Outputs are reviewed against relevant requirements such as projection, coverage, geometry, attributes, completeness, file structure and agreed project specifications." },
+  { num: "06", title: "Final Delivery", desc: "Comments from agreed review stages are incorporated before preparation of the final GIS, CAD, raster, point-cloud, terrain or reporting package." },
+];
+
+const industries = [
+  { title: "Infrastructure & Transportation", desc: "Topographic mapping, railway and road corridors, terrain information, construction areas and engineering-support mapping." },
+  { title: "Mining & Natural Resources", desc: "Mine features, terrain products, haul roads, stockpiles, surface analysis and operational mapping." },
+  { title: "Utilities & Pipelines", desc: "Pipeline corridors, utility alignments, associated infrastructure and GIS asset mapping." },
+  { title: "Architecture & Planning", desc: "Existing-condition mapping, topography, land information, planning base maps and site documentation." },
+  { title: "Government & Urban Projects", desc: "Base mapping, land-use information, public assets and project-specific spatial datasets." },
+  { title: "Drone & Survey Companies", desc: "Back-office photogrammetry, LiDAR processing, terrain models, feature extraction and final GIS/CAD production." },
+];
+
+const whyPoints = [
+  { title: "GIS-Led Project Understanding", desc: "Drone data is reviewed in the context of the mapping, terrain, GIS or CAD output the project actually requires." },
+  { title: "Survey-to-Delivery Workflow", desc: "Assignments can cover survey support, drone-data processing, point clouds, terrain products, feature extraction and final GIS/CAD preparation." },
+  { title: "Processing-Only Support", desc: "Clients who already have drone or LiDAR data can engage us without repeating the field-survey stage." },
+  { title: "Multi-Source Data Handling", desc: "Drone imagery can be used alongside LiDAR, survey control, GIS databases, satellite imagery and engineering drawings where the project requires it." },
+  { title: "Structured QA/QC", desc: "Review checks can cover projection, geometry, topology, attributes, completeness, file structure and compliance with agreed specifications." },
+  { title: "Project-Specific Deliverables", desc: "We prepare output packages according to the formats and data structure required by the client project environment." },
+];
+
+const faqs = [
+  { q: "What information should I share to receive a drone survey quotation?", a: "Share the project location, area or corridor length, project objective, required coordinate system, required outputs, available survey specifications and expected timeline. If you already have drone data, also share information about the imagery, point cloud and available control." },
+  { q: "Can Techmapperz process drone images captured by another company?", a: "Yes. Techmapperz can review client-supplied drone imagery and available survey information for photogrammetric processing. The recommended workflow depends on image quality, overlap, positioning information, control data and required outputs." },
+  { q: "What outputs can be prepared from drone imagery?", a: "Depending on the available data and project requirement, outputs may include orthophotos, orthomosaics, photogrammetric point clouds, DSM, terrain-related products, contours, 3D surfaces and extracted GIS or CAD features." },
+  { q: "Can you process LAS or LAZ point-cloud data?", a: "Yes. Point-cloud processing can include data review, cleaning, classification, ground extraction, feature extraction, terrain preparation and GIS/CAD conversion according to the project specification." },
+  { q: "What is the difference between DEM, DTM and DSM?", a: "A DSM represents the visible surface, including buildings, vegetation and other above-ground features. A DTM is intended to represent the underlying terrain or ground surface. DEM is a broader term for digitally represented elevation data and its exact use can vary between workflows and organisations." },
+  { q: "Can you generate contour maps from drone survey data?", a: "Yes, where the elevation data is suitable for the intended application. The contour interval and final format should be agreed according to the terrain, source-data quality and project requirement." },
+  { q: "Can drone data be processed without GCPs?", a: "It may be possible to generate mapped outputs using positioning information recorded with the imagery, but the achievable positional quality and suitability for survey or engineering use depend on the capture method, onboard positioning, available control and project requirements. Techmapperz reviews the available data before making an accuracy commitment." },
+  { q: "Do you provide mining volumetric calculations?", a: "Yes. Stockpile volume, surface comparison and cut-and-fill calculations can be prepared where suitable surface or point-cloud information is available." },
+  { q: "Can drone outputs be delivered in both GIS and CAD formats?", a: "Yes. Depending on the assignment, final outputs can be structured for GIS, CAD, raster or point-cloud workflows according to the agreed project requirements." },
+  { q: "Can Techmapperz support another drone company as a processing subcontractor?", a: "Yes. Drone survey and survey companies can engage Techmapperz for photogrammetry, point-cloud processing, terrain generation, feature extraction, GIS/CAD production, QA/QC and final-delivery preparation." },
+];
+
+const FaqItem = ({ faq, defaultOpen = false }) => {
+  const [open, setOpen] = useState(defaultOpen);
+  return (
+    <div className="border-b border-gray-200">
+      <button onClick={() => setOpen(!open)} className="w-full text-left py-5 flex items-start justify-between gap-4 group">
+        <span className="text-[#0c2e60] font-semibold text-sm md:text-base leading-snug group-hover:text-[#1656b8] transition-colors">{faq.q}</span>
+        <span className={`text-[#1656b8] font-bold text-xl flex-shrink-0 transition-transform duration-300 ${open ? "rotate-45" : ""}`}>+</span>
+      </button>
+      {open && <p className="text-gray-600 text-sm md:text-[15px] leading-relaxed pb-5">{faq.a}</p>}
+    </div>
+  );
+};
 
 export default function DroneServicePageClient() {
-  const [activeTab, setActiveTab] = useState('All');
-  const [openFaq, setOpenFaq] = useState(0);
-  const [isLayersHovered, setIsLayersHovered] = useState(false);
-
-  const formatCategories = ['All', 'Raster & Imagery', 'Point Cloud', '3D Models', 'Elevation & Topo'];
-
-  const formats = [
-    { name: 'Orthomosaic GeoTIFF', ext: 'High-res mapping', cat: 'Raster & Imagery' },
-    { name: 'Multispectral Imagery', ext: 'Agriculture/NDVI', cat: 'Raster & Imagery' },
-    { name: 'LAS / LAZ', ext: 'Dense point cloud', cat: 'Point Cloud' },
-    { name: '3D Mesh (OBJ/FBX)', ext: 'Reality capture', cat: '3D Models' },
-    { name: 'Digital Elevation Model (DEM)', ext: 'Bare-earth surface', cat: 'Elevation & Topo' },
-    { name: 'Digital Surface Model (DSM)', ext: 'Above-ground surface', cat: 'Elevation & Topo' },
-    { name: 'Contour Maps (SHP/DWG)', ext: 'Topographic lines', cat: 'Elevation & Topo' },
-    { name: 'Volumetric Reports', ext: 'Stockpile analysis', cat: 'Elevation & Topo' },
-  ];
-
-  const filteredFormats = activeTab === 'All' 
-    ? formats 
-    : formats.filter(f => f.cat === activeTab);
-
-  const faqData = [
-    {
-      question: "How accurate are Techmapperz’s drone survey and mapping services in India?",
-      answer: "Techmapperz delivers high-accuracy drone survey and mapping services in India using advanced UAV platforms, RTK-enabled systems, and industry-standard processing tools. Accuracy levels depend on project requirements and terrain, but our workflows ensure reliable and precise geospatial outputs."
-    },
-    {
-      question: "What is an orthophoto, and why is it important in drone mapping?",
-      answer: "An orthophoto is a geometrically corrected aerial image generated through drone mapping that represents the Earth’s surface at a uniform scale. It is essential for accurate measurements, planning, asset mapping, and GIS integration across infrastructure and land survey projects."
-    },
-    {
-      question: "What is a 3D terrain model, and how is it used in drone surveys?",
-      answer: "A 3D terrain model represents the ground surface derived from drone survey data. It is widely used for topographic analysis, slope assessment, volume estimation, and infrastructure planning in construction, mining, and environmental projects."
-    },
-    {
-      question: "What is a LiDAR sensor, and how is it used in drone LiDAR surveys?",
-      answer: "A LiDAR sensor uses laser pulses to measure distances and generate highly detailed 3D point cloud data. In drone LiDAR survey services, it is especially effective for topographic mapping, corridor surveys, and projects requiring high accuracy even in vegetated areas."
-    },
-    {
-      question: "Why should organizations choose drone surveys over traditional land surveys?",
-      answer: "Drone surveys offer faster data collection, reduced field risks, improved accuracy, and cost efficiency compared to traditional land surveys. They are particularly effective for large areas, inaccessible terrain, and time-critical infrastructure projects."
-    }
-  ];
-
   return (
-    <div className="bg-white text-[#17202a] font-sans antialiased selection:bg-[#1267b1]/10 pt-28">
-      {/* Floating Animations CSS */}
-      <style jsx global>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-8px); }
-        }
-        @keyframes pulse-glow {
-          0%, 100% { opacity: 0.15; }
-          50% { opacity: 0.3; }
-        }
-        .animate-float-slow {
-          animation: float 5s ease-in-out infinite;
-        }
-        .animate-float-slower {
-          animation: float 7s ease-in-out infinite;
-        }
-        .animate-pulse-glow {
-          animation: pulse-glow 4s ease-in-out infinite;
-        }
-      `}</style>
-
-      {/* Hero Section */}
-      <section className="relative overflow-hidden pt-16 pb-20 bg-gradient-to-b from-white via-[#f4f7fa]/30 to-[#f4f7fa]/50">
-        {/* Subtle grid pattern overlay */}
-        <div className="absolute inset-0 pointer-events-none opacity-[0.035] bg-[linear-gradient(rgba(11,35,65,1)_1px,transparent_1px),linear-gradient(90deg,rgba(11,35,65,1)_1px,transparent_1px)] bg-[size:42px_42px]" />
-        
-        {/* Glowing Orbs */}
-        <div className="absolute top-[18%] left-[11%] w-[400px] h-[400px] bg-[#e33434]/5 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute top-[25%] right-[16%] w-[450px] h-[450px] bg-[#1267b1]/10 rounded-full blur-[130px] pointer-events-none" />
-
-        <div className="max-w-[1240px] mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-12 lg:gap-16 items-center">
-            
-            {/* Left Column: Hero Content */}
-            <div className="space-y-6">
-              {/* Breadcrumb */}
-              <div className="flex items-center gap-2 text-xs font-semibold text-[#6c7887]">
-                <Link href="/" className="hover:text-[#1267b1] transition-colors">Home</Link>
-                <span>›</span>
-                <span className="text-[#1267b1]">Services</span>
-                <span>›</span>
-                <span className="text-[#0c2e60] font-bold">Drone Services</span>
-              </div>
-
-              {/* Eyebrow */}
-              <div className="inline-flex items-center gap-3 text-xs font-extrabold tracking-[0.18em] text-[#1267b1] uppercase">
-                <span className="w-7 h-[2px] bg-[#e33434] rounded-full" />
-                Drone Survey & Mapping Company in India
-              </div>
-
-              {/* Title */}
-              <h1 className="text-4xl md:text-5xl lg:text-[54px] font-extrabold text-[#0c2e60] tracking-tight leading-[1.1] sm:max-w-xl">
-                High-Accuracy Drone Data Using Advanced UAV & LiDAR Technology
-              </h1>
-
-              {/* Lead Paragraph */}
-              <p className="text-lg md:text-[19px] text-[#5f6d7b] leading-relaxed max-w-[620px]">
-                Elevate your projects with precision drone surveying. We acquire, process, and deliver engineering-grade spatial data for infrastructure, mining, agriculture, and urban planning.
-              </p>
-
-              {/* Buttons */}
-              <div className="flex flex-wrap gap-4 pt-3">
-                <Link 
-                  href="/contact" 
-                  className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl font-extrabold text-sm text-white bg-[#e33434] hover:bg-[#c92828] shadow-[0_14px_26px_rgba(227,52,52,0.22)] hover:-translate-y-0.5 transition-all duration-200"
-                >
-                  Request a Drone Survey Quote →
-                </Link>
-                <Link 
-                  href="/contact" 
-                  className="inline-flex items-center justify-center px-7 py-3.5 rounded-xl font-extrabold text-sm text-[#0c2e60] bg-white border border-[#cfdbe7] hover:border-[#1267b1] hover:text-[#1267b1] hover:-translate-y-0.5 transition-all duration-200"
-                >
-                  Request Sample Survey Data
-                </Link>
-              </div>
-
-              {/* Hero Points */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-8">
-                <div className="bg-white/80 backdrop-blur-sm border border-[#dce6ef] p-4 rounded-2xl shadow-[0_10px_25px_rgba(11,35,65,0.04)]">
-                  <b className="block text-sm text-[#0c2e60] font-bold mb-1">DGCA Compliant</b>
-                  <span className="block text-[11px] text-[#758292] leading-relaxed">Fully authorized drone operations across India</span>
-                </div>
-                <div className="bg-white/80 backdrop-blur-sm border border-[#dce6ef] p-4 rounded-2xl shadow-[0_10px_25px_rgba(11,35,65,0.04)]">
-                  <b className="block text-sm text-[#0c2e60] font-bold mb-1">RTK/PPK Precision</b>
-                  <span className="block text-[11px] text-[#758292] leading-relaxed">Centimeter-level accuracy for critical engineering</span>
-                </div>
-                <div className="bg-white/80 backdrop-blur-sm border border-[#dce6ef] p-4 rounded-2xl shadow-[0_10px_25px_rgba(11,35,65,0.04)]">
-                  <b className="block text-sm text-[#0c2e60] font-bold mb-1">Rapid Turnaround</b>
-                  <span className="block text-[11px] text-[#758292] leading-relaxed">Automated processing for timely deliverable execution</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Column: Styled Map/Drone Illustration */}
-            <div className="relative">
-              <div className="bg-white border border-[#d7e2ec] rounded-[28px] p-4 shadow-[0_22px_55px_rgba(11,35,65,0.1)] relative z-10">
-                {/* Top Bar */}
-                <div className="flex justify-between items-center px-1 pb-3 text-xs font-bold text-[#516171]">
-                  <span>ACQUISITION · LIDAR SCANNING</span>
-                  <div className="flex gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#e33434]" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#f0b33f]" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#078a86]" />
-                  </div>
-                </div>
-
-                {/* SVG Container */}
-                <div className="relative rounded-[19px] overflow-hidden bg-[#e5ebf1] aspect-[1.04/1] shadow-inner border border-[#dce5ef]">
-                  <svg viewBox="0 0 620 600" className="w-full h-full block">
-                    <defs>
-                      <linearGradient id="terrain" x1="0" x2="1" y1="0" y2="1">
-                        <stop offset="0" stopColor="#d1deea" />
-                        <stop offset="1" stopColor="#b4c7d9" />
-                      </linearGradient>
-                      <pattern id="flight-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                        <path d="M40 0H0V40" fill="none" stroke="#2d5689" strokeOpacity=".08" strokeWidth="1" />
-                      </pattern>
-                    </defs>
-                    
-                    {/* Base Terrain */}
-                    <rect width="620" height="600" fill="url(#terrain)" />
-                    
-                    {/* Grid */}
-                    <rect width="620" height="600" fill="url(#flight-grid)" />
-                    
-                    {/* Topography Contours */}
-                    <g fill="none" stroke="#8da8c1" strokeWidth="1.5" opacity=".7">
-                      <path d="M0 100c120-20 250 50 400 20s150-60 220-40" />
-                      <path d="M0 150c110-15 240 60 410 30s160-50 210-30" />
-                      <path d="M0 200c100-10 230 70 420 40s170-40 200-20" />
-                      <path d="M0 450c120 20 200-30 350-10s200 60 270 40" />
-                      <path d="M0 500c110 25 190-25 360-5s210 70 260 50" />
-                    </g>
-                    
-                    {/* Flight Path (Zig-zag) */}
-                    <path d="M80 80 L520 80 L520 160 L80 160 L80 240 L520 240 L520 320 L80 320 L80 400 L520 400" fill="none" stroke="#078a86" strokeWidth="4" strokeDasharray="10 8" />
-                    
-                    {/* Scanning Cone (LiDAR/Camera representation) */}
-                    <polygon points="300,240 180,450 420,450" fill="#e33434" opacity="0.15" />
-                    <polygon points="300,240 240,450 360,450" fill="#e33434" opacity="0.1" />
-                    
-                    {/* Drone Graphic */}
-                    <g transform="translate(260, 200)">
-                      <circle cx="40" cy="40" r="14" fill="#0c2e60" />
-                      <rect x="36" y="26" width="8" height="28" fill="#1267b1" />
-                      <rect x="26" y="36" width="28" height="8" fill="#1267b1" />
-                      {/* Propellers */}
-                      <circle cx="20" cy="20" r="10" fill="none" stroke="#e33434" strokeWidth="3" />
-                      <circle cx="60" cy="20" r="10" fill="none" stroke="#e33434" strokeWidth="3" />
-                      <circle cx="20" cy="60" r="10" fill="none" stroke="#e33434" strokeWidth="3" />
-                      <circle cx="60" cy="60" r="10" fill="none" stroke="#e33434" strokeWidth="3" />
-                      <line x1="13" y1="13" x2="27" y2="27" stroke="#0c2e60" strokeWidth="2" />
-                      <line x1="53" y1="13" x2="67" y2="27" stroke="#0c2e60" strokeWidth="2" />
-                      <line x1="13" y1="67" x2="27" y2="53" stroke="#0c2e60" strokeWidth="2" />
-                      <line x1="53" y1="67" x2="67" y2="53" stroke="#0c2e60" strokeWidth="2" />
-                    </g>
-                  </svg>
-                </div>
-              </div>
-
-              {/* Floating Cards */}
-              <div className="absolute z-20 right-[-15px] top-[14%] w-[185px] bg-white/95 backdrop-blur-md border border-[#d7e2ec] shadow-lg rounded-xl p-3.5 animate-float-slow hidden md:block">
-                <strong className="block text-xs text-[#0c2e60] font-bold">UAV Telemetry</strong>
-                <span className="block text-[11px] text-[#6b7987] mt-0.5">Alt: 120m · Vel: 8m/s</span>
-                <div className="h-1.5 bg-gray-100 rounded-full mt-2.5 overflow-hidden">
-                  <div className="h-full w-[85%] bg-gradient-to-r from-[#1267b1] to-[#2f80d0] rounded-full" />
-                </div>
-              </div>
-
-              <div className="absolute z-20 left-[-20px] bottom-[8%] w-[215px] bg-white/95 backdrop-blur-md border border-[#d7e2ec] shadow-lg rounded-xl p-3.5 animate-float-slower hidden md:block">
-                <strong className="block text-xs text-[#0c2e60] font-bold">RTK Status: FIX</strong>
-                <span className="block text-[11px] text-[#6b7987] mt-0.5">Positional Accuracy &lt; 2cm</span>
-                <div className="flex gap-1 mt-2.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#078a86]" />
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#078a86]" />
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#078a86]" />
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#078a86]" />
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#dce5ee]" />
-                </div>
-              </div>
-            </div>
-
+    <div className="bg-white text-gray-900">
+      {/* HERO */}
+      <section className="relative min-h-[85vh] flex flex-col justify-center items-start bg-cover bg-center text-white" style={{ backgroundImage: 'url("/gis_images/drone_services/drone_surveying_mapping/corridor_mapping.webp")' }}>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/30" />
+        <div className="relative z-10 max-w-[1400px] w-full mx-auto px-6 md:px-12 lg:px-20 py-28 flex flex-col gap-6">
+          <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em]">DRONE SURVEY & MAPPING SERVICES</span>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-bold leading-tight tracking-tight max-w-3xl">Turn Aerial Survey Data into Usable Maps, Models and Spatial Information</h1>
+          <p className="text-gray-300 text-sm sm:text-base md:text-[17px] max-w-2xl leading-relaxed">Techmapperz supports infrastructure, mining, utility, land-development, architecture and planning projects with drone survey, aerial mapping and geospatial data-processing services.</p>
+          <p className="text-gray-400 text-sm max-w-2xl leading-relaxed">From field-acquired imagery and LiDAR data to orthomosaics, point clouds, terrain models, contours and GIS/CAD mapping, we prepare outputs around the actual requirements of your project.</p>
+          <div className="flex flex-wrap gap-5 mt-2">
+            <Link href="/contact"><button className="py-[12px] px-8 rounded-full border border-[#1656b8] bg-[#1656b8]/30 text-white font-semibold text-[15px] hover:bg-[#1656b8] transition-all duration-300">Discuss Your Drone Survey</button></Link>
+            <Link href="/service/droneservice/dronedataprocessing"><button className="py-[12px] px-8 rounded-full border border-gray-300 bg-transparent text-white font-semibold text-[15px] hover:bg-white/10 transition-all duration-300">Already Have Drone Data?</button></Link>
           </div>
         </div>
       </section>
 
-      {/* Introduction with Stacked Map Layers */}
-      <section className="py-24" id="about">
-        <div className="max-w-[1240px] mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-12 lg:gap-16 items-center">
-            
-            {/* Visual stacked panel */}
-            <div 
-              className="relative bg-[#f4f7fa] rounded-3xl p-6 min-h-[440px] overflow-hidden flex items-center justify-center cursor-pointer transition-transform duration-300"
-              onMouseEnter={() => setIsLayersHovered(true)}
-              onMouseLeave={() => setIsLayersHovered(false)}
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-transparent to-[#1267b1]/5 pointer-events-none" />
-              
-              {/* Stacked Layers Container */}
-              <div className="absolute inset-[30px] sm:inset-[40px]">
-                {/* Layer 1: Bottom (Raw Aerial Imagery) */}
-                <div 
-                  className="absolute inset-[24px_16px_50px_40px] rounded-2xl border border-white/80 shadow-md overflow-hidden bg-[#e0d9cc] transition-all duration-500 ease-out flex items-center justify-center"
-                  style={{
-                    transform: isLayersHovered 
-                      ? 'rotate(-11deg) translate(-20px, -10px) scale(0.95)' 
-                      : 'rotate(-7deg) translate(0px, 0px) scale(1)',
-                    zIndex: 10
-                  }}
-                >
-                  <svg viewBox="0 0 440 320" className="w-full h-full block">
-                    <rect width="440" height="320" fill="#dbd3c3" />
-                    <path d="M0 0 L440 0 L440 320 L0 320 Z" fill="none" stroke="#c0b5a3" strokeWidth="20" strokeDasharray="40 10" />
-                    <g fill="#c9c0ae">
-                      <rect x="50" y="50" width="100" height="80" />
-                      <rect x="250" y="80" width="120" height="100" />
-                      <rect x="100" y="200" width="150" height="70" />
-                    </g>
-                  </svg>
-                  <span className="absolute bottom-2 right-4 text-[10px] font-bold text-[#8c826e] uppercase">Raw Imagery</span>
-                </div>
-
-                {/* Layer 2: Middle (Point Cloud) */}
-                <div 
-                  className="absolute inset-[40px_36px_30px_16px] rounded-2xl border border-white/80 shadow-lg overflow-hidden bg-[#1e293b] transition-all duration-500 ease-out"
-                  style={{
-                    transform: isLayersHovered 
-                      ? 'rotate(8deg) translate(15px, 0px) scale(0.98)' 
-                      : 'rotate(5deg) translate(0px, 0px) scale(1)',
-                    zIndex: 20
-                  }}
-                >
-                  <svg viewBox="0 0 440 320" className="w-full h-full block">
-                    <rect width="440" height="320" fill="#1e293b" />
-                    {/* Generating a dot grid simulating a point cloud */}
-                    <g fill="#60a5fa" opacity="0.6">
-                      {Array.from({ length: 15 }).map((_, i) => 
-                        Array.from({ length: 20 }).map((_, j) => (
-                          <circle key={`${i}-${j}`} cx={j * 22 + 10} cy={i * 22 + 10} r={Math.random() * 2 + 1} />
-                        ))
-                      )}
-                    </g>
-                    <g fill="#f87171" opacity="0.8">
-                      <circle cx="100" cy="100" r="3" />
-                      <circle cx="110" cy="90" r="3" />
-                      <circle cx="120" cy="110" r="3" />
-                      <circle cx="300" cy="200" r="3" />
-                      <circle cx="310" cy="190" r="3" />
-                    </g>
-                  </svg>
-                  <span className="absolute bottom-2 right-4 text-[10px] font-bold text-[#64748b] uppercase">3D Point Cloud</span>
-                </div>
-
-                {/* Layer 3: Top (Orthomosaic/DEM) */}
-                <div 
-                  className="absolute inset-[56px_20px_16px_50px] rounded-2xl border border-white/90 shadow-xl overflow-hidden bg-white transition-all duration-500 ease-out"
-                  style={{
-                    transform: isLayersHovered 
-                      ? 'rotate(2deg) translate(0px, 15px) scale(1.02)' 
-                      : 'rotate(0deg) translate(0px, 0px) scale(1)',
-                    zIndex: 30
-                  }}
-                >
-                  <svg viewBox="0 0 440 320" className="w-full h-full block">
-                    <rect width="440" height="320" fill="#f0f7f4" />
-                    <path d="M0 160 Q 110 50 220 160 T 440 160" fill="none" stroke="#078a86" strokeWidth="3" />
-                    <path d="M0 180 Q 110 70 220 180 T 440 180" fill="none" stroke="#078a86" strokeWidth="2" opacity="0.6" />
-                    <path d="M0 200 Q 110 90 220 200 T 440 200" fill="none" stroke="#078a86" strokeWidth="1" opacity="0.3" />
-                    <g fill="#2d5689" opacity="0.1">
-                      <rect x="50" y="50" width="100" height="80" />
-                      <rect x="250" y="80" width="120" height="100" />
-                    </g>
-                    <g fill="none" stroke="#2d5689" strokeWidth="2">
-                      <rect x="50" y="50" width="100" height="80" />
-                      <rect x="250" y="80" width="120" height="100" />
-                    </g>
-                  </svg>
-                  <span className="absolute bottom-2 right-4 text-[10px] font-bold text-[#078a86] uppercase">Orthomosaic & Contours</span>
-                </div>
-              </div>
-
-              {/* Hover Badge */}
-              <div className="absolute bottom-5 left-5 bg-white border border-[#dce6ef] px-4 py-2.5 rounded-xl shadow-md z-40 text-xs font-bold text-[#0c2e60]">
-                Capture → Photogrammetry → Geospatial Output
+      {/* INTRODUCTION */}
+      <section className="py-16 md:py-24 bg-[#f8fafc]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div>
+              <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-4 block">FROM DATA CAPTURE TO FINAL MAPPING</span>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0c2e60] leading-tight mb-6">Capturing aerial images is only one part of a drone mapping assignment.</h2>
+              <p className="text-gray-600 text-sm md:text-[15px] leading-relaxed mb-4">The value comes from converting the captured data into information that engineers, planners, surveyors and GIS teams can actually work with.</p>
+              <p className="text-gray-600 text-sm md:text-[15px] leading-relaxed mb-4">At the beginning of an assignment, we review the project boundary, terrain, available control information, coordinate system, expected deliverables, required level of detail and intended use of the data.</p>
+              <p className="text-gray-600 text-sm md:text-[15px] leading-relaxed mb-8">Based on those requirements, the workflow may include drone-data acquisition, photogrammetric processing, LiDAR point-cloud processing, terrain modelling, feature extraction, spatial analysis and GIS or CAD preparation.</p>
+              <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm mb-6">
+                <p className="text-[#0c2e60] font-bold text-base mb-2">Already completed the drone survey?</p>
+                <p className="text-gray-600 text-sm leading-relaxed mb-4">You do not need to repeat the field work simply to engage Techmapperz. We can also work with client-supplied drone imagery, LAS/LAZ point clouds and available survey-control information as a dedicated data-processing partner.</p>
+                <Link href="/service/droneservice/dronedataprocessing" className="inline-flex items-center gap-2 bg-[#0c2e60] hover:bg-[#082046] text-white font-bold text-sm px-7 py-3 rounded-full transition-all duration-300 shadow-md">Explore Drone Data Processing &#8594;</Link>
               </div>
             </div>
-
-            {/* Right Column: Text Content */}
-            <div className="space-y-6">
-              <div className="inline-flex items-center gap-3 text-xs font-extrabold tracking-[0.18em] text-[#1267b1] uppercase">
-                <span className="w-7 h-[2px] bg-[#e33434] rounded-full" />
-                Data Transformation
-              </div>
-              <h2 className="text-3xl md:text-[40px] font-extrabold text-[#0c2e60] tracking-tight leading-[1.15]">
-                Turning raw aerial data into actionable intelligence
-              </h2>
-              <p className="text-[#5f6d7b] text-base md:text-[17px] leading-relaxed">
-                By integrating high-resolution aerial data acquisition with advanced drone mapping and data processing, we generate precise and reliable outputs tailored to your exact project requirements.
-              </p>
-
-              {/* Deliverables List */}
-              <div className="space-y-6 pt-2">
-                <div className="flex gap-4 items-start">
-                  <div className="w-11 h-11 shrink-0 rounded-xl bg-[#eaf3fb] text-[#1267b1] font-extrabold text-sm flex items-center justify-center">
-                    01
-                  </div>
-                  <div className="space-y-1">
-                    <h3 className="font-extrabold text-[#0c2e60] text-lg leading-tight">Advanced UAV Acquisition</h3>
-                    <p className="text-sm text-[#5f6d7b] leading-relaxed">Deploying industry-standard drones equipped with high-resolution RGB, Multispectral, or LiDAR payloads.</p>
-                  </div>
-                </div>
-                <div className="flex gap-4 items-start">
-                  <div className="w-11 h-11 shrink-0 rounded-xl bg-[#eaf3fb] text-[#1267b1] font-extrabold text-sm flex items-center justify-center">
-                    02
-                  </div>
-                  <div className="space-y-1">
-                    <h3 className="font-extrabold text-[#0c2e60] text-lg leading-tight">Photogrammetry & Processing</h3>
-                    <p className="text-sm text-[#5f6d7b] leading-relaxed">Stitching thousands of overlapping images to generate dense point clouds, DEMs, and seamless orthomosaics.</p>
-                  </div>
-                </div>
-                <div className="flex gap-4 items-start">
-                  <div className="w-11 h-11 shrink-0 rounded-xl bg-[#eaf3fb] text-[#1267b1] font-extrabold text-sm flex items-center justify-center">
-                    03
-                  </div>
-                  <div className="space-y-1">
-                    <h3 className="font-extrabold text-[#0c2e60] text-lg leading-tight">Engineering-Grade Deliverables</h3>
-                    <p className="text-sm text-[#5f6d7b] leading-relaxed">Exporting data directly to AutoCAD, ArcGIS, and specialized engineering software for immediate use.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* Core Drone Services Cards Grid */}
-      <section className="py-24 bg-[#f4f7fa] border-t border-b border-[#dce5ee]" id="services">
-        <div className="max-w-[1240px] mx-auto px-6">
-          <div className="flex flex-col lg:flex-row lg:justify-between lg:items-end gap-6 mb-12">
-            <div className="space-y-4 max-w-2xl">
-              <div className="inline-flex items-center gap-3 text-xs font-extrabold tracking-[0.18em] text-[#1267b1] uppercase">
-                <span className="w-7 h-[2px] bg-[#e33434] rounded-full" />
-                Our Offerings
-              </div>
-              <h2 className="text-3xl md:text-[38px] font-extrabold text-[#0c2e60] tracking-tight">
-                Our Drone Survey & Mapping Services
-              </h2>
-              <p className="text-[#5f6d7b] text-[17px] leading-relaxed">
-                Comprehensive UAV solutions spanning data collection, advanced processing, and specialized sector analysis.
-              </p>
-            </div>
-          </div>
-
-          {/* Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {/* Card 1 */}
-            <div className="bg-white border border-[#dce5ee] hover:border-[#b9cfe2] rounded-2xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col min-h-[250px] group">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#eaf4fc] to-[#f5f9fc] flex items-center justify-center text-xl text-[#1267b1] mb-5 font-bold">
-                ⌖
-              </div>
-              <h3 className="font-extrabold text-[#0c2e60] text-[17px] leading-tight">Drone Survey & Mapping</h3>
-              <p className="text-xs text-[#5f6d7b] mt-3 leading-relaxed">
-                High-precision topographic surveys, boundary mapping, and cadastral mapping using RTK-enabled UAVs.
-              </p>
-              <Link href="/service/droneservice/dronesurveyandmapping" className="text-xs font-extrabold text-[#1267b1] hover:underline mt-auto pt-5 inline-block group-hover:translate-x-1 transition-transform">
-                View service →
-              </Link>
-            </div>
-
-            {/* Card 2 */}
-            <div className="bg-white border border-[#dce5ee] hover:border-[#b9cfe2] rounded-2xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col min-h-[250px] group">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#eaf4fc] to-[#f5f9fc] flex items-center justify-center text-xl text-[#1267b1] mb-5 font-bold">
-                ▱
-              </div>
-              <h3 className="font-extrabold text-[#0c2e60] text-[17px] leading-tight">Drone Data Processing</h3>
-              <p className="text-xs text-[#5f6d7b] mt-3 leading-relaxed">
-                Transform raw imagery into actionable outputs like orthomosaics, point clouds, DEMs, and 3D models.
-              </p>
-              <Link href="/service/droneservice/dronedataprocessing" className="text-xs font-extrabold text-[#1267b1] hover:underline mt-auto pt-5 inline-block group-hover:translate-x-1 transition-transform">
-                View service →
-              </Link>
-            </div>
-
-            {/* Card 3 */}
-            <div className="bg-white border border-[#dce5ee] hover:border-[#b9cfe2] rounded-2xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col min-h-[250px] group">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#eaf4fc] to-[#f5f9fc] flex items-center justify-center text-xl text-[#1267b1] mb-5 font-bold">
-                ⌁
-              </div>
-              <h3 className="font-extrabold text-[#0c2e60] text-[17px] leading-tight">Inspection & Analysis</h3>
-              <p className="text-xs text-[#5f6d7b] mt-3 leading-relaxed">
-                Close-visual inspections for solar panels, wind turbines, telecom towers, and structural integrity checks.
-              </p>
-              <Link href="/service/droneservice/inspectionandanalysis" className="text-xs font-extrabold text-[#1267b1] hover:underline mt-auto pt-5 inline-block group-hover:translate-x-1 transition-transform">
-                View service →
-              </Link>
-            </div>
-
-            {/* Card 4 */}
-            <div className="bg-white border border-[#dce5ee] hover:border-[#b9cfe2] rounded-2xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col min-h-[250px] group">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#eaf4fc] to-[#f5f9fc] flex items-center justify-center text-xl text-[#1267b1] mb-5 font-bold">
-                ▦
-              </div>
-              <h3 className="font-extrabold text-[#0c2e60] text-[17px] leading-tight">Agriculture & Multispectral</h3>
-              <p className="text-xs text-[#5f6d7b] mt-3 leading-relaxed">
-                Crop health monitoring, NDVI generation, yield estimation, and precision agriculture solutions.
-              </p>
-              <Link href="#contact" className="text-xs font-extrabold text-[#1267b1] hover:underline mt-auto pt-5 inline-block group-hover:translate-x-1 transition-transform">
-                View service →
-              </Link>
-            </div>
-            
-            {/* Card 5 */}
-            <div className="bg-white border border-[#dce5ee] hover:border-[#b9cfe2] rounded-2xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col min-h-[250px] group">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#eaf4fc] to-[#f5f9fc] flex items-center justify-center text-xl text-[#1267b1] mb-5 font-bold">
-                ◫
-              </div>
-              <h3 className="font-extrabold text-[#0c2e60] text-[17px] leading-tight">Mining & Volumetrics</h3>
-              <p className="text-xs text-[#5f6d7b] mt-3 leading-relaxed">
-                Accurate stockpile volume calculations, pit topography, contour mapping, and haul road optimization.
-              </p>
-              <Link href="#contact" className="text-xs font-extrabold text-[#1267b1] hover:underline mt-auto pt-5 inline-block group-hover:translate-x-1 transition-transform">
-                View service →
-              </Link>
-            </div>
-
-            {/* Card 6 */}
-            <div className="bg-white border border-[#dce5ee] hover:border-[#b9cfe2] rounded-2xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col min-h-[250px] group">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#eaf4fc] to-[#f5f9fc] flex items-center justify-center text-xl text-[#1267b1] mb-5 font-bold">
-                ∿
-              </div>
-              <h3 className="font-extrabold text-[#0c2e60] text-[17px] leading-tight">LiDAR Scanning Surveys</h3>
-              <p className="text-xs text-[#5f6d7b] mt-3 leading-relaxed">
-                Penetrate dense vegetation to generate bare-earth models and high-density point clouds for forestry or complex terrains.
-              </p>
-              <Link href="#contact" className="text-xs font-extrabold text-[#1267b1] hover:underline mt-auto pt-5 inline-block group-hover:translate-x-1 transition-transform">
-                View service →
-              </Link>
-            </div>
-
-            {/* Card 7 */}
-            <div className="bg-white border border-[#dce5ee] hover:border-[#b9cfe2] rounded-2xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col min-h-[250px] group">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#eaf4fc] to-[#f5f9fc] flex items-center justify-center text-xl text-[#1267b1] mb-5 font-bold">
-                ⇄
-              </div>
-              <h3 className="font-extrabold text-[#0c2e60] text-[17px] leading-tight">Infrastructure Monitoring</h3>
-              <p className="text-xs text-[#5f6d7b] mt-3 leading-relaxed">
-                Regular progress tracking of construction sites, highway corridors, railway lines, and large civil engineering projects.
-              </p>
-              <Link href="#contact" className="text-xs font-extrabold text-[#1267b1] hover:underline mt-auto pt-5 inline-block group-hover:translate-x-1 transition-transform">
-                View service →
-              </Link>
-            </div>
-
-            {/* Card 8 */}
-            <div className="bg-white border border-[#dce5ee] hover:border-[#b9cfe2] rounded-2xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col min-h-[250px] group">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#eaf4fc] to-[#f5f9fc] flex items-center justify-center text-xl text-[#1267b1] mb-5 font-bold">
-                ⌁
-              </div>
-              <h3 className="font-extrabold text-[#0c2e60] text-[17px] leading-tight">Urban Planning & Smart Cities</h3>
-              <p className="text-xs text-[#5f6d7b] mt-3 leading-relaxed">
-                High-resolution basemaps, 3D city models, and spatial data for master planning and municipal governance.
-              </p>
-              <Link href="#contact" className="text-xs font-extrabold text-[#1267b1] hover:underline mt-auto pt-5 inline-block group-hover:translate-x-1 transition-transform">
-                View service →
-              </Link>
+            <div className="relative h-[380px] sm:h-[460px] rounded-2xl overflow-hidden shadow-xl">
+              <Image src="/gis_images/drone_services/drone_surveying_mapping/3D_Drone_Terrain.webp" alt="Drone Data Processing" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover object-center" />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Delivery Method Workflow */}
-      <section className="py-24">
-        <div className="max-w-[1240px] mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-[0.78fr_1.22fr] gap-12 lg:gap-16 items-start">
-            
-            {/* Sticky Left Column */}
-            <div className="lg:sticky lg:top-32 space-y-5">
-              <div className="inline-flex items-center gap-3 text-xs font-extrabold tracking-[0.18em] text-[#1267b1] uppercase">
-                <span className="w-7 h-[2px] bg-[#e33434] rounded-full" />
-                Workflow
-              </div>
-              <h2 className="text-3xl md:text-[38px] font-extrabold text-[#0c2e60] tracking-tight leading-tight">
-                End-to-End Drone Survey Solutions
-              </h2>
-              <p className="text-[#5f6d7b] text-base leading-relaxed max-w-sm">
-                With well-defined methodologies, experienced technical teams, and optimized processing pipelines, we ensure timely project execution without compromising accuracy or data integrity.
-              </p>
-              <Link 
-                href="/contact" 
-                className="inline-flex items-center justify-center px-6 py-3 rounded-xl font-extrabold text-sm text-[#0c2e60] bg-white border border-[#cfdbe7] hover:border-[#1267b1] hover:text-[#1267b1] transition-all duration-200 mt-2"
-              >
-                Discuss Your Survey Requirements
-              </Link>
-            </div>
-
-            {/* Steps Right Column */}
-            <div className="relative space-y-0 pl-16 md:pl-24">
-              {/* Timeline center line */}
-              <div className="absolute left-[34px] md:left-[50px] top-8 bottom-9 w-[2px] bg-[#dce5ee]" />
-
-              {/* Step 1 */}
-              <div className="relative pb-10 flex gap-6 md:gap-8 items-start group">
-                <div className="absolute left-[-50px] md:left-[-76px] w-[70px] h-[70px] rounded-2xl bg-[#0c2e60] text-white flex items-center justify-center font-black text-lg shadow-[0_12px_25px_rgba(11,35,65,0.15)] group-hover:scale-105 transition-transform duration-300">
-                  01
-                </div>
-                <div className="space-y-2">
-                  <h3 className="font-extrabold text-[#0c2e60] text-lg md:text-xl">Mission Planning & Approvals</h3>
-                  <p className="text-sm text-[#5f6d7b] leading-relaxed max-w-[620px]">
-                    We confirm the mapping area, establish Ground Control Points (GCPs) strategy, define flight parameters, and secure DGCA compliance and local clearances.
-                  </p>
-                  <div className="flex flex-wrap gap-2 pt-2">
-                    <span className="text-[11px] text-[#536374] bg-[#f0f4f8] border border-[#dce5ee] px-3 py-1 rounded-full">Flight Path</span>
-                    <span className="text-[11px] text-[#536374] bg-[#f0f4f8] border border-[#dce5ee] px-3 py-1 rounded-full">GCP Planning</span>
-                    <span className="text-[11px] text-[#536374] bg-[#f0f4f8] border border-[#dce5ee] px-3 py-1 rounded-full">Permits</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Step 2 */}
-              <div className="relative pb-10 flex gap-6 md:gap-8 items-start group">
-                <div className="absolute left-[-50px] md:left-[-76px] w-[70px] h-[70px] rounded-2xl bg-[#0c2e60] text-white flex items-center justify-center font-black text-lg shadow-[0_12px_25px_rgba(11,35,65,0.15)] group-hover:scale-105 transition-transform duration-300">
-                  02
-                </div>
-                <div className="space-y-2">
-                  <h3 className="font-extrabold text-[#0c2e60] text-lg md:text-xl">UAV Data Acquisition</h3>
-                  <p className="text-sm text-[#5f6d7b] leading-relaxed max-w-[620px]">
-                    Our experienced and licensed UAV operators conduct automated flights using RTK/PPK enabled drones equipped with high-resolution payloads to capture imagery or LiDAR data.
-                  </p>
-                  <div className="flex flex-wrap gap-2 pt-2">
-                    <span className="text-[11px] text-[#536374] bg-[#f0f4f8] border border-[#dce5ee] px-3 py-1 rounded-full">RTK Drones</span>
-                    <span className="text-[11px] text-[#536374] bg-[#f0f4f8] border border-[#dce5ee] px-3 py-1 rounded-full">RGB Cameras</span>
-                    <span className="text-[11px] text-[#536374] bg-[#f0f4f8] border border-[#dce5ee] px-3 py-1 rounded-full">LiDAR Payloads</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Step 3 */}
-              <div className="relative pb-10 flex gap-6 md:gap-8 items-start group">
-                <div className="absolute left-[-50px] md:left-[-76px] w-[70px] h-[70px] rounded-2xl bg-[#0c2e60] text-white flex items-center justify-center font-black text-lg shadow-[0_12px_25px_rgba(11,35,65,0.15)] group-hover:scale-105 transition-transform duration-300">
-                  03
-                </div>
-                <div className="space-y-2">
-                  <h3 className="font-extrabold text-[#0c2e60] text-lg md:text-xl">Drone Data Processing</h3>
-                  <p className="text-sm text-[#5f6d7b] leading-relaxed max-w-[620px]">
-                    Raw aerial data is processed using advanced photogrammetry software to generate dense point clouds, seamless orthomosaics, and accurate elevation models.
-                  </p>
-                  <div className="flex flex-wrap gap-2 pt-2">
-                    <span className="text-[11px] text-[#536374] bg-[#f0f4f8] border border-[#dce5ee] px-3 py-1 rounded-full">Photogrammetry</span>
-                    <span className="text-[11px] text-[#536374] bg-[#f0f4f8] border border-[#dce5ee] px-3 py-1 rounded-full">Point Cloud</span>
-                    <span className="text-[11px] text-[#536374] bg-[#f0f4f8] border border-[#dce5ee] px-3 py-1 rounded-full">Image Stitching</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Step 4 */}
-              <div className="relative pb-10 flex gap-6 md:gap-8 items-start group">
-                <div className="absolute left-[-50px] md:left-[-76px] w-[70px] h-[70px] rounded-2xl bg-[#0c2e60] text-white flex items-center justify-center font-black text-lg shadow-[0_12px_25px_rgba(11,35,65,0.15)] group-hover:scale-105 transition-transform duration-300">
-                  04
-                </div>
-                <div className="space-y-2">
-                  <h3 className="font-extrabold text-[#0c2e60] text-lg md:text-xl">GIS Analysis & Formatting</h3>
-                  <p className="text-sm text-[#5f6d7b] leading-relaxed max-w-[620px]">
-                    We perform feature extraction, volumetric calculations, and format the outputs for seamless integration into your existing CAD or GIS systems.
-                  </p>
-                  <div className="flex flex-wrap gap-2 pt-2">
-                    <span className="text-[11px] text-[#536374] bg-[#f0f4f8] border border-[#dce5ee] px-3 py-1 rounded-full">Digitisation</span>
-                    <span className="text-[11px] text-[#536374] bg-[#f0f4f8] border border-[#dce5ee] px-3 py-1 rounded-full">CAD Conversion</span>
-                    <span className="text-[11px] text-[#536374] bg-[#f0f4f8] border border-[#dce5ee] px-3 py-1 rounded-full">Volumetrics</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Step 5 */}
-              <div className="relative flex gap-6 md:gap-8 items-start group">
-                <div className="absolute left-[-50px] md:left-[-76px] w-[70px] h-[70px] rounded-2xl bg-[#0c2e60] text-white flex items-center justify-center font-black text-lg shadow-[0_12px_25px_rgba(11,35,65,0.15)] group-hover:scale-105 transition-transform duration-300">
-                  05
-                </div>
-                <div className="space-y-2">
-                  <h3 className="font-extrabold text-[#0c2e60] text-lg md:text-xl">Quality Assurance & Delivery</h3>
-                  <p className="text-sm text-[#5f6d7b] leading-relaxed max-w-[620px]">
-                    Every dataset undergoes rigorous QA/QC checks for accuracy against checkpoints before final handover in standard industry formats.
-                  </p>
-                  <div className="flex flex-wrap gap-2 pt-2">
-                    <span className="text-[11px] text-[#536374] bg-[#f0f4f8] border border-[#dce5ee] px-3 py-1 rounded-full">RMSE Checks</span>
-                    <span className="text-[11px] text-[#536374] bg-[#f0f4f8] border border-[#dce5ee] px-3 py-1 rounded-full">Final Handover</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
+      {/* DRONE SERVICES */}
+      <section className="py-16 md:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12">
+          <div className="text-center mb-16">
+            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-3 block">WHAT WE CAN SUPPORT</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] tracking-tight">Drone Mapping Services for Different Project Stages</h2>
           </div>
-        </div>
-      </section>
-
-      {/* Outputs & Formats Section */}
-      <section className="py-24">
-        <div className="max-w-[1240px] mx-auto px-6">
-          <div className="space-y-4 max-w-2xl mb-12">
-            <div className="inline-flex items-center gap-3 text-xs font-extrabold tracking-[0.18em] text-[#1267b1] uppercase">
-              <span className="w-7 h-[2px] bg-[#e33434] rounded-full" />
-              Deliverables
-            </div>
-            <h2 className="text-3xl md:text-[38px] font-extrabold text-[#0c2e60] tracking-tight leading-tight">
-              Engineering-Grade Mapping Outputs
-            </h2>
-            <p className="text-[#5f6d7b] text-[17px] leading-relaxed">
-              We process raw data into highly accurate models and maps tailored for GIS, AutoCAD, and specialized engineering software.
-            </p>
-          </div>
-
-          <div className="bg-white border border-[#dce5ee] rounded-3xl p-3 md:p-4 shadow-sm overflow-hidden">
-            {/* Tabs */}
-            <div className="flex overflow-x-auto hide-scrollbar gap-2 mb-4 p-2 bg-[#f8fafc] rounded-2xl border border-[#edf2f7]">
-              {formatCategories.map(cat => (
-                <button 
-                  key={cat}
-                  onClick={() => setActiveTab(cat)}
-                  className={`whitespace-nowrap px-5 py-2.5 rounded-xl font-bold text-sm transition-all duration-200 ${
-                    activeTab === cat 
-                      ? 'bg-white text-[#0c2e60] shadow-[0_4px_12px_rgba(11,35,65,0.08)]' 
-                      : 'text-[#6b7987] hover:text-[#0c2e60] hover:bg-[#eef3f7]'
-                  }`}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
-
-            {/* Formats Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
-              {filteredFormats.map((format, idx) => (
-                <div key={idx} className="bg-white border border-[#dce5ee] rounded-xl p-4 flex items-start gap-4 hover:border-[#b9cfe2] transition-colors">
-                  <div className="w-10 h-10 shrink-0 bg-[#f4f7fa] text-[#1267b1] rounded-lg flex items-center justify-center font-black">
-                    {format.name.substring(0, 1)}
-                  </div>
-                  <div>
-                    <h4 className="font-extrabold text-[#0c2e60] text-[15px]">{format.name}</h4>
-                    <span className="text-xs text-[#6b7987] mt-0.5 block">{format.ext}</span>
-                  </div>
+          <div className="flex flex-col divide-y divide-gray-100">
+            {droneServices.map((svc, i) => (
+              <div key={svc.number} className={`py-14 flex flex-col ${i % 2 !== 0 ? "lg:flex-row-reverse" : "lg:flex-row"} gap-10 lg:gap-16 items-start`}>
+                <div className="relative w-full lg:w-[42%] h-[240px] sm:h-[300px] rounded-2xl overflow-hidden shadow-lg flex-shrink-0">
+                  <Image src={svc.image} alt={svc.title} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover object-center" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                 </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="py-24 bg-[#0c2e60]" id="faq">
-        <div className="max-w-[800px] mx-auto px-6">
-          <div className="text-center space-y-4 mb-14">
-            <div className="inline-flex items-center justify-center gap-3 text-xs font-extrabold tracking-[0.18em] text-[#86aee0] uppercase">
-              <span className="w-7 h-[2px] bg-[#e33434] rounded-full" />
-              Common Questions
-            </div>
-            <h2 className="text-3xl md:text-[38px] font-extrabold text-white tracking-tight">
-              Frequently Asked Questions
-            </h2>
-          </div>
-
-          <div className="space-y-3">
-            {faqData.map((faq, index) => (
-              <div 
-                key={index} 
-                className={`bg-[#12386d] border ${openFaq === index ? 'border-[#396ba8]' : 'border-[#1e4682]'} rounded-2xl overflow-hidden transition-all duration-200`}
-              >
-                <button 
-                  className="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none"
-                  onClick={() => setOpenFaq(openFaq === index ? -1 : index)}
-                >
-                  <span className="font-bold text-[17px] text-white pr-8">{faq.question}</span>
-                  <span className={`text-[#86aee0] text-2xl transition-transform duration-300 ${openFaq === index ? 'rotate-180' : ''}`}>
-                    ↓
-                  </span>
-                </button>
-                <div 
-                  className={`overflow-hidden transition-all duration-300 ease-in-out ${openFaq === index ? 'max-h-[300px] opacity-100' : 'max-h-0 opacity-0'}`}
-                >
-                  <p className="px-6 pb-6 text-[#a6c1e3] text-sm md:text-base leading-relaxed">
-                    {faq.answer}
-                  </p>
+                <div className="flex flex-col flex-1">
+                  <span className="text-[#6ac045] text-xs font-bold uppercase tracking-widest mb-2">{svc.number}</span>
+                  <h3 className="text-2xl md:text-3xl font-bold text-[#0c2e60] mb-4 leading-tight">{svc.title}</h3>
+                  <p className="text-gray-600 text-sm md:text-[15px] leading-relaxed mb-6">{svc.description}</p>
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 mb-8">
+                    {svc.items.map((item, j) => (<li key={j} className="flex items-start gap-2 text-gray-600 text-sm"><span className="text-[#6ac045] font-bold mt-0.5 flex-shrink-0">&#10003;</span>{item}</li>))}
+                  </ul>
+                  <Link href={svc.link} className="inline-flex items-center gap-2 bg-[#0c2e60] hover:bg-[#082046] text-white font-bold text-sm px-8 py-3 rounded-full transition-all duration-300 shadow-md w-fit">{svc.cta} &#8594;</Link>
                 </div>
               </div>
             ))}
@@ -739,39 +145,133 @@ export default function DroneServicePageClient() {
         </div>
       </section>
 
-      {/* Final CTA Banner */}
-      <section className="py-24 bg-white">
-        <div className="max-w-[1240px] mx-auto px-6">
-          <div className="bg-gradient-to-br from-[#0c2e60] to-[#1267b1] rounded-[32px] p-10 md:p-16 text-center relative overflow-hidden shadow-[0_30px_60px_rgba(11,35,65,0.15)]">
-            <div className="absolute top-[-20%] left-[-10%] w-[300px] h-[300px] bg-white/5 rounded-full blur-[60px]" />
-            <div className="absolute bottom-[-20%] right-[-10%] w-[300px] h-[300px] bg-[#e33434]/20 rounded-full blur-[80px]" />
-            
-            <div className="relative z-10 max-w-2xl mx-auto space-y-6">
-              <h2 className="text-3xl md:text-[42px] font-extrabold text-white tracking-tight leading-[1.1]">
-                Ready to Elevate Your Project with High-Accuracy Drone Data?
-              </h2>
-              <p className="text-[#a6c1e3] text-[17px] leading-relaxed">
-                Connect with our experts today to get end-to-end UAV survey and mapping solutions tailored to your requirements.
-              </p>
-              <div className="pt-4 flex flex-wrap justify-center gap-4">
-                <Link 
-                  href="/contact" 
-                  className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl font-extrabold text-[#0c2e60] bg-white hover:bg-[#f4f7fa] hover:-translate-y-0.5 transition-all shadow-lg"
-                >
-                  Request a Drone Survey Quote →
-                </Link>
-                <Link 
-                  href="/contact" 
-                  className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl font-extrabold text-white bg-transparent border border-white/30 hover:bg-white/10 hover:-translate-y-0.5 transition-all"
-                >
-                  Contact Us
-                </Link>
+      {/* PROCESSING PARTNERSHIP */}
+      <DronePartnership />
+
+      {/* WHAT WE NEED */}
+      <section className="py-16 md:py-24 bg-[#0c2e60] text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12">
+          <div className="text-center mb-14">
+            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-3 block">STARTING A DRONE PROJECT</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">Share the Information That Defines the Survey</h2>
+            <p className="text-blue-200 text-sm md:text-[15px] mt-3 max-w-2xl mx-auto">The required inputs vary according to whether Techmapperz is supporting field survey, drone-data processing or a complete mapping assignment.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { heading: "For a new survey", items: ["Project location","Project boundary or corridor alignment","Approximate survey area or length","Project objective","Required coordinate reference system","Required outputs","Required level of detail or accuracy specification","Project timeline","Site-access information","Any client survey specification"] },
+              { heading: "For existing drone imagery", items: ["Raw drone photographs","Flight information, where available","Image metadata","Project boundary","Existing control information","Required coordinate system","Sample deliverable, if available","Expected outputs"] },
+              { heading: "For LiDAR processing", items: ["LAS or LAZ files","Classified or unclassified status","Coordinate reference information","Available control information","Required classification or feature specification","Required terrain and mapping products"] },
+            ].map((col, i) => (
+              <div key={i} className="bg-white/10 rounded-2xl border border-white/10 p-6 shadow-sm">
+                <p className="text-white font-bold text-base mb-4 border-b border-white/20 pb-3">{col.heading}</p>
+                <ul className="flex flex-col gap-2.5">{col.items.map((item, j) => (<li key={j} className="flex items-start gap-2 text-blue-100 text-sm"><span className="text-[#6ac045] font-bold flex-shrink-0 mt-0.5">&#10003;</span>{item}</li>))}</ul>
               </div>
+            ))}
+          </div>
+          <div className="text-center mt-10">
+            <Link href="/contact"><button className="py-[12px] px-8 rounded-full bg-[#6ac045] hover:bg-[#5aad38] text-white font-bold text-sm transition-all duration-300 shadow-md">Share Your Project Inputs &#8594;</button></Link>
+          </div>
+        </div>
+      </section>
+
+      {/* WORKFLOW */}
+      <section className="py-16 md:py-24 bg-white border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12">
+          <div className="text-center mb-16">
+            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-3 block">HOW WE WORK</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] tracking-tight">A Defined Workflow from Requirement Review to Final Delivery</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {workflowSteps.map((step, i) => (
+              <div key={i} className="bg-[#f8fafc] rounded-2xl p-6 border border-gray-100 hover:shadow-md transition-shadow">
+                <div className="w-10 h-10 rounded-full bg-[#0c2e60] flex items-center justify-center text-white font-bold text-sm mb-4">{step.num}</div>
+                <h3 className="text-[#0c2e60] font-bold text-base mb-2">{step.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* INDUSTRIES */}
+      <section className="py-16 md:py-24 bg-[#f8fafc]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12">
+          <div className="text-center mb-14">
+            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-3 block">WHERE DRONE MAPPING IS USED</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] tracking-tight">Supporting Survey and Mapping Requirements Across Different Sectors</h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {industries.map((ind, i) => (<div key={i} className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow"><div className="w-2 h-2 rounded-full bg-[#6ac045] mb-4" /><h3 className="text-[#0c2e60] font-bold text-base mb-2">{ind.title}</h3><p className="text-gray-500 text-sm leading-relaxed">{ind.desc}</p></div>))}
+          </div>
+        </div>
+      </section>
+
+      {/* PROJECT EXPERIENCE */}
+      <section className="py-16 md:py-24 bg-[#0c2e60] text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12">
+          <div className="text-center mb-14">
+            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-3 block">SELECTED DRONE & GEOSPATIAL EXPERIENCE</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">Show the Work, Not Just the Service List</h2>
+          </div>
+          <div className="bg-white/10 border border-white/10 rounded-2xl overflow-hidden flex flex-col lg:flex-row">
+            <div className="relative w-full lg:w-[45%] h-[240px] lg:h-auto flex-shrink-0">
+              <Image src="/gis_images/drone_services/drone_surveying_mapping/corridor_mapping.webp" alt="Railway Corridor Mapping" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover object-center" />
+            </div>
+            <div className="p-8 md:p-10 flex flex-col justify-center gap-4">
+              <p className="text-[#6ac045] text-xs font-bold uppercase tracking-widest">Railway Corridor Mapping</p>
+              <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight">173 km Drone LiDAR & Topographic Mapping Assignment</h3>
+              <p className="text-blue-200 text-sm md:text-[15px] leading-relaxed">Published project experience covers a 173 km railway corridor with an approximately 100 m survey width, integrating Drone LiDAR, DGPS control, point-cloud processing, terrain products, contours and GIS/CAD outputs.</p>
+              <div className="flex flex-wrap gap-2 mt-2">{["173 km railway corridor","Drone LiDAR + DGPS","Point Cloud","DEM","DSM","Contours","Cross Sections","GIS/CAD"].map((tag, i) => (<span key={i} className="text-xs font-medium bg-white/10 border border-white/15 text-blue-100 px-3 py-1 rounded-full">{tag}</span>))}</div>
+              <Link href="/portfolios" className="mt-2 w-fit"><button className="py-3 px-7 rounded-full bg-[#6ac045] hover:bg-[#5aad38] text-white font-bold text-sm transition-all duration-300">View Railway Mapping Project &#8594;</button></Link>
             </div>
           </div>
         </div>
       </section>
 
+      {/* WHY TECHMAPPERZ */}
+      <section className="py-16 md:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12">
+          <div className="text-center mb-14">
+            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-3 block">WHY TECHMAPPERZ</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] tracking-tight">Geospatial Understanding Beyond the Drone Flight</h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {whyPoints.map((pt, i) => (<div key={i} className="bg-[#f8fafc] rounded-2xl p-6 border border-gray-100 hover:shadow-md transition-shadow"><div className="w-8 h-8 rounded-full bg-[#0c2e60] flex items-center justify-center mb-4"><div className="w-2 h-2 rounded-full bg-[#6ac045]" /></div><h3 className="text-[#0c2e60] font-bold text-base mb-2">{pt.title}</h3><p className="text-gray-500 text-sm leading-relaxed">{pt.desc}</p></div>))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-16 md:py-24 bg-[#f8fafc]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-8">
+          <div className="text-center mb-14">
+            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-3 block">COMMON QUESTIONS</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] tracking-tight">Frequently Asked Questions</h2>
+          </div>
+          <div className="border-t border-gray-200">{faqs.map((faq, i) => (<FaqItem key={i} faq={faq} defaultOpen={i === 0} />))}</div>
+        </div>
+      </section>
+
+      {/* FINAL CTA */}
+      <section className="py-16 md:py-20 bg-white border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12">
+          <div className="bg-gradient-to-br from-[#0b2341] via-[#10477b] to-[#0b6b69] rounded-2xl sm:rounded-[26px] p-8 md:p-14 text-white relative overflow-hidden flex flex-col lg:flex-row lg:items-center justify-between gap-8 shadow-xl">
+            <div className="absolute right-[-80px] top-[-120px] w-[360px] h-[360px] border border-white/10 rounded-full shadow-[0_0_0_48px_rgba(255,255,255,0.05),0_0_0_96px_rgba(255,255,255,0.03)] pointer-events-none" />
+            <div className="space-y-4 max-w-2xl relative z-10">
+              <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] block">LET'S REVIEW YOUR PROJECT</span>
+              <h2 className="text-2xl sm:text-3xl md:text-[36px] font-extrabold text-white tracking-tight leading-snug">Planning a Drone Survey or Already Have the Data?</h2>
+              <p className="text-blue-100 text-sm md:text-[15px] leading-relaxed">Whether you need field-survey support or already have drone imagery or LiDAR data waiting to be processed, share your project requirement with us. Send the project location, approximate area or corridor length, available source data, coordinate system, expected outputs and timeline.</p>
+            </div>
+            <div className="flex flex-col sm:flex-row lg:flex-col gap-3 relative z-10 shrink-0">
+              <Link href="/contact"><button className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm text-white bg-[#e33434] hover:bg-[#c92828] shadow-md transition-all duration-200 whitespace-nowrap w-full">Discuss Your Drone Project &#8594;</button></Link>
+              <Link href="/contact"><button className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl font-bold text-sm text-[#0c2e60] bg-white hover:bg-gray-50 transition-all duration-200 whitespace-nowrap w-full">Send Your Scope of Work</button></Link>
+            </div>
+          </div>
+          <div className="mt-8 text-center text-xs font-bold text-gray-400 uppercase tracking-widest leading-relaxed">
+            Drone Survey &middot; Drone Data Processing &middot; LiDAR &middot; Point Cloud &middot; DEM/DTM &middot; Contours &middot; GIS/CAD Mapping
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

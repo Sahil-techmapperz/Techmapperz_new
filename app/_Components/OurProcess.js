@@ -100,13 +100,7 @@ const OurProcess = ({ steps = [], title = "Our Process" }) => {
                                     ></div>
                                 )}
 
-                                {/* Mobile Vertical Line */}
-                                {!isLastOverall && (
-                                    <div 
-                                        className="md:hidden absolute top-10 left-1/2 w-[2px] bg-gradient-to-b from-[#05d7de] to-[#2d5689] z-0 -translate-x-1/2"
-                                        style={{ height: 'calc(100% + 3rem)' }}
-                                    ></div>
-                                )}
+
 
                                 {/* Step Number Circle */}
                                 <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#05d7de] to-[#2d5689] flex items-center justify-center z-10 mb-6 shadow-[0_0_30px_rgba(5,215,222,0.25)] group-hover:shadow-[0_0_50px_rgba(5,215,222,0.5)] group-hover:scale-110 transition-all duration-400 relative flex-shrink-0">

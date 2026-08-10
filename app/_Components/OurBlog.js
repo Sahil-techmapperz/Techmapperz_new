@@ -36,8 +36,8 @@ const OurBlog = async () => {
         <div className="w-12 h-[3px] bg-[#078a86] mx-auto rounded-full" />
       </div>
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-10">
           {blogPosts.length > 0 ? blogPosts.map(post => (
             <div key={post._id || post.id || Math.random()}>
               <Card post={post} />
@@ -54,7 +54,7 @@ const OurBlog = async () => {
       <div className="relative z-10 flex justify-center mt-16 mb-8">
         <Link
           href="/blog"
-          className="group relative inline-flex items-center gap-3 px-8 py-3.5 bg-white border border-gray-150 rounded-full hover:bg-gray-50 transition-all duration-300 shadow-md hover:shadow-lg"
+          className="group relative inline-flex items-center gap-3 px-8 py-3.5 bg-white border border-gray-200 rounded-full hover:bg-gray-50 transition-all duration-300 shadow-sm hover:shadow-md"
         >
           <span className="text-[#0c2e60] text-sm font-bold tracking-wide uppercase transition-colors group-hover:text-[#1267b1]">Explore More Blogs</span>
           <FaArrowRight className="text-[#1267b1] group-hover:translate-x-1 transition-transform duration-300" />

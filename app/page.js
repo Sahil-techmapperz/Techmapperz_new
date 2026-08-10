@@ -72,6 +72,15 @@ const Testimonial = dynamic(() => import('./_Components/Testimonial'), {
 const Homecontact = dynamic(() => import('./_Components/Homecontact'), {
   loading: () => <div className="min-h-[150px] lg:min-h-[400px] bg-theme-dark animate-pulse" />,
 });
+
+const Deliverables = dynamic(() => import('./_Components/Deliverables'), {
+  loading: () => <div className="min-h-[300px] bg-theme-bg animate-pulse" />,
+});
+
+const DronePartnership = dynamic(() => import('./_Components/DronePartnership'), {
+  loading: () => <div className="min-h-[250px] bg-theme-alt animate-pulse" />,
+});
+
 import HoverButton from './_Components/ExpandButton';
 import Link from 'next/link';
 import company_logo from "@/public/logo.webp";
@@ -87,8 +96,8 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://www.techmapperz.co
 
 
 export const metadata = {
-  title: "IT Company | GIS Services Company | Drone Survey | Techmapperz | India",
-  description: "Techmapperz is a leading IT, GIS, and Drone Solutions provider company in India. From custom web and app development to CRM systems and drone services, we streamline operations, drive data-driven decisions, and fuel sustainable growth for organizations of every scale.",
+  title: "GIS Mapping & Drone Survey Company in India | Techmapperz",
+  description: "Techmapperz provides GIS mapping, drone survey, drone data processing, LiDAR point-cloud, DEM/DTM, contour mapping, Website and app development services in India.",
   keywords: [
     'IT company India',
     'GIS services company',
@@ -199,21 +208,21 @@ const Home = async () => {
         <ScrollReveal>
           <div className="w-full max-w-7xl mx-auto mb-16">
             <div className="text-center flex flex-col items-center">
-              <span className="text-[#6ac045] text-sm md:text-[14px] font-bold tracking-[0.15em] uppercase mb-4">
-                OUR CORE SERVICES
+              <span className="text-[#6ac045] text-[11px] sm:text-xs md:text-[14px] font-bold tracking-[0.15em] uppercase mb-2 sm:mb-3">
+                OUR SERVICES
               </span>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#0c2e60] mb-6 tracking-tight">
-                End-to-End Geospatial & Digital Solutions
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[#0c2e60] mb-3 sm:mb-5 tracking-tight">
+                Geospatial and Digital Services Built Around Project Requirements
               </h2>
               <p className="text-gray-600 text-sm md:text-base max-w-3xl mx-auto">
-                From data acquisition to visualization, we provide complete geospatial solutions<br className="hidden md:block"/> that empower organizations to plan, analyze and grow.
+                Choose a focused production service or combine mapping, processing, analysis and application development within a coordinated project workflow.
               </p>
             </div>
           </div>
           <Features />
           <div className="flex relative justify-center mt-10 mb-[50px]">
             <Link href="/service">
-              <button 
+              <button
                 className="bg-[#0c2e60] hover:bg-[#082046] text-white font-bold text-sm px-8 py-3 rounded-full flex items-center gap-2 transition-all duration-300 shadow-md"
               >
                 View All Services &rarr;
@@ -223,37 +232,17 @@ const Home = async () => {
         </ScrollReveal>
       </section>
 
-
-
-      {/* Portfolio Section - Higher priority, loads sooner on mobile */}
-      {/* <LazySection
-        mobileRootMargin="150px 0px"
-        fallback={
-          <div className="min-h-[400px] bg-theme-alt animate-pulse">
-            <div className="mx-auto max-w-7xl px-4 py-12">
-              <div className="h-8 bg-gray-200 rounded w-64 mx-auto mb-8"></div>
-              <div className="grid gap-8 md:grid-cols-2">
-                <div className="h-48 bg-gray-200 rounded-2xl"></div>
-                <div className="h-48 bg-gray-200 rounded-2xl"></div>
-              </div>
-            </div>
-          </div>
-        }
-      >
-        <SomeOfOurWork />
-      </LazySection> */}
-
-      {/* Technology Section */}
-      {/* <LazySection 
+      {/* Deliverables Section (Section 5) */}
+      <LazySection
         mobileRootMargin="100px 0px"
-        fallback={<div className="min-h-[300px] bg-gray-200 animate-pulse" />}
+        fallback={<div className="min-h-[300px] bg-theme-bg animate-pulse" />}
       >
         <ScrollReveal>
-          <Technology />
+          <Deliverables />
         </ScrollReveal>
-      </LazySection> */}
+      </LazySection>
 
-      {/* Industry Expertise Section */}
+      {/* Industry Expertise Section (Section 6) */}
       <LazySection
         mobileRootMargin="100px 0px"
         fallback={<div className="min-h-[300px] bg-theme-bg animate-pulse" />}
@@ -263,15 +252,17 @@ const Home = async () => {
         </ScrollReveal>
       </LazySection>
 
-      {/* Why Choose Us Section */}
+      {/* Drone Processing Partnership Section (Section 7) */}
       <LazySection
-        mobileRootMargin="150px 0px"
-        fallback={<div className="min-h-[600px] bg-theme-alt animate-pulse" />}
+        mobileRootMargin="100px 0px"
+        fallback={<div className="min-h-[250px] bg-theme-alt animate-pulse" />}
       >
-        <WhyChooseTechmapperz />
+        <ScrollReveal>
+          <DronePartnership />
+        </ScrollReveal>
       </LazySection>
 
-      {/* Featured Projects Section */}
+      {/* Featured Projects Section (Section 8) */}
       <LazySection
         mobileRootMargin="150px 0px"
         fallback={<div className="min-h-[400px] bg-[#0c2e60] animate-pulse" />}
@@ -279,7 +270,15 @@ const Home = async () => {
         <FeaturedProjects />
       </LazySection>
 
-      {/* How We Work Section */}
+      {/* Why Choose Us Section (Section 9) */}
+      <LazySection
+        mobileRootMargin="150px 0px"
+        fallback={<div className="min-h-[600px] bg-theme-alt animate-pulse" />}
+      >
+        <WhyChooseTechmapperz />
+      </LazySection>
+
+      {/* How We Work Section (Section 10) */}
       <LazySection
         mobileRootMargin="100px 0px"
         fallback={<div className="min-h-[300px] bg-theme-bg animate-pulse" />}
@@ -287,17 +286,7 @@ const Home = async () => {
         <HowWeWork />
       </LazySection>
 
-      {/* About Us Section */}
-      {/* <LazySection
-        mobileRootMargin="75px 0px"
-        fallback={<div className="min-h-[300px] bg-gray-100 animate-pulse" />}
-      >
-        <ScrollReveal>
-          <AboutUs />
-        </ScrollReveal>
-      </LazySection> */}
-
-      {/* Happy Clients Section */}
+      {/* Happy Clients Section (Retained) */}
       <LazySection
         mobileRootMargin="75px 0px"
         fallback={<div className="min-h-[200px] bg-gray-200 animate-pulse" />}
@@ -307,7 +296,7 @@ const Home = async () => {
         </ScrollReveal>
       </LazySection>
 
-      {/* Blog Section */}
+      {/* Blog Section (Retained) */}
       <LazySection
         mobileRootMargin="50px 0px"
         fallback={<div className="min-h-[400px] bg-gray-100 animate-pulse" />}
@@ -317,7 +306,7 @@ const Home = async () => {
         </ScrollReveal>
       </LazySection>
 
-      {/* Testimonial Section */}
+      {/* Testimonial Section (Retained) */}
       <LazySection
         mobileRootMargin="50px 0px"
         fallback={<div className="min-h-[300px] bg-theme-bg animate-pulse" />}
@@ -327,7 +316,7 @@ const Home = async () => {
         </ScrollReveal>
       </LazySection>
 
-      {/* Contact Section */}
+      {/* Contact Section (Section 13) */}
       <LazySection
         mobileRootMargin="25px 0px"
         fallback={<div className="min-h-[400px] bg-theme-dark animate-pulse" />}
