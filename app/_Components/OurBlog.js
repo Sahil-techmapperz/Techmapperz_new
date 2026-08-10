@@ -21,7 +21,7 @@ const OurBlog = async () => {
         : [];
   
   return (
-    <section className="relative bg-white py-24 px-4 overflow-hidden border-t border-gray-100 max-sm:hidden" style={sansSerifStyle}>
+    <section className="relative bg-white py-16 md:py-24 px-4 overflow-hidden border-t border-gray-100" style={sansSerifStyle}>
       
       {/* Background Glows */}
       <div className="absolute top-0 right-1/4 w-[400px] h-[400px] bg-[#1267b1]/5 rounded-full blur-[120px] pointer-events-none" />

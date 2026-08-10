@@ -79,16 +79,16 @@ export default function DroneServicePageClient() {
   return (
     <div className="bg-white text-gray-900">
       {/* HERO */}
-      <section className="relative min-h-[85vh] flex flex-col justify-center items-start bg-cover bg-center text-white" style={{ backgroundImage: 'url("/gis_images/drone_services/drone_surveying_mapping/corridor_mapping.webp")' }}>
+      <section className="relative min-h-[auto] sm:min-h-[85vh] flex flex-col justify-start sm:justify-center items-start bg-cover bg-center text-white pt-32 sm:pt-40 pb-16 sm:pb-28" style={{ backgroundImage: 'url("/gis_images/drone_services/drone_surveying_mapping/corridor_mapping.webp")' }}>
         <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/30" />
-        <div className="relative z-10 max-w-[1400px] w-full mx-auto px-6 md:px-12 lg:px-20 py-28 flex flex-col gap-6">
+        <div className="relative z-10 max-w-[1400px] w-full mx-auto px-4 sm:px-8 md:px-12 lg:px-20 flex flex-col gap-5 sm:gap-6">
           <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em]">DRONE SURVEY & MAPPING SERVICES</span>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-bold leading-tight tracking-tight max-w-3xl">Turn Aerial Survey Data into Usable Maps, Models and Spatial Information</h1>
           <p className="text-gray-300 text-sm sm:text-base md:text-[17px] max-w-2xl leading-relaxed">Techmapperz supports infrastructure, mining, utility, land-development, architecture and planning projects with drone survey, aerial mapping and geospatial data-processing services.</p>
           <p className="text-gray-400 text-sm max-w-2xl leading-relaxed">From field-acquired imagery and LiDAR data to orthomosaics, point clouds, terrain models, contours and GIS/CAD mapping, we prepare outputs around the actual requirements of your project.</p>
-          <div className="flex flex-wrap gap-5 mt-2">
-            <Link href="/contact"><button className="py-[12px] px-8 rounded-full border border-[#1656b8] bg-[#1656b8]/30 text-white font-semibold text-[15px] hover:bg-[#1656b8] transition-all duration-300">Discuss Your Drone Survey</button></Link>
-            <Link href="/service/droneservice/dronedataprocessing"><button className="py-[12px] px-8 rounded-full border border-gray-300 bg-transparent text-white font-semibold text-[15px] hover:bg-white/10 transition-all duration-300">Already Have Drone Data?</button></Link>
+          <div className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-5 mt-2 w-full sm:w-auto">
+            <Link href="/contact" className="w-full sm:w-auto"><button className="w-full sm:w-auto py-[12px] px-8 rounded-full border border-[#1656b8] bg-[#1656b8]/30 text-white font-semibold text-[15px] hover:bg-[#1656b8] transition-all duration-300">Discuss Your Drone Survey</button></Link>
+            <Link href="/service/droneservice/dronedataprocessing" className="w-full sm:w-auto"><button className="w-full sm:w-auto py-[12px] px-8 rounded-full border border-gray-300 bg-transparent text-white font-semibold text-[15px] hover:bg-white/10 transition-all duration-300">Already Have Drone Data?</button></Link>
           </div>
         </div>
       </section>
@@ -106,10 +106,10 @@ export default function DroneServicePageClient() {
               <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm mb-6">
                 <p className="text-[#0c2e60] font-bold text-base mb-2">Already completed the drone survey?</p>
                 <p className="text-gray-600 text-sm leading-relaxed mb-4">You do not need to repeat the field work simply to engage Techmapperz. We can also work with client-supplied drone imagery, LAS/LAZ point clouds and available survey-control information as a dedicated data-processing partner.</p>
-                <Link href="/service/droneservice/dronedataprocessing" className="inline-flex items-center gap-2 bg-[#0c2e60] hover:bg-[#082046] text-white font-bold text-sm px-7 py-3 rounded-full transition-all duration-300 shadow-md">Explore Drone Data Processing &#8594;</Link>
+                <Link href="/service/droneservice/dronedataprocessing" className="inline-flex items-center justify-center gap-2 bg-[#0c2e60] hover:bg-[#082046] text-white font-bold text-sm px-7 py-3 rounded-full transition-all duration-300 shadow-md w-full sm:w-fit">Explore Drone Data Processing &#8594;</Link>
               </div>
             </div>
-            <div className="relative h-[380px] sm:h-[460px] rounded-2xl overflow-hidden shadow-xl">
+            <div className="relative h-[250px] sm:h-[460px] rounded-2xl overflow-hidden shadow-xl">
               <Image src="/gis_images/drone_services/drone_surveying_mapping/3D_Drone_Terrain.webp" alt="Drone Data Processing" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover object-center" />
             </div>
           </div>
@@ -125,8 +125,8 @@ export default function DroneServicePageClient() {
           </div>
           <div className="flex flex-col divide-y divide-gray-100">
             {droneServices.map((svc, i) => (
-              <div key={svc.number} className={`py-14 flex flex-col ${i % 2 !== 0 ? "lg:flex-row-reverse" : "lg:flex-row"} gap-10 lg:gap-16 items-start`}>
-                <div className="relative w-full lg:w-[42%] h-[240px] sm:h-[300px] rounded-2xl overflow-hidden shadow-lg flex-shrink-0">
+              <div key={svc.number} className={`py-10 md:py-16 flex flex-col ${i % 2 !== 0 ? "lg:flex-row-reverse" : "lg:flex-row"} gap-6 sm:gap-10 lg:gap-16 items-start`}>
+                <div className="relative w-full lg:w-[42%] h-[220px] sm:h-[300px] rounded-2xl overflow-hidden shadow-lg flex-shrink-0">
                   <Image src={svc.image} alt={svc.title} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover object-center" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                 </div>
@@ -137,7 +137,7 @@ export default function DroneServicePageClient() {
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 mb-8">
                     {svc.items.map((item, j) => (<li key={j} className="flex items-start gap-2 text-gray-600 text-sm"><span className="text-[#6ac045] font-bold mt-0.5 flex-shrink-0">&#10003;</span>{item}</li>))}
                   </ul>
-                  <Link href={svc.link} className="inline-flex items-center gap-2 bg-[#0c2e60] hover:bg-[#082046] text-white font-bold text-sm px-8 py-3 rounded-full transition-all duration-300 shadow-md w-fit">{svc.cta} &#8594;</Link>
+                  <Link href={svc.link} className="inline-flex items-center justify-center gap-2 bg-[#0c2e60] hover:bg-[#082046] text-white font-bold text-sm px-8 py-3.5 rounded-full transition-all duration-300 shadow-md w-full sm:w-fit">{svc.cta} &#8594;</Link>
                 </div>
               </div>
             ))}
@@ -169,7 +169,7 @@ export default function DroneServicePageClient() {
             ))}
           </div>
           <div className="text-center mt-10">
-            <Link href="/contact"><button className="py-[12px] px-8 rounded-full bg-[#6ac045] hover:bg-[#5aad38] text-white font-bold text-sm transition-all duration-300 shadow-md">Share Your Project Inputs &#8594;</button></Link>
+            <Link href="/contact" className="inline-block w-full sm:w-auto"><button className="w-full sm:w-auto py-[12px] px-8 rounded-full bg-[#6ac045] hover:bg-[#5aad38] text-white font-bold text-sm transition-all duration-300 shadow-md">Share Your Project Inputs &#8594;</button></Link>
           </div>
         </div>
       </section>
@@ -222,7 +222,7 @@ export default function DroneServicePageClient() {
               <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight">173 km Drone LiDAR & Topographic Mapping Assignment</h3>
               <p className="text-blue-200 text-sm md:text-[15px] leading-relaxed">Published project experience covers a 173 km railway corridor with an approximately 100 m survey width, integrating Drone LiDAR, DGPS control, point-cloud processing, terrain products, contours and GIS/CAD outputs.</p>
               <div className="flex flex-wrap gap-2 mt-2">{["173 km railway corridor","Drone LiDAR + DGPS","Point Cloud","DEM","DSM","Contours","Cross Sections","GIS/CAD"].map((tag, i) => (<span key={i} className="text-xs font-medium bg-white/10 border border-white/15 text-blue-100 px-3 py-1 rounded-full">{tag}</span>))}</div>
-              <Link href="/portfolios" className="mt-2 w-fit"><button className="py-3 px-7 rounded-full bg-[#6ac045] hover:bg-[#5aad38] text-white font-bold text-sm transition-all duration-300">View Railway Mapping Project &#8594;</button></Link>
+              <Link href="/portfolios" className="mt-2 w-full sm:w-fit"><button className="w-full sm:w-auto py-3 px-7 rounded-full bg-[#6ac045] hover:bg-[#5aad38] text-white font-bold text-sm transition-all duration-300">View Railway Mapping Project &#8594;</button></Link>
             </div>
           </div>
         </div>
@@ -262,9 +262,9 @@ export default function DroneServicePageClient() {
               <h2 className="text-2xl sm:text-3xl md:text-[36px] font-extrabold text-white tracking-tight leading-snug">Planning a Drone Survey or Already Have the Data?</h2>
               <p className="text-blue-100 text-sm md:text-[15px] leading-relaxed">Whether you need field-survey support or already have drone imagery or LiDAR data waiting to be processed, share your project requirement with us. Send the project location, approximate area or corridor length, available source data, coordinate system, expected outputs and timeline.</p>
             </div>
-            <div className="flex flex-col sm:flex-row lg:flex-col gap-3 relative z-10 shrink-0">
-              <Link href="/contact"><button className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm text-white bg-[#e33434] hover:bg-[#c92828] shadow-md transition-all duration-200 whitespace-nowrap w-full">Discuss Your Drone Project &#8594;</button></Link>
-              <Link href="/contact"><button className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl font-bold text-sm text-[#0c2e60] bg-white hover:bg-gray-50 transition-all duration-200 whitespace-nowrap w-full">Send Your Scope of Work</button></Link>
+            <div className="flex flex-col sm:flex-row lg:flex-col gap-3 relative z-10 shrink-0 w-full lg:w-auto">
+              <Link href="/contact" className="w-full"><button className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm text-white bg-[#e33434] hover:bg-[#c92828] shadow-md transition-all duration-200 whitespace-nowrap w-full">Discuss Your Drone Project &#8594;</button></Link>
+              <Link href="/contact" className="w-full"><button className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl font-bold text-sm text-[#0c2e60] bg-white hover:bg-gray-50 transition-all duration-200 whitespace-nowrap w-full">Send Your Scope of Work</button></Link>
             </div>
           </div>
           <div className="mt-8 text-center text-xs font-bold text-gray-400 uppercase tracking-widest leading-relaxed">

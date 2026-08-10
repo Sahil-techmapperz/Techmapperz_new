@@ -7,8 +7,8 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://www.techmapperz.co
 export const revalidate = 7200;
 
 export const metadata = {
-  title: "GIS Mapping and Geospatial Services Company | Techmapperz",
-  description: "Techmapperz provides GIS mapping, digitisation, feature extraction, LiDAR processing, utility mapping and spatial analysis services for infrastructure, utilities, mining, government and agriculture.",
+  title: "GIS Mapping & Data Digitisation Services in India | Techmapperz",
+  description: "Techmapperz supports infrastructure, utility, mining, government, land and planning projects with GIS mapping, data digitisation, feature extraction, spatial analysis and geospatial database preparation.",
   alternates: {
     canonical: `${BASE_URL}/service/gisservice`,
   },

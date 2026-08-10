@@ -1,7 +1,7 @@
 "use client";
 import Link from 'next/link';
 import ScrollToTop from '@/app/_Components/ScrollToTop';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 
 const coreServices = [
@@ -187,8 +187,8 @@ const faqs = [
 ];
 
 const ServiceCard = ({ service, reverse }) => (
-  <div className={`flex flex-col ${reverse ? "lg:flex-row-reverse" : "lg:flex-row"} gap-10 lg:gap-16 items-start`}>
-    <div className="relative w-full lg:w-[45%] h-[260px] sm:h-[340px] rounded-2xl overflow-hidden shadow-xl flex-shrink-0">
+  <div className={`flex flex-col ${reverse ? "lg:flex-row-reverse" : "lg:flex-row"} gap-6 sm:gap-10 lg:gap-16 items-start`}>
+    <div className="relative w-full lg:w-[45%] h-[240px] sm:h-[340px] rounded-2xl overflow-hidden shadow-xl flex-shrink-0">
       <Image
         src={service.image}
         alt={service.title}
@@ -218,7 +218,7 @@ const ServiceCard = ({ service, reverse }) => (
       </ul>
       <Link
         href={service.link}
-        className="inline-flex items-center gap-2 bg-[#0c2e60] hover:bg-[#082046] text-white font-bold text-sm px-8 py-3 rounded-full transition-all duration-300 shadow-md w-fit"
+        className="inline-flex items-center justify-center gap-2 bg-[#0c2e60] hover:bg-[#082046] text-white font-bold text-sm px-8 py-3.5 rounded-full transition-all duration-300 shadow-md w-full sm:w-fit"
       >
         Learn more &#8594;
       </Link>
@@ -257,11 +257,11 @@ const ServicePage = () => {
 
       {/* HERO */}
       <section
-        className="relative min-h-[85vh] flex flex-col justify-center items-center bg-cover bg-center text-white"
+        className="relative min-h-[auto] sm:min-h-[85vh] flex flex-col justify-start sm:justify-center items-center bg-cover bg-center text-white pt-32 sm:pt-40 pb-16 sm:pb-24"
         style={{ backgroundImage: 'url("/gis_images/service_hero_banner.png")' }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/80" />
-        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-8 text-center flex flex-col items-center gap-6 py-24">
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-8 text-center flex flex-col items-center gap-5 sm:gap-6">
           <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em]">
             OUR SERVICES
           </span>
@@ -271,24 +271,24 @@ const ServicePage = () => {
           <p className="text-gray-300 text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed">
             Techmapperz supports infrastructure, utility, mining, government, architecture, planning and drone-service teams with GIS mapping, drone data processing, LiDAR, terrain products and digital development.
           </p>
-          <div className="flex flex-wrap gap-5 mt-4">
-            <Link href="/contact">
-              <button className="py-[12px] px-8 rounded-full border border-[#1656b8] bg-[#1656b8]/30 text-white font-semibold text-[15px] hover:bg-[#1656b8] transition-all duration-300">
+          <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 sm:gap-5 mt-4 w-full sm:w-auto">
+            <Link href="/contact" className="w-full sm:w-auto">
+              <button className="w-full sm:w-auto py-[12px] px-8 rounded-full border border-[#1656b8] bg-[#1656b8]/30 text-white font-semibold text-[15px] hover:bg-[#1656b8] transition-all duration-300">
                 Discuss Your Project
               </button>
             </Link>
-            <a href="#services">
-              <button className="py-[12px] px-8 rounded-full border border-gray-300 bg-transparent text-white font-semibold text-[15px] hover:bg-white/10 transition-all duration-300">
+            <a href="#services" className="w-full sm:w-auto">
+              <button className="w-full sm:w-auto py-[12px] px-8 rounded-full border border-gray-300 bg-transparent text-white font-semibold text-[15px] hover:bg-white/10 transition-all duration-300">
                 Explore Our Services
               </button>
             </a>
           </div>
-          <div className="mt-6 flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs sm:text-sm text-gray-400 font-medium tracking-wide">
+          <div className="mt-8 flex flex-wrap justify-center items-center gap-x-4 gap-y-3 text-xs sm:text-sm text-gray-400 font-medium tracking-wide px-4">
             {["GIS & Mapping", "Drone & LiDAR", "Point Cloud & Terrain", "Digital Development"].map((cap, i, arr) => (
-              <span key={cap} className="flex items-center gap-6">
-                <span className="text-white/80">{cap}</span>
+              <React.Fragment key={cap}>
+                <span className="text-white/80 whitespace-nowrap">{cap}</span>
                 {i < arr.length - 1 && <span className="text-gray-600">•</span>}
-              </span>
+              </React.Fragment>
             ))}
           </div>
         </div>
@@ -307,7 +307,7 @@ const ServicePage = () => {
           </div>
           <div className="flex flex-col divide-y divide-gray-200">
             {coreServices.map((service, i) => (
-              <div key={service.number} className="py-16 md:py-24 first:pt-0">
+              <div key={service.number} className="py-12 md:py-20 lg:py-24 first:pt-0">
                 <ServiceCard service={service} reverse={i % 2 !== 0} />
               </div>
             ))}
@@ -328,7 +328,7 @@ const ServicePage = () => {
           </div>
           <div className="flex flex-col divide-y divide-gray-200">
             {digitalServices.map((service, i) => (
-              <div key={service.number} className="py-16 md:py-24 first:pt-0">
+              <div key={service.number} className="py-12 md:py-20 lg:py-24 first:pt-0">
                 <ServiceCard service={service} reverse={i % 2 !== 0} />
               </div>
             ))}
@@ -371,16 +371,16 @@ const ServicePage = () => {
                 Share your scope of work, project location, available source data, expected deliverables and timeline. Whether you require complete project execution or support for a specific processing, mapping, analysis or development stage, our team can review the requirement and recommend an appropriate delivery approach.
               </p>
             </div>
-            <div className="flex flex-col sm:flex-row lg:flex-col gap-3 relative z-10 shrink-0">
+            <div className="flex flex-col sm:flex-row lg:flex-col gap-3 sm:gap-4 relative z-10 shrink-0 w-full lg:w-auto">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm text-white bg-[#e33434] hover:bg-[#c92828] shadow-md hover:-translate-y-0.5 transition-all duration-200 text-center whitespace-nowrap"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm text-white bg-[#e33434] hover:bg-[#c92828] shadow-md hover:-translate-y-0.5 transition-all duration-200 text-center whitespace-nowrap w-full"
               >
                 Discuss Your Project &#8594;
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl font-bold text-sm text-[#0c2e60] bg-white border border-transparent hover:-translate-y-0.5 transition-all duration-200 text-center whitespace-nowrap"
+                className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl font-bold text-sm text-[#0c2e60] bg-white border border-transparent hover:-translate-y-0.5 transition-all duration-200 text-center whitespace-nowrap w-full"
               >
                 Send Your Scope of Work
               </Link>

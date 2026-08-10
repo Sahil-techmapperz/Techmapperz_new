@@ -77,10 +77,10 @@ const InspectionandAnalysis = () => {
         <div className="bg-black text-white">
             <ScrollToTop />
 
-            <section className="h-[70vh] flex flex-col justify-center items-center bg-cover bg-center" style={{ backgroundImage: 'url("/gis_images/Drone_Inspection_analysis_Banner.webp")' }}>
-                <div className='w-full h-full flex flex-col justify-center items-center gap-4 bg-black/80'>
-                    <h1 className="text-4xl lg:text-[45px] max-sm:text-4xl font-bold text-white max-w-[900px] leading-[1.2]">Inspection Analysis</h1>
-                    <p className="text-center text-gray-400 text-lg lg:text-[17px]">
+            <section className="min-h-[60vh] sm:h-[70vh] flex flex-col justify-center items-center bg-cover bg-center pt-28 sm:pt-32 pb-12" style={{ backgroundImage: 'url("/gis_images/Drone_Inspection_analysis_Banner.webp")' }}>
+                <div className='w-full h-full flex flex-col justify-center items-center gap-4 bg-black/80 px-4 text-center py-12'>
+                    <h1 className="text-3xl sm:text-4xl lg:text-[45px] font-bold text-white max-w-[900px] leading-[1.2]">Inspection Analysis</h1>
+                    <p className="text-center text-gray-400 text-sm sm:text-base lg:text-[17px]">
                         <Link href="/">Home</Link> / <Link href="/service">Services</Link> / <Link href="/service/gis/droneservice"> Drone Services</Link> / Inspection Analysis
                     </p>
                     <div className="flex gap-4">

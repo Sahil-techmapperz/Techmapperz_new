@@ -1,422 +1,424 @@
 "use client";
+import React, { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
 
-import React, { useState } from 'react';
-import Link from 'next/link';
+const gisServices = [
+  {
+    number: "01",
+    title: "GIS Data Digitisation & Database Creation",
+    description: "Paper maps, scanned plans, imagery and existing records often contain useful information but are difficult to analyse or maintain until they are converted into structured GIS data. Techmapperz digitises spatial features and associated attributes according to the required feature catalogue, layer structure, coordinate system and project specification.",
+    items: [
+      "Point, line and polygon digitisation",
+      "Attribute data entry & coding",
+      "Layer creation & map vectorisation",
+      "Database structuring & cleaning",
+      "Legacy GIS migration",
+      "GIS database creation & updating"
+    ],
+    inputs: "Possible inputs: Scanned maps · Satellite imagery · Drone imagery · CAD drawings · Existing GIS layers · Survey information",
+    cta: "Explore GIS Data Digitisation",
+    link: "/service/gisservice/datadigitization",
+    image: "/gis_images/GIS_Main_Page/GIS_Data_Digitization.webp"
+  },
+  {
+    number: "02",
+    title: "2D & 3D Feature Extraction",
+    description: "We extract visible or interpretable geographic and infrastructure features from suitable drone imagery, satellite imagery, LiDAR point clouds and other geospatial sources. The feature catalogue is agreed before production so that roads, buildings, utilities, land features and other project objects are captured consistently.",
+    items: [
+      "Roads and road edges",
+      "Railway & transport features",
+      "Buildings and structures",
+      "Drainage & water bodies",
+      "Utilities & vegetation",
+      "Mining & industrial infrastructure"
+    ],
+    outputs: "Typical outputs: GIS layers · GeoPackage · Geodatabase · DWG/DXF",
+    cta: "Explore Feature Extraction Services",
+    link: "/service/gisservice/gismapping",
+    image: "/gis_images/GIS_Main_Page/GIS_Mapping.webp"
+  },
+  {
+    number: "03",
+    title: "Utility, Pipeline & Asset Mapping",
+    description: "Utility GIS requires more than showing lines on a map. Assets normally need locations, identifiers, attributes and a structure that allows engineering or operational teams to understand the network. Techmapperz supports the creation and updating of GIS databases for linear and distributed infrastructure using available drawings, imagery, survey records and existing asset information.",
+    items: [
+      "Gas pipelines & water networks",
+      "Drainage & electrical assets",
+      "Telecom & road infrastructure",
+      "Network digitisation",
+      "Asset inventory preparation",
+      "CAD/GIS integration & data cleaning"
+    ],
+    evidence: "Published project evidence: 6,000 km gas-pipeline digitisation and digital asset registry assignment.",
+    cta: "Explore Utility & Asset Mapping",
+    link: "/service/gisservice/gissurveying",
+    image: "/gis_images/Gas Pipeline.webp"
+  },
+  {
+    number: "04",
+    title: "Cadastral & Land Mapping",
+    description: "Cadastral and land-information projects often involve scanned maps, parcel boundaries, plot numbers, village information and existing ownership or administrative records. We convert available land information into structured digital spatial datasets for land administration, planning, property information and related GIS requirements.",
+    items: [
+      "Cadastral map digitisation",
+      "Parcel boundary mapping",
+      "Plot digitisation & georeferencing",
+      "Plot-number attribution",
+      "Village and administrative layers",
+      "Land-record integration & parcel databases"
+    ],
+    cta: "Explore Cadastral Mapping Services",
+    link: "/service/gisservice/gisconsulting",
+    image: "/gis_images/GIS_Main_Page/GIS_Consulting.webp"
+  },
+  {
+    number: "05",
+    title: "Land Use / Land Cover & Remote Sensing",
+    description: "Satellite and aerial imagery can be interpreted to understand how land is being used, how areas are changing and how different land-cover classes are distributed. Techmapperz prepares land-use and land-cover datasets according to the classification structure and level of detail required by the project.",
+    items: [
+      "Built-up & residential areas",
+      "Industrial & agricultural land",
+      "Vegetation & forest classes",
+      "Water bodies & transport networks",
+      "Satellite-image interpretation",
+      "Image classification & change detection"
+    ],
+    evidence: "Published project evidence: 400 sq. km urban and rural LULC mapping assignment with 15+ layers.",
+    cta: "Discuss LULC Mapping Requirement",
+    link: "/contact",
+    image: "/gis_images/Urban & Rural.webp"
+  },
+  {
+    number: "06",
+    title: "CAD to GIS & GIS to CAD Conversion",
+    description: "Engineering and geospatial teams often work in different software environments. A CAD drawing may contain useful geometry but lack the coordinate, attribute and database structure expected in a GIS environment. Similarly, GIS information may need to be organised for CAD-based engineering workflows. Techmapperz supports controlled conversion between these environments according to project requirements.",
+    items: [
+      "CAD to GIS: DWG/DXF layer review & coordinate assignment",
+      "CAD to GIS: Feature separation & attribute structuring",
+      "GIS to CAD: Layer organisation & code translation",
+      "GIS to CAD: Annotation, drawing structure & DWG/DXF delivery"
+    ],
+    cta: "Discuss a CAD/GIS Conversion Requirement",
+    link: "/contact",
+    image: "/gis_images/GIS_Mapping_Page_Banner.webp"
+  },
+  {
+    number: "07",
+    title: "Spatial Analysis & Geoprocessing",
+    description: "GIS becomes more useful when spatial data can answer a project question rather than simply display features. We perform geoprocessing and spatial analysis using available GIS, terrain, infrastructure and project datasets.",
+    items: [
+      "Buffer & proximity analysis",
+      "Overlay & network analysis",
+      "Route & site-suitability analysis",
+      "Terrain & slope analysis",
+      "Change detection & spatial queries",
+      "Area/length calculations & geocoding"
+    ],
+    cta: "Discuss Spatial Analysis Requirement",
+    link: "/contact",
+    image: "/gis_images/GISintroImg.webp"
+  },
+  {
+    number: "08",
+    title: "LiDAR & Point-Cloud to GIS Mapping",
+    description: "Point clouds can be converted into GIS and CAD information when a project requires terrain, infrastructure or feature mapping from three-dimensional source data. Techmapperz can work with client-supplied LAS or LAZ data to support classification, feature extraction, terrain preparation and mapping workflows.",
+    items: [
+      "Point-cloud review & noise cleaning",
+      "Ground/non-ground classification",
+      "2D and 3D feature extraction",
+      "Contours, profiles & cross-sections",
+      "Terrain-product preparation",
+      "GIS feature preparation & CAD conversion"
+    ],
+    cta: "Explore LiDAR & Point-Cloud Services",
+    link: "/service/lidar",
+    image: "/gis_images/GIS_Survey_page_Banner.webp"
+  }
+];
+
+const sourceDataCategories = [
+  {
+    title: "Imagery",
+    items: ["Satellite imagery", "Orthophotos", "Drone imagery", "GeoTIFF raster data", "Historical imagery"]
+  },
+  {
+    title: "Survey Data",
+    items: ["DGPS/GPS points", "Total-station information", "Survey coordinates", "Field observations", "Existing control points"]
+  },
+  {
+    title: "GIS Data",
+    items: ["Shapefile", "GeoPackage", "File Geodatabase", "GeoJSON", "KML/KMZ", "Existing spatial databases"]
+  },
+  {
+    title: "CAD & Engineering",
+    items: ["DWG", "DXF", "Engineering drawings", "Layout plans", "Utility plans"]
+  },
+  {
+    title: "Maps & Records",
+    items: ["Scanned cadastral maps", "Topographic sheets", "PDFs", "Asset registers", "Tabular records", "Existing project databases"]
+  },
+  {
+    title: "Point Cloud",
+    items: ["LAS", "LAZ", "Classified point clouds", "Unclassified point clouds"]
+  }
+];
+
+const specificationChecklist = [
+  "Project location",
+  "Area or corridor length",
+  "Source-data type",
+  "Coordinate reference system",
+  "Mapping scale or level of detail",
+  "Feature list & feature codes",
+  "Attribute structure & domains",
+  "Topology rules & closure requirements",
+  "Sample output requirement",
+  "Required GIS or CAD formats",
+  "Required accuracy specification",
+  "Review procedure & milestone schedule",
+  "Expected timeline"
+];
+
+const workflowSteps = [
+  { num: "01", title: "Requirement & Data Review", desc: "We review the project objective, source data, coordinate system, feature catalogue, attributes, output formats, acceptance requirements and timeline." },
+  { num: "02", title: "Production Plan & Sample", desc: "For detailed or large-volume projects, a representative sample can be prepared to confirm interpretation, feature structure, attributes and delivery format before full production." },
+  { num: "03", title: "GIS Production", desc: "The team carries out the agreed digitisation, feature extraction, conversion, remote-sensing interpretation, point-cloud processing or spatial analysis." },
+  { num: "04", title: "QA/QC Review", desc: "Relevant checks cover geometry, topology, attribution, connectivity, completeness, projection, naming and file structure according to the project specification." },
+  { num: "05", title: "Client Review", desc: "Review packages are shared according to agreed milestones so that comments are identified and incorporated before final handover." },
+  { num: "06", title: "Final Delivery", desc: "Approved outputs are organised in the agreed GIS, CAD, raster, point-cloud, database or reporting format." }
+];
+
+const qualityPillars = [
+  {
+    title: "Geometry",
+    checks: ["Gaps", "Overlaps", "Slivers", "Self-intersections", "Invalid geometry", "Feature closure"]
+  },
+  {
+    title: "Line & Network Data",
+    checks: ["Dangles", "Overshoots", "Undershoots", "Connectivity", "Snapping", "Direction (where required)"]
+  },
+  {
+    title: "Attributes",
+    checks: ["Mandatory values", "Feature codes", "Domains", "Null values", "Naming structure", "Attribute consistency"]
+  },
+  {
+    title: "Spatial Reference",
+    checks: ["Coordinate system", "Units", "Projection", "Alignment with reference data"]
+  },
+  {
+    title: "Completeness",
+    checks: ["Required feature coverage", "Missing objects", "Layer completeness", "Edge matching"]
+  },
+  {
+    title: "Delivery",
+    checks: ["Folder structure", "Layer naming", "File formats", "Database structure", "Final package completeness"]
+  }
+];
+
+const formatCategories = ['All', 'GIS', 'Database', 'CAD', 'Raster', 'Point Cloud', 'Additional'];
+
+const formats = [
+  { name: 'Shapefile', ext: '.shp', cat: 'GIS' },
+  { name: 'GeoPackage', ext: '.gpkg', cat: 'GIS' },
+  { name: 'File Geodatabase', ext: '.gdb', cat: 'GIS' },
+  { name: 'GeoJSON', ext: '.geojson', cat: 'GIS' },
+  { name: 'KML / KMZ', ext: '.kml / .kmz', cat: 'GIS' },
+  { name: 'PostGIS', ext: 'Spatial Database', cat: 'Database' },
+  { name: 'DWG', ext: 'AutoCAD Drawing', cat: 'CAD' },
+  { name: 'DXF', ext: 'Drawing Exchange Format', cat: 'CAD' },
+  { name: 'GeoTIFF', ext: 'Georeferenced Raster', cat: 'Raster' },
+  { name: 'LAS', ext: 'LiDAR Point Cloud', cat: 'Point Cloud' },
+  { name: 'LAZ', ext: 'Compressed Point Cloud', cat: 'Point Cloud' },
+  { name: 'PDF Maps', ext: 'Cartographic Maps', cat: 'Additional' },
+  { name: 'Excel / CSV', ext: 'Attribute Tables', cat: 'Additional' },
+  { name: 'QA/QC Reports', ext: 'Validation Records', cat: 'Additional' },
+  { name: 'Layer Dictionaries', ext: 'Feature Catalogues', cat: 'Additional' },
+];
+
+const industries = [
+  { title: "Infrastructure & Transportation", desc: "Topographic mapping, corridor mapping, road and railway features, existing-condition mapping, terrain information and engineering-support GIS." },
+  { title: "Utilities & Energy", desc: "Pipeline mapping, water and drainage networks, utility assets, associated infrastructure, database preparation and CAD/GIS integration." },
+  { title: "Mining & Natural Resources", desc: "Mine feature extraction, haul roads, infrastructure, water bodies, land-use information, terrain datasets and GIS/CAD mapping." },
+  { title: "Government & Land Administration", desc: "Cadastral digitisation, land records, municipal GIS, public assets, administrative mapping and project-specific spatial databases." },
+  { title: "Architecture & Urban Planning", desc: "Base maps, building footprints, land-use information, road networks, drainage, utilities and existing-condition mapping." },
+  { title: "Drone & Survey Companies", desc: "Back-office GIS production, feature extraction, CAD preparation, orthomosaic-based digitisation, LiDAR processing and final project-format delivery.", isHighlight: true }
+];
+
+const projectExperiences = [
+  {
+    sector: "MINING & NATURAL RESOURCES",
+    title: "556.674 sq. km Feature Extraction & CAD Mapping",
+    description: "A large-area mapping assignment using high-resolution drone imagery to create structured GIS and CAD information for mining and surrounding areas. Published project information includes mapping of mine infrastructure, roads and haul roads, built-up areas, water bodies, railway features, conveyors and land features.",
+    stats: [
+      { label: "Mapped project area", value: "556.674 sq. km" },
+      { label: "Delivery environment", value: "GIS + CAD" },
+      { label: "Feature scope", value: "Multiple feature classes" }
+    ],
+    image: "/gis_images/drone_services/drone_surveying_mapping/3D_Drone_Terrain.webp",
+    link: "/portfolios"
+  },
+  {
+    sector: "UTILITIES & PIPELINES",
+    title: "6,000 km Gas Pipeline Digitisation & Asset Mapping",
+    description: "A GIS digitisation assignment supporting development of a structured digital asset framework for a large natural-gas transmission network. The published scope includes the pipeline network and associated facilities such as valve stations, compressor stations and cathodic-protection locations.",
+    stats: [
+      { label: "Pipeline network", value: "6,000 km" },
+      { label: "Spatial info", value: "GIS database" },
+      { label: "Mapping scope", value: "Pipeline + assets" }
+    ],
+    image: "/gis_images/Gas Pipeline.webp",
+    link: "/portfolios"
+  },
+  {
+    sector: "LAND USE & PLANNING",
+    title: "400 sq. km Urban & Rural LULC Mapping",
+    description: "A land-use and land-cover mapping assignment covering urban and rural areas, with more than 15 mapped layers according to the published project description.",
+    stats: [
+      { label: "Mapped area", value: "400 sq. km" },
+      { label: "Thematic layers", value: "15+ layers" },
+      { label: "Primary deliverable", value: "GIS mapping & analysis" }
+    ],
+    image: "/gis_images/Urban & Rural.webp",
+    link: "/portfolios"
+  }
+];
+
+const whyPoints = [
+  { title: "GIS-Led Requirement Review", desc: "Projects are reviewed from the perspective of spatial data, mapping requirements, source-data limitations and the intended final use." },
+  { title: "Multiple Source-Data Capabilities", desc: "We can work with imagery, LiDAR point clouds, GIS datasets, survey information, engineering drawings, scanned maps and client databases." },
+  { title: "Pilot-Based Production", desc: "For complex or high-volume projects, sample production can help confirm interpretation, feature coding, attributes and delivery structure before scaling." },
+  { title: "Structured QA/QC", desc: "Relevant checks cover geometry, topology, attributes, connectivity, projection, completeness and file structure according to the agreed specification." },
+  { title: "GIS & CAD Delivery", desc: "Outputs can be prepared for GIS databases, engineering CAD environments, raster workflows and point-cloud applications." },
+  { title: "Processing Partnership", desc: "Consultants, survey companies and other service providers can engage Techmapperz for defined back-office GIS production without outsourcing their complete client relationship." }
+];
+
+const faqs = [
+  { q: "What GIS mapping services does Techmapperz provide?", a: "Techmapperz provides GIS data digitisation, feature extraction, utility and asset mapping, cadastral mapping, land-use and land-cover mapping, georeferencing, CAD/GIS conversion, spatial analysis, database preparation and related geospatial production services." },
+  { q: "What source data can you use for GIS mapping?", a: "Depending on the assignment, we can work with satellite imagery, drone imagery, orthophotos, LiDAR point clouds, scanned maps, CAD drawings, survey coordinates, existing GIS data and client asset records." },
+  { q: "Can you digitise features from drone imagery?", a: "Yes. Where the imagery is suitable for the required interpretation, features such as roads, buildings, drainage, utilities, land boundaries, water bodies and other project-specific objects can be extracted into GIS or CAD datasets." },
+  { q: "Can you convert AutoCAD DWG or DXF files into GIS?", a: "Yes. CAD drawings can be reviewed and converted into GIS layers, with coordinate-system handling, geometry organisation and attribute structuring according to the project requirement." },
+  { q: "Can GIS files be converted back into CAD?", a: "Yes. GIS information can also be organised into DWG or DXF outputs according to the required layer structure and project specification." },
+  { q: "Do you provide utility and pipeline mapping?", a: "Yes. We support GIS mapping for pipelines, utilities and associated infrastructure using available drawings, imagery, survey information and existing asset records." },
+  { q: "Do you provide cadastral map digitisation?", a: "Yes. Scanned cadastral maps and other available land information can be georeferenced and converted into parcel or land-information datasets according to the project specification." },
+  { q: "Do you provide land-use and land-cover mapping?", a: "Yes. LULC mapping can be prepared from suitable satellite or aerial imagery according to the project’s classification scheme and required level of detail." },
+  { q: "Can you process large-volume GIS digitisation projects?", a: "Large assignments can be divided into planned production units with agreed specifications, samples, review milestones and QA/QC stages. Capacity and timelines should be confirmed after reviewing the actual quantity and complexity." },
+  { q: "Can you complete a sample before full production?", a: "Yes. A pilot or sample area is particularly useful when the project involves a new feature catalogue, interpretation rules, complex attributes or a large production quantity." },
+  { q: "How do you check GIS data quality?", a: "The QA/QC procedure depends on the project. Relevant checks can include geometry, topology, connectivity, attributes, feature codes, projection, completeness, edge matching, file structure and compliance with the agreed specification." },
+  { q: "What GIS file formats can you deliver?", a: "Depending on the scope, deliverables can include Shapefile, GeoPackage, File Geodatabase, GeoJSON, KML/KMZ, PostGIS, DWG, DXF, GeoTIFF, LAS and LAZ." },
+  { q: "Can Techmapperz work as a GIS subcontractor?", a: "Yes. Infrastructure consultants, government contractors, survey organisations, drone companies and other service providers can engage Techmapperz for defined GIS production, processing or mapping requirements." },
+  { q: "What information should I provide for a quotation?", a: "Share the project location, approximate area or quantity, available source data, feature list, coordinate system, expected deliverables, required formats, accuracy or mapping specification where applicable, and expected timeline." }
+];
+
+const FaqItem = ({ faq, defaultOpen = false }) => {
+  const [open, setOpen] = useState(defaultOpen);
+  return (
+    <div className="border-b border-gray-200">
+      <button onClick={() => setOpen(!open)} className="w-full text-left py-5 flex items-start justify-between gap-4 group">
+        <span className="text-[#0c2e60] font-semibold text-sm md:text-base leading-snug group-hover:text-[#1656b8] transition-colors">{faq.q}</span>
+        <span className={`text-[#1656b8] font-bold text-xl flex-shrink-0 transition-transform duration-300 ${open ? "rotate-45" : ""}`}>+</span>
+      </button>
+      {open && <p className="text-gray-600 text-sm md:text-[15px] leading-relaxed pb-5">{faq.a}</p>}
+    </div>
+  );
+};
 
 export default function GISServicePageClient() {
-  const [activeTab, setActiveTab] = useState('All');
-  const [openFaq, setOpenFaq] = useState(0);
-  const [isLayersHovered, setIsLayersHovered] = useState(false);
+  const [activeFormatTab, setActiveFormatTab] = useState('All');
 
-  const formatCategories = ['All', 'GIS', 'CAD', 'Raster', 'Point Cloud', 'Database'];
-
-  const formats = [
-    { name: 'GeoPackage', ext: '.gpkg', cat: 'GIS' },
-    { name: 'File Geodatabase', ext: '.gdb', cat: 'GIS' },
-    { name: 'Shapefile', ext: '.shp', cat: 'GIS' },
-    { name: 'GeoJSON', ext: '.geojson', cat: 'GIS' },
-    { name: 'KML / KMZ', ext: '.kml / .kmz', cat: 'GIS' },
-    { name: 'PostGIS', ext: 'Spatial database', cat: 'Database' },
-    { name: 'DWG / DXF', ext: 'CAD deliverables', cat: 'CAD' },
-    { name: 'GeoTIFF', ext: 'Orthomosaic / raster', cat: 'Raster' },
-    { name: 'LAS / LAZ', ext: 'Point cloud', cat: 'Point Cloud' },
-  ];
-
-  const filteredFormats = activeTab === 'All' 
-    ? formats 
-    : formats.filter(f => f.cat === activeTab);
-
-  const faqData = [
-    {
-      question: "What input data can Techmapperz work with?",
-      answer: "Satellite and aerial imagery, drone orthophotos, raw or classified LiDAR, CAD drawings, scanned maps, survey data, GPS points, legacy GIS databases and client-defined feature catalogues."
-    },
-    {
-      question: "Which GIS output formats are available?",
-      answer: "GeoPackage, File Geodatabase, Shapefile, GeoJSON, KML/KMZ, PostGIS, GeoTIFF and other formats. CAD and point-cloud outputs can also be delivered when included in the scope."
-    },
-    {
-      question: "How do you maintain data quality?",
-      answer: "We follow project-specific QA/QC checklists covering topology, geometry, attribution, connectivity, edge matching, completeness, naming, projection and format compliance."
-    },
-    {
-      question: "Can you first complete a pilot or sample area?",
-      answer: "Yes. A pilot is recommended for projects with a new feature catalogue, complex interpretation rules, large volume or strict acceptance requirements."
-    },
-    {
-      question: "Can GIS deliverables be connected to a Web GIS application?",
-      answer: "Yes. Techmapperz also develops Web GIS, geoportals, GIS dashboards, mobile field applications and spatial-database integrations."
-    }
-  ];
+  const filteredFormats = activeFormatTab === 'All'
+    ? formats
+    : formats.filter(f => f.cat === activeFormatTab);
 
   return (
-    <div className="bg-white text-[#17202a] font-sans antialiased selection:bg-[#1267b1]/10 pt-28">
-      {/* Floating Animations CSS */}
-      <style jsx global>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-8px); }
-        }
-        @keyframes pulse-glow {
-          0%, 100% { opacity: 0.15; }
-          50% { opacity: 0.3; }
-        }
-        .animate-float-slow {
-          animation: float 5s ease-in-out infinite;
-        }
-        .animate-float-slower {
-          animation: float 7s ease-in-out infinite;
-        }
-        .animate-pulse-glow {
-          animation: pulse-glow 4s ease-in-out infinite;
-        }
-      `}</style>
+    <div className="bg-white text-gray-900 font-sans antialiased">
+      
+      {/* HERO SECTION - MATCHING DRONE SERVICE HERO EXACTLY */}
+      <section 
+        className="relative min-h-[auto] sm:min-h-[85vh] flex flex-col justify-start sm:justify-center items-start bg-cover bg-center text-white pt-32 sm:pt-40 pb-16 sm:pb-28" 
+        style={{ backgroundImage: 'url("/gis_images/aerial_gis_mapping_banner.png")' }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/30" />
+        <div className="relative z-10 max-w-[1400px] w-full mx-auto px-4 sm:px-8 md:px-12 lg:px-20 flex flex-col gap-5 sm:gap-6">
+          <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em]">GIS MAPPING & DATA SERVICES</span>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-bold leading-tight tracking-tight max-w-3xl">GIS Mapping Services for Project-Ready Spatial Data</h1>
+          <p className="text-gray-300 text-sm sm:text-base md:text-[17px] max-w-2xl leading-relaxed">Techmapperz supports infrastructure, utility, mining, government, land, architecture and planning projects with GIS mapping, data digitisation, feature extraction, spatial analysis and geospatial database preparation.</p>
+          <p className="text-gray-400 text-sm max-w-2xl leading-relaxed">We work with satellite imagery, drone data, LiDAR point clouds, survey information, CAD drawings, scanned maps and existing GIS databases to prepare structured outputs for mapping, engineering, planning and asset-management workflows.</p>
+          <div className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-5 mt-2 w-full sm:w-auto">
+            <Link href="#contact" className="w-full sm:w-auto"><button className="w-full sm:w-auto py-[12px] px-8 rounded-full border border-[#1656b8] bg-[#1656b8]/30 text-white font-semibold text-[15px] hover:bg-[#1656b8] transition-all duration-300">Discuss Your GIS Requirement</button></Link>
+            <Link href="#services" className="w-full sm:w-auto"><button className="w-full sm:w-auto py-[12px] px-8 rounded-full border border-gray-300 bg-transparent text-white font-semibold text-[15px] hover:bg-white/10 transition-all duration-300">Explore GIS Services</button></Link>
+          </div>
+        </div>
+      </section>
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden pt-16 pb-20 bg-gradient-to-b from-white via-[#f4f7fa]/30 to-[#f4f7fa]/50">
-        {/* Subtle grid pattern overlay */}
-        <div className="absolute inset-0 pointer-events-none opacity-[0.035] bg-[linear-gradient(rgba(11,35,65,1)_1px,transparent_1px),linear-gradient(90deg,rgba(11,35,65,1)_1px,transparent_1px)] bg-[size:42px_42px]" />
-        
-        {/* Glowing Orbs */}
-        <div className="absolute top-[18%] left-[11%] w-[400px] h-[400px] bg-[#1267b1]/10 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute top-[25%] right-[16%] w-[450px] h-[450px] bg-[#078a86]/10 rounded-full blur-[130px] pointer-events-none" />
-
-        <div className="max-w-[1240px] mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-12 lg:gap-16 items-center">
+      {/* 2. INTRODUCTION SECTION */}
+      <section className="py-16 md:py-24 bg-[#f8fafc]" id="about">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             
-            {/* Left Column: Hero Content */}
-            <div className="space-y-6">
-              {/* Breadcrumb */}
-              <div className="flex items-center gap-2 text-xs font-semibold text-[#6c7887]">
-                <Link href="/" className="hover:text-[#1267b1] transition-colors">Home</Link>
-                <span>›</span>
-                <span className="text-[#1267b1]">Services</span>
-                <span>›</span>
-                <span className="text-[#0c2e60] font-bold">GIS & Mapping Services</span>
-              </div>
-
-              {/* Eyebrow */}
-              <div className="inline-flex items-center gap-3 text-xs font-extrabold tracking-[0.18em] text-[#1267b1] uppercase">
-                <span className="w-7 h-[2px] bg-[#e33434] rounded-full" />
-                GIS & Mapping Services
-              </div>
-
-              {/* Title */}
-              <h1 className="text-4xl md:text-5xl lg:text-[54px] font-extrabold text-[#0c2e60] tracking-tight leading-[1.1] sm:max-w-xl">
-                Reliable Geospatial Data for Better Planning and Asset Decisions
-              </h1>
-
-              {/* Lead Paragraph */}
-              <p className="text-lg md:text-[19px] text-[#5f6d7b] leading-relaxed max-w-[620px]">
-                Techmapperz creates, converts, manages and analyses geospatial data for infrastructure, utilities, government, mining, agriculture and land-management projects.
+            {/* Left Narrative */}
+            <div>
+              <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-4 block">
+                FROM SOURCE DATA TO USABLE GIS
+              </span>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0c2e60] leading-tight mb-6">
+                Good GIS Data Starts with Understanding How It Will Be Used
+              </h2>
+              <p className="text-gray-600 text-sm md:text-[15px] leading-relaxed mb-4">
+                GIS projects are not simply about drawing features on a map. The required layer structure, attributes, coordinate system, topology rules, level of detail and final format depend on what the data will support after delivery.
+              </p>
+              <p className="text-gray-600 text-sm md:text-[15px] leading-relaxed mb-4">
+                An infrastructure consultant may require CAD-compatible mapping. A utility company may need an attributed asset database. A planning team may require land-use information, while a government contractor may need large-volume digitisation following a defined feature catalogue.
+              </p>
+              <p className="text-gray-600 text-sm md:text-[15px] leading-relaxed mb-8">
+                Techmapperz reviews these requirements before production begins so that the GIS data is prepared around the intended project workflow rather than treated as a generic mapping exercise.
               </p>
 
-              {/* Buttons */}
-              <div className="flex flex-wrap gap-4 pt-3">
+              {/* Existing Data Callout Box */}
+              <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm mb-6">
+                <p className="text-[#0c2e60] font-bold text-base mb-2">Already have GIS, CAD or survey data?</p>
+                <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                  We can also review, clean, restructure, convert or update existing datasets without rebuilding the project from the beginning.
+                </p>
                 <Link 
                   href="#contact" 
-                  className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl font-extrabold text-sm text-white bg-[#e33434] hover:bg-[#c92828] shadow-[0_14px_26px_rgba(227,52,52,0.22)] hover:-translate-y-0.5 transition-all duration-200"
+                  className="inline-flex items-center justify-center gap-2 bg-[#0c2e60] hover:bg-[#082046] text-white font-bold text-sm px-7 py-3 rounded-full transition-all duration-300 shadow-md w-full sm:w-fit"
                 >
-                  Discuss Your GIS Requirement →
-                </Link>
-                <Link 
-                  href="#services" 
-                  className="inline-flex items-center justify-center px-7 py-3.5 rounded-xl font-extrabold text-sm text-[#0c2e60] bg-white border border-[#cfdbe7] hover:border-[#1267b1] hover:text-[#1267b1] hover:-translate-y-0.5 transition-all duration-200"
-                >
-                  Explore GIS Services
+                  Share Your Existing Data &#8594;
                 </Link>
               </div>
-
-              {/* Hero Points */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-8">
-                <div className="bg-white/80 backdrop-blur-sm border border-[#dce6ef] p-4 rounded-2xl shadow-[0_10px_25px_rgba(11,35,65,0.04)]">
-                  <b className="block text-sm text-[#0c2e60] font-bold mb-1">Multi-format delivery</b>
-                  <span className="block text-[11px] text-[#758292] leading-relaxed">GIS, CAD, raster, point-cloud and database outputs</span>
-                </div>
-                <div className="bg-white/80 backdrop-blur-sm border border-[#dce6ef] p-4 rounded-2xl shadow-[0_10px_25px_rgba(11,35,65,0.04)]">
-                  <b className="block text-sm text-[#0c2e60] font-bold mb-1">Structured QA/QC</b>
-                  <span className="block text-[11px] text-[#758292] leading-relaxed">Geometry, topology, attribute and positional validation</span>
-                </div>
-                <div className="bg-white/80 backdrop-blur-sm border border-[#dce6ef] p-4 rounded-2xl shadow-[0_10px_25px_rgba(11,35,65,0.04)]">
-                  <b className="block text-sm text-[#0c2e60] font-bold mb-1">Scalable production</b>
-                  <span className="block text-[11px] text-[#758292] leading-relaxed">From POCs to large-area mapping programmes</span>
-                </div>
-              </div>
             </div>
 
-            {/* Right Column: Styled Map Illustration */}
-            <div className="relative">
-              <div className="bg-white border border-[#d7e2ec] rounded-[28px] p-4 shadow-[0_22px_55px_rgba(11,35,65,0.1)] relative z-10">
-                {/* Map Top Bar */}
-                <div className="flex justify-between items-center px-1 pb-3 text-xs font-bold text-[#516171]">
-                  <span>PROJECT MAP · FEATURE EXTRACTION</span>
-                  <div className="flex gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#e33434]" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#f0b33f]" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#078a86]" />
-                  </div>
-                </div>
-
-                {/* Map Stage SVG Container */}
-                <div className="relative rounded-[19px] overflow-hidden bg-[#eaf1e7] aspect-[1.04/1] shadow-inner border border-gray-150">
-                  <svg viewBox="0 0 620 600" className="w-full h-full block">
-                    <defs>
-                      <linearGradient id="land" x1="0" x2="1">
-                        <stop offset="0" stopColor="#dce6d5" />
-                        <stop offset="1" stopColor="#c7d9c5" />
-                      </linearGradient>
-                      <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
-                        <path d="M30 0H0V30" fill="none" stroke="#315f72" strokeOpacity=".13" strokeWidth="1" />
-                      </pattern>
-                    </defs>
-                    
-                    {/* Land mass base */}
-                    <rect width="620" height="600" fill="url(#land)" />
-                    
-                    {/* Water bodies */}
-                    <path d="M0 112C90 72 166 102 240 84s158-66 247-43c60 15 93 44 133 61v93c-71-15-127-9-187 11-95 31-190 20-276-9C91 175 45 171 0 186Z" fill="#b8d3ea" />
-                    <path d="M-20 450C80 398 136 363 208 360c92-4 158 55 255 24 61-20 109-62 177-73v84c-86 28-129 86-227 105-84 16-156-24-235-14-86 10-132 49-198 71Z" fill="#aacde6" />
-                    
-                    {/* Map Parcels */}
-                    <g fill="#eef0dd" stroke="#a6b39b" strokeWidth="2">
-                      <path d="M45 50h115l20 93-130 31z" />
-                      <path d="M187 45h120l-3 115-112-8z" />
-                      <path d="M330 42h118l28 114-136 15z" />
-                      <path d="M472 42h100l21 132-105-7z" />
-                      <path d="M62 218l128-25 31 108-140 20z" />
-                      <path d="M228 190l114-12 18 123-121 7z" />
-                      <path d="M382 184l134-8 23 124-142 10z" />
-                      <path d="M44 344l138-25 22 94-142 29z" />
-                      <path d="M222 331l125-9 8 101-129 11z" />
-                      <path d="M381 324l154-16 23 106-162 13z" />
-                      <path d="M62 463l123-25 18 100-130 17z" />
-                      <path d="M224 447l134-13 17 103-141 10z" />
-                      <path d="M395 447l147-17 25 117-151 7z" />
-                    </g>
-                    
-                    {/* Primary roads (Thick white with dark dash) */}
-                    <path d="M-40 295C80 251 146 258 252 286c111 30 204 24 409-31" fill="none" stroke="#ffffff" strokeWidth="28" />
-                    <path d="M-40 295C80 251 146 258 252 286c111 30 204 24 409-31" fill="none" stroke="#6f7f8c" strokeWidth="4" strokeDasharray="18 10" />
-                    
-                    {/* Secondary roads */}
-                    <path d="M123 -30C156 110 159 211 205 337c29 79 56 173 60 293" fill="none" stroke="#fff" strokeWidth="20" />
-                    <path d="M123 -30C156 110 159 211 205 337c29 79 56 173 60 293" fill="none" stroke="#6f7f8c" strokeWidth="3" strokeDasharray="13 9" />
-                    
-                    {/* Building footprints (Reddish brown) */}
-                    <g fill="#d56059" opacity=".92">
-                      <rect x="93" y="229" width="31" height="22" transform="rotate(-12 93 229)" />
-                      <rect x="132" y="218" width="34" height="24" transform="rotate(-12 132 218)" />
-                      <rect x="399" y="217" width="36" height="27" transform="rotate(-4 399 217)" />
-                      <rect x="441" y="211" width="28" height="32" transform="rotate(-4 441 211)" />
-                      <rect x="294" y="466" width="48" height="38" transform="rotate(-5 294 466)" />
-                      <rect x="437" y="487" width="57" height="41" transform="rotate(-5 437 487)" />
-                    </g>
-                    
-                    {/* Highlighted selection (Blue stroke) */}
-                    <g fill="none" stroke="#0d76b8" strokeWidth="4">
-                      <path d="M34 336L180 310l12 105-137 29z" />
-                      <path d="M219 329l129-8 8 102-131 10z" />
-                      <path d="M380 324l155-15 23 106-163 13z" />
-                    </g>
-                    
-                    {/* Elevation Contours (Green lines) */}
-                    <g fill="none" stroke="#078a86" strokeWidth="2.4" opacity=".9">
-                      <path d="M20 92c80-40 147-38 221-9s145 32 235 5c52-16 92-14 131 6" />
-                      <path d="M15 111c77-34 144-34 219-7s151 35 244 10c51-14 89-11 129 8" />
-                      <path d="M31 527c69-37 135-45 208-31s143 45 227 36c59-7 94-27 130-48" />
-                      <path d="M27 551c71-33 141-37 216-20s141 44 225 32c54-8 94-26 130-43" />
-                    </g>
-                    
-                    {/* Grid Pattern overlay */}
-                    <rect width="620" height="600" fill="url(#grid)" />
-                    
-                    {/* Marker pins */}
-                    <circle cx="446" cy="214" r="10" fill="#e33434" stroke="#fff" strokeWidth="5" />
-                    <path d="M446 210c-18 0-32 14-32 32 0 24 32 58 32 58s32-34 32-58c0-18-14-32-32-32Zm0 43a12 12 0 1 1 0-24 12 12 0 0 1 0 24Z" fill="#e33434" />
-                  </svg>
-                </div>
+            {/* Right Side Column: Image & Process Diagram */}
+            <div className="flex flex-col gap-6">
+              <div className="relative h-[250px] sm:h-[360px] rounded-2xl overflow-hidden shadow-xl">
+                <Image 
+                  src="/gis_images/gis_mapping_digitisation.png" 
+                  alt="GIS Mapping & Data Digitisation" 
+                  fill 
+                  sizes="(max-width: 1024px) 100vw, 50vw" 
+                  className="object-cover object-center" 
+                />
               </div>
 
-              {/* Floating Cards */}
-              <div className="absolute z-20 right-[-15px] top-[14%] w-[185px] bg-white/95 backdrop-blur-md border border-[#d7e2ec] shadow-lg rounded-xl p-3.5 animate-float-slow hidden md:block">
-                <strong className="block text-xs text-[#0c2e60] font-bold">Mapped Features</strong>
-                <span className="block text-[11px] text-[#6b7987] mt-0.5">Roads · Parcels · Buildings</span>
-                <div className="flex items-end gap-1.5 h-8 mt-2.5">
-                  <span className="block w-3 rounded-[3px_3px_1px_1px] bg-gradient-to-t from-[#1267b1] to-[#2f80d0] h-[35%]" />
-                  <span className="block w-3 rounded-[3px_3px_1px_1px] bg-gradient-to-t from-[#1267b1] to-[#2f80d0] h-[62%]" />
-                  <span className="block w-3 rounded-[3px_3px_1px_1px] bg-gradient-to-t from-[#1267b1] to-[#2f80d0] h-[48%]" />
-                  <span className="block w-3 rounded-[3px_3px_1px_1px] bg-gradient-to-t from-[#1267b1] to-[#2f80d0] h-[88%]" />
-                  <span className="block w-3 rounded-[3px_3px_1px_1px] bg-gradient-to-t from-[#1267b1] to-[#2f80d0] h-[72%]" />
-                </div>
-              </div>
-
-              <div className="absolute z-20 left-[-20px] bottom-[8%] w-[215px] bg-white/95 backdrop-blur-md border border-[#d7e2ec] shadow-lg rounded-xl p-3.5 animate-float-slower hidden md:block">
-                <strong className="block text-xs text-[#0c2e60] font-bold">Quality Status</strong>
-                <span className="block text-[11px] text-[#6b7987] mt-0.5">Topology and attributes verified</span>
-                <div className="h-2 bg-gray-100 rounded-full mt-2.5 overflow-hidden">
-                  <div className="h-full w-[92%] bg-gradient-to-r from-[#078a86] to-[#43b9aa] rounded-full" />
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-
-
-      {/* Introduction with Stacked Map Layers */}
-      <section className="py-24" id="about">
-        <div className="max-w-[1240px] mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-12 lg:gap-16 items-center">
-            
-            {/* Visual stacked panel */}
-            <div 
-              className="relative bg-[#f4f7fa] rounded-3xl p-6 min-h-[440px] overflow-hidden flex items-center justify-center cursor-pointer transition-transform duration-300"
-              onMouseEnter={() => setIsLayersHovered(true)}
-              onMouseLeave={() => setIsLayersHovered(false)}
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-transparent to-[#1267b1]/5 pointer-events-none" />
-              
-              {/* Stacked Layers Container */}
-              <div className="absolute inset-[30px] sm:inset-[40px]">
-                {/* Layer 1: Bottom (Geology Map) */}
-                <div 
-                  className="absolute inset-[24px_16px_50px_40px] rounded-2xl border border-white/80 shadow-md overflow-hidden bg-[#cad9c0] transition-all duration-500 ease-out"
-                  style={{
-                    transform: isLayersHovered 
-                      ? 'rotate(-11deg) translate(-20px, -10px) scale(0.95)' 
-                      : 'rotate(-7deg) translate(0px, 0px) scale(1)',
-                    zIndex: 10
-                  }}
-                >
-                  <svg viewBox="0 0 440 320" className="w-full h-full block">
-                    <rect width="440" height="320" fill="#cad9c0" />
-                    <path d="M0 48C90 5 133 48 220 25s135-14 220 19v83c-61 21-109 22-182 1S101 91 0 138Z" fill="#a8cce0" />
-                    <path d="M0 236c83-31 142-39 212-19s142 40 228-3v106H0Z" fill="#9ec3dc" />
-                    <g fill="#e8ecd9" stroke="#a7b79b">
-                      <path d="M22 34h113l12 74-118 24z" />
-                      <path d="M163 34h110l7 96-119-6z" />
-                      <path d="M298 30h120l12 91-126 11z" />
-                      <path d="M44 165l130-24 11 81-134 15z" />
-                      <path d="M205 148l119-8 6 97-122 5z" />
-                      <path d="M344 145l89-9v96l-87 8z" />
-                    </g>
-                    <path d="M-20 176c95-28 162-22 229 8 87 39 159 19 252-19" fill="none" stroke="white" strokeWidth="20" />
-                    <path d="M-20 176c95-28 162-22 229 8 87 39 159 19 252-19" fill="none" stroke="#72818f" strokeWidth="3" strokeDasharray="11 8" />
-                  </svg>
-                </div>
-
-                {/* Layer 2: Middle (Cadastral Parcels) */}
-                <div 
-                  className="absolute inset-[40px_36px_30px_16px] rounded-2xl border border-white/80 shadow-lg overflow-hidden bg-[#eef3f7] transition-all duration-500 ease-out"
-                  style={{
-                    transform: isLayersHovered 
-                      ? 'rotate(8deg) translate(15px, 0px) scale(0.98)' 
-                      : 'rotate(5deg) translate(0px, 0px) scale(1)',
-                    zIndex: 20
-                  }}
-                >
-                  <svg viewBox="0 0 440 320" className="w-full h-full block">
-                    <rect width="440" height="320" fill="#eef3f7" />
-                    <g fill="none" stroke="#2f80d0" strokeWidth="2">
-                      <rect x="29" y="42" width="130" height="86" />
-                      <rect x="175" y="42" width="110" height="86" />
-                      <rect x="301" y="42" width="110" height="86" />
-                      <rect x="47" y="156" width="112" height="98" />
-                      <rect x="180" y="156" width="109" height="98" />
-                      <rect x="313" y="156" width="95" height="98" />
-                    </g>
-                    <g fill="#e33434">
-                      <rect x="63" y="70" width="28" height="20" />
-                      <rect x="104" y="76" width="39" height="27" />
-                      <rect x="199" y="63" width="55" height="34" />
-                      <rect x="332" y="69" width="31" height="44" />
-                      <rect x="76" y="180" width="54" height="40" />
-                      <rect x="213" y="184" width="47" height="32" />
-                      <rect x="338" y="181" width="52" height="44" />
-                    </g>
-                    <path d="M0 142c89-34 158-20 228 4 74 25 126 22 212-9" fill="none" stroke="#0b2341" strokeWidth="9" />
-                    <path d="M0 142c89-34 158-20 228 4 74 25 126 22 212-9" fill="none" stroke="#fff" strokeWidth="2" strokeDasharray="8 7" />
-                  </svg>
-                </div>
-
-                {/* Layer 3: Top (GIS Features Selected) */}
-                <div 
-                  className="absolute inset-[56px_20px_16px_50px] rounded-2xl border border-white/90 shadow-xl overflow-hidden bg-white transition-all duration-500 ease-out"
-                  style={{
-                    transform: isLayersHovered 
-                      ? 'rotate(2deg) translate(0px, 15px) scale(1.02)' 
-                      : 'rotate(0deg) translate(0px, 0px) scale(1)',
-                    zIndex: 30
-                  }}
-                >
-                  <svg viewBox="0 0 440 320" className="w-full h-full block">
-                    <rect width="440" height="320" fill="#fff" />
-                    <path d="M41 33c71 15 142 21 203 5s122-12 166 4v232H41Z" fill="#eef5f8" stroke="#c7d9e6" />
-                    <g fill="none" stroke="#078a86" strokeWidth="2">
-                      <path d="M62 69c49-18 91-14 132 5s92 22 154 2" />
-                      <path d="M57 94c51-17 96-13 138 6s92 22 157 1" />
-                      <path d="M57 122c52-15 100-11 142 6s91 20 154-1" />
-                      <path d="M60 152c54-14 104-10 145 6s88 18 150-3" />
-                      <path d="M62 182c57-13 107-8 148 7s86 17 145-4" />
-                      <path d="M64 213c60-12 110-7 151 8s84 14 140-6" />
-                    </g>
-                    <path d="M93 60l29 183 182-51 44-113z" fill="none" stroke="#1267b1" strokeWidth="4" />
-                    <circle cx="122" cy="243" r="7" fill="#e33434" />
-                    <circle cx="304" cy="192" r="7" fill="#e33434" />
-                    <circle cx="348" cy="79" r="7" fill="#e33434" />
-                    <circle cx="93" cy="60" r="7" fill="#e33434" />
-                  </svg>
-                </div>
-              </div>
-
-              {/* Hover Badge */}
-              <div className="absolute bottom-5 left-5 bg-white border border-[#dce6ef] px-4 py-2.5 rounded-xl shadow-md z-40 text-xs font-bold text-[#0c2e60]">
-                Source Data → Digitisation → QA/QC → Delivery
-              </div>
-            </div>
-
-            {/* Right Column: Text Content */}
-            <div className="space-y-6">
-              <div className="inline-flex items-center gap-3 text-xs font-extrabold tracking-[0.18em] text-[#1267b1] uppercase">
-                <span className="w-7 h-[2px] bg-[#e33434] rounded-full" />
-                What We Deliver
-              </div>
-              <h2 className="text-3xl md:text-[40px] font-extrabold text-[#0c2e60] tracking-tight leading-[1.15]">
-                Geospatial production that supports real project workflows
-              </h2>
-              <p className="text-[#5f6d7b] text-base md:text-[17px] leading-relaxed">
-                We work with satellite imagery, drone data, LiDAR point clouds, survey inputs, CAD drawings, legacy maps and client databases to prepare accurate and structured geospatial deliverables.
-              </p>
-
-              {/* Deliverables List */}
-              <div className="space-y-6 pt-2">
-                <div className="flex gap-4 items-start">
-                  <div className="w-11 h-11 shrink-0 rounded-xl bg-[#eaf3fb] text-[#1267b1] font-extrabold text-sm flex items-center justify-center">
-                    01
+              {/* Before/After Flow Card */}
+              <div className="bg-[#0c2e60] text-white rounded-2xl p-6 shadow-lg border border-white/10">
+                <span className="text-[#6ac045] text-xs font-bold uppercase tracking-widest block mb-4">
+                  GIS TRANSFORMATION WORKFLOW
+                </span>
+                <div className="space-y-3 text-xs md:text-sm">
+                  <div className="bg-white/10 p-3 rounded-xl border border-white/10">
+                    <strong className="text-[#6ac045] block mb-0.5">INPUT DATA</strong>
+                    <span>Scanned Map / Drone Image / CAD / LiDAR</span>
                   </div>
-                  <div className="space-y-1">
-                    <h3 className="font-extrabold text-[#0c2e60] text-lg leading-tight">Data creation and conversion</h3>
-                    <p className="text-sm text-[#5f6d7b] leading-relaxed">Digitisation, feature extraction, CAD–GIS conversion, georeferencing, attribution and database creation.</p>
+                  <div className="text-center text-[#6ac045] font-bold">↓</div>
+                  <div className="bg-white/10 p-3 rounded-xl border border-white/10">
+                    <strong className="text-[#6ac045] block mb-0.5">TECHMAPPERZ WORKFLOW</strong>
+                    <span>Georeference → Digitise → Attribute → QA/QC</span>
                   </div>
-                </div>
-                <div className="flex gap-4 items-start">
-                  <div className="w-11 h-11 shrink-0 rounded-xl bg-[#eaf3fb] text-[#1267b1] font-extrabold text-sm flex items-center justify-center">
-                    02
-                  </div>
-                  <div className="space-y-1">
-                    <h3 className="font-extrabold text-[#0c2e60] text-lg leading-tight">Spatial analysis and modelling</h3>
-                    <p className="text-sm text-[#5f6d7b] leading-relaxed">Terrain, network, proximity, suitability, change-detection and decision-support analysis.</p>
-                  </div>
-                </div>
-                <div className="flex gap-4 items-start">
-                  <div className="w-11 h-11 shrink-0 rounded-xl bg-[#eaf3fb] text-[#1267b1] font-extrabold text-sm flex items-center justify-center">
-                    03
-                  </div>
-                  <div className="space-y-1">
-                    <h3 className="font-extrabold text-[#0c2e60] text-lg leading-tight">Quality-controlled delivery</h3>
-                    <p className="text-sm text-[#5f6d7b] leading-relaxed">Defined review cycles, topology checks, attribute validation, edge matching and format compliance.</p>
+                  <div className="text-center text-[#6ac045] font-bold">↓</div>
+                  <div className="bg-white/20 p-3 rounded-xl border border-white/20 font-bold">
+                    <strong className="text-white block mb-0.5">PROJECT-READY OUTPUT</strong>
+                    <span>Structured GIS + CAD + Spatial Database</span>
                   </div>
                 </div>
               </div>
@@ -426,592 +428,519 @@ export default function GISServicePageClient() {
         </div>
       </section>
 
-      {/* Core GIS Services Cards Grid */}
-      <section className="py-24 bg-[#f4f7fa] border-t border-b border-[#dce5ee]" id="services">
-        <div className="max-w-[1240px] mx-auto px-6">
-          <div className="flex flex-col lg:flex-row lg:justify-between lg:items-end gap-6 mb-12">
-            <div className="space-y-4 max-w-2xl">
-              <div className="inline-flex items-center gap-3 text-xs font-extrabold tracking-[0.18em] text-[#1267b1] uppercase">
-                <span className="w-7 h-[2px] bg-[#e33434] rounded-full" />
-                Core GIS Services
-              </div>
-              <h2 className="text-3xl md:text-[38px] font-extrabold text-[#0c2e60] tracking-tight">
-                Complete GIS and mapping support under one roof
-              </h2>
-              <p className="text-[#5f6d7b] text-[17px] leading-relaxed">
-                Choose a focused production service or combine multiple capabilities for an end-to-end mapping programme.
-              </p>
-            </div>
-            <div className="lg:max-w-[280px] border-l-2 border-[#e33434] pl-4 text-xs leading-relaxed text-[#6c7987]">
-              Each service is backed by standard operating procedures, custom quality checklists, and engineering workflows.
-            </div>
-          </div>
-
-          {/* Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {/* Card 1 */}
-            <div className="bg-white border border-[#dce5ee] hover:border-[#b9cfe2] rounded-2xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col min-h-[250px] group">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#eaf4fc] to-[#f5f9fc] flex items-center justify-center text-xl text-[#1267b1] mb-5 font-bold">
-                ⌖
-              </div>
-              <h3 className="font-extrabold text-[#0c2e60] text-[17px] leading-tight">GIS Data Creation & Digitisation</h3>
-              <p className="text-xs text-[#5f6d7b] mt-3 leading-relaxed">
-                Convert imagery, scanned maps and legacy records into structured vector datasets with complete attributes.
-              </p>
-              <Link href="/service/gisservice/datadigitization" className="text-xs font-extrabold text-[#1267b1] hover:underline mt-auto pt-5 inline-block group-hover:translate-x-1 transition-transform">
-                View service →
-              </Link>
-            </div>
-
-            {/* Card 2 */}
-            <div className="bg-white border border-[#dce5ee] hover:border-[#b9cfe2] rounded-2xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col min-h-[250px] group">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#eaf4fc] to-[#f5f9fc] flex items-center justify-center text-xl text-[#1267b1] mb-5 font-bold">
-                ▱
-              </div>
-              <h3 className="font-extrabold text-[#0c2e60] text-[17px] leading-tight">2D & 3D Feature Extraction</h3>
-              <p className="text-xs text-[#5f6d7b] mt-3 leading-relaxed">
-                Extract roads, buildings, rail assets, utilities, land features and engineering objects from multiple sources.
-              </p>
-              <Link href="/service/gisservice/gismapping" className="text-xs font-extrabold text-[#1267b1] hover:underline mt-auto pt-5 inline-block group-hover:translate-x-1 transition-transform">
-                View service →
-              </Link>
-            </div>
-
-            {/* Card 3 */}
-            <div className="bg-white border border-[#dce5ee] hover:border-[#b9cfe2] rounded-2xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col min-h-[250px] group">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#eaf4fc] to-[#f5f9fc] flex items-center justify-center text-xl text-[#1267b1] mb-5 font-bold">
-                ⌁
-              </div>
-              <h3 className="font-extrabold text-[#0c2e60] text-[17px] leading-tight">Utility & Network Mapping</h3>
-              <p className="text-xs text-[#5f6d7b] mt-3 leading-relaxed">
-                Build connected and attribute-rich GIS databases for power, water, pipeline and telecom networks.
-              </p>
-              <Link href="#contact" className="text-xs font-extrabold text-[#1267b1] hover:underline mt-auto pt-5 inline-block group-hover:translate-x-1 transition-transform">
-                View service →
-              </Link>
-            </div>
-
-            {/* Card 4 */}
-            <div className="bg-white border border-[#dce5ee] hover:border-[#b9cfe2] rounded-2xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col min-h-[250px] group">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#eaf4fc] to-[#f5f9fc] flex items-center justify-center text-xl text-[#1267b1] mb-5 font-bold">
-                ▦
-              </div>
-              <h3 className="font-extrabold text-[#0c2e60] text-[17px] leading-tight">Cadastral & Land Mapping</h3>
-              <p className="text-xs text-[#5f6d7b] mt-3 leading-relaxed">
-                Parcel digitisation, land-record integration, ownership layers, boundary mapping and municipal GIS support.
-              </p>
-              <Link href="#contact" className="text-xs font-extrabold text-[#1267b1] hover:underline mt-auto pt-5 inline-block group-hover:translate-x-1 transition-transform">
-                View service →
-              </Link>
-            </div>
-
-            {/* Card 5 */}
-            <div className="bg-white border border-[#dce5ee] hover:border-[#b9cfe2] rounded-2xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col min-h-[250px] group">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#eaf4fc] to-[#f5f9fc] flex items-center justify-center text-xl text-[#1267b1] mb-5 font-bold">
-                ◫
-              </div>
-              <h3 className="font-extrabold text-[#0c2e60] text-[17px] leading-tight">Remote Sensing & LULC</h3>
-              <p className="text-xs text-[#5f6d7b] mt-3 leading-relaxed">
-                Satellite image interpretation, classification, land-use mapping and change-detection analysis.
-              </p>
-              <Link href="#contact" className="text-xs font-extrabold text-[#1267b1] hover:underline mt-auto pt-5 inline-block group-hover:translate-x-1 transition-transform">
-                View service →
-              </Link>
-            </div>
-
-            {/* Card 6 */}
-            <div className="bg-white border border-[#dce5ee] hover:border-[#b9cfe2] rounded-2xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col min-h-[250px] group">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#eaf4fc] to-[#f5f9fc] flex items-center justify-center text-xl text-[#1267b1] mb-5 font-bold">
-                ∿
-              </div>
-              <h3 className="font-extrabold text-[#0c2e60] text-[17px] leading-tight">LiDAR & Point Cloud Processing</h3>
-              <p className="text-xs text-[#5f6d7b] mt-3 leading-relaxed">
-                Classification, ground extraction, feature mapping, terrain products and CAD/GIS conversion from point clouds.
-              </p>
-              <Link href="#contact" className="text-xs font-extrabold text-[#1267b1] hover:underline mt-auto pt-5 inline-block group-hover:translate-x-1 transition-transform">
-                View service →
-              </Link>
-            </div>
-
-            {/* Card 7 */}
-            <div className="bg-white border border-[#dce5ee] hover:border-[#b9cfe2] rounded-2xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col min-h-[250px] group">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#eaf4fc] to-[#f5f9fc] flex items-center justify-center text-xl text-[#1267b1] mb-5 font-bold">
-                ⇄
-              </div>
-              <h3 className="font-extrabold text-[#0c2e60] text-[17px] leading-tight">CAD–GIS Conversion</h3>
-              <p className="text-xs text-[#5f6d7b] mt-3 leading-relaxed">
-                Transform DWG, DXF and engineering drawings into clean, projected and database-ready GIS layers.
-              </p>
-              <Link href="#contact" className="text-xs font-extrabold text-[#1267b1] hover:underline mt-auto pt-5 inline-block group-hover:translate-x-1 transition-transform">
-                View service →
-              </Link>
-            </div>
-
-            {/* Card 8 */}
-            <div className="bg-white border border-[#dce5ee] hover:border-[#b9cfe2] rounded-2xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col min-h-[250px] group">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#eaf4fc] to-[#f5f9fc] flex items-center justify-center text-xl text-[#1267b1] mb-5 font-bold">
-                ⌁
-              </div>
-              <h3 className="font-extrabold text-[#0c2e60] text-[17px] leading-tight">Spatial Analysis & Geoprocessing</h3>
-              <p className="text-xs text-[#5f6d7b] mt-3 leading-relaxed">
-                Automated workflows, network analysis, terrain modelling, geocoding and location intelligence.
-              </p>
-              <Link href="/service/gisservice/webgisdevelopment" className="text-xs font-extrabold text-[#1267b1] hover:underline mt-auto pt-5 inline-block group-hover:translate-x-1 transition-transform">
-                View service →
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Delivery Method Workflow */}
-      <section className="py-24">
-        <div className="max-w-[1240px] mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-[0.78fr_1.22fr] gap-12 lg:gap-16 items-start">
-            
-            {/* Sticky Left Column */}
-            <div className="lg:sticky lg:top-32 space-y-5">
-              <div className="inline-flex items-center gap-3 text-xs font-extrabold tracking-[0.18em] text-[#1267b1] uppercase">
-                <span className="w-7 h-[2px] bg-[#e33434] rounded-full" />
-                Delivery Method
-              </div>
-              <h2 className="text-3xl md:text-[38px] font-extrabold text-[#0c2e60] tracking-tight leading-tight">
-                A transparent workflow from source data to final delivery
-              </h2>
-              <p className="text-[#5f6d7b] text-base leading-relaxed max-w-sm">
-                We keep the process visible so technical buyers understand how the data will be handled, validated and delivered.
-              </p>
-              <Link 
-                href="#contact" 
-                className="inline-flex items-center justify-center px-6 py-3 rounded-xl font-extrabold text-sm text-[#0c2e60] bg-white border border-[#cfdbe7] hover:border-[#1267b1] hover:text-[#1267b1] transition-all duration-200 mt-2"
-              >
-                Discuss Your Workflow
-              </Link>
-            </div>
-
-            {/* Steps Right Column */}
-            <div className="relative space-y-0 pl-16 md:pl-24">
-              {/* Timeline center line */}
-              <div className="absolute left-[34px] md:left-[50px] top-8 bottom-9 w-[2px] bg-[#dce5ee]" />
-
-              {/* Step 1 */}
-              <div className="relative pb-10 flex gap-6 md:gap-8 items-start group">
-                <div className="absolute left-[-50px] md:left-[-76px] w-[70px] h-[70px] rounded-2xl bg-[#0c2e60] text-white flex items-center justify-center font-black text-lg shadow-[0_12px_25px_rgba(11,35,65,0.15)] group-hover:scale-105 transition-transform duration-300">
-                  01
-                </div>
-                <div className="space-y-2">
-                  <h3 className="font-extrabold text-[#0c2e60] text-lg md:text-xl">Requirement and source-data review</h3>
-                  <p className="text-sm text-[#5f6d7b] leading-relaxed max-w-[620px]">
-                    We confirm mapping scale, coordinate system, accuracy, feature catalogue, attribute schema, file formats and acceptance criteria.
-                  </p>
-                  <div className="flex flex-wrap gap-2 pt-2">
-                    <span className="text-[11px] text-[#536374] bg-[#f0f4f8] border border-[#dce5ee] px-3 py-1 rounded-full">Scope</span>
-                    <span className="text-[11px] text-[#536374] bg-[#f0f4f8] border border-[#dce5ee] px-3 py-1 rounded-full">Accuracy</span>
-                    <span className="text-[11px] text-[#536374] bg-[#f0f4f8] border border-[#dce5ee] px-3 py-1 rounded-full">Feature code</span>
-                    <span className="text-[11px] text-[#536374] bg-[#f0f4f8] border border-[#dce5ee] px-3 py-1 rounded-full">Output format</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Step 2 */}
-              <div className="relative pb-10 flex gap-6 md:gap-8 items-start group">
-                <div className="absolute left-[-50px] md:left-[-76px] w-[70px] h-[70px] rounded-2xl bg-[#0c2e60] text-white flex items-center justify-center font-black text-lg shadow-[0_12px_25px_rgba(11,35,65,0.15)] group-hover:scale-105 transition-transform duration-300">
-                  02
-                </div>
-                <div className="space-y-2">
-                  <h3 className="font-extrabold text-[#0c2e60] text-lg md:text-xl">Production planning and pilot</h3>
-                  <p className="text-sm text-[#5f6d7b] leading-relaxed max-w-[620px]">
-                    A representative pilot helps verify interpretation rules, symbology, layer structure and delivery standards before full production.
-                  </p>
-                  <div className="flex flex-wrap gap-2 pt-2">
-                    <span className="text-[11px] text-[#536374] bg-[#f0f4f8] border border-[#dce5ee] px-3 py-1 rounded-full">POC</span>
-                    <span className="text-[11px] text-[#536374] bg-[#f0f4f8] border border-[#dce5ee] px-3 py-1 rounded-full">Sample tile</span>
-                    <span className="text-[11px] text-[#536374] bg-[#f0f4f8] border border-[#dce5ee] px-3 py-1 rounded-full">Client review</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Step 3 */}
-              <div className="relative pb-10 flex gap-6 md:gap-8 items-start group">
-                <div className="absolute left-[-50px] md:left-[-76px] w-[70px] h-[70px] rounded-2xl bg-[#0c2e60] text-white flex items-center justify-center font-black text-lg shadow-[0_12px_25px_rgba(11,35,65,0.15)] group-hover:scale-105 transition-transform duration-300">
-                  03
-                </div>
-                <div className="space-y-2">
-                  <h3 className="font-extrabold text-[#0c2e60] text-lg md:text-xl">Digitisation, extraction and processing</h3>
-                  <p className="text-sm text-[#5f6d7b] leading-relaxed max-w-[620px]">
-                    Our production team creates the required GIS, CAD, raster or point-cloud outputs using the approved specification.
-                  </p>
-                  <div className="flex flex-wrap gap-2 pt-2">
-                    <span className="text-[11px] text-[#536374] bg-[#f0f4f8] border border-[#dce5ee] px-3 py-1 rounded-full">GIS</span>
-                    <span className="text-[11px] text-[#536374] bg-[#f0f4f8] border border-[#dce5ee] px-3 py-1 rounded-full">CAD</span>
-                    <span className="text-[11px] text-[#536374] bg-[#f0f4f8] border border-[#dce5ee] px-3 py-1 rounded-full">LiDAR</span>
-                    <span className="text-[11px] text-[#536374] bg-[#f0f4f8] border border-[#dce5ee] px-3 py-1 rounded-full">Remote sensing</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Step 4 */}
-              <div className="relative pb-10 flex gap-6 md:gap-8 items-start group">
-                <div className="absolute left-[-50px] md:left-[-76px] w-[70px] h-[70px] rounded-2xl bg-[#0c2e60] text-white flex items-center justify-center font-black text-lg shadow-[0_12px_25px_rgba(11,35,65,0.15)] group-hover:scale-105 transition-transform duration-300">
-                  04
-                </div>
-                <div className="space-y-2">
-                  <h3 className="font-extrabold text-[#0c2e60] text-lg md:text-xl">Independent QA/QC</h3>
-                  <p className="text-sm text-[#5f6d7b] leading-relaxed max-w-[620px]">
-                    Geometry, topology, connectivity, attribution, positional consistency, edge matching and completeness are checked against the standard.
-                  </p>
-                  <div className="flex flex-wrap gap-2 pt-2">
-                    <span className="text-[11px] text-[#536374] bg-[#f0f4f8] border border-[#dce5ee] px-3 py-1 rounded-full">Topology</span>
-                    <span className="text-[11px] text-[#536374] bg-[#f0f4f8] border border-[#dce5ee] px-3 py-1 rounded-full">Attributes</span>
-                    <span className="text-[11px] text-[#536374] bg-[#f0f4f8] border border-[#dce5ee] px-3 py-1 rounded-full">Completeness</span>
-                    <span className="text-[11px] text-[#536374] bg-[#f0f4f8] border border-[#dce5ee] px-3 py-1 rounded-full">Compliance</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Step 5 */}
-              <div className="relative flex gap-6 md:gap-8 items-start group">
-                <div className="absolute left-[-50px] md:left-[-76px] w-[70px] h-[70px] rounded-2xl bg-[#0c2e60] text-white flex items-center justify-center font-black text-lg shadow-[0_12px_25px_rgba(11,35,65,0.15)] group-hover:scale-105 transition-transform duration-300">
-                  05
-                </div>
-                <div className="space-y-2">
-                  <h3 className="font-extrabold text-[#0c2e60] text-lg md:text-xl">Review, delivery and support</h3>
-                  <p className="text-sm text-[#5f6d7b] leading-relaxed max-w-[620px]">
-                    We deliver in the required structure, support review comments and maintain clear revision and issue-tracking records.
-                  </p>
-                  <div className="flex flex-wrap gap-2 pt-2">
-                    <span className="text-[11px] text-[#536374] bg-[#f0f4f8] border border-[#dce5ee] px-3 py-1 rounded-full">Milestones</span>
-                    <span className="text-[11px] text-[#536374] bg-[#f0f4f8] border border-[#dce5ee] px-3 py-1 rounded-full">Revision log</span>
-                    <span className="text-[11px] text-[#536374] bg-[#f0f4f8] border border-[#dce5ee] px-3 py-1 rounded-full">Final handover</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-
-
-      {/* Outputs & Quality Section */}
-      <section className="py-24">
-        <div className="max-w-[1240px] mx-auto px-6">
-          <div className="space-y-4 max-w-2xl mb-12">
-            <div className="inline-flex items-center gap-3 text-xs font-extrabold tracking-[0.18em] text-[#1267b1] uppercase">
-              <span className="w-7 h-[2px] bg-[#e33434] rounded-full" />
-              Outputs & Quality
-            </div>
-            <h2 className="text-3xl md:text-[38px] font-extrabold text-[#0c2e60] tracking-tight leading-tight">
-              Deliverables that fit your existing software and engineering workflow
+      {/* 3. GIS SERVICES LIST (Alternating Rows matching Drone Services) */}
+      <section className="py-16 md:py-24 bg-white" id="services">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12">
+          
+          <div className="text-center mb-16 max-w-3xl mx-auto">
+            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-3 block">
+              OUR GIS SERVICES
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] tracking-tight">
+              GIS Production and Analysis for Different Project Requirements
             </h2>
-            <p className="text-[#5f6d7b] text-[17px] leading-relaxed">
-              We structure deliverables to prevent projection, geometry, and attribute compliance issues in your GIS databases.
+            <p className="text-gray-600 text-sm md:text-base mt-3 leading-relaxed">
+              Eight primary geospatial service areas built around spatial accuracy, layer structure and workflow compatibility.
             </p>
           </div>
 
-          {/* Grid Panels */}
-          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-10 items-stretch">
-            {/* Left Panel: Deliverables */}
-            <div className="bg-[#f4f7fa] border border-[#dce5ee] rounded-3xl p-6 sm:p-8 flex flex-col justify-between">
-              <div>
-                <h3 className="text-xl font-extrabold text-[#0c2e60] mb-2">Common delivery formats</h3>
-                
-                {/* Custom Tabs */}
-                <div className="flex gap-2 flex-wrap my-6">
-                  {formatCategories.map((cat, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setActiveTab(cat)}
-                      className={`px-4 py-2 rounded-lg font-bold text-xs border transition-all duration-200 ${
-                        activeTab === cat 
-                          ? 'bg-[#1267b1] border-[#1267b1] text-white shadow-md' 
-                          : 'bg-white border-[#d5e0ea] text-[#526273] hover:border-[#1267b1] hover:text-[#1267b1]'
-                      }`}
-                    >
-                      {cat}
-                    </button>
-                  ))}
-                </div>
-
-                {/* Formats Grid */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                  {filteredFormats.map((fmt, idx) => (
-                    <div key={idx} className="bg-white border border-[#dbe5ee] rounded-xl p-4 shadow-sm hover:border-[#1267b1] transition-all duration-200 animate-fadeIn">
-                      <b className="block text-sm text-[#0c2e60] font-extrabold leading-tight">{fmt.name}</b>
-                      <span className="block text-[11px] text-[#748191] mt-1">{fmt.ext}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Right Panel: Quality Control */}
-            <div className="bg-gradient-to-br from-[#0c2e60] to-[#163e6d] rounded-3xl p-6 sm:p-8 text-white flex flex-col justify-between">
-              <div>
-                <h3 className="text-xl font-extrabold text-white mb-3">Quality checks included in the workflow</h3>
-                <p className="text-xs text-blue-200 leading-relaxed mb-6">
-                  Quality-control criteria can be customised to match your database schema and specific project acceptance criteria.
-                </p>
-                <div className="space-y-3.5">
-                  {[
-                    'Geometry and topology validation',
-                    'Attribute completeness and domain checks',
-                    'Connectivity, overshoot and undershoot checks',
-                    'Edge matching and positional consistency',
-                    'Layer naming, projection and format compliance'
-                  ].map((chk, idx) => (
-                    <div key={idx} className="flex gap-3.5 items-start text-sm text-blue-50">
-                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-white/10 text-[#70d4ca] font-extrabold text-xs flex items-center justify-center">
-                        ✓
-                      </span>
-                      <span className="pt-0.5 leading-snug">{chk}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <Link 
-                href="#contact" 
-                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl font-extrabold text-sm text-white bg-[#e33434] hover:bg-[#c92828] shadow-md hover:-translate-y-0.5 transition-all duration-200 mt-8 self-start"
+          <div className="flex flex-col divide-y divide-gray-100">
+            {gisServices.map((svc, i) => (
+              <div 
+                key={svc.number} 
+                className={`py-10 md:py-16 flex flex-col ${i % 2 !== 0 ? "lg:flex-row-reverse" : "lg:flex-row"} gap-6 sm:gap-10 lg:gap-16 items-start`}
               >
-                Share Your Specification →
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Experience Case Study */}
-      <section className="py-24 bg-[#f7fafc] border-t border-[#dce5ee]" id="projects">
-        <div className="max-w-[1240px] mx-auto px-6">
-          <div className="flex flex-col lg:flex-row lg:justify-between lg:items-end gap-6 mb-12">
-            <div className="space-y-4 max-w-2xl">
-              <div className="inline-flex items-center gap-3 text-xs font-extrabold tracking-[0.18em] text-[#1267b1] uppercase">
-                <span className="w-7 h-[2px] bg-[#e33434] rounded-full" />
-                Featured Experience
-              </div>
-              <h2 className="text-3xl md:text-[38px] font-extrabold text-[#0c2e60] tracking-tight">
-                Show measurable GIS project experience, not generic claims
-              </h2>
-            </div>
-            <div className="lg:max-w-[280px] border-l-2 border-[#e33434] pl-4 text-xs leading-relaxed text-[#6c7987]">
-              Replace this concept artwork with actual project imagery, client-approved screenshots and final mapping outputs.
-            </div>
-          </div>
-
-          {/* Case Study Card */}
-          <div className="bg-white border border-[#dce5ee] rounded-3xl overflow-hidden shadow-[0_20px_55px_rgba(11,35,65,0.06)] grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr]">
-            {/* Visual Column */}
-            <div className="bg-[#d8e5d6] relative min-h-[380px] overflow-hidden flex items-center justify-center border-b lg:border-b-0 lg:border-r border-[#dce5ee]">
-              <svg viewBox="0 0 650 520" className="w-full h-full block object-cover">
-                <defs>
-                  <linearGradient id="mine" x1="0" y1="0" x2="1" y2="1">
-                    <stop stopColor="#c5d4b7" />
-                    <stop offset="1" stopColor="#8eaa7e" />
-                  </linearGradient>
-                </defs>
-                <rect width="650" height="520" fill="url(#mine)" />
-                <path d="M-30 95c137-79 244-55 341 3s179 72 369 13v130c-140 50-248 26-365-13S115 176-30 242Z" fill="#b3c9e2" />
-                <path d="M23 384c92-54 184-68 284-24 84 37 174 45 369-22v182H0Z" fill="#a7c3dd" />
-                <g fill="#dbe2c9" stroke="#9aab8d" strokeWidth="2">
-                  <path d="M44 42h146l17 94-155 29z" />
-                  <path d="M219 37h154l8 117-165 11z" />
-                  <path d="M398 43h198l17 105-202 19z" />
-                  <path d="M55 235l165-25 17 113-174 24z" />
-                  <path d="M249 212l159-10 20 127-171 8z" />
-                  <path d="M445 202l164-13 25 128-174 17z" />
-                </g>
-                <path d="M-40 286c130-49 224-44 330 5 111 51 219 54 404-11" fill="none" stroke="#fff" strokeWidth="26" />
-                <path d="M-40 286c130-49 224-44 330 5 111 51 219 54 404-11" fill="none" stroke="#4e5964" strokeWidth="4" strokeDasharray="18 12" />
-                <g fill="none" stroke="#e33434" strokeWidth="4">
-                  <path d="M49 237l170-28 18 115-176 24z" />
-                  <path d="M247 212l161-10 20 127-171 8z" />
-                  <path d="M444 202l164-13 26 128-175 17z" />
-                </g>
-                <g fill="#0b2341">
-                  <circle cx="176" cy="264" r="8" />
-                  <circle cx="339" cy="274" r="8" />
-                  <circle cx="519" cy="254" r="8" />
-                </g>
-                <g fill="none" stroke="#078a86" strokeWidth="2">
-                  <path d="M30 440c71-35 142-36 213-9s154 34 237 7c55-18 99-17 153 8" />
-                  <path d="M30 463c73-29 143-30 216-6s151 31 235 5c55-17 100-15 153 10" />
-                </g>
-              </svg>
-              <div className="absolute left-6 top-6 bg-white border border-[#dce6ef] px-4 py-2.5 rounded-xl shadow-md text-xs font-black text-[#0c2e60]">
-                GIS + CAD MAPPING PROJECT
-              </div>
-            </div>
-
-            {/* Content Column */}
-            <div className="p-8 sm:p-12 flex flex-col justify-center space-y-6">
-              <div className="inline-flex items-center gap-3 text-xs font-extrabold tracking-[0.18em] text-[#1267b1] uppercase">
-                Mining & Natural Resources
-              </div>
-              <h2 className="text-2xl sm:text-[34px] font-extrabold text-[#0c2e60] tracking-tight leading-tight">
-                2D feature extraction and CAD mapping across 556+ sq. km
-              </h2>
-              <p className="text-[#5f6d7b] text-sm md:text-base leading-relaxed">
-                Large-area mapping of roads, haul roads, built-up areas, water bodies, railways, conveyors, agricultural land and mining-related features.
-              </p>
-
-              {/* Metrics grid */}
-              <div className="grid grid-cols-3 gap-3 my-4">
-                <div className="bg-[#fbfdff] border border-[#dce5ee] rounded-xl p-3.5">
-                  <b className="block text-base sm:text-lg text-[#0c2e60] font-extrabold">556+ km²</b>
-                  <span className="block text-[10px] text-[#748191] mt-0.5 leading-snug">Mapped project area</span>
+                <div className="relative w-full lg:w-[42%] h-[240px] sm:h-[320px] rounded-2xl overflow-hidden shadow-lg flex-shrink-0">
+                  <Image 
+                    src={svc.image} 
+                    alt={svc.title} 
+                    fill 
+                    sizes="(max-width: 1024px) 100vw, 50vw" 
+                    className="object-cover object-center" 
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                 </div>
-                <div className="bg-[#fbfdff] border border-[#dce5ee] rounded-xl p-3.5">
-                  <b className="block text-base sm:text-lg text-[#0c2e60] font-extrabold">GIS + CAD</b>
-                  <span className="block text-[10px] text-[#748191] mt-0.5 leading-snug">Integrated deliverables</span>
-                </div>
-                <div className="bg-[#fbfdff] border border-[#dce5ee] rounded-xl p-3.5">
-                  <b className="block text-base sm:text-lg text-[#0c2e60] font-extrabold">Multi-theme</b>
-                  <span className="block text-[10px] text-[#748191] mt-0.5 leading-snug">Feature catalogue</span>
-                </div>
-              </div>
+                <div className="flex flex-col flex-1">
+                  <span className="text-[#6ac045] text-xs font-bold uppercase tracking-widest mb-2">
+                    {svc.number}
+                  </span>
+                  <h3 className="text-2xl md:text-3xl font-bold text-[#0c2e60] mb-4 leading-tight">
+                    {svc.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm md:text-[15px] leading-relaxed mb-6">
+                    {svc.description}
+                  </p>
 
-              {/* Checkpoints */}
-              <div className="space-y-2 text-xs md:text-sm text-[#455668]">
-                <div className="flex gap-2">
-                  <span className="text-[#078a86] font-bold">✓</span>
-                  <span>Defined feature-code and layer structure to project specification</span>
-                </div>
-                <div className="flex gap-2">
-                  <span className="text-[#078a86] font-bold">✓</span>
-                  <span>Production, independent QA and client feedback loop cycles</span>
-                </div>
-                <div className="flex gap-2">
-                  <span className="text-[#078a86] font-bold">✓</span>
-                  <span>Final delivery of projected GIS and engineering-compatible files</span>
-                </div>
-              </div>
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 mb-6">
+                    {svc.items.map((item, j) => (
+                      <li key={j} className="flex items-start gap-2 text-gray-600 text-sm">
+                        <span className="text-[#6ac045] font-bold mt-0.5 flex-shrink-0">&#10003;</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
 
-              <Link 
-                href="/portfolios" 
-                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl font-extrabold text-sm text-white bg-[#0c2e60] hover:bg-[#102f57] hover:-translate-y-0.5 transition-all self-start shadow-md"
-              >
-                View Project Experience →
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+                  {svc.inputs && (
+                    <div className="bg-[#f8fafc] border border-gray-200 p-3 rounded-xl text-xs text-gray-600 mb-6">
+                      {svc.inputs}
+                    </div>
+                  )}
 
-      {/* Why Techmapperz Section */}
-      <section className="py-24">
-        <div className="max-w-[1240px] mx-auto px-6">
-          <div className="space-y-4 max-w-2xl mb-14 text-center mx-auto">
-            <div className="inline-flex items-center gap-3 text-xs font-extrabold tracking-[0.18em] text-[#1267b1] uppercase justify-center">
-              <span className="w-7 h-[2px] bg-[#e33434] rounded-full" />
-              Why Techmapperz
-            </div>
-            <h2 className="text-3xl md:text-[38px] font-extrabold text-[#0c2e60] tracking-tight">
-              A geospatial-led team built for practical delivery
-            </h2>
-          </div>
+                  {svc.outputs && (
+                    <div className="bg-[#f8fafc] border border-gray-200 p-3 rounded-xl text-xs text-gray-600 mb-6">
+                      {svc.outputs}
+                    </div>
+                  )}
 
-          {/* Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { tag: '01 · DOMAIN', title: 'GIS-first project understanding', desc: 'Requirements are reviewed by professionals familiar with mapping standards, source-data limitations and real production risks.' },
-              { tag: '02 · DELIVERY', title: 'End-to-end geospatial support', desc: 'From data review and pilot production through GIS processing, QA/QC, final delivery and revision support.' },
-              { tag: '03 · FORMAT', title: 'GIS, CAD, raster and LiDAR expertise', desc: 'Outputs are prepared for the software, databases and engineering workflows your team already uses.' },
-              { tag: '04 · SCALE', title: 'Flexible production capacity', desc: 'Suitable for focused technical assignments, pilot projects and larger recurring mapping programmes.' },
-              { tag: '05 · QA', title: 'Structured review and quality control', desc: 'Clear checkpoints, issue logs, validation criteria and review cycles reduce rework and delivery uncertainty.' },
-              { tag: '06 · DIGITAL', title: 'GIS application development', desc: 'Mapping outputs can be transformed into Web GIS, dashboards, mobile field apps and asset-management systems.' }
-            ].map((card, idx) => (
-              <div key={idx} className="bg-white border border-[#dce5ee] rounded-2xl p-6 hover:shadow-lg transition-all duration-300">
-                <span className="text-[11px] font-black tracking-widest text-[#e33434]">{card.tag}</span>
-                <h3 className="font-extrabold text-[#0c2e60] text-lg mt-3 leading-tight">{card.title}</h3>
-                <p className="text-xs text-[#5f6d7b] mt-2.5 leading-relaxed">{card.desc}</p>
+                  {svc.evidence && (
+                    <div className="bg-[#f0f9f8] border border-[#bcecdb] p-3 rounded-xl text-xs text-[#078a86] font-bold mb-6">
+                      {svc.evidence}
+                    </div>
+                  )}
+
+                  <Link 
+                    href={svc.link} 
+                    className="inline-flex items-center justify-center gap-2 bg-[#0c2e60] hover:bg-[#082046] text-white font-bold text-sm px-8 py-3.5 rounded-full transition-all duration-300 shadow-md w-full sm:w-fit"
+                  >
+                    {svc.cta} &#8594;
+                  </Link>
+                </div>
               </div>
             ))}
           </div>
+
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-24 bg-[#f4f7fa] border-t border-[#dce5ee]">
-        <div className="max-w-[1240px] mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-12 lg:gap-16 items-start">
-            
-            {/* Left Column */}
-            <div className="space-y-4">
-              <div className="inline-flex items-center gap-3 text-xs font-extrabold tracking-[0.18em] text-[#1267b1] uppercase">
-                <span className="w-7 h-[2px] bg-[#e33434] rounded-full" />
-                Frequently Asked Questions
-              </div>
-              <h2 className="text-3xl md:text-[38px] font-extrabold text-[#0c2e60] tracking-tight leading-tight">
-                Questions technical buyers usually ask before starting
-              </h2>
-              <p className="text-[#5f6d7b] text-base leading-relaxed max-w-sm">
-                Use service-specific FAQs to improve clarity and target long-tail search queries naturally.
-              </p>
-            </div>
+      {/* 4. SOURCE FORMATS SECTION */}
+      <section className="py-16 md:py-24 bg-[#f8fafc]" id="source-data">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12">
+          
+          <div className="text-center mb-14">
+            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-3 block">
+              START WITH THE DATA YOU HAVE
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] tracking-tight">
+              GIS Projects Can Begin with Many Different Source Formats
+            </h2>
+            <p className="text-gray-600 text-sm md:text-[15px] mt-3 max-w-2xl mx-auto leading-relaxed">
+              You do not need to convert all of your information before sharing a requirement with us. We review the available source data and determine what is suitable for the required output.
+            </p>
+          </div>
 
-            {/* Right Column Accordion */}
-            <div className="space-y-3">
-              {faqData.map((faq, idx) => (
-                <div key={idx} className="bg-white border border-[#dce5ee] rounded-2xl shadow-sm overflow-hidden">
-                  <button
-                    onClick={() => setOpenFaq(openFaq === idx ? -1 : idx)}
-                    className="w-full flex justify-between items-center text-left p-5 font-extrabold text-[#0c2e60] text-sm md:text-base gap-6"
-                  >
-                    <span>{faq.question}</span>
-                    <span className="text-[#1267b1] text-2xl font-light select-none leading-none">
-                      {openFaq === idx ? '–' : '+'}
-                    </span>
-                  </button>
-                  <div 
-                    className={`transition-all duration-300 ease-in-out ${
-                      openFaq === idx ? 'max-h-[300px] border-t border-[#dce5ee]' : 'max-h-0 pointer-events-none'
-                    }`}
-                  >
-                    <p className="p-5 text-xs md:text-sm text-[#5f6d7b] leading-relaxed">
-                      {faq.answer}
-                    </p>
-                  </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {sourceDataCategories.map((cat, i) => (
+              <div key={i} className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="w-8 h-8 rounded-full bg-[#0c2e60] text-white font-bold text-xs flex items-center justify-center">
+                    0{i + 1}
+                  </span>
+                  <h3 className="text-[#0c2e60] font-bold text-base">{cat.title}</h3>
+                </div>
+                <ul className="flex flex-col gap-2">
+                  {cat.items.map((item, j) => (
+                    <li key={j} className="flex items-center gap-2 text-gray-600 text-sm">
+                      <span className="text-[#6ac045] font-bold">&#10003;</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <Link href="#contact" className="inline-block w-full sm:w-auto">
+              <button className="w-full sm:w-auto py-3.5 px-8 rounded-full bg-[#0c2e60] hover:bg-[#082046] text-white font-bold text-sm transition-all duration-300 shadow-md">
+                Share Your Source Data &#8594;
+              </button>
+            </Link>
+          </div>
+
+        </div>
+      </section>
+
+      {/* 5. SPECIFICATION CHECKLIST (Dark Blue Block matching Drone Inputs) */}
+      <section className="py-16 md:py-24 bg-[#0c2e60] text-white" id="specification">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12">
+          
+          <div className="text-center mb-14">
+            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-3 block">
+              BEFORE PRODUCTION BEGINS
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+              A Clear Specification Reduces Rework Later
+            </h2>
+            <p className="text-blue-200 text-sm md:text-[15px] mt-3 max-w-2xl mx-auto leading-relaxed">
+              For an effective GIS quotation and production plan, share as much of the following information as available:
+            </p>
+          </div>
+
+          <div className="bg-white/10 rounded-2xl border border-white/10 p-8 shadow-sm mb-10 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {specificationChecklist.map((item, i) => (
+                <div key={i} className="flex items-start gap-3 text-blue-100 text-sm">
+                  <span className="text-[#6ac045] font-bold flex-shrink-0 mt-0.5">&#10003;</span>
+                  <span>{item}</span>
                 </div>
               ))}
             </div>
-
+            <p className="text-xs text-blue-200 mt-6 pt-4 border-t border-white/15 text-center">
+              If some information is not yet available, we can identify the missing decisions during the requirement review.
+            </p>
           </div>
+
+          <div className="text-center">
+            <Link href="#contact" className="inline-block w-full sm:w-auto">
+              <button className="w-full sm:w-auto py-[12px] px-8 rounded-full bg-[#6ac045] hover:bg-[#5aad38] text-white font-bold text-sm transition-all duration-300 shadow-md">
+                Send Your Scope of Work &#8594;
+              </button>
+            </Link>
+          </div>
+
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-12 md:py-24 bg-[#f4f7fa]" id="contact">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
-          <div className="bg-gradient-to-br from-[#0b2341] via-[#10477b] to-[#0b6b69] rounded-2xl sm:rounded-[26px] p-6 sm:p-8 md:p-14 text-white relative overflow-hidden flex flex-col lg:flex-row lg:items-center justify-between gap-6 sm:gap-10 shadow-xl">
-            {/* Circle graphic */}
-            <div className="absolute right-[-80px] top-[-120px] w-[360px] h-[360px] border border-white/10 rounded-full shadow-[0_0_0_48px_rgba(255,255,255,0.05),0_0_0_96px_rgba(255,255,255,0.03)] pointer-events-none" />
-
-            <div className="space-y-3 sm:space-y-4 max-w-2xl relative z-10">
-              <h2 className="text-xl sm:text-2xl md:text-[38px] font-extrabold text-white tracking-tight leading-snug sm:leading-tight">
-                Have a GIS mapping or data-conversion requirement?
-              </h2>
-              <p className="text-blue-100 text-xs sm:text-sm md:text-base leading-relaxed">
-                Share your project area, source data, feature list, coordinate system, accuracy requirement, expected formats and timeline. Our team will review the requirement and suggest a suitable workflow.
-              </p>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 relative z-10 w-full sm:w-auto shrink-0 self-stretch sm:self-start lg:self-center">
-              <a 
-                href="mailto:info@techmapperz.com" 
-                className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 rounded-xl font-bold text-xs sm:text-sm text-white bg-[#e33434] hover:bg-[#c92828] shadow-md hover:-translate-y-0.5 transition-all duration-200 w-full sm:w-auto text-center"
-              >
-                Request a Project Assessment →
-              </a>
-              <Link 
-                href="/contact" 
-                className="inline-flex items-center justify-center px-5 sm:px-6 py-3 sm:py-3.5 rounded-xl font-bold text-xs sm:text-sm text-[#0c2e60] bg-white border border-transparent hover:-translate-y-0.5 transition-all duration-200 w-full sm:w-auto text-center"
-              >
-                Upload Scope of Work
-              </Link>
-            </div>
+      {/* 6. WORKFLOW SECTION (Matching Drone Workflow Grid) */}
+      <section className="py-16 md:py-24 bg-white" id="workflow">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12">
+          
+          <div className="text-center mb-16">
+            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-3 block">
+              HOW WE WORK
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] tracking-tight">
+              From Requirement Review to Final GIS Delivery
+            </h2>
           </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+            {workflowSteps.map((step, i) => (
+              <div key={i} className="bg-[#f8fafc] rounded-2xl p-6 border border-gray-100 hover:shadow-md transition-shadow">
+                <div className="w-10 h-10 rounded-full bg-[#0c2e60] flex items-center justify-center text-white font-bold text-sm mb-4">
+                  {step.num}
+                </div>
+                <h3 className="text-[#0c2e60] font-bold text-base mb-2">{step.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <Link href="#contact" className="inline-block w-full sm:w-auto">
+              <button className="w-full sm:w-auto py-3 px-8 rounded-full border border-[#0c2e60] text-[#0c2e60] font-bold text-sm hover:bg-[#0c2e60] hover:text-white transition-all duration-300">
+                Discuss Your GIS Workflow &#8594;
+              </button>
+            </Link>
+          </div>
+
+        </div>
+      </section>
+
+      {/* 7. GIS QUALITY CONTROL SECTION */}
+      <section className="py-16 md:py-24 bg-[#f8fafc]" id="quality">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12">
+          
+          <div className="text-center mb-14">
+            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-3 block">
+              GIS QUALITY CONTROL
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] tracking-tight">
+              Quality Checks Should Follow the Project Specification
+            </h2>
+            <p className="text-gray-600 text-sm md:text-[15px] mt-3 max-w-2xl mx-auto leading-relaxed">
+              Avoid presenting QA/QC as a generic promise of “accuracy.” Different GIS projects have different acceptance criteria. A pipeline database may prioritise connectivity and attributes, while land-use mapping may focus on interpretation and polygon completeness.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+            {qualityPillars.map((pillar, i) => (
+              <div key={i} className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+                <div className="w-2 h-2 rounded-full bg-[#6ac045] mb-3" />
+                <h3 className="text-[#0c2e60] font-bold text-base mb-3">{pillar.title}</h3>
+                <ul className="flex flex-col gap-2">
+                  {pillar.checks.map((chk, j) => (
+                    <li key={j} className="flex items-center gap-2 text-gray-600 text-sm">
+                      <span className="text-[#6ac045] font-bold">&#10003;</span>
+                      {chk}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <Link href="#contact" className="inline-block w-full sm:w-auto">
+              <button className="w-full sm:w-auto py-3.5 px-8 rounded-full bg-[#0c2e60] hover:bg-[#082046] text-white font-bold text-sm transition-all duration-300 shadow-md">
+                Share Your GIS Specification &#8594;
+              </button>
+            </Link>
+          </div>
+
+        </div>
+      </section>
+
+      {/* 8. DELIVERY FORMATS SECTION */}
+      <section className="py-16 md:py-24 bg-white" id="deliverables">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12">
+          
+          <div className="text-center mb-12">
+            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-3 block">
+              DELIVERY FORMATS
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] tracking-tight">
+              GIS Outputs Prepared for Your Existing Workflow
+            </h2>
+            <p className="text-gray-600 text-sm md:text-[15px] mt-3 max-w-2xl mx-auto leading-relaxed">
+              Final deliverables depend on the project specification and available source information.
+            </p>
+          </div>
+
+          {/* Format Tabs */}
+          <div className="flex gap-2 flex-wrap justify-center mb-8">
+            {formatCategories.map((cat, idx) => (
+              <button
+                key={idx}
+                onClick={() => setActiveFormatTab(cat)}
+                className={`px-5 py-2.5 rounded-full font-bold text-xs border transition-all duration-200 ${
+                  activeFormatTab === cat 
+                    ? 'bg-[#0c2e60] border-[#0c2e60] text-white shadow-md' 
+                    : 'bg-[#f8fafc] border-gray-300 text-gray-700 hover:border-[#0c2e60]'
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+            {filteredFormats.map((fmt, i) => (
+              <div key={i} className="bg-[#f8fafc] border border-gray-200 rounded-2xl p-5 hover:border-[#0c2e60] transition-colors">
+                <span className="text-[10px] font-bold text-[#6ac045] uppercase tracking-wider block mb-1">{fmt.cat}</span>
+                <strong className="block text-base text-[#0c2e60] font-bold leading-tight">{fmt.name}</strong>
+                <span className="block text-xs text-gray-500 mt-1">{fmt.ext}</span>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* 9. INDUSTRIES / SECTORS SECTION (Matching Drone Industries Grid) */}
+      <section className="py-16 md:py-24 bg-[#f8fafc]" id="sectors">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12">
+          
+          <div className="text-center mb-14">
+            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-3 block">
+              GIS FOR DIFFERENT SECTORS
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] tracking-tight">
+              Mapping Workflows Change from One Industry to Another
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {industries.map((ind, i) => (
+              <div 
+                key={i} 
+                className={`rounded-2xl p-6 border transition-shadow ${
+                  ind.isHighlight 
+                    ? 'bg-[#0c2e60] text-white border-[#0c2e60] shadow-lg' 
+                    : 'bg-white text-gray-900 border-gray-200 shadow-sm hover:shadow-md'
+                }`}
+              >
+                <div className="w-2 h-2 rounded-full bg-[#6ac045] mb-4" />
+                {ind.isHighlight && (
+                  <span className="text-[10px] font-bold text-[#6ac045] uppercase tracking-widest block mb-1">
+                    SUBCONTRACTING & PROCESSING PARTNER
+                  </span>
+                )}
+                <h3 className={`font-bold text-base mb-2 ${ind.isHighlight ? 'text-white' : 'text-[#0c2e60]'}`}>
+                  {ind.title}
+                </h3>
+                <p className={`text-sm leading-relaxed ${ind.isHighlight ? 'text-blue-100' : 'text-gray-500'}`}>
+                  {ind.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* 10. SELECTED GIS PROJECT EXPERIENCE (Dark Blue Block matching Drone Experience) */}
+      <section className="py-16 md:py-24 bg-[#0c2e60] text-white" id="experience">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12">
+          
+          <div className="text-center mb-14">
+            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-3 block">
+              SELECTED GIS PROJECT EXPERIENCE
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+              Real GIS Work Behind the Service List
+            </h2>
+          </div>
+
+          <div className="space-y-8">
+            {projectExperiences.map((proj, i) => (
+              <div key={i} className="bg-white/10 border border-white/10 rounded-2xl overflow-hidden flex flex-col lg:flex-row">
+                <div className="relative w-full lg:w-[45%] h-[240px] lg:h-auto flex-shrink-0">
+                  <Image 
+                    src={proj.image} 
+                    alt={proj.title} 
+                    fill 
+                    sizes="(max-width: 1024px) 100vw, 50vw" 
+                    className="object-cover object-center" 
+                  />
+                </div>
+                <div className="p-8 md:p-10 flex flex-col justify-center gap-4">
+                  <p className="text-[#6ac045] text-xs font-bold uppercase tracking-widest">
+                    {proj.sector}
+                  </p>
+                  <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight">
+                    {proj.title}
+                  </h3>
+                  <p className="text-blue-200 text-sm md:text-[15px] leading-relaxed">
+                    {proj.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    {proj.stats.map((st, j) => (
+                      <span key={j} className="text-xs font-medium bg-white/10 border border-white/15 text-blue-100 px-3 py-1.5 rounded-full">
+                        <strong>{st.value}</strong> ({st.label})
+                      </span>
+                    ))}
+                  </div>
+                  <Link href={proj.link} className="mt-2 w-full sm:w-fit">
+                    <button className="w-full sm:w-auto py-3 px-7 rounded-full bg-[#6ac045] hover:bg-[#5aad38] text-white font-bold text-sm transition-all duration-300">
+                      View Project Details &#8594;
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* 11. WEB & MOBILE GIS INTEGRATION */}
+      <section className="py-16 md:py-24 bg-white" id="webgis">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12">
+          
+          <div className="bg-[#f8fafc] rounded-3xl border border-gray-200 p-8 md:p-12 flex flex-col lg:flex-row items-center justify-between gap-8 shadow-sm">
+            <div className="space-y-4 max-w-2xl">
+              <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] block">
+                FROM GIS DATA TO DIGITAL ACCESS
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#0c2e60]">
+                Need Your GIS Data Available Beyond Desktop Software?
+              </h2>
+              <p className="text-gray-600 text-sm md:text-base leading-relaxed">
+                Completed spatial databases can also be connected to Web GIS, dashboards and mobile field applications when project teams need broader access to the information.
+              </p>
+              <div className="flex flex-wrap gap-2 pt-2">
+                {[
+                  "Asset-management GIS",
+                  "Web mapping applications",
+                  "Geoportals",
+                  "Project dashboards",
+                  "Mobile GIS applications",
+                  "Field-data collection"
+                ].map((tag, i) => (
+                  <span key={i} className="text-xs font-medium bg-white border border-gray-200 text-gray-700 px-3 py-1 rounded-full">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <Link href="/service/gisservice/webgisdevelopment" className="w-full sm:w-auto shrink-0">
+              <button className="w-full sm:w-auto py-3.5 px-8 rounded-full bg-[#0c2e60] hover:bg-[#082046] text-white font-bold text-sm transition-all duration-300 shadow-md">
+                Explore Web & Mobile GIS Development &#8594;
+              </button>
+            </Link>
+          </div>
+
+        </div>
+      </section>
+
+      {/* 12. WHY TECHMAPPERZ (Matching Drone Why Techmapperz Grid) */}
+      <section className="py-16 md:py-24 bg-white" id="why-us">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12">
+          
+          <div className="text-center mb-14">
+            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-3 block">
+              WHY TECHMAPPERZ
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] tracking-tight">
+              A GIS Production Partner Focused on Usable Deliverables
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {whyPoints.map((pt, i) => (
+              <div key={i} className="bg-[#f8fafc] rounded-2xl p-6 border border-gray-100 hover:shadow-md transition-shadow">
+                <div className="w-8 h-8 rounded-full bg-[#0c2e60] flex items-center justify-center mb-4">
+                  <div className="w-2 h-2 rounded-full bg-[#6ac045]" />
+                </div>
+                <h3 className="text-[#0c2e60] font-bold text-base mb-2">{pt.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed">{pt.desc}</p>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* 13. FREQUENTLY ASKED QUESTIONS (Matching Drone FaqItem) */}
+      <section className="py-16 md:py-24 bg-[#f8fafc]" id="faqs">
+        <div className="max-w-4xl mx-auto px-4 sm:px-8">
+          
+          <div className="text-center mb-14">
+            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-3 block">
+              COMMON QUESTIONS
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] tracking-tight">
+              Frequently Asked Questions
+            </h2>
+          </div>
+
+          <div className="bg-white rounded-2xl border border-gray-200 p-6 md:p-8 shadow-sm divide-y divide-gray-100">
+            {faqs.map((faq, i) => (
+              <FaqItem key={i} faq={faq} defaultOpen={i === 0} />
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* 14. FINAL CTA BANNER */}
+      <section className="py-16 md:py-24 bg-[#0c2e60] text-white" id="contact">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 text-center">
+          
+          <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-3 block">
+            LET'S REVIEW YOUR GIS REQUIREMENT
+          </span>
+          <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight max-w-3xl mx-auto leading-tight mb-4">
+            Have Data That Needs to Become a Usable GIS Deliverable?
+          </h2>
+          <p className="text-blue-200 text-sm md:text-base max-w-2xl mx-auto leading-relaxed mb-8">
+            Whether your project starts with imagery, CAD drawings, scanned maps, LiDAR, survey information or an existing GIS database, share the available inputs and the final output you require.
+          </p>
+
+          <div className="flex flex-col sm:flex-row justify-center gap-4 w-full sm:w-auto">
+            <a href="mailto:info@techmapperz.com" className="w-full sm:w-auto">
+              <button className="w-full sm:w-auto py-3.5 px-8 rounded-full bg-[#6ac045] hover:bg-[#5aad38] text-white font-bold text-sm transition-all duration-300 shadow-md">
+                Discuss Your GIS Project &#8594;
+              </button>
+            </a>
+            <Link href="/contact" className="w-full sm:w-auto">
+              <button className="w-full sm:w-auto py-3.5 px-8 rounded-full border border-white bg-transparent text-white font-bold text-sm hover:bg-white/10 transition-all duration-300">
+                Send Your Scope of Work
+              </button>
+            </Link>
+          </div>
+
         </div>
       </section>
 

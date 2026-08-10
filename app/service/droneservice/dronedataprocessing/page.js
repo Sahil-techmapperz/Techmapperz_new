@@ -89,11 +89,11 @@ const DroneDataProcessing = () => {
             
             {/* ── HERO ── */}
             <section 
-                className="w-full min-h-[100vh] flex items-center relative bg-cover bg-center bg-no-repeat pt-20" 
+                className="w-full min-h-[70vh] sm:min-h-[100vh] flex items-center relative bg-cover bg-center bg-no-repeat pt-28 sm:pt-36 pb-16" 
                 style={{ backgroundImage: `url('/Drone_Service/Drone_Service.png')` }}
             >
                 <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent" />
-                <div className="max-w-[1600px] w-full mx-auto px-20 max-sm:px-4 relative z-10 flex flex-col gap-6">
+                <div className="max-w-[1600px] w-full mx-auto px-4 sm:px-8 md:px-12 lg:px-20 relative z-10 flex flex-col gap-6">
                     <div className="w-fit border border-[#4a5f82] bg-[#2a3c5a]/40 backdrop-blur-sm text-[#799ccc] text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider">
                         Professional UAV Processing Solutions
                     </div>
