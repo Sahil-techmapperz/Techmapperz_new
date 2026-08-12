@@ -87,13 +87,13 @@ const Footer = () => {
 
             {/* Col 1 — Brand */}
             <div className="col-span-2 lg:col-span-1 flex flex-col gap-4 sm:gap-5">
-              <Link href="/" className="inline-block bg-white rounded-xl sm:rounded-2xl px-3.5 py-2.5 sm:px-4 sm:py-3 w-fit max-w-[200px] sm:max-w-none shadow-lg shadow-black/20 hover:shadow-xl transition-shadow">
+              <Link href="/" className="inline-block bg-white rounded-xl px-3 py-2 shadow-md hover:shadow-lg transition-shadow" style={{ width: 'fit-content' }}>
                 <Image
                   src={footer_logo}
                   alt="Techmapperz"
                   width={180}
-                  height={55}
-                  className="h-8 sm:h-10 w-auto object-contain"
+                  height={45}
+                  className="h-auto w-auto max-h-[45px] object-contain"
                   priority
                 />
               </Link>
