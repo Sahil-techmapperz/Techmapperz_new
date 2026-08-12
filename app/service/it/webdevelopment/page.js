@@ -1,337 +1,629 @@
 import React from 'react';
-import '../it-service.css';
 import Link from 'next/link';
+import Image from 'next/image';
+import { 
+  Globe, Laptop, ShoppingCart, Code, RefreshCw, Layers, 
+  CheckCircle, ChevronRight, ShieldCheck, Database, Server, Smartphone, Users, MapPin, Map
+} from 'lucide-react';
+import FaqItem from '../../../industry/FaqItem';
+import WebTechFilter from './WebTechFilter';
 
 export const metadata = {
-  title: "IT Services | Techmapperz",
-  description: "Techmapperz designs and develops fast, responsive and SEO-ready business websites, e-commerce stores, CMS platforms and custom web applications.",
+  title: "Website Development Services in India | Techmapperz",
+  description: "Techmapperz develops responsive business websites, e-commerce platforms and custom web applications with clear content structure, technical SEO foundations and scalable development.",
 };
 
-const ITServicePage = () => {
+export default function WebDevelopmentPage() {
+  const faqs = [
+    { q: "How much does a business website cost?", a: "Website cost depends on the required number of pages, design complexity, functionality, content, CMS requirements, integrations and development approach. Share your existing website or expected page list and functionality so that the requirement can be reviewed before pricing." },
+    { q: "What information do you need to prepare a website quotation?", a: "Helpful information includes your business type, current website, required pages, services, target audience, desired functionality, design references, content availability, integrations and expected launch timeline." },
+    { q: "Can Techmapperz redesign our existing website?", a: "Yes. We can review the existing structure, content, design, technology and important URLs before recommending a redesign or migration approach." },
+    { q: "Will our website work on mobile phones?", a: "Responsive behaviour can be planned and tested across common screen widths so that navigation, content, images, forms and actions remain usable on smaller screens." },
+    { q: "Can our team update the website after launch?", a: "Depending on the agreed development approach, content-management or administrative functionality can be provided for selected pages, articles, projects, products or other website information." },
+    { q: "Can you develop an e-commerce website?", a: "Yes. E-commerce projects can include catalogues, categories, search, shopping carts, checkout, customer accounts, payment integrations and order-related workflows according to the project specification." },
+    { q: "Can you build a custom portal instead of a normal website?", a: "Yes. Custom web-development requirements can include dashboards, role-based portals, business workflows, database systems, reporting applications and third-party integrations." },
+    { q: "Can you integrate maps into our website?", a: "Yes. Because Techmapperz also works in GIS and Web GIS, projects can include interactive mapping, location information, asset layers and other geospatial functionality when required." },
+    { q: "Which technologies does Techmapperz use?", a: "Our web-development capabilities include technologies such as React, Next.js, Node.js, PHP, MySQL, MongoDB and related web-development tools. The actual stack should be selected according to the project rather than using the same framework for every website." },
+    { q: "How long does website development take?", a: "The timeline depends on page quantity, design complexity, functionality, content readiness, integrations and review cycles. We recommend confirming the timeline only after the sitemap and functional requirement have been reviewed." },
+    { q: "What happens after the website is launched?", a: "Post-launch work can include issue resolution, content updates, maintenance, analytics review and new functionality according to the agreed support arrangement." }
+  ];
+
   return (
-    <div className="it-service-page">
-      <div className="hero">
-        <div className="container hero-grid">
-          <div>
-            <div className="breadcrumb">
-              <Link href="/">Home</Link> <span>/</span> <Link href="/service">Services</Link> <span>/</span> <span>IT Services</span>
-            </div>
-            <h1>Website Development Services <em>built for business performance</em></h1>
-            <p className="lead">We design and develop fast, responsive and SEO-ready websites, e-commerce platforms and web applications that support real business growth.</p>
-            <div className="hero-actions">
-              <a href="#services" className="btn btn-primary">Explore Services</a>
-              <a href="#projects" className="btn btn-secondary">View Projects</a>
-            </div>
-          </div>
-          <div className="browser-stage">
-            <div className="browser">
-              <div className="browser-top">
-                <div className="dots"><i></i><i></i><i></i></div>
-                <div className="address">techmapperz.com/business</div>
-              </div>
-              <div className="site-preview">
-                <div className="mock-nav">
-                  <div className="mock-brand"><i></i>Techmapperz</div>
-                  <div className="mock-links"><span>Services</span><span>Projects</span><span>About</span></div>
-                  <div className="mock-btn">Contact</div>
-                </div>
-                <div className="mock-hero">
-                  <div className="mock-copy">
-                    <small>DIGITAL GROWTH</small>
-                    <h5>Scale your business with reliable tech</h5>
-                    <p></p><p></p><p></p>
-                    <div className="mock-actions"><i></i><i></i></div>
-                  </div>
-                  <div className="mock-visual">
-                    <div className="screen-card">
-                      <div className="screen-head"><span></span><i></i></div>
-                      <div className="screen-chart">
-                        <svg viewBox="0 0 100 40" preserveAspectRatio="none">
-                          <path d="M0 40 L0 25 L20 30 L40 15 L60 20 L80 5 L100 10 L100 40 Z" fill="#eaf4fb" />
-                          <path d="M0 25 L20 30 L40 15 L60 20 L80 5 L100 10" fill="none" stroke="#1267b1" strokeWidth="1.5" />
-                        </svg>
-                      </div>
-                      <div className="screen-grid"><i></i><i></i><i></i></div>
-                    </div>
-                    <div className="side-chip">+24% Growth</div>
-                  </div>
-                </div>
-                <div className="mock-features">
-                  <div className="mock-feature"><i></i><b></b><span></span><span></span></div>
-                  <div className="mock-feature"><i></i><b></b><span></span><span></span></div>
-                  <div className="mock-feature"><i></i><b></b><span></span><span></span></div>
-                </div>
-              </div>
-            </div>
-            <div className="code-float">
-              <div><span className="c1">export const</span> <span className="c2">metadata</span> = {'{'}</div>
-              <div style={{ paddingLeft: '10px' }}>title: <span className="c3">"Techmapperz"</span>,</div>
-              <div style={{ paddingLeft: '10px' }}>template: <span className="c3">"%s | IT Services"</span></div>
-              <div>{'}'};</div>
-            </div>
-            <div className="phone">
-              <div className="phone-screen">
-                <div className="phone-notch"></div>
-                <div className="phone-head"><i></i><span></span></div>
-                <div className="phone-img"></div>
-                <div className="phone-row"><i></i><i></i></div>
-                <div className="phone-bar"></div>
-              </div>
+    <div className="font-sans text-gray-800 bg-[#f8fafc]">
+      
+      {/* SECTION 1: HERO */}
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-[#0a192f]">
+        <div className="absolute inset-0 z-0">
+          <Image 
+            src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1920&q=80" 
+            alt="Website Development Background" 
+            fill
+            className="object-cover opacity-30 mix-blend-overlay"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0c2e60]/95 via-[#0c2e60]/75 to-[#0c2e60]/40"></div>
+        </div>
+        
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20 relative z-10 w-full py-20 mt-16">
+          <div className="max-w-3xl">
+            <span className="text-[#6ac045] font-bold tracking-widest text-sm uppercase mb-4 block">WEBSITE DEVELOPMENT SERVICES</span>
+            <h1 className="text-4xl md:text-5xl lg:text-[60px] font-bold text-white leading-tight mb-6 tracking-tight">
+              Website Development That Makes Your <span className="text-[#6ac045]">Business Easier to Understand</span>
+            </h1>
+            <p className="text-base md:text-[17px] text-gray-300 mb-6 max-w-2xl leading-relaxed">
+              Your website should help the right visitor quickly understand what you do, why your experience matters and what they should do next.
+            </p>
+            <p className="text-base md:text-[17px] text-gray-400 mb-8 max-w-2xl leading-relaxed">
+              Techmapperz designs and develops responsive business websites, e-commerce platforms and custom web applications with clear information architecture, practical user journeys and a technical foundation built for long-term use.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-5 mt-2 w-full sm:w-auto">
+              <Link href="#contact" className="w-full sm:w-auto">
+                <button className="whitespace-nowrap w-full sm:w-auto py-[12px] px-8 rounded-full border border-[#6ac045] bg-[#6ac045] text-white font-semibold text-[15px] hover:bg-[#5aad38] transition-all duration-300 shadow-lg shadow-[#6ac045]/20">
+                  Discuss Your Website
+                </button>
+              </Link>
+              <Link href="#projects" className="w-full sm:w-auto">
+                <button className="whitespace-nowrap w-full sm:w-auto py-[12px] px-8 rounded-full border border-gray-400 bg-transparent text-white font-semibold text-[15px] hover:bg-white/10 transition-all duration-300">
+                  View Website Projects
+                </button>
+              </Link>
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="container capabilities">
-        <div className="cap-inner">
-          <div className="cap"><b>Websites</b><span>Corporate &amp; CMS</span></div>
-          <div className="cap"><b>E-commerce</b><span>Stores &amp; Portals</span></div>
-          <div className="cap"><b>Web Apps</b><span>Custom workflows</span></div>
-          <div className="cap"><b>SEO &amp; Speed</b><span>Technical foundations</span></div>
-        </div>
-      </div>
-
-      <section className="intro">
-        <div className="container intro-grid">
-          <div className="strategy-panel">
-            <h3>More than just code</h3>
-            <p>A successful website aligns design, content, technology, and business goals.</p>
-            <div className="strategy-map">
-              <div className="strategy-lines"></div>
-              <div className="strategy-node"><i>UX</i><b>User Journey</b><span>Clear navigation & conversion</span></div>
-              <div className="strategy-node"><i>UI</i><b>Interface</b><span>Brand-aligned visuals</span></div>
-              <div className="strategy-node"><i>TC</i><b>Technology</b><span>Fast, secure foundations</span></div>
-              <div className="strategy-node"><i>SE</i><b>Visibility</b><span>SEO-ready structure</span></div>
-              <div className="strategy-core">Web</div>
-            </div>
-          </div>
-          <div>
-            <div className="section-head" style={{ marginBottom: 0 }}>
-              <div className="copy">
-                <div className="eyebrow">Our Approach</div>
-                <h2>A website should solve a business problem</h2>
-                <p>We do not just build pages; we build digital platforms that act as your most reliable sales and information channel. This requires a balance of visual design, technical performance, and structured content.</p>
-              </div>
-            </div>
-            <div className="content-list">
-              <div className="content-item"><div className="content-icon">1</div><div><b>Business Alignment</b><p>Understanding your audience, offering, and conversion goals before writing code.</p></div></div>
-              <div className="content-item"><div className="content-icon">2</div><div><b>Scalable Architecture</b><p>Choosing frameworks that allow your content and services to grow without a full rebuild.</p></div></div>
-              <div className="content-item"><div className="content-icon">3</div><div><b>Measurable Results</b><p>Integrating analytics and tracking to ensure the website generates real business value.</p></div></div>
+        
+        {/* Capability Strip */}
+        <div className="absolute bottom-0 left-0 w-full bg-white/10 backdrop-blur-md border-t border-white/10 py-4 hidden md:block">
+          <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20">
+            <div className="flex flex-wrap items-center justify-between text-white/80 text-sm font-semibold tracking-wide uppercase">
+              <span>Business Websites</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#6ac045]"></span>
+              <span>E-commerce</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#6ac045]"></span>
+              <span>Web Applications</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#6ac045]"></span>
+              <span>Website Redesign</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#6ac045]"></span>
+              <span>CMS</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#6ac045]"></span>
+              <span>Technical SEO</span>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="services" id="services">
-        <div className="container">
-          <div className="section-head">
-            <div className="copy">
-              <div className="eyebrow">Website Development Services</div>
-              <h2>Flexible solutions for different digital goals</h2>
-              <p>From focused business websites to e-commerce stores and custom portals, we select the right approach for your content, operations and future growth.</p>
-            </div>
-            <div className="section-note">Every service can include UX planning, responsive development, content support, quality testing and launch assistance.</div>
-          </div>
-          <div className="service-grid">
-            <article className="service-card"><div className="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5"/></svg></div><h3>Corporate &amp; Business Websites</h3><p>Professional websites that present your services, experience, projects, industries and contact journey clearly.</p><div className="service-link">Build a stronger business presence →</div></article>
-            <article className="service-card"><div className="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M3 5h2l2.2 9h10.9l2-6H7.2"/><circle cx="9" cy="19" r="1.4"/><circle cx="18" cy="19" r="1.4"/></svg></div><h3>E-commerce Development</h3><p>Product catalogues, search, cart, checkout, payment integration, order workflows and mobile shopping experiences.</p><div className="service-link">Create an online storefront →</div></article>
-            <article className="service-card"><div className="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M4 4h16v5H4zM4 13h7v7H4zM15 13h5v7h-5z"/></svg></div><h3>Custom Web Applications</h3><p>Role-based portals, internal systems, dashboards and workflow applications developed around specific operations.</p><div className="service-link">Plan a custom web platform →</div></article>
-            <article className="service-card"><div className="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M4 5h16v14H4zM8 9h8M8 13h5"/><path d="M7 3v4M17 3v4"/></svg></div><h3>CMS Website Development</h3><p>Easy-to-manage websites for teams that regularly update pages, articles, products, projects or announcements.</p><div className="service-link">Manage content independently →</div></article>
-            <article className="service-card"><div className="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M4 19V5h16v14z"/><path d="M7 15l3-3 2 2 4-5 2 3"/><circle cx="9" cy="9" r="1"/></svg></div><h3>Landing Pages &amp; Campaign Sites</h3><p>Focused pages for advertising, product launches, events, lead magnets and specific service campaigns.</p><div className="service-link">Improve campaign conversion →</div></article>
-            <article className="service-card"><div className="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M4 7h10v10H4zM10 4h10v10"/><path d="M8 12h2M8 9h4"/></svg></div><h3>Website Redesign &amp; Migration</h3><p>Modernise outdated design, content structure and technology while protecting important URLs and SEO value.</p><div className="service-link">Upgrade an existing website →</div></article>
-            <article className="service-card"><div className="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M5 4h14v16H5z"/><path d="M9 8h6M9 12h6M9 16h3"/></svg></div><h3>SEO-Ready Website Development</h3><p>Logical architecture, structured content, metadata, crawlable links, technical hygiene and performance planning.</p><div className="service-link">Build a search-friendly foundation →</div></article>
-            <article className="service-card"><div className="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="5"/><path d="M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg></div><h3>Maintenance &amp; Enhancement</h3><p>Ongoing updates, issue resolution, content changes, security checks and planned feature improvements after launch.</p><div className="service-link">Keep your website reliable →</div></article>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <div className="container builds-grid">
-          <div className="builds-copy"><div className="eyebrow">What We Build</div><h2>Choose the website model that matches your business</h2><p>Not every organisation needs the same platform. We recommend the simplest scalable solution that supports the real requirement without unnecessary complexity.</p><a className="btn btn-dark" href="#contact">Review Your Requirement</a></div>
-          <div className="build-list">
-            <article className="build-card"><div className="num">01 / SERVICE BUSINESS</div><h3>Lead-generation websites</h3><p>Service pages, industry pages, project proof, enquiry forms, downloadable resources and conversion-focused calls to action.</p><b>Ideal for B2B and professional services</b></article>
-            <article className="build-card"><div className="num">02 / COMMERCE</div><h3>Online stores &amp; catalogues</h3><p>Product categories, filtering, shopping cart, payments, order tracking, offers, content and mobile-first customer journeys.</p><b>Ideal for retail and direct-to-customer brands</b></article>
-            <article className="build-card"><div className="num">03 / CONTENT</div><h3>Publishing &amp; information portals</h3><p>Structured articles, searchable archives, author or category pages, subscriptions and content management workflows.</p><b>Ideal for publishers and knowledge platforms</b></article>
-            <article className="build-card"><div className="num">04 / OPERATIONS</div><h3>Custom portals &amp; dashboards</h3><p>Authentication, role access, forms, records, reports, maps, third-party integrations and organisation-specific workflows.</p><b>Ideal for data-driven internal and client platforms</b></article>
-          </div>
-        </div>
-      </section>
-
-      <section className="process">
-        <div className="container">
-          <div className="section-head"><div className="copy"><div className="eyebrow" style={{color: '#8ec7ee'}}>Our Development Process</div><h2>A structured path from business requirement to launch</h2><p>Clear stages reduce rework, keep responsibilities visible and help the final website stay aligned with business, design and technical goals.</p></div><div className="section-note" style={{color: '#b8ccde', borderLeftColor: '#70d5cc'}}>Milestones, content dependencies and review rounds are agreed before development begins.</div></div>
-          <div className="process-grid">
-            <article className="process-step"><div className="process-no">01</div><h3>Discovery</h3><p>Business goals, target users, competitors, existing assets, features and conversion priorities.</p><b>Requirement brief</b></article>
-            <article className="process-step"><div className="process-no">02</div><h3>Structure &amp; Content</h3><p>Sitemap, page hierarchy, navigation, wireframes, keywords and section-level content planning.</p><b>Page blueprint</b></article>
-            <article className="process-step"><div className="process-no">03</div><h3>UI/UX Design</h3><p>Visual system, page layouts, responsive behaviour, reusable components and conversion elements.</p><b>Approved interface</b></article>
-            <article className="process-step"><div className="process-no">04</div><h3>Development &amp; QA</h3><p>Frontend, backend, CMS, integrations, speed checks, browser testing and content implementation.</p><b>Tested build</b></article>
-            <article className="process-step"><div className="process-no">05</div><h3>Launch &amp; Support</h3><p>Domain and hosting setup, redirects, analytics, search tools, training and post-launch monitoring.</p><b>Production website</b></article>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <div className="container quality-grid">
-          <div className="quality-panel"><div className="eyebrow">Quality Built into Every Page</div><h2 style={{fontSize: '36px', marginTop: '10px'}}>Designed for users. Developed for performance.</h2><div className="quality-tabs"><span className="active">Responsive</span><span>SEO-ready</span><span>Accessible</span><span>Secure</span><span>Scalable</span></div><div className="quality-list">
-            <div className="quality-item"><div className="check">✓</div><div><b>Responsive layouts</b><span>Tested across common screen sizes and touch interactions.</span></div></div>
-            <div className="quality-item"><div className="check">✓</div><div><b>Clear page hierarchy</b><span>Logical headings, navigation and internal linking.</span></div></div>
-            <div className="quality-item"><div className="check">✓</div><div><b>Performance focus</b><span>Optimised assets, loading strategy and cleaner code.</span></div></div>
-            <div className="quality-item"><div className="check">✓</div><div><b>Conversion tracking</b><span>Forms, calls, CTA events and analytics configuration.</span></div></div>
-            <div className="quality-item"><div className="check">✓</div><div><b>Technical SEO basics</b><span>Metadata, canonical tags, sitemap and crawl controls.</span></div></div>
-            <div className="quality-item"><div className="check">✓</div><div><b>Launch verification</b><span>Links, forms, integrations, redirects and browser checks.</span></div></div>
-          </div></div>
-          <div className="score-card"><h3>A website should remain useful after launch day.</h3><p>We create reusable content components and scalable page structures, helping your team add services, industries, projects and insights without redesigning the entire site.</p><div className="score-grid"><div className="score"><b>Reusable sections</b><span>Consistent components across pages</span></div><div className="score"><b>Flexible CMS</b><span>Manage content without code</span></div><div className="score"><b>Analytics-ready</b><span>Understand visits and enquiries</span></div><div className="score"><b>Future integrations</b><span>APIs, maps, payments and tools</span></div></div><a className="btn btn-primary" href="#contact">Plan a Scalable Website</a></div>
-        </div>
-      </section>
-
-      <section className="technology">
-        <div className="container tech-wrap">
-          <div className="tech-copy"><div className="eyebrow">Technology Stack</div><h2>Modern tools selected around the project</h2><p>Technology choices should support performance, content management, security, integrations and long-term maintenance—not follow trends without a business reason.</p></div>
-          <div className="tech-cloud"><div className="tech"><i>NX</i><b>Next.js</b></div><div className="tech"><i>RE</i><b>React</b></div><div className="tech"><i>NO</i><b>Node.js</b></div><div className="tech"><i>PH</i><b>PHP</b></div><div className="tech"><i>WP</i><b>WordPress</b></div><div className="tech"><i>MY</i><b>MySQL</b></div><div className="tech"><i>MO</i><b>MongoDB</b></div><div className="tech"><i>TW</i><b>Tailwind CSS</b></div><div className="tech"><i>API</i><b>API Integration</b></div><div className="tech"><i>PAY</i><b>Payment Gateway</b></div><div className="tech"><i>GA</i><b>Analytics</b></div><div className="tech"><i>GIS</i><b>Web GIS</b></div></div>
-        </div>
-      </section>
-
-      {/* Featured Website Work Case Study */}
-      <section className="py-24 bg-slate-50 border-t border-slate-200" id="projects">
-        <div className="max-w-[1240px] mx-auto px-6">
-          <div className="flex flex-col lg:flex-row lg:justify-between lg:items-end gap-6 mb-12">
-            <div className="space-y-4 max-w-2xl">
-              <div className="eyebrow" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', fontSize: '12px', fontWeight: 900, letterSpacing: '.18em', textTransform: 'uppercase', color: '#1267b1' }}>
-                Selected Website Work
-              </div>
-              <h2 style={{ fontSize: '38px', fontWeight: 800, color: '#0b2341', margin: 0, lineHeight: 1.14, letterSpacing: '-0.035em' }}>
-                Different industries. Different customer journeys.
-              </h2>
-              <p style={{ color: '#617080', fontSize: '17px', margin: 0, lineHeight: 1.6 }}>
-                The visual design and platform structure should reflect the organisation, audience, products and actions that matter to each project.
+      {/* SECTION 2: INTRODUCTION */}
+      <section className="py-20 md:py-28 bg-white relative">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20">
+          <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-20 mb-16">
+            
+            {/* Left: Text */}
+            <div className="lg:w-1/2">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] mb-6">A Good Website Helps Visitors Make a Decision</h2>
+              <p className="text-gray-600 text-lg leading-relaxed mb-6">
+                A business website should not make visitors work hard to understand the company.
+              </p>
+              <p className="text-gray-600 text-base leading-relaxed mb-6">
+                Someone visiting your website may be trying to answer a few simple questions:
+              </p>
+              <p className="text-gray-500 text-base leading-relaxed italic mb-6">
+                Our website-development approach begins with these questions before moving into colours, animations or technology.
+              </p>
+              <p className="text-gray-600 text-base leading-relaxed">
+                We organise services, industries, projects, company information and calls to action so that the website supports both the visitor journey and the way your business wants to generate enquiries.
               </p>
             </div>
-            <div className="lg:max-w-[280px]" style={{ borderLeft: '3px solid #e33434', paddingLeft: '16px', fontSize: '13px', color: '#6c7987' }}>
-              Replace these stylised previews with approved screenshots and measurable outcomes from completed Techmapperz projects.
+            
+            {/* Right: Checklist */}
+            <div className="lg:w-1/2">
+              <div className="bg-[#f8fafc] rounded-2xl p-8 md:p-10 border border-gray-100 shadow-sm">
+                <ul className="space-y-5">
+                  <li className="flex items-start"><CheckCircle className="w-5 h-5 text-[#6ac045] mt-0.5 mr-4 shrink-0" /><span className="text-gray-700 text-[15px] font-medium">What does this company actually do?</span></li>
+                  <li className="flex items-start"><CheckCircle className="w-5 h-5 text-[#6ac045] mt-0.5 mr-4 shrink-0" /><span className="text-gray-700 text-[15px] font-medium">Does it have relevant experience?</span></li>
+                  <li className="flex items-start"><CheckCircle className="w-5 h-5 text-[#6ac045] mt-0.5 mr-4 shrink-0" /><span className="text-gray-700 text-[15px] font-medium">Can it handle my type of requirement?</span></li>
+                  <li className="flex items-start"><CheckCircle className="w-5 h-5 text-[#6ac045] mt-0.5 mr-4 shrink-0" /><span className="text-gray-700 text-[15px] font-medium">How does the process work?</span></li>
+                  <li className="flex items-start"><CheckCircle className="w-5 h-5 text-[#6ac045] mt-0.5 mr-4 shrink-0" /><span className="text-gray-700 text-[15px] font-medium">How can I speak with the right person?</span></li>
+                </ul>
+              </div>
             </div>
+            
+          </div>
+          
+          {/* Small Strip Banner */}
+          <div className="bg-gradient-to-r from-[#0c2e60] to-[#1a4b91] rounded-2xl p-8 md:p-12 text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl">
+            <div className="max-w-2xl">
+              <h3 className="text-2xl font-bold text-white mb-3">Already have a website?</h3>
+              <p className="text-gray-300 text-sm md:text-base">We can review the existing structure, content, design, technology and important URLs before recommending whether you need a complete rebuild or focused improvements.</p>
+            </div>
+            <Link href="#contact" className="w-full md:w-auto shrink-0">
+              <button className="whitespace-nowrap w-full md:w-auto py-3.5 px-8 rounded-full bg-[#6ac045] hover:bg-[#5aad38] text-white font-bold text-[15px] transition-all shadow-md">
+                Request a Website Review
+              </button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 3: WHO WE BUILD FOR */}
+      <section className="py-20 md:py-28 bg-[#f8fafc] border-y border-gray-100">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-[#6ac045] text-sm font-bold uppercase tracking-widest mb-3 block">BUILT AROUND YOUR BUSINESS</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] mb-6">Different Businesses Need Different Website Journeys</h2>
+            <p className="text-gray-600 text-base leading-relaxed">
+              A technical consultancy should not be structured like an online store. An infrastructure company should not present projects the same way as a publisher. We plan the page structure around how your customer evaluates your company.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            
+            <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300">
+              <h3 className="text-xl font-bold text-[#0c2e60] mb-3">GIS, Drone & Survey Companies</h3>
+              <p className="text-gray-600 text-sm mb-5 leading-relaxed">Present technical services, mapping capabilities, equipment or methodologies where relevant, industries, project outputs and real project experience without overwhelming non-technical buyers.</p>
+              <div className="bg-gray-50 p-3 rounded-lg text-xs text-gray-500 font-medium">Services • Industries • Projects • Deliverables • Technology • FAQs • Project Enquiry</div>
+            </div>
+
+            <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300">
+              <h3 className="text-xl font-bold text-[#0c2e60] mb-3">Infrastructure & Engineering Consultants</h3>
+              <p className="text-gray-600 text-sm mb-5 leading-relaxed">Present consulting capabilities, sector experience, project credentials, technical disciplines and project delivery in a format that supports prequalification and business enquiries.</p>
+              <div className="bg-gray-50 p-3 rounded-lg text-xs text-gray-500 font-medium">Capability Statement • Prequalification Support • Project Credentials</div>
+            </div>
+
+            <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300">
+              <h3 className="text-xl font-bold text-[#0c2e60] mb-3">Government Contractors & Services</h3>
+              <p className="text-gray-600 text-sm mb-5 leading-relaxed">Organise company credentials, services, completed work, capabilities, registrations and contact information so that potential partners or authorities can evaluate the organisation efficiently.</p>
+              <div className="bg-gray-50 p-3 rounded-lg text-xs text-gray-500 font-medium">Corporate Credentials • Compliance • Registrations • Track Record</div>
+            </div>
+
+            <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300">
+              <h3 className="text-xl font-bold text-[#0c2e60] mb-3">Utility, Energy & Mining Companies</h3>
+              <p className="text-gray-600 text-sm mb-5 leading-relaxed">Present operational services, technical capabilities, assets, project locations, safety or compliance information where verified, and supporting project experience.</p>
+              <div className="bg-gray-50 p-3 rounded-lg text-xs text-gray-500 font-medium">Asset Portfolios • Operations Overview • Safety & Compliance</div>
+            </div>
+
+            <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300">
+              <h3 className="text-xl font-bold text-[#0c2e60] mb-3">Architecture & Planning Firms</h3>
+              <p className="text-gray-600 text-sm mb-5 leading-relaxed">Create portfolio-led websites where projects, planning services, design philosophy, sectors and visual work remain easy to explore.</p>
+              <div className="bg-gray-50 p-3 rounded-lg text-xs text-gray-500 font-medium">Visual Portfolios • Design Philosophy • Practice Areas</div>
+            </div>
+
+            <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300">
+              <h3 className="text-xl font-bold text-[#0c2e60] mb-3">B2B & Professional Service Companies</h3>
+              <p className="text-gray-600 text-sm mb-5 leading-relaxed">Build service-focused websites designed around expertise, case studies, industry solutions, lead generation and business credibility.</p>
+              <div className="bg-gray-50 p-3 rounded-lg text-xs text-gray-500 font-medium">Service Architecture • Case Studies • Lead Generation Workflows</div>
+            </div>
+
           </div>
 
-          {/* Case Study Card */}
-          <div className="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-xl grid grid-cols-1 lg:grid-cols-2">
-            {/* Visual Column */}
-            <div className="project-shot warm" style={{ height: 'auto', minHeight: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '40px', borderRight: '1px solid #e2e8f0' }}>
-              <div className="project-browser" style={{ width: '100%', maxWidth: '420px', aspectRatio: '4/3', height: 'auto' }}>
-                <div className="pb-top"><i></i><i></i><i></i></div>
-                <div className="pb-body">
-                  <div className="pb-nav">
-                    <div className="pb-logo"></div>
-                    <div className="pb-links"><i></i><i></i><i></i></div>
-                  </div>
-                  <div className="pb-hero">
-                    <div className="pb-copy"><b></b><i></i><span></span></div>
-                  </div>
-                  <div className="pb-cards"><i></i><i></i><i></i></div>
-                </div>
+          <div className="text-center">
+            <Link href="#contact">
+              <button className="py-3.5 px-8 rounded-full bg-[#0c2e60] text-white font-bold text-sm hover:bg-[#1656b8] transition-colors shadow-md">
+                Discuss Your Industry Requirements
+              </button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 4: SERVICES */}
+      <section className="py-20 md:py-28 bg-white">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-[#6ac045] text-sm font-bold uppercase tracking-widest mb-3 block">SERVICES</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] mb-6">Website Solutions for Different Business Requirements</h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+              <div>
+                <span className="text-[#6ac045] text-sm font-bold mb-2 block">01</span>
+                <h3 className="text-xl font-bold text-[#0c2e60] mb-3">Corporate & Business Website Development</h3>
+                <p className="text-gray-600 text-sm mb-6 leading-relaxed">A corporate website should communicate the company clearly before trying to impress the visitor visually. We develop websites that organise your services, industries, project experience, company information and enquiries into a structured customer journey.</p>
               </div>
-              <div className="absolute left-6 top-6 bg-white border border-slate-200 px-4 py-2 rounded-xl shadow-md text-xs font-black" style={{ color: '#0b2341' }}>
-                E-COMMERCE PLATFORM
-              </div>
+              <Link href="#contact" className="text-[#0c2e60] font-bold text-sm flex items-center hover:text-[#6ac045] transition-colors">Discuss a Business Website <ChevronRight className="w-4 h-4 ml-1" /></Link>
             </div>
 
-            {/* Content Column */}
-            <div className="p-8 sm:p-12 flex flex-col justify-center space-y-6">
-              <div className="project-tag" style={{ fontSize: '11px', fontWeight: 900, letterSpacing: '.15em', color: '#e33434' }}>
-                RETAIL & COMMERCE
+            <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+              <div>
+                <span className="text-[#6ac045] text-sm font-bold mb-2 block">02</span>
+                <h3 className="text-xl font-bold text-[#0c2e60] mb-3">B2B & Lead-Generation Websites</h3>
+                <p className="text-gray-600 text-sm mb-6 leading-relaxed">B2B visitors often need more information before submitting an enquiry than consumer buyers. We structure B2B websites around service understanding, technical capability, project evidence, trust information and clear contact routes.</p>
               </div>
-              <h2 style={{ fontSize: '34px', fontWeight: 800, color: '#0b2341', margin: '8px 0 16px', lineHeight: 1.1 }}>
-                Premium Product Store
-              </h2>
-              <p style={{ color: '#617080', fontSize: '15px', lineHeight: 1.6, margin: 0 }}>
-                A category-led shopping experience with product discovery, trust content, responsive shopping and streamlined enquiries.
-              </p>
+              <Link href="#contact" className="text-[#0c2e60] font-bold text-sm flex items-center hover:text-[#6ac045] transition-colors">Plan a B2B Website <ChevronRight className="w-4 h-4 ml-1" /></Link>
+            </div>
 
-              {/* Metrics grid */}
-              <div className="grid grid-cols-3 gap-3 my-4">
-                <div className="bg-slate-50 border border-slate-200 rounded-xl p-4">
-                  <b className="block text-lg font-extrabold" style={{ color: '#0b2341' }}>Next.js</b>
-                  <span className="block text-[11px] text-slate-500 mt-1">Frontend framework</span>
+            <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+              <div>
+                <span className="text-[#6ac045] text-sm font-bold mb-2 block">03</span>
+                <h3 className="text-xl font-bold text-[#0c2e60] mb-3">E-commerce Website Development</h3>
+                <p className="text-gray-600 text-sm mb-6 leading-relaxed">An e-commerce website needs more than attractive product pages. Customers should be able to discover products, understand them, move through the buying process and complete the required action without unnecessary friction.</p>
+              </div>
+              <Link href="#contact" className="text-[#0c2e60] font-bold text-sm flex items-center hover:text-[#6ac045] transition-colors">Discuss an E-commerce Website <ChevronRight className="w-4 h-4 ml-1" /></Link>
+            </div>
+
+            <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+              <div>
+                <span className="text-[#6ac045] text-sm font-bold mb-2 block">04</span>
+                <h3 className="text-xl font-bold text-[#0c2e60] mb-3">Custom Web Applications & Portals</h3>
+                <p className="text-gray-600 text-sm mb-6 leading-relaxed">Some requirements cannot be solved with a conventional marketing website. Techmapperz develops browser-based applications and portals around defined business workflows.</p>
+              </div>
+              <Link href="#contact" className="text-[#0c2e60] font-bold text-sm flex items-center hover:text-[#6ac045] transition-colors">Discuss a Custom Web Application <ChevronRight className="w-4 h-4 ml-1" /></Link>
+            </div>
+
+            <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+              <div>
+                <span className="text-[#6ac045] text-sm font-bold mb-2 block">05</span>
+                <h3 className="text-xl font-bold text-[#0c2e60] mb-3">Website Redesign & Migration</h3>
+                <p className="text-gray-600 text-sm mb-6 leading-relaxed">An old website does not always need to be discarded completely. Before redesigning, we review the existing pages, URLs, content, search visibility, structure and functionality so that useful assets can be retained where appropriate.</p>
+              </div>
+              <Link href="#contact" className="text-[#0c2e60] font-bold text-sm flex items-center hover:text-[#6ac045] transition-colors">Review My Existing Website <ChevronRight className="w-4 h-4 ml-1" /></Link>
+            </div>
+
+            <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+              <div>
+                <span className="text-[#6ac045] text-sm font-bold mb-2 block">06</span>
+                <h3 className="text-xl font-bold text-[#0c2e60] mb-3">CMS & Content-Managed Websites</h3>
+                <p className="text-gray-600 text-sm mb-6 leading-relaxed">For organisations that regularly publish projects, blogs, products, announcements or service updates, the website should not depend on a developer for every small content change. Depending on the project, we can structure administrative or content-management workflows so authorised team members can maintain selected website information.</p>
+              </div>
+              <Link href="#contact" className="text-[#0c2e60] font-bold text-sm flex items-center hover:text-[#6ac045] transition-colors">Discuss a CMS Website <ChevronRight className="w-4 h-4 ml-1" /></Link>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 5: PERFORMANCE & MOBILE EXPERIENCE */}
+      <section className="py-20 md:py-28 bg-[#f8fafc] border-y border-gray-100">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-[#6ac045] text-sm font-bold uppercase tracking-widest mb-3 block">BUILT FOR REAL USERS</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] mb-6">Your Website Has to Work Beyond a Desktop Design Mock-up</h2>
+            <p className="text-gray-600 text-base leading-relaxed">
+              Visitors may access the site on large office screens, laptops, tablets and mobile phones. Responsive layouts should therefore be planned as part of development rather than treated as a final adjustment.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-16">
+            {[
+              "Responsive layouts",
+              "Mobile navigation",
+              "Button and form usability",
+              "Image optimisation",
+              "Loading strategy",
+              "Content hierarchy",
+              "Readable typography",
+              "Layout stability",
+              "Interaction behaviour",
+              "Browser testing"
+            ].map((item, idx) => (
+              <div key={idx} className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm text-center flex flex-col items-center justify-center">
+                <CheckCircle className="w-6 h-6 text-[#6ac045] mb-3" />
+                <span className="text-[#0c2e60] font-bold text-sm">{item}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <Link href="#contact">
+              <button className="py-3.5 px-8 rounded-full bg-[#0c2e60] text-white font-bold text-sm hover:bg-[#1656b8] transition-colors shadow-md">
+                Discuss Your Website Requirements
+              </button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 6: DEVELOPMENT PROCESS (5-Step Timeline) */}
+      <section className="py-20 md:py-28 bg-white">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20 text-center">
+          <span className="text-[#6ac045] text-sm font-bold uppercase tracking-widest mb-3 block">HOW WE WORK</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] mb-16">A Structured Path from Business Requirement to Launch</h2>
+          
+          <div className="relative mt-8 w-full max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-4 relative z-10">
+              
+              {/* Step 1 */}
+              <div className="flex flex-col items-center relative">
+                <div className="hidden md:block absolute top-[40px] left-[calc(50%+45px)] w-[calc(100%+1rem-90px)] pointer-events-none -translate-y-1/2">
+                  <div className="w-full border-t border-dashed border-gray-400 relative">
+                    <div className="absolute right-[-2px] top-[-5px] w-2.5 h-2.5 border-t border-r border-gray-400 rotate-45"></div>
+                  </div>
                 </div>
-                <div className="bg-slate-50 border border-slate-200 rounded-xl p-4">
-                  <b className="block text-lg font-extrabold" style={{ color: '#0b2341' }}>CMS</b>
-                  <span className="block text-[11px] text-slate-500 mt-1">Content management</span>
+                
+                <div className="w-[80px] h-[80px] rounded-full bg-white border border-gray-300 shadow-sm flex items-center justify-center text-[#0c2e60] mb-4 z-10">
+                  <span className="font-bold text-xl">01</span>
                 </div>
-                <div className="bg-slate-50 border border-slate-200 rounded-xl p-4">
-                  <b className="block text-lg font-extrabold" style={{ color: '#0b2341' }}>Mobile-first</b>
-                  <span className="block text-[11px] text-slate-500 mt-1">Responsive design</span>
+                <div className="flex flex-col items-center">
+                  <span className="text-[#0c2e60] font-extrabold text-[15px] mb-2 leading-tight">Business & Requirement Review</span>
+                  <p className="text-gray-500 text-xs px-2 leading-relaxed">We understand the organisation, services, target users, competitors, and functionality.</p>
+                  <span className="text-[#6ac045] font-bold text-[11px] mt-2 bg-green-50 px-2 py-1 rounded">Output: Brief</span>
                 </div>
               </div>
 
-              {/* Checkpoints */}
-              <div className="space-y-3 text-sm" style={{ color: '#4b5563' }}>
-                <div className="flex gap-2.5">
-                  <span style={{ color: '#078a86', fontWeight: 'bold' }}>✓</span>
-                  <span>Product catalogue with category navigation and search</span>
+              {/* Step 2 */}
+              <div className="flex flex-col items-center relative">
+                <div className="hidden md:block absolute top-[40px] left-[calc(50%+45px)] w-[calc(100%+1rem-90px)] pointer-events-none -translate-y-1/2">
+                  <div className="w-full border-t border-dashed border-gray-400 relative">
+                    <div className="absolute right-[-2px] top-[-5px] w-2.5 h-2.5 border-t border-r border-gray-400 rotate-45"></div>
+                  </div>
                 </div>
-                <div className="flex gap-2.5">
-                  <span style={{ color: '#078a86', fontWeight: 'bold' }}>✓</span>
-                  <span>Optimised checkout process for higher conversions</span>
+                
+                <div className="w-[80px] h-[80px] rounded-full bg-white border border-[#6ac045] shadow-sm flex items-center justify-center text-[#0c2e60] mb-4 z-10">
+                  <span className="font-bold text-xl">02</span>
                 </div>
-                <div className="flex gap-2.5">
-                  <span style={{ color: '#078a86', fontWeight: 'bold' }}>✓</span>
-                  <span>Integrated payment gateway and order workflows</span>
+                <div className="flex flex-col items-center">
+                  <span className="text-[#0c2e60] font-extrabold text-[15px] mb-2 leading-tight">Sitemap & Content Structure</span>
+                  <p className="text-gray-500 text-xs px-2 leading-relaxed">We define page hierarchy, navigation, key page topics and user journeys.</p>
+                  <span className="text-[#6ac045] font-bold text-[11px] mt-2 bg-green-50 px-2 py-1 rounded">Output: Structure</span>
                 </div>
               </div>
 
-              <div className="pt-4">
-                <Link 
-                  href="/portfolios" 
-                  className="btn btn-dark"
-                >
-                  View Project Experience →
+              {/* Step 3 */}
+              <div className="flex flex-col items-center relative">
+                <div className="hidden md:block absolute top-[40px] left-[calc(50%+45px)] w-[calc(100%+1rem-90px)] pointer-events-none -translate-y-1/2">
+                  <div className="w-full border-t border-dashed border-gray-400 relative">
+                    <div className="absolute right-[-2px] top-[-5px] w-2.5 h-2.5 border-t border-r border-gray-400 rotate-45"></div>
+                  </div>
+                </div>
+                
+                <div className="w-[80px] h-[80px] rounded-full bg-white border border-gray-300 shadow-sm flex items-center justify-center text-[#0c2e60] mb-4 z-10">
+                  <span className="font-bold text-xl">03</span>
+                </div>
+                <div className="flex flex-col items-center">
+                  <span className="text-[#0c2e60] font-extrabold text-[15px] mb-2 leading-tight">UI/UX Design</span>
+                  <p className="text-gray-500 text-xs px-2 leading-relaxed">Page layouts, components, visual direction and responsive behaviour are designed.</p>
+                  <span className="text-[#6ac045] font-bold text-[11px] mt-2 bg-green-50 px-2 py-1 rounded">Output: Interface</span>
+                </div>
+              </div>
+
+              {/* Step 4 */}
+              <div className="flex flex-col items-center relative">
+                <div className="hidden md:block absolute top-[40px] left-[calc(50%+45px)] w-[calc(100%+1rem-90px)] pointer-events-none -translate-y-1/2">
+                  <div className="w-full border-t border-dashed border-gray-400 relative">
+                    <div className="absolute right-[-2px] top-[-5px] w-2.5 h-2.5 border-t border-r border-gray-400 rotate-45"></div>
+                  </div>
+                </div>
+                
+                <div className="w-[80px] h-[80px] rounded-full bg-white border border-[#6ac045] shadow-sm flex items-center justify-center text-[#0c2e60] mb-4 z-10">
+                  <span className="font-bold text-xl">04</span>
+                </div>
+                <div className="flex flex-col items-center">
+                  <span className="text-[#0c2e60] font-extrabold text-[15px] mb-2 leading-tight">Development & Testing</span>
+                  <p className="text-gray-500 text-xs px-2 leading-relaxed">Design is developed, content implemented and functionality/integrations tested.</p>
+                  <span className="text-[#6ac045] font-bold text-[11px] mt-2 bg-green-50 px-2 py-1 rounded">Output: Review Site</span>
+                </div>
+              </div>
+
+              {/* Step 5 */}
+              <div className="flex flex-col items-center relative">
+                <div className="w-[80px] h-[80px] rounded-full bg-white border border-gray-300 shadow-sm flex items-center justify-center text-[#0c2e60] mb-4 z-10">
+                  <span className="font-bold text-xl">05</span>
+                </div>
+                <div className="flex flex-col items-center">
+                  <span className="text-[#0c2e60] font-extrabold text-[15px] mb-2 leading-tight">Launch & Handover</span>
+                  <p className="text-gray-500 text-xs px-2 leading-relaxed">Final checks completed, domain, analytics and search tools configured before launch.</p>
+                  <span className="text-[#6ac045] font-bold text-[11px] mt-2 bg-green-50 px-2 py-1 rounded">Output: Live Site</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          
+          <div className="text-center mt-12">
+            <Link href="#contact">
+              <button className="py-3.5 px-8 rounded-full bg-[#0c2e60] text-white font-bold text-sm hover:bg-[#1656b8] transition-colors shadow-md">
+                Start with a Requirement Discussion
+              </button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 7: TECHNOLOGY */}
+      <section className="py-20 md:py-28 bg-[#f8fafc] border-y border-gray-100">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20 text-center">
+          <span className="text-[#6ac045] text-sm font-bold uppercase tracking-widest mb-3 block">TECHNOLOGY SELECTED FOR THE PROJECT</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] mb-6">The Framework Should Support the Requirement, Not Lead It</h2>
+          <p className="text-gray-600 text-lg leading-relaxed mb-12 max-w-3xl mx-auto">
+            Technology choices should support performance, content management, security, integrations and long-term maintenance rather than being selected simply because they are fashionable.
+          </p>
+
+          <WebTechFilter />
+
+          <p className="text-gray-500 text-sm italic mt-12 max-w-2xl mx-auto">
+            The actual technology stack is selected after understanding the project's content, functionality, integration, maintenance and deployment requirements.
+          </p>
+        </div>
+      </section>
+
+      {/* SECTION 8: SELECTED EXPERIENCE */}
+      <section className="py-20 md:py-28 bg-white" id="projects">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-[#6ac045] text-sm font-bold uppercase tracking-widest mb-3 block">SELECTED WEBSITE & WEB APPLICATION WORK</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] mb-4">Show What Was Built and Why</h2>
+            <p className="text-gray-500 text-base">Use real, approved project screenshots and concise case-study summaries rather than generic conceptual mock-ups.</p>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+            
+            {/* Project 1 */}
+            <div className="bg-[#f8fafc] rounded-2xl overflow-hidden border border-gray-100 shadow-sm flex flex-col justify-between">
+              <div className="h-48 relative overflow-hidden bg-gray-200">
+                <Image src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=800&q=80" alt="Aaheli Publishers" fill className="object-cover" />
+              </div>
+              <div className="p-8 flex flex-col flex-grow justify-between">
+                <div>
+                  <h3 className="text-xl font-bold text-[#0c2e60] mb-3">E-commerce Website for Aaheli Publishers</h3>
+                  <p className="text-gray-600 text-sm mb-6 leading-relaxed">Techmapperz developed an e-commerce website to help Aaheli Publishers organise its educational catalogue and support direct online purchases.</p>
+                  <ul className="text-xs text-gray-500 space-y-2 mb-6 bg-white p-4 rounded-xl border border-gray-100">
+                    <li>• Product Catalogue - Category-based discovery</li>
+                    <li>• E-commerce - Cart and purchase journey</li>
+                    <li>• Responsive Website - Desktop and mobile</li>
+                  </ul>
+                </div>
+                <Link href="#contact" className="text-[#0c2e60] font-bold text-sm flex items-center hover:text-[#6ac045] transition-colors">
+                  View E-commerce Case Study <ChevronRight className="w-4 h-4 ml-1" />
                 </Link>
               </div>
             </div>
+
+            {/* Project 2 */}
+            <div className="bg-[#f8fafc] rounded-2xl overflow-hidden border border-gray-100 shadow-sm flex flex-col justify-between">
+              <div className="h-48 relative overflow-hidden bg-gray-200">
+                <Image src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" alt="White Spread Foods" fill className="object-cover" />
+              </div>
+              <div className="p-8 flex flex-col flex-grow justify-between">
+                <div>
+                  <h3 className="text-xl font-bold text-[#0c2e60] mb-3">B2B Sales Portal for White Spread Foods</h3>
+                  <p className="text-gray-600 text-sm mb-6 leading-relaxed">A web-based sales platform developed around structured order placement, approval workflows and operational visibility.</p>
+                  <ul className="text-xs text-gray-500 space-y-2 mb-6 bg-white p-4 rounded-xl border border-gray-100">
+                    <li>• B2B Portal</li>
+                    <li>• Order Workflow</li>
+                    <li>• Sales Dashboard & Web Application</li>
+                  </ul>
+                </div>
+                <Link href="#contact" className="text-[#0c2e60] font-bold text-sm flex items-center hover:text-[#6ac045] transition-colors">
+                  View Web Application Case Study <ChevronRight className="w-4 h-4 ml-1" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Project 3 */}
+            <div className="bg-[#f8fafc] rounded-2xl overflow-hidden border border-gray-100 shadow-sm flex flex-col justify-between">
+              <div className="h-48 relative overflow-hidden bg-gray-200">
+                <Image src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&q=80" alt="Project Expo Guru" fill className="object-cover" />
+              </div>
+              <div className="p-8 flex flex-col flex-grow justify-between">
+                <div>
+                  <h3 className="text-xl font-bold text-[#0c2e60] mb-3">Dynamic Website for Project Expo Guru</h3>
+                  <p className="text-gray-600 text-sm mb-6 leading-relaxed">A business website designed to present services and work more clearly through structured content and responsive design.</p>
+                  <ul className="text-xs text-gray-500 space-y-2 mb-6 bg-white p-4 rounded-xl border border-gray-100">
+                    <li>• Dynamic Content Architecture</li>
+                    <li>• Service Showcase</li>
+                    <li>• Fully Responsive Layout</li>
+                  </ul>
+                </div>
+                <Link href="#contact" className="text-[#0c2e60] font-bold text-sm flex items-center hover:text-[#6ac045] transition-colors">
+                  View Business Website Case Study <ChevronRight className="w-4 h-4 ml-1" />
+                </Link>
+              </div>
+            </div>
+
+          </div>
+
+          <div className="text-center">
+            <Link href="#contact">
+              <button className="py-3.5 px-8 rounded-full border border-[#0c2e60] text-[#0c2e60] font-bold text-sm hover:bg-[#0c2e60] hover:text-white transition-colors">
+                Explore Website Projects
+              </button>
+            </Link>
           </div>
         </div>
       </section>
 
-      <section className="industries" id="industries">
-        <div className="container"><div className="section-head"><div className="copy"><div className="eyebrow">Industries We Support</div><h2>Website experiences shaped around your market</h2><p>Industry context changes how buyers evaluate trust, information, products and service capability. We adapt the structure accordingly.</p></div></div>
-          <div className="industry-grid">
-            <article className="industry-card"><div className="industry-icon">G</div><h3>GIS, Drone &amp; Engineering</h3><p>Technical service pages, industry solutions, project evidence, maps and complex deliverables.</p><b>Geospatial specialists →</b></article>
-            <article className="industry-card"><div className="industry-icon">E</div><h3>E-commerce &amp; Retail</h3><p>Product discovery, trust, category navigation, checkout and mobile purchase journeys.</p><b>Commerce experiences →</b></article>
-            <article className="industry-card"><div className="industry-icon">R</div><h3>Real Estate &amp; Construction</h3><p>Project portfolios, properties, services, location content and lead-generation forms.</p><b>Project-led websites →</b></article>
-            <article className="industry-card"><div className="industry-icon">P</div><h3>Publishing &amp; Education</h3><p>Large content catalogues, categories, searchable resources, authors and enrolment journeys.</p><b>Content-rich platforms →</b></article>
-            <article className="industry-card"><div className="industry-icon">M</div><h3>Manufacturing &amp; B2B</h3><p>Capability pages, products, specifications, export information, certifications and enquiries.</p><b>B2B company websites →</b></article>
-            <article className="industry-card"><div className="industry-icon">S</div><h3>Startups &amp; Professional Services</h3><p>Clear positioning, launch-ready branding, service packages, proof and conversion-focused pages.</p><b>Growth-ready foundations →</b></article>
+      {/* SECTION 9: WHY TECHMAPPERZ */}
+      <section className="py-20 md:py-28 bg-[#f8fafc] border-y border-gray-100">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20">
+          <div className="flex flex-col lg:flex-row gap-16 items-center">
+            <div className="lg:w-1/3">
+              <span className="text-[#6ac045] text-sm font-bold uppercase tracking-widest mb-3 block">WHY TECHMAPPERZ</span>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] mb-6 leading-tight">A Website Development Partner Focused on Clarity and Long-Term Use</h2>
+              <p className="text-gray-600 text-base leading-relaxed">
+                We define what information the visitor needs and how pages should connect before focusing on visual details.
+              </p>
+            </div>
+            
+            <div className="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                <h4 className="font-bold text-[#0c2e60] text-base mb-2">Structure Before Styling</h4>
+                <p className="text-gray-500 text-sm leading-relaxed">We define what information the visitor needs and how pages should connect before focusing on visual details.</p>
+              </div>
+              <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                <h4 className="font-bold text-[#0c2e60] text-base mb-2">B2B & Technical Understanding</h4>
+                <p className="text-gray-500 text-sm leading-relaxed">Our experience with GIS, drone and project-based services helps us structure complex technical offerings for business audiences.</p>
+              </div>
+              <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                <h4 className="font-bold text-[#0c2e60] text-base mb-2">Responsive Development</h4>
+                <p className="text-gray-500 text-sm leading-relaxed">Layouts and reusable components are developed to work consistently across common device sizes.</p>
+              </div>
+              <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                <h4 className="font-bold text-[#0c2e60] text-base mb-2">SEO-Conscious Architecture</h4>
+                <p className="text-gray-500 text-sm leading-relaxed">Page hierarchy, content structure, metadata and internal linking are considered during development.</p>
+              </div>
+              <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                <h4 className="font-bold text-[#0c2e60] text-base mb-2">Visible Project Stages</h4>
+                <p className="text-gray-500 text-sm leading-relaxed">Requirements, content dependencies, design reviews, development stages and feedback rounds remain defined.</p>
+              </div>
+              <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                <h4 className="font-bold text-[#0c2e60] text-base mb-2">Future Expansion</h4>
+                <p className="text-gray-500 text-sm leading-relaxed">The website can be structured so that additional services, industries, projects and content can be added seamlessly.</p>
+              </div>
+              <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                <h4 className="font-bold text-[#0c2e60] text-base mb-2">Geospatial Integration</h4>
+                <p className="text-gray-500 text-sm leading-relaxed">Where relevant, Techmapperz can integrate mapping, location information, Web GIS and geospatial functionality.</p>
+              </div>
+              <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                <h4 className="font-bold text-[#0c2e60] text-base mb-2">Continued Support</h4>
+                <p className="text-gray-500 text-sm leading-relaxed">Maintenance, content updates and new functionality can be scoped after launch according to ongoing requirements.</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section>
-        <div className="container"><div className="section-head"><div className="copy"><div className="eyebrow">Why Techmapperz</div><h2>A practical development partner—not only a page designer</h2><p>Our team combines design, development, content structure, SEO foundations and domain knowledge to support the complete website journey.</p></div></div>
-          <div className="why-grid">
-            <article className="why-card"><div className="tag">01 / STRATEGY</div><h3>Structure before styling</h3><p>We define audiences, page roles and conversion pathways before polishing visual details.</p></article>
-            <article className="why-card"><div className="tag">02 / COMMUNICATION</div><h3>Visible milestones</h3><p>Requirements, dependencies, design reviews and development progress remain clear throughout delivery.</p></article>
-            <article className="why-card"><div className="tag">03 / DEVELOPMENT</div><h3>Responsive implementation</h3><p>Reusable components and tested responsive behaviour create consistency across the full website.</p></article>
-            <article className="why-card"><div className="tag">04 / CONTENT</div><h3>SEO-conscious page planning</h3><p>Services, industries, projects and insights are organised to support users and organic discovery.</p></article>
-            <article className="why-card"><div className="tag">05 / SPECIALISATION</div><h3>Geospatial integration capability</h3><p>We can integrate interactive maps, Web GIS, location data and geospatial dashboards where required.</p></article>
-            <article className="why-card"><div className="tag">06 / SUPPORT</div><h3>Continued improvements</h3><p>After launch, we can support content changes, technical updates, optimisation and new functionality.</p></article>
+      {/* SECTION 10: FAQ */}
+      <section className="py-20 md:py-28 bg-white">
+        <div className="max-w-[1000px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20">
+          <div className="text-center mb-16">
+            <span className="text-[#6ac045] text-sm font-bold uppercase tracking-widest mb-3 block">FAQ</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60]">Frequently Asked Questions</h2>
+          </div>
+          
+          <div className="space-y-4">
+            {faqs.map((faq, index) => (
+              <FaqItem key={index} faq={faq} defaultOpen={index === 0} />
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="faq">
-        <div className="container faq-grid"><div className="faq-copy"><div className="eyebrow">Frequently Asked Questions</div><h2>Planning a new website or redesign?</h2><p>These are some of the questions businesses commonly ask before starting a website development project.</p><a className="btn btn-dark" href="#contact">Ask a Project Question</a></div>
-          <div className="faq-list">
-            <details open><summary>What information is required to estimate a website project?</summary><p>We normally review the business type, target users, required pages, functionality, design references, content availability, integrations, preferred technology and expected launch timeline.</p></details>
-            <details><summary>Can Techmapperz redesign an existing website without losing SEO value?</summary><p>Yes. The redesign plan should include an old-to-new URL map, permanent redirects, retained high-value content, updated metadata, internal-link checks, sitemap updates and post-launch Search Console monitoring.</p></details>
-            <details><summary>Will the website work properly on mobile devices?</summary><p>Responsive behaviour is planned and tested for common desktop, tablet and mobile widths. Navigation, typography, forms, buttons, images and interactive components are adjusted for smaller screens.</p></details>
-            <details><summary>Can our team update website content after launch?</summary><p>Yes. Depending on the project, we can provide a CMS or admin panel for managing pages, articles, projects, products, categories and selected website settings.</p></details>
-            <details><summary>Do you provide website content and SEO support?</summary><p>We can support sitemap planning, page structure, SEO-focused service content, metadata, headings, internal links and content implementation. Broader ongoing SEO campaigns can be defined separately.</p></details>
-            <details><summary>Can you integrate maps or GIS functionality into a business website?</summary><p>Yes. Techmapperz has GIS and Web GIS capabilities, allowing us to support interactive maps, location search, asset layers, spatial dashboards and geospatial data integrations when the project requires them.</p></details>
+      {/* SECTION 11: FINAL CTA */}
+      <section className="bg-[#0c2e60] py-20 relative overflow-hidden" id="contact">
+        <div className="absolute inset-0 opacity-10">
+          <Globe className="w-[400px] h-[400px] text-white absolute -right-20 -top-20" strokeWidth={0.5} />
+          <Laptop className="w-[300px] h-[300px] text-white absolute -left-10 -bottom-10" strokeWidth={0.5} />
+        </div>
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20 relative z-10">
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 lg:gap-12">
+            <div className="lg:max-w-2xl">
+              <span className="text-[#6ac045] text-sm font-bold uppercase tracking-[0.2em] mb-3 block">START WITH YOUR REQUIREMENT</span>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Planning a New Website—or Replacing One That No Longer Represents Your Business?</h2>
+              <p className="text-gray-300 text-[15px] leading-relaxed mb-4">
+                Share your current website, business services, required pages, important functionality, reference designs and expected timeline.
+              </p>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                We can review the requirement and recommend a website structure and development approach based on what your customers need to understand and what your internal team needs to manage.
+              </p>
+            </div>
+            
+            <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto lg:shrink-0 lg:justify-end">
+              <Link href="/contact" className="w-full sm:w-auto">
+                <button className="whitespace-nowrap w-full sm:w-auto py-3.5 px-8 rounded-full bg-[#6ac045] hover:bg-[#5aad38] text-white font-bold text-[15px] transition-all shadow-md">
+                  Discuss Your Website
+                </button>
+              </Link>
+              <Link href="/contact" className="w-full sm:w-auto">
+                <button className="whitespace-nowrap w-full sm:w-auto py-3.5 px-8 rounded-full bg-transparent border border-white/30 text-white font-bold text-[15px] hover:bg-white/10 transition-all shadow-md">
+                  Request a Website Proposal
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="cta" id="contact"><div className="container"><div className="cta-inner"><div className="cta-copy"><div className="eyebrow" style={{color: '#9bcdf0'}}>Start with Your Requirement</div><h2>Planning a new website or replacing an outdated one?</h2><p>Share your current website, required pages, features, reference designs and business goals. We will review the requirement and recommend a suitable structure and development approach.</p></div><div className="cta-actions"><a className="btn btn-primary" href="mailto:info@techmapperz.com">Request a Website Proposal</a><a className="btn btn-secondary" href="tel:+919643002065">Call Our Team</a></div></div></div></section>
     </div>
   );
-};
-
-export default ITServicePage;
+}

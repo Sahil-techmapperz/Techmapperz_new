@@ -464,9 +464,9 @@ export default function GISServicePageClient() {
 
             </div>
 
-            {/* Right Side Column: Image & Process Diagram */}
-            <div className="flex flex-col gap-6">
-              <div className="relative h-[250px] sm:h-[360px] rounded-2xl overflow-hidden shadow-xl">
+            {/* Right Side Column: Image */}
+            <div>
+              <div className="relative h-[350px] sm:h-[450px] rounded-2xl overflow-hidden shadow-xl">
                 <Image 
                   src="/gis_images/gis_mapping_digitisation.png" 
                   alt="GIS Mapping & Data Digitisation" 
@@ -474,29 +474,6 @@ export default function GISServicePageClient() {
                   sizes="(max-width: 1024px) 100vw, 50vw" 
                   className="object-cover object-center" 
                 />
-              </div>
-
-              {/* Before/After Flow Card */}
-              <div className="bg-[#0c2e60] text-white rounded-2xl p-6 shadow-lg border border-white/10">
-                <span className="text-[#6ac045] text-xs font-bold uppercase tracking-widest block mb-4">
-                  GIS TRANSFORMATION WORKFLOW
-                </span>
-                <div className="space-y-3 text-xs md:text-sm">
-                  <div className="bg-white/10 p-3 rounded-xl border border-white/10">
-                    <strong className="text-[#6ac045] block mb-0.5">INPUT DATA</strong>
-                    <span>Scanned Map / Drone Image / CAD / LiDAR</span>
-                  </div>
-                  <div className="text-center text-[#6ac045] font-bold">↓</div>
-                  <div className="bg-white/10 p-3 rounded-xl border border-white/10">
-                    <strong className="text-[#6ac045] block mb-0.5">TECHMAPPERZ WORKFLOW</strong>
-                    <span>Georeference → Digitise → Attribute → QA/QC</span>
-                  </div>
-                  <div className="text-center text-[#6ac045] font-bold">↓</div>
-                  <div className="bg-white/20 p-3 rounded-xl border border-white/20 font-bold">
-                    <strong className="text-white block mb-0.5">PROJECT-READY OUTPUT</strong>
-                    <span>Structured GIS + CAD + Spatial Database</span>
-                  </div>
-                </div>
               </div>
             </div>
 
