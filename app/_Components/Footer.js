@@ -83,10 +83,10 @@ const Footer = () => {
         <div className="relative z-10 max-w-[1600px] mx-auto px-5 sm:px-8 lg:px-12 pt-12 md:pt-16 pb-8 md:pb-10">
 
           {/* Top Row — Brand + Nav + Resources + Newsletter */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 lg:gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 lg:gap-8">
 
             {/* Col 1 — Brand */}
-            <div className="flex flex-col gap-4 sm:gap-5">
+            <div className="col-span-2 lg:col-span-1 flex flex-col gap-4 sm:gap-5">
               <Link href="/" className="inline-block bg-white rounded-xl sm:rounded-2xl px-3.5 py-2.5 sm:px-4 sm:py-3 w-fit max-w-[200px] sm:max-w-none shadow-lg shadow-black/20 hover:shadow-xl transition-shadow">
                 <Image
                   src={footer_logo}
@@ -122,7 +122,7 @@ const Footer = () => {
             </div>
 
             {/* Col 2 — Company Links */}
-            <div>
+            <div className="col-span-1">
               <h3 className="text-white font-bold text-sm sm:text-[15px] uppercase tracking-widest mb-4 sm:mb-6 relative pb-2.5 sm:pb-3 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-8 after:h-0.5 after:bg-[#e33434] after:rounded-full">
                 Company
               </h3>
@@ -143,7 +143,7 @@ const Footer = () => {
             </div>
 
             {/* Col 3 — Resources Links */}
-            <div>
+            <div className="col-span-1">
               <h3 className="text-white font-bold text-sm sm:text-[15px] uppercase tracking-widest mb-4 sm:mb-6 relative pb-2.5 sm:pb-3 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-8 after:h-0.5 after:bg-[#e33434] after:rounded-full">
                 Resources
               </h3>
@@ -164,7 +164,7 @@ const Footer = () => {
             </div>
 
             {/* Col 4 — Newsletter */}
-            <div>
+            <div className="col-span-2 lg:col-span-1">
               <h3 className="text-white font-bold text-sm sm:text-[15px] uppercase tracking-widest mb-4 sm:mb-6 relative pb-2.5 sm:pb-3 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-8 after:h-0.5 after:bg-[#e33434] after:rounded-full">
                 Stay Updated
               </h3>
