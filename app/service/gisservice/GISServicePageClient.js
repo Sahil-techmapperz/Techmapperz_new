@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { Map, FileDigit, Layers, Zap, TreePine, LineChart, Monitor } from "lucide-react";
 
 const gisServices = [
   {
@@ -10,13 +11,17 @@ const gisServices = [
     description: "Paper maps, scanned plans, imagery and existing records often contain useful information but are difficult to analyse or maintain until they are converted into structured GIS data. Techmapperz digitises spatial features and associated attributes according to the required feature catalogue, layer structure, coordinate system and project specification.",
     items: [
       "Point, line and polygon digitisation",
-      "Attribute data entry & coding",
-      "Layer creation & map vectorisation",
-      "Database structuring & cleaning",
+      "Attribute data entry",
+      "Feature coding",
+      "Layer creation",
+      "Map vectorisation",
+      "Database structuring",
+      "Data cleaning",
       "Legacy GIS migration",
-      "GIS database creation & updating"
+      "GIS database creation",
+      "Existing dataset updating"
     ],
-    inputs: "Possible inputs: Scanned maps · Satellite imagery · Drone imagery · CAD drawings · Existing GIS layers · Survey information",
+    inputs: "Possible inputs: Scanned maps • Satellite imagery • Drone imagery • CAD drawings • Existing GIS layers • Survey information",
     cta: "Explore GIS Data Digitisation",
     link: "/service/gisservice/datadigitization",
     image: "/gis_images/GIS_Main_Page/GIS_Data_Digitization.webp"
@@ -27,13 +32,18 @@ const gisServices = [
     description: "We extract visible or interpretable geographic and infrastructure features from suitable drone imagery, satellite imagery, LiDAR point clouds and other geospatial sources. The feature catalogue is agreed before production so that roads, buildings, utilities, land features and other project objects are captured consistently.",
     items: [
       "Roads and road edges",
-      "Railway & transport features",
+      "Railway features",
       "Buildings and structures",
-      "Drainage & water bodies",
-      "Utilities & vegetation",
-      "Mining & industrial infrastructure"
+      "Drainage",
+      "Water bodies",
+      "Utilities",
+      "Vegetation",
+      "Land boundaries",
+      "Mining features",
+      "Industrial infrastructure",
+      "Project-specific assets"
     ],
-    outputs: "Typical outputs: GIS layers · GeoPackage · Geodatabase · DWG/DXF",
+    outputs: "Typical outputs: GIS layers • GeoPackage • Geodatabase • DWG/DXF",
     cta: "Explore Feature Extraction Services",
     link: "/service/gisservice/gismapping",
     image: "/gis_images/GIS_Main_Page/GIS_Mapping.webp"
@@ -43,12 +53,23 @@ const gisServices = [
     title: "Utility, Pipeline & Asset Mapping",
     description: "Utility GIS requires more than showing lines on a map. Assets normally need locations, identifiers, attributes and a structure that allows engineering or operational teams to understand the network. Techmapperz supports the creation and updating of GIS databases for linear and distributed infrastructure using available drawings, imagery, survey records and existing asset information.",
     items: [
-      "Gas pipelines & water networks",
-      "Drainage & electrical assets",
-      "Telecom & road infrastructure",
+      "Gas pipelines",
+      "Water networks",
+      "Drainage networks",
+      "Electrical assets",
+      "Telecom infrastructure",
+      "Road assets",
+      "Railway assets",
+      "Industrial facilities",
+      "Public infrastructure",
       "Network digitisation",
+      "Asset-location mapping",
+      "Attribute integration",
       "Asset inventory preparation",
-      "CAD/GIS integration & data cleaning"
+      "Existing database updating",
+      "CAD/GIS integration",
+      "Network-data cleaning",
+      "Map and database preparation"
     ],
     evidence: "Published project evidence: 6,000 km gas-pipeline digitisation and digital asset registry assignment.",
     cta: "Explore Utility & Asset Mapping",
@@ -62,10 +83,14 @@ const gisServices = [
     items: [
       "Cadastral map digitisation",
       "Parcel boundary mapping",
-      "Plot digitisation & georeferencing",
+      "Plot digitisation",
+      "Georeferencing",
       "Plot-number attribution",
       "Village and administrative layers",
-      "Land-record integration & parcel databases"
+      "Land-record integration",
+      "Parcel database creation",
+      "Map rectification",
+      "Land-use integration"
     ],
     cta: "Explore Cadastral Mapping Services",
     link: "/service/gisservice/gisconsulting",
@@ -76,15 +101,26 @@ const gisServices = [
     title: "Land Use / Land Cover & Remote Sensing",
     description: "Satellite and aerial imagery can be interpreted to understand how land is being used, how areas are changing and how different land-cover classes are distributed. Techmapperz prepares land-use and land-cover datasets according to the classification structure and level of detail required by the project.",
     items: [
-      "Built-up & residential areas",
-      "Industrial & agricultural land",
-      "Vegetation & forest classes",
-      "Water bodies & transport networks",
+      "Built-up areas",
+      "Residential areas",
+      "Industrial land",
+      "Agricultural land",
+      "Vegetation",
+      "Forest",
+      "Open land",
+      "Water bodies",
+      "Transport infrastructure",
+      "Project-specific land classes",
       "Satellite-image interpretation",
-      "Image classification & change detection"
+      "Image classification",
+      "Change detection",
+      "Multi-date comparison",
+      "Thematic mapping",
+      "Spatial statistics",
+      "Map preparation"
     ],
-    evidence: "Published project evidence: 400 sq. km urban and rural LULC mapping assignment with 15+ layers.",
-    cta: "Discuss LULC Mapping Requirement",
+    evidence: "Published project evidence: 400 sq. km urban and rural LULC mapping assignment with more than 15 layers, subject to approval for publication.",
+    cta: "Explore LULC & Remote Sensing Services",
     link: "/contact",
     image: "/gis_images/Urban & Rural.webp"
   },
@@ -107,14 +143,22 @@ const gisServices = [
     title: "Spatial Analysis & Geoprocessing",
     description: "GIS becomes more useful when spatial data can answer a project question rather than simply display features. We perform geoprocessing and spatial analysis using available GIS, terrain, infrastructure and project datasets.",
     items: [
-      "Buffer & proximity analysis",
-      "Overlay & network analysis",
-      "Route & site-suitability analysis",
-      "Terrain & slope analysis",
-      "Change detection & spatial queries",
-      "Area/length calculations & geocoding"
+      "Buffer analysis",
+      "Proximity analysis",
+      "Overlay analysis",
+      "Network analysis",
+      "Route analysis",
+      "Site-suitability analysis",
+      "Terrain and slope analysis",
+      "Change detection",
+      "Spatial queries",
+      "Location analysis",
+      "Area and length calculations",
+      "Geocoding",
+      "Data integration",
+      "Automated geoprocessing"
     ],
-    cta: "Discuss Spatial Analysis Requirement",
+    cta: "Explore Spatial Analysis Services",
     link: "/contact",
     image: "/gis_images/GISintroImg.webp"
   },
@@ -255,7 +299,8 @@ const projectExperiences = [
       { label: "Feature scope", value: "Multiple feature classes" }
     ],
     image: "/gis_images/drone_services/drone_surveying_mapping/3D_Drone_Terrain.webp",
-    link: "/portfolios"
+    link: "/portfolios",
+    ctaLabel: "View Mining Mapping Project"
   },
   {
     sector: "UTILITIES & PIPELINES",
@@ -334,7 +379,7 @@ export default function GISServicePageClient() {
       
       {/* HERO SECTION - MATCHING DRONE SERVICE HERO EXACTLY */}
       <section 
-        className="relative min-h-[auto] sm:min-h-[85vh] flex flex-col justify-start sm:justify-center items-start bg-cover bg-center text-white pt-32 sm:pt-40 pb-16 sm:pb-28" 
+        className="relative min-h-[auto] sm:min-h-[85vh] flex flex-col justify-start sm:justify-center items-start bg-cover bg-center text-white pt-32 sm:pt-40 pb-40 sm:pb-36" 
         style={{ backgroundImage: 'url("/gis_images/aerial_gis_mapping_banner.png")' }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/30" />
@@ -346,6 +391,50 @@ export default function GISServicePageClient() {
           <div className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-5 mt-2 w-full sm:w-auto">
             <Link href="#contact" className="w-full sm:w-auto"><button className="w-full sm:w-auto py-[12px] px-8 rounded-full border border-[#1656b8] bg-[#1656b8]/30 text-white font-semibold text-[15px] hover:bg-[#1656b8] transition-all duration-300">Discuss Your GIS Requirement</button></Link>
             <Link href="#services" className="w-full sm:w-auto"><button className="w-full sm:w-auto py-[12px] px-8 rounded-full border border-gray-300 bg-transparent text-white font-semibold text-[15px] hover:bg-white/10 transition-all duration-300">Explore GIS Services</button></Link>
+          </div>
+        </div>
+
+        {/* Bottom Capabilities Strip */}
+        <div className="absolute bottom-0 left-0 w-full bg-[#0a1930]/95 backdrop-blur-md border-t border-[#6ac045]/30 z-20">
+          <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20 py-4 sm:py-5 overflow-x-auto hide-scrollbar">
+            <div className="flex items-center justify-between gap-6 min-w-max md:min-w-0">
+              
+              <div className="flex items-center gap-3 group cursor-default">
+                <Map className="w-6 h-6 text-[#6ac045] group-hover:scale-110 transition-transform" />
+                <span className="text-sm font-semibold text-white tracking-wide">GIS Mapping</span>
+              </div>
+              
+              <div className="flex items-center gap-3 group cursor-default">
+                <FileDigit className="w-6 h-6 text-[#6ac045] group-hover:scale-110 transition-transform" />
+                <span className="text-sm font-semibold text-white tracking-wide">Digitisation</span>
+              </div>
+
+              <div className="flex items-center gap-3 group cursor-default">
+                <Layers className="w-6 h-6 text-[#6ac045] group-hover:scale-110 transition-transform" />
+                <span className="text-sm font-semibold text-white tracking-wide">Feature Extraction</span>
+              </div>
+
+              <div className="flex items-center gap-3 group cursor-default">
+                <Zap className="w-6 h-6 text-[#6ac045] group-hover:scale-110 transition-transform" />
+                <span className="text-sm font-semibold text-white tracking-wide">Utility Mapping</span>
+              </div>
+
+              <div className="flex items-center gap-3 group cursor-default">
+                <TreePine className="w-6 h-6 text-[#6ac045] group-hover:scale-110 transition-transform" />
+                <span className="text-sm font-semibold text-white tracking-wide">LULC</span>
+              </div>
+
+              <div className="flex items-center gap-3 group cursor-default">
+                <LineChart className="w-6 h-6 text-[#6ac045] group-hover:scale-110 transition-transform" />
+                <span className="text-sm font-semibold text-white tracking-wide">Spatial Analysis</span>
+              </div>
+
+              <div className="flex items-center gap-3 group cursor-default">
+                <Monitor className="w-6 h-6 text-[#6ac045] group-hover:scale-110 transition-transform" />
+                <span className="text-sm font-semibold text-white tracking-wide">CAD/GIS</span>
+              </div>
+
+            </div>
           </div>
         </div>
       </section>
@@ -373,19 +462,6 @@ export default function GISServicePageClient() {
                 Techmapperz reviews these requirements before production begins so that the GIS data is prepared around the intended project workflow rather than treated as a generic mapping exercise.
               </p>
 
-              {/* Existing Data Callout Box */}
-              <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm mb-6">
-                <p className="text-[#0c2e60] font-bold text-base mb-2">Already have GIS, CAD or survey data?</p>
-                <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                  We can also review, clean, restructure, convert or update existing datasets without rebuilding the project from the beginning.
-                </p>
-                <Link 
-                  href="#contact" 
-                  className="inline-flex items-center justify-center gap-2 bg-[#0c2e60] hover:bg-[#082046] text-white font-bold text-sm px-7 py-3 rounded-full transition-all duration-300 shadow-md w-full sm:w-fit"
-                >
-                  Share Your Existing Data &#8594;
-                </Link>
-              </div>
             </div>
 
             {/* Right Side Column: Image & Process Diagram */}
@@ -425,6 +501,20 @@ export default function GISServicePageClient() {
             </div>
 
           </div>
+          
+          {/* Small Strip Banner */}
+          <div className="mt-12 bg-[#0c2e60] rounded-2xl px-6 py-5 flex flex-col md:flex-row items-center justify-between gap-6 shadow-md border border-[#1656b8]">
+            <div>
+              <p className="text-white font-bold text-lg mb-1">Already have GIS, CAD or survey data?</p>
+              <p className="text-blue-200 text-sm">We can also review, clean, restructure, convert or update existing datasets without rebuilding the project from the beginning.</p>
+            </div>
+            <Link 
+              href="#contact" 
+              className="inline-flex flex-shrink-0 items-center justify-center gap-2 bg-[#6ac045] hover:bg-[#5aad38] text-white font-bold text-sm px-7 py-3 rounded-full transition-all duration-300 shadow-md w-full md:w-auto"
+            >
+              Share Your Existing Data &#8594;
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -440,7 +530,7 @@ export default function GISServicePageClient() {
               GIS Production and Analysis for Different Project Requirements
             </h2>
             <p className="text-gray-600 text-sm md:text-base mt-3 leading-relaxed">
-              Eight primary geospatial service areas built around spatial accuracy, layer structure and workflow compatibility.
+              The parent GIS Services page should present eight primary service areas. Dedicated child pages can then provide deeper detail for high-value or high-intent services.
             </p>
           </div>
 
@@ -507,6 +597,14 @@ export default function GISServicePageClient() {
                 </div>
               </div>
             ))}
+          </div>
+          
+          <div className="mt-12 text-center">
+            <Link href="/portfolios" className="inline-block w-full sm:w-auto">
+              <button className="w-full sm:w-auto py-3.5 px-8 rounded-full border border-white bg-transparent text-white font-bold text-sm hover:bg-white/10 transition-all duration-300 shadow-sm">
+                Explore GIS Project Experience
+              </button>
+            </Link>
           </div>
 
         </div>
@@ -628,7 +726,7 @@ export default function GISServicePageClient() {
 
           <div className="text-center">
             <Link href="#contact" className="inline-block w-full sm:w-auto">
-              <button className="w-full sm:w-auto py-3 px-8 rounded-full border border-[#0c2e60] text-[#0c2e60] font-bold text-sm hover:bg-[#0c2e60] hover:text-white transition-all duration-300">
+              <button className="w-full sm:w-auto py-3.5 px-8 rounded-full bg-[#0c2e60] hover:bg-[#082046] text-white font-bold text-sm transition-all duration-300 shadow-md">
                 Discuss Your GIS Workflow &#8594;
               </button>
             </Link>
@@ -813,7 +911,7 @@ export default function GISServicePageClient() {
                   </div>
                   <Link href={proj.link} className="mt-2 w-full sm:w-fit">
                     <button className="w-full sm:w-auto py-3 px-7 rounded-full bg-[#6ac045] hover:bg-[#5aad38] text-white font-bold text-sm transition-all duration-300">
-                      View Project Details &#8594;
+                      {proj.ctaLabel || 'View Project Details'} &#8594;
                     </button>
                   </Link>
                 </div>
@@ -901,7 +999,7 @@ export default function GISServicePageClient() {
               COMMON QUESTIONS
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] tracking-tight">
-              Frequently Asked Questions
+              Questions Clients Ask Before Starting a GIS Project
             </h2>
           </div>
 
@@ -939,6 +1037,12 @@ export default function GISServicePageClient() {
                 Send Your Scope of Work
               </button>
             </Link>
+          </div>
+
+          <div className="mt-10 pt-8 border-t border-white/20">
+            <p className="text-blue-200 text-sm font-medium tracking-wide flex flex-wrap justify-center gap-2 items-center">
+              GIS Mapping <span className="text-[#6ac045]">•</span> Digitisation <span className="text-[#6ac045]">•</span> Feature Extraction <span className="text-[#6ac045]">•</span> Utility Mapping <span className="text-[#6ac045]">•</span> Cadastral GIS <span className="text-[#6ac045]">•</span> LULC <span className="text-[#6ac045]">•</span> Spatial Analysis <span className="text-[#6ac045]">•</span> CAD/GIS
+            </p>
           </div>
 
         </div>
