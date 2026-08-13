@@ -44,7 +44,7 @@
 .contact-page-wrapper .btn-wide { width: 100%; }
 
 .contact-page-wrapper .quick-strip { position: relative; margin-top: -36px; z-index: 4; }
-.contact-page-wrapper .quick-grid { display: grid; grid-template-columns: repeat(4, 1fr); background: var(--navy); border-radius: 18px; box-shadow: 0 20px 40px rgba(11, 35, 65, 0.20); overflow: hidden; }
+.contact-page-wrapper .quick-grid { display: grid; grid-template-columns: repeat(3, 1fr); background: var(--navy); border-radius: 18px; box-shadow: 0 20px 40px rgba(11, 35, 65, 0.20); overflow: hidden; }
 .contact-page-wrapper .quick-card { padding: 24px 25px; border-right: 1px solid rgba(255, 255, 255, 0.13); }
 .contact-page-wrapper .quick-card:last-child { border-right: 0; }
 .contact-page-wrapper .quick-card small { color: #8fc2ea; font-size: 10px; font-weight: 900; letter-spacing: 0.13em; text-transform: uppercase; }

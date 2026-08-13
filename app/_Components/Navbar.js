@@ -8,7 +8,7 @@ import { FaFacebookF, FaPhoneAlt, FaInstagram, FaEnvelope, FaLinkedinIn, FaYoutu
 import { BsTwitterX } from "react-icons/bs";
 import Image from 'next/image';
 
-import company_logo from "@/public/logo.webp"
+import company_logo from "@/public/logo.png"
 import Resources from './Resources';
 import QuoteModal from './QuoteModal';
 
@@ -85,7 +85,7 @@ const Navbar = () => {
     <>
       <div className="fixed top-0 w-full z-[200] flex flex-col">
         {/* Top Info Bar */}
-        <div className="bg-[#0c2e60] text-white text-[10px] sm:text-[11px] md:text-xs py-1.5 sm:py-2 px-3 sm:px-6 md:px-14 flex flex-col md:flex-row justify-between items-center gap-1 sm:gap-2 font-medium z-[201] text-center md:text-left">
+        {/* <div className="bg-[#0c2e60] text-white text-[10px] sm:text-[11px] md:text-xs py-1.5 sm:py-2 px-3 sm:px-6 md:px-14 flex flex-col md:flex-row justify-between items-center gap-1 sm:gap-2 font-medium z-[201] text-center md:text-left">
           <div className="flex flex-wrap justify-center items-center gap-x-2 gap-y-0.5">
             <span className="opacity-95 whitespace-nowrap">GIS-first technology company</span>
             <span className="opacity-50">|</span>
@@ -100,7 +100,7 @@ const Navbar = () => {
               +91 96430 02065
             </a>
           </div>
-        </div>
+        </div> */}
 
         {/* Main Navbar */}
         <div className="w-full bg-white shadow-sm border-b border-gray-150 transition-transform duration-300">
@@ -125,9 +125,8 @@ const Navbar = () => {
                 <li className="relative text-center">
                   <Link
                     href="/"
-                    className={`text-sm lg:text-base font-semibold text-[#0c2e60] flex items-center relative after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:h-[3px] after:bg-[#d2292b] after:transition-all after:duration-300 ${
-                      pathname === '/' ? 'after:w-full' : 'after:w-0 hover:after:w-full'
-                    }`}
+                    className={`text-sm lg:text-base font-semibold text-[#0c2e60] flex items-center relative after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:h-[3px] after:bg-[#d2292b] after:transition-all after:duration-300 ${pathname === '/' ? 'after:w-full' : 'after:w-0 hover:after:w-full'
+                      }`}
                   >
                     Home
                   </Link>
@@ -146,9 +145,8 @@ const Navbar = () => {
                 <li className="relative text-center">
                   <Link
                     href="/industry"
-                    className={`text-sm lg:text-base font-semibold text-[#0c2e60] flex items-center relative after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:h-[3px] after:bg-[#d2292b] after:transition-all after:duration-300 ${
-                      pathname.startsWith('/industry') ? 'after:w-full' : 'after:w-0 hover:after:w-full'
-                    }`}
+                    className={`text-sm lg:text-base font-semibold text-[#0c2e60] flex items-center relative after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:h-[3px] after:bg-[#d2292b] after:transition-all after:duration-300 ${pathname.startsWith('/industry') ? 'after:w-full' : 'after:w-0 hover:after:w-full'
+                      }`}
                   >
                     Industries
                   </Link>
@@ -158,9 +156,8 @@ const Navbar = () => {
                 <li className="relative text-center">
                   <Link
                     href="/portfolios"
-                    className={`text-sm lg:text-base font-semibold text-[#0c2e60] flex items-center relative after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:h-[3px] after:bg-[#d2292b] after:transition-all after:duration-300 ${
-                      pathname === '/portfolios' ? 'after:w-full' : 'after:w-0 hover:after:w-full'
-                    }`}
+                    className={`text-sm lg:text-base font-semibold text-[#0c2e60] flex items-center relative after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:h-[3px] after:bg-[#d2292b] after:transition-all after:duration-300 ${pathname === '/portfolios' ? 'after:w-full' : 'after:w-0 hover:after:w-full'
+                      }`}
                   >
                     Projects
                   </Link>
@@ -179,9 +176,8 @@ const Navbar = () => {
                 <li className="relative text-center">
                   <Link
                     href="/about"
-                    className={`text-sm lg:text-base font-semibold text-[#0c2e60] flex items-center relative after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:h-[3px] after:bg-[#d2292b] after:transition-all after:duration-300 ${
-                      pathname === '/about' ? 'after:w-full' : 'after:w-0 hover:after:w-full'
-                    }`}
+                    className={`text-sm lg:text-base font-semibold text-[#0c2e60] flex items-center relative after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:h-[3px] after:bg-[#d2292b] after:transition-all after:duration-300 ${pathname === '/about' ? 'after:w-full' : 'after:w-0 hover:after:w-full'
+                      }`}
                   >
                     About
                   </Link>
@@ -191,9 +187,8 @@ const Navbar = () => {
                 <li className="relative text-center">
                   <Link
                     href="/contact"
-                    className={`text-sm lg:text-base font-semibold text-[#0c2e60] flex items-center relative after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:h-[3px] after:bg-[#d2292b] after:transition-all after:duration-300 ${
-                      pathname === '/contact' ? 'after:w-full' : 'after:w-0 hover:after:w-full'
-                    }`}
+                    className={`text-sm lg:text-base font-semibold text-[#0c2e60] flex items-center relative after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:h-[3px] after:bg-[#d2292b] after:transition-all after:duration-300 ${pathname === '/contact' ? 'after:w-full' : 'after:w-0 hover:after:w-full'
+                      }`}
                   >
                     Contact
                   </Link>
