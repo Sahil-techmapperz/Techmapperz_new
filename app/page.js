@@ -233,14 +233,14 @@ const Home = async () => {
       </section>
 
       {/* Deliverables Section (Section 5) */}
-      <LazySection
+      {/* <LazySection
         mobileRootMargin="100px 0px"
         fallback={<div className="min-h-[300px] bg-theme-bg animate-pulse" />}
       >
         <ScrollReveal>
           <Deliverables />
         </ScrollReveal>
-      </LazySection>
+      </LazySection> */}
 
       {/* Industry Expertise Section (Section 6) */}
       <LazySection

@@ -91,79 +91,68 @@ export const categoryData = [
 
 const industryTabs = [
   {
-    id: 'infrastructure-aec',
-    name: 'Infrastructure & AEC',
-    tag: 'CONSTRUCTION',
-    title: 'Topographic surveys, corridor mapping, construction monitoring, terrain models, cross-sections, asset inventories and GIS/CAD deliverables for roads, railways and civil-engineering projects.',
+    id: 'infrastructure',
+    name: 'Infrastructure & Transport',
+    tag: 'INFRASTRUCTURE',
+    title: 'Drone survey, topographic mapping, LiDAR, corridor mapping, terrain models and GIS/CAD deliverables for railway, highway, civil infrastructure and engineering projects.',
     description: '',
-    buttonText: 'Explore Industries',
-    buttonLink: '/industry/infrastructure-aec',
+    buttonText: 'Explore Infrastructure',
+    buttonLink: '/industry/infrastructure',
     mainImage: '/Industry/himachal_landscape.png',
     overlayImage: '/gis_images/Urban & Rural.webp'
   },
   {
-    id: 'government',
-    name: 'Government & Land Administration',
-    tag: 'SPACE & CADASTRAL',
-    title: 'Cadastral mapping, property mapping, municipal GIS, land-record digitisation, public asset inventories, georeferencing and land-use databases.',
-    description: '',
-    buttonText: 'Explore Industries',
-    buttonLink: '/industry/government-public-sector',
-    mainImage: '/Industry/himachal_landscape.png',
-    overlayImage: '/Industry/himachal_map.png'
-  },
-  {
     id: 'utilities',
     name: 'Utilities & Energy',
-    tag: 'ENERGY & WATER',
-    title: 'GIS mapping and asset databases for water, wastewater, power, oil and gas pipelines, renewable energy, telecom and associated network infrastructure.',
+    tag: 'UTILITIES & ENERGY',
+    title: 'GIS mapping, pipeline and network digitisation, utility asset databases, drone surveys and Web GIS support for water, power, telecom, oil & gas and renewable-energy projects.',
     description: '',
-    buttonText: 'Explore Industries',
-    buttonLink: '/industry/logistics-supply-chain',
+    buttonText: 'Explore Utilities',
+    buttonLink: '/industry/utilities',
     mainImage: '/Industry/himachal_landscape.png',
     overlayImage: '/gis_images/Gas Pipeline.webp'
   },
   {
     id: 'mining',
-    name: 'Mining & Natural Resources',
-    tag: 'MINERALS & REMOTE SENSING',
-    title: 'Mine feature extraction, topographic mapping, stockpile and volumetric analysis, haul-road mapping, terrain models, operational assets and environmental monitoring.',
+    name: 'Mining & Resources',
+    tag: 'MINING & RESOURCES',
+    title: 'Mine mapping, feature extraction, drone data processing, terrain models, haul-road mapping, stockpile volumetrics and GIS/CAD production for mining and natural-resource projects.',
     description: '',
-    buttonText: 'Explore Industries',
-    buttonLink: '/industry/manufacturing',
+    buttonText: 'Explore Mining',
+    buttonLink: '/industry/mining',
     mainImage: '/Industry/himachal_landscape.png',
     overlayImage: '/Industry/himachal_map.png'
   },
   {
-    id: 'architecture-planning',
-    name: 'Architecture, Planning & Urban Development',
-    tag: 'URBAN DEVELOPMENT',
-    title: 'Base mapping, existing-condition surveys, building footprints, land-use mapping, utility inventories, drainage maps and planning-support databases.',
+    id: 'government',
+    name: 'Government',
+    tag: 'GOVERNMENT',
+    title: 'Cadastral mapping, land-record digitisation, parcel GIS, municipal mapping, public asset inventories, georeferencing and land-use databases for government and land projects.',
     description: '',
-    buttonText: 'Explore Industries',
-    buttonLink: '/industry/retail',
+    buttonText: 'Explore Government GIS',
+    buttonLink: '/industry/government',
+    mainImage: '/Industry/himachal_landscape.png',
+    overlayImage: '/Industry/himachal_map.png'
+  },
+  {
+    id: 'architecture',
+    name: 'Architecture & Planning',
+    tag: 'ARCHITECTURE & PLANNING',
+    title: 'Topographic mapping, existing-condition surveys, land-use mapping, building footprints, utilities, drainage and GIS base maps for architecture, planning and development projects.',
+    description: '',
+    buttonText: 'Explore Planning GIS',
+    buttonLink: '/industry/architecture',
     mainImage: '/Industry/himachal_landscape.png',
     overlayImage: '/gis_images/Urban & Rural.webp'
   },
   {
-    id: 'transportation-rail',
-    name: 'Transportation & Rail',
-    tag: 'TRANSIT SYSTEMS',
-    title: 'Railway and highway corridor mapping, navigation datasets, road assets, route networks, terrain products and transport-infrastructure inventories.',
-    description: '',
-    buttonText: 'Explore Industries',
-    buttonLink: '/industry/travel-hospitality',
-    mainImage: '/Industry/himachal_landscape.png',
-    overlayImage: '/Industry/himachal_map.png'
-  },
-  {
-    id: 'agriculture-environment',
+    id: 'agriculture',
     name: 'Agriculture & Environment',
-    tag: 'FORESTRY & HYDROLOGY',
-    title: 'Plantation mapping, crop and vegetation inventories, land-use classification, terrain analysis, drainage, water-body mapping and change detection.',
+    tag: 'AGRICULTURE & ENVIRONMENT',
+    title: 'Plantation mapping, land-use classification, vegetation and water-body mapping, terrain analysis, drainage, remote sensing and change-detection support for land and environmental projects.',
     description: '',
-    buttonText: 'Explore Industries',
-    buttonLink: '/industry/healthcare',
+    buttonText: 'Explore Agriculture & Environment',
+    buttonLink: '/industry/agriculture',
     mainImage: '/Industry/himachal_landscape.png',
     overlayImage: '/Industry/himachal_map.png'
   }
@@ -190,126 +179,170 @@ const IndustryExpertise = () => {
             INDUSTRIES WE SUPPORT
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4" style={sansSerifStyle}>
-            Tailored Geospatial Workflows for Diverse Sectors
+            Geospatial Support Across Technical & Infrastructure Sectors
           </h2>
           <p className="text-gray-400 text-xs sm:text-sm md:text-[15px] max-w-3xl mx-auto leading-relaxed" style={sansSerifStyle}>
-            Our methodology, feature structure and deliverables are planned around how each industry collects, reviews and uses spatial information.
+            We support industries where reliable maps, terrain, assets and spatial data are essential for planning, engineering and field operations. Our core capabilities include GIS mapping, drone survey, LiDAR and geospatial data processing, with Web development and digital applications available where required.
           </p>
         </div>
       </div>
 
-      {/* ── TABS BAR ── */}
-      <div
-        className="border-b relative z-10 overflow-x-auto scrollbar-none"
-        style={{ backgroundColor: '#1a1a1a', borderColor: '#2d2d2d' }}
-      >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="flex gap-4 sm:gap-8 md:gap-10 min-w-max">
-            {industryTabs.map((tab, index) => {
-              const isActive = activeIdx === index;
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveIdx(index)}
-                  className="py-3 sm:py-4 px-1 text-xs sm:text-sm font-medium tracking-wide relative transition-colors duration-300 whitespace-nowrap hover:text-white"
-                  style={{
-                    ...sansSerifStyle,
-                    color: isActive ? '#1656b8' : '#9ca3af'
-                  }}
-                >
-                  {tab.name}
-                  {isActive && (
-                    <motion.div
-                      layoutId="activeTabUnderline"
-                      className="absolute bottom-0 left-0 right-0 h-[2px]"
-                      style={{ backgroundColor: '#1656b8' }}
-                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                    />
-                  )}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-
-      {/* ── SCENIC CONTENT PANEL ── */}
-      <div className="relative min-h-0 md:min-h-[580px] w-full flex items-center justify-center py-6 md:py-20">
-
-        {/* Full-width dark background image */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/Industry/forest_silhouette_bg.png"
-            alt="Dark mountain landscape"
-            fill
-            className="object-cover object-center"
-            priority
-          />
-          {/* Dark gradient overlay for a premium look */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/75 to-black/45 z-[1]" />
-        </div>
-
-        {/* Content grid */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeTab.id}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.3 }}
-            className="relative z-10 max-w-6xl w-full mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8 md:gap-16 items-center"
+      {/* ── MAIN CONTAINER (Tabs + Content) ── */}
+      <div className="w-full flex justify-center relative z-10 border-b" style={{ backgroundColor: '#1a1a1a', borderColor: '#2d2d2d' }}>
+        <div className="flex flex-col md:flex-row relative z-10 w-full max-w-[1440px]">
+          
+          {/* ── LEFT TABS BAR ── */}
+          <div 
+            className="w-full md:w-[35%] lg:w-[30%] border-b md:border-b-0 md:border-r overflow-x-auto md:overflow-x-hidden md:overflow-y-auto scrollbar-none z-20 flex flex-col" 
+            style={{ borderColor: '#2d2d2d', backgroundColor: '#1a1a1a' }}
           >
-            {/* Left Column — Text content */}
-            <div className="flex flex-col items-start text-left z-10">
-              <span className="text-gray-400 text-xs font-bold tracking-[0.15em] uppercase mb-1.5 sm:mb-3" style={sansSerifStyle}>
-                {activeTab.tag}
-              </span>
-              <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-bold text-white leading-snug mb-2 sm:mb-5" style={sansSerifStyle}>
-                {activeTab.title}
-              </h3>
-              <p className="text-gray-300 text-xs sm:text-sm md:text-[15px] leading-relaxed mb-4 sm:mb-8 max-w-lg" style={sansSerifStyle}>
-                {activeTab.description}
-              </p>
-
+            <div className="flex md:flex-col min-w-max md:min-w-0 flex-1">
+              {industryTabs.map((tab, index) => {
+                const isActive = activeIdx === index;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveIdx(index)}
+                    className={`py-4 px-5 sm:px-6 md:px-8 text-left text-xs sm:text-sm md:text-[15px] font-medium tracking-wide relative transition-all duration-300 hover:text-white border-b border-[#2d2d2d]/30 last:border-b-0 whitespace-nowrap md:whitespace-normal flex items-center min-h-[60px] md:min-h-[80px] ${isActive ? 'bg-[#222222]' : ''}`}
+                    style={{
+                      ...sansSerifStyle,
+                      color: isActive ? '#1656b8' : '#9ca3af'
+                    }}
+                  >
+                    <span className="relative z-10 w-full pr-4">{tab.name}</span>
+                    {isActive && (
+                      <>
+                        {/* Mobile active indicator (bottom) */}
+                        <motion.div
+                          layoutId="activeTabIndicatorMobile"
+                          className="absolute bottom-0 left-0 right-0 h-[3px] md:hidden"
+                          style={{ backgroundColor: '#1656b8' }}
+                          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                        />
+                        {/* Desktop active indicator (left) */}
+                        <motion.div
+                          layoutId="activeTabIndicatorDesktop"
+                          className="hidden md:block absolute top-0 bottom-0 left-0 w-[4px]"
+                          style={{ backgroundColor: '#1656b8' }}
+                          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                        />
+                        {/* Subtle active background glow */}
+                        <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-[#1656b8]/10 to-transparent z-0" />
+                      </>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+            
+            {/* ── MAIN CTA (Desktop) ── */}
+            <div className="hidden md:block p-4 sm:p-6 md:p-8 mt-auto border-t border-[#2d2d2d]/30">
               <Link
-                href={activeTab.buttonLink}
-                className="inline-flex justify-center items-center gap-2 bg-[#082046] hover:bg-[#061836] text-white font-bold text-sm sm:text-base px-8 py-3.5 rounded-xl transition-all duration-300 shadow-md hover:-translate-y-0.5"
+                href="/industry"
+                className="w-full inline-flex justify-center items-center gap-2 bg-[#6ac045] hover:bg-[#5bb038] text-[#1a1a1a] font-bold text-sm sm:text-base px-6 py-3.5 rounded-xl transition-all duration-300 shadow-md hover:-translate-y-0.5"
                 style={sansSerifStyle}
               >
-                {activeTab.buttonText}
+                Explore All Industries
                 <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
               </Link>
             </div>
+          </div>
 
-            {/* Right Column — Overlapping image composition */}
-            <div className="hidden sm:flex relative justify-center md:justify-end items-center w-full h-[230px] sm:h-[360px] md:h-[420px]">
-              {/* ① Large main landscape photo */}
-              <div className="relative rounded-sm overflow-hidden shadow-2xl border border-white/10 w-[200px] h-[200px] sm:w-[320px] sm:h-[320px] md:w-[360px] md:h-[360px] z-0">
-                <Image
-                  src={activeTab.mainImage}
-                  alt={activeTab.title}
-                  fill
-                  sizes="(max-width: 768px) 80vw, 50vw"
-                  className="object-cover object-center"
-                  priority
-                />
-              </div>
+          {/* ── SCENIC CONTENT PANEL ── */}
+          <div className="relative min-h-[400px] md:min-h-[600px] w-full md:w-[65%] lg:w-[70%] flex items-center justify-center py-8 md:py-16">
 
-              {/* ② Map card — overlaps from the left, vertically centered */}
-              <div className="absolute left-2 bottom-0 sm:left-[10%] sm:bottom-0 md:left-[15%] md:bottom-[-20px] rounded-sm overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.6)] border border-gray-200 bg-white w-[115px] h-[115px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px] z-10">
-                <Image
-                  src={activeTab.overlayImage}
-                  alt="GIS Map Overlay"
-                  fill
-                  sizes="(max-width: 768px) 50vw, 40vw"
-                  className="object-cover object-center p-1.5"
-                />
-              </div>
+            {/* Full-width dark background image */}
+            <div className="absolute inset-0 z-0">
+              <Image
+                src="/Industry/forest_silhouette_bg.png"
+                alt="Dark mountain landscape"
+                fill
+                className="object-cover object-center"
+                priority
+              />
+              {/* Dark gradient overlay for a premium look */}
+              <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/80 to-black/40 z-[1]" />
             </div>
-          </motion.div>
-        </AnimatePresence>
+
+            {/* Content grid */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTab.id}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.3 }}
+                className="relative z-10 w-full px-6 sm:px-10 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center"
+              >
+                {/* Left Column — Text content */}
+                <div className="flex flex-col items-start text-left z-10">
+                  <span className="text-gray-400 text-xs font-bold tracking-[0.15em] uppercase mb-1.5 sm:mb-3" style={sansSerifStyle}>
+                    {activeTab.tag}
+                  </span>
+                  <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-bold text-white leading-snug mb-2 sm:mb-5" style={sansSerifStyle}>
+                    {activeTab.title}
+                  </h3>
+                  <p className="text-gray-300 text-xs sm:text-sm md:text-[15px] leading-relaxed mb-4 sm:mb-8 max-w-lg" style={sansSerifStyle}>
+                    {activeTab.description}
+                  </p>
+
+                  <Link
+                    href={activeTab.buttonLink}
+                    className="inline-flex justify-center items-center gap-2 bg-[#082046] hover:bg-[#061836] text-white font-bold text-sm sm:text-base px-8 py-3.5 rounded-xl transition-all duration-300 shadow-md hover:-translate-y-0.5"
+                    style={sansSerifStyle}
+                  >
+                    {activeTab.buttonText}
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </Link>
+                </div>
+
+                {/* Right Column — Overlapping image composition */}
+                <div className="hidden sm:flex relative justify-center md:justify-end items-center w-full h-[230px] sm:h-[360px] md:h-[420px]">
+                  {/* ① Large main landscape photo */}
+                  <div className="relative rounded-sm overflow-hidden shadow-2xl border border-white/10 w-[200px] h-[200px] sm:w-[320px] sm:h-[320px] md:w-[360px] md:h-[360px] z-0">
+                    <Image
+                      src={activeTab.mainImage}
+                      alt={activeTab.title}
+                      fill
+                      sizes="(max-width: 768px) 80vw, 50vw"
+                      className="object-cover object-center"
+                      priority
+                    />
+                  </div>
+
+                  {/* ② Map card — overlaps from the left, vertically centered */}
+                  <div className="absolute left-2 bottom-0 sm:left-[10%] sm:bottom-0 md:left-[15%] md:bottom-[-20px] rounded-sm overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.6)] border border-gray-200 bg-white w-[115px] h-[115px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px] z-10">
+                    <Image
+                      src={activeTab.overlayImage}
+                      alt="GIS Map Overlay"
+                      fill
+                      sizes="(max-width: 768px) 50vw, 40vw"
+                      className="object-cover object-center p-1.5"
+                    />
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
+      </div>
+      
+      {/* ── MAIN CTA (Mobile) ── */}
+      <div className="md:hidden w-full flex justify-center p-6 border-b" style={{ backgroundColor: '#1a1a1a', borderColor: '#2d2d2d' }}>
+        <Link
+          href="/industry"
+          className="w-full max-w-sm inline-flex justify-center items-center gap-2 bg-[#6ac045] hover:bg-[#5bb038] text-[#1a1a1a] font-bold text-sm px-6 py-3.5 rounded-xl transition-all duration-300 shadow-md"
+          style={sansSerifStyle}
+        >
+          Explore All Industries
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </Link>
       </div>
     </section>
   );

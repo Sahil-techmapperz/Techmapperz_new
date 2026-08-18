@@ -46,27 +46,27 @@ const FeaturedProjects = () => {
   };
 
   return (
-    <section className="relative py-12 md:py-20 overflow-hidden text-white" style={{ backgroundColor: '#0c2e60' }}>
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+    <section className="relative py-10 md:py-12 overflow-hidden text-white" style={{ backgroundColor: '#0c2e60' }}>
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-8 md:px-12 lg:px-16 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center">
           
           {/* Left Column — Text info */}
           <div className="lg:col-span-4 flex flex-col items-start text-left">
-            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.15em] mb-3 sm:mb-4">
-              Project Evidence That Reflects Our Geospatial Focus
+            <span className="text-[#6ac045] text-[11px] font-bold uppercase tracking-[0.15em] mb-2 sm:mb-3">
+              OUR PORTFOLIO
             </span>
             
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight md:leading-[1.25] mb-3 sm:mb-5 tracking-tight">
-              Selected Assignments Involving Railway Corridors, Mining, Pipelines & Drone Data
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold leading-tight mb-3 tracking-tight">
+              Geospatial Solutions Across Infrastructure, Mining & Utilities
             </h2>
             
-            <p className="text-gray-300 text-xs sm:text-sm md:text-[15px] leading-relaxed mb-6 sm:mb-8 max-w-full sm:max-w-sm">
-              Explore selected assignments involving railway corridors, mining areas, pipelines, drone data, point clouds, GIS production and engineering-ready delivery.
+            <p className="text-gray-300 text-xs sm:text-[13px] md:text-sm leading-relaxed mb-5 sm:mb-6 max-w-full sm:max-w-sm">
+              Explore selected GIS, drone, LiDAR and mapping assignments covering railway corridors, mining areas, pipelines and large-scale spatial data production.
             </p>
             
             <Link href="/portfolios">
-              <button className="border border-white hover:bg-white hover:text-[#0c2e60] text-white font-bold text-xs sm:text-sm px-5 py-2.5 sm:px-7 sm:py-3 rounded-full transition-all duration-300 shadow-md">
-                Explore All Project Experience &rarr;
+              <button className="border border-white hover:bg-white hover:text-[#0c2e60] text-white font-bold text-xs sm:text-sm px-6 py-2 sm:py-2.5 rounded-full transition-all duration-300 shadow-sm">
+                View All Projects &rarr;
               </button>
             </Link>
           </div>
@@ -81,18 +81,18 @@ const FeaturedProjects = () => {
                 <button 
                   onClick={scrollLeft}
                   aria-label="Previous project"
-                  className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-white/10 hover:bg-white text-white hover:text-[#0c2e60] flex items-center justify-center shadow-lg transition-all cursor-pointer"
+                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-white text-white hover:text-[#0c2e60] flex items-center justify-center shadow-md transition-all cursor-pointer"
                 >
-                  <svg className="w-4 h-4 md:w-5 md:h-5 font-bold" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 font-bold" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
                   </svg>
                 </button>
                 <button 
                   onClick={scrollRight}
                   aria-label="Next project"
-                  className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-white/10 hover:bg-white text-white hover:text-[#0c2e60] flex items-center justify-center shadow-lg transition-all cursor-pointer"
+                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-white text-white hover:text-[#0c2e60] flex items-center justify-center shadow-md transition-all cursor-pointer"
                 >
-                  <svg className="w-4 h-4 md:w-5 md:h-5 font-bold" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 font-bold" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                   </svg>
                 </button>
@@ -102,48 +102,48 @@ const FeaturedProjects = () => {
             {/* Scrolling container */}
             <div 
               ref={scrollRef}
-              className="flex gap-4 sm:gap-6 overflow-x-auto scrollbar-none snap-x snap-mandatory scroll-smooth pb-4 px-1 -mx-1"
+              className="flex gap-4 sm:gap-5 overflow-x-auto scrollbar-none snap-x snap-mandatory scroll-smooth pb-4 px-1 -mx-1"
             >
               {projectCards.map((project, idx) => (
                 <div 
                   key={idx}
-                  className="flex-shrink-0 snap-start flex flex-col w-[300px] sm:w-[350px] md:w-[400px] bg-[#112a52] rounded-2xl overflow-hidden shadow-xl border border-white/5 group hover:border-white/15 transition-all duration-300"
+                  className="flex-shrink-0 snap-start flex flex-col w-[260px] sm:w-[300px] md:w-[320px] bg-[#112a52] rounded-xl overflow-hidden shadow-lg border border-white/5 group hover:border-white/15 transition-all duration-300"
                 >
                   {/* Card Image */}
-                  <div className="relative w-full h-[180px] sm:h-[200px] md:h-[240px] flex-shrink-0 overflow-hidden">
+                  <div className="relative w-full h-[150px] sm:h-[180px] md:h-[200px] flex-shrink-0 overflow-hidden">
                     <Image 
                       src={project.image} 
                       alt={project.title} 
                       fill 
-                      sizes="(max-width: 768px) 90vw, 400px"
+                      sizes="(max-width: 768px) 90vw, 320px"
                       className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
                     />
                   </div>
                   
                   {/* Card Content */}
-                  <div className="p-5 md:p-6 text-left flex flex-col flex-grow">
-                    <h3 className="text-white text-base md:text-lg font-bold mb-2 leading-tight">
+                  <div className="p-4 md:p-5 text-left flex flex-col flex-grow">
+                    <h3 className="text-white text-[15px] md:text-[17px] font-bold mb-1.5 md:mb-2 leading-tight">
                       {project.title}
                     </h3>
                     {project.subtitle && (
-                      <p className="text-gray-300 text-sm font-medium mb-3">
+                      <p className="text-gray-300 text-xs md:text-[13px] font-medium mb-2">
                         {project.subtitle}
                       </p>
                     )}
                     {project.description && (
-                      <p className="text-gray-400 text-xs md:text-[13px] whitespace-pre-line mb-4 leading-relaxed">
+                      <p className="text-gray-400 text-[11px] md:text-xs whitespace-pre-line mb-3 md:mb-4 leading-relaxed line-clamp-4">
                         {project.description}
                       </p>
                     )}
                     {project.keyOutputs && (
-                      <div className="mb-5 bg-white/5 p-3 rounded-lg border border-white/10">
-                        <span className="text-[#6ac045] text-[11px] font-bold uppercase tracking-wider block mb-1">Key outputs:</span>
-                        <span className="text-gray-200 text-xs md:text-[13px] leading-snug">{project.keyOutputs}</span>
+                      <div className="mb-4 bg-white/5 p-2.5 rounded border border-white/10 mt-auto">
+                        <span className="text-[#6ac045] text-[10px] md:text-[11px] font-bold uppercase tracking-wider block mb-0.5">Key outputs:</span>
+                        <span className="text-gray-200 text-[11px] md:text-xs leading-snug">{project.keyOutputs}</span>
                       </div>
                     )}
                     {project.cta && (
-                      <div className="mt-auto pt-2">
-                        <Link href="/portfolios" className="inline-flex items-center text-[#6ac045] text-[13px] font-bold hover:text-white transition-colors group/link">
+                      <div className="mt-2 pt-1">
+                        <Link href="/portfolios" className="inline-flex items-center text-[#6ac045] text-xs font-bold hover:text-white transition-colors group/link">
                           {project.cta} 
                           <span className="ml-1 transform transition-transform group-hover/link:translate-x-1">&rarr;</span>
                         </Link>
