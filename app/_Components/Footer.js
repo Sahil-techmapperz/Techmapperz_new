@@ -100,25 +100,7 @@ const Footer = () => {
               <p className="text-xs sm:text-sm leading-relaxed sm:leading-7 max-w-full sm:max-w-[280px]" style={{ color: '#a8c4e8' }}>
                 Techmapperz is an India-based GIS and drone mapping company providing GIS data production, drone survey and data processing, LiDAR and point-cloud processing, Web and Mobile GIS, website development and mobile app development.
               </p>
-              <div className="text-xs font-bold text-white uppercase tracking-widest mt-1">
-                Survey. Map. Analysis
-              </div>
 
-              {/* Contact Info */}
-              <ul className="flex flex-col gap-2.5 sm:gap-3 mt-1">
-                <li className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-sm" style={{ color: '#a8c4e8' }}>
-                  <FaMapMarkerAlt className="mt-0.5 shrink-0 text-[#e33434]" />
-                  <span>Kolkata &amp; New Delhi, India</span>
-                </li>
-                <li className="flex items-center gap-2.5 sm:gap-3 text-xs sm:text-sm" style={{ color: '#a8c4e8' }}>
-                  <FaPhone className="shrink-0 text-[#e33434]" />
-                  <a href="tel:+919643002065" className="hover:text-white transition-colors">+91 96430 02065</a>
-                </li>
-                <li className="flex items-center gap-2.5 sm:gap-3 text-xs sm:text-sm" style={{ color: '#a8c4e8' }}>
-                  <FaEnvelope className="shrink-0 text-[#e33434]" />
-                  <a href="mailto:info@techmapperz.com" className="hover:text-white transition-colors">info@techmapperz.com</a>
-                </li>
-              </ul>
             </div>
 
             {/* Col 2 — Company Links */}
