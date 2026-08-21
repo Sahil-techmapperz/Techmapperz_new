@@ -65,7 +65,7 @@ const FeaturedProjects = () => {
             </p>
             
             <Link href="/portfolios">
-              <button className="border border-white hover:bg-white hover:text-[#0c2e60] text-white font-bold text-xs sm:text-sm px-6 py-2 sm:py-2.5 rounded-full transition-all duration-300 shadow-sm">
+              <button className="bg-white hover:bg-gray-100 text-[#0c2e60] font-bold text-xs sm:text-sm px-6 py-2 sm:py-2.5 rounded-full transition-all duration-300 shadow-md">
                 View All Projects &rarr;
               </button>
             </Link>

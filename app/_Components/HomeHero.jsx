@@ -44,7 +44,7 @@ const HomeHero = ({ bannerData }) => {
                     {/* Buttons */}
                     <div className="flex flex-wrap gap-5 mt-4">
                         <Link href="/service">
-                            <button className="py-[12px] px-8 rounded-full border border-[#1656b8] bg-[#1656b8]/30 text-white font-semibold text-[15px] hover:bg-[#1656b8] transition-all duration-300">
+                            <button className="py-[12px] px-8 rounded-full bg-[#1656b8] hover:bg-[#124699] text-white font-semibold text-[15px] transition-all duration-300 shadow-md">
                                 Explore Our Services
                             </button>
                         </Link>
