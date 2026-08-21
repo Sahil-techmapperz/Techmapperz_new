@@ -6,7 +6,7 @@ import { AiOutlineCloudServer } from "react-icons/ai";
 import { MdOutlineTouchApp } from "react-icons/md";
 
 const HomeHero = ({ bannerData }) => {
-    const bgImage = '/background_image/Drone_Service_banner.png';
+    const bgImage = '/background_image/home-GIS-banner.png';
 
     return (
         <section
