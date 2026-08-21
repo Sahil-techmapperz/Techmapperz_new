@@ -98,7 +98,7 @@ const Footer = () => {
                 />
               </Link>
               <p className="text-xs sm:text-sm leading-relaxed sm:leading-7 max-w-full sm:max-w-[280px]" style={{ color: '#a8c4e8' }}>
-                Techmapperz is an India-based GIS and drone mapping company providing GIS data production, drone survey and data processing, LiDAR and point-cloud processing, Web and Mobile GIS, website development and mobile app development.
+                Techmapperz is an India-based geospatial company delivering GIS data production, drone surveys, LiDAR processing and Web & App development.
               </p>
 
             </div>

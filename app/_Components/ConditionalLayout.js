@@ -6,7 +6,6 @@ import dynamic from 'next/dynamic'
 // Import Navbar and Footer
 import Navbar from './Navbar'
 const Footer = dynamic(() => import('./Footer'))
-const SocialMediaIcons = dynamic(() => import('./SocialMediaIcons'))
 const SlickCarouselProvider = dynamic(() => import('./SlickCarouselProvider'))
 
 export default function ConditionalLayout({ children }) {
@@ -24,7 +23,6 @@ export default function ConditionalLayout({ children }) {
       <Navbar />
       <main id="main-content" role="main">{children}</main>
       <SlickCarouselProvider>
-        <SocialMediaIcons />
         <Footer />
       </SlickCarouselProvider>
     </>

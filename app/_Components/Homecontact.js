@@ -43,10 +43,6 @@ const Homecontact = () => {
                     </div>
                 </div>
 
-                {/* Supporting Text Row */}
-                <div className="mt-8 text-center text-xs font-bold text-gray-500 uppercase tracking-widest leading-relaxed">
-                    GIS Mapping · Drone Survey · Drone Data Processing · LiDAR · Point Cloud · Web GIS · Digital Development
-                </div>
             </div>
         </div>
     )

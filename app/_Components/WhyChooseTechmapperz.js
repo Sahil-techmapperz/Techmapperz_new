@@ -12,35 +12,35 @@ const WhyChooseTechmapperz = () => {
                     </span>
                     
                     <h2 className="text-2xl sm:text-3xl md:text-[40px] font-bold text-[#0c2e60] mb-8 sm:mb-12 leading-snug md:leading-[1.2] tracking-tight max-w-4xl">
-                        A Geospatial Production Partner Focused on Usable Deliverables
+                        Geospatial Expertise Backed by Delivery Discipline
                     </h2>
                     
                     {/* Features List */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-10 sm:mb-12 w-full text-left">
                         {[
                             {
-                              title: "Geospatial-Led Understanding",
-                              desc: "Project requirements are reviewed by professionals with hands-on experience in GIS production, remote sensing, mapping, drone-data workflows and geospatial project delivery."
+                              title: "GIS and Drone at the Core",
+                              desc: "GIS production, remote sensing, mapping and drone-data processing are central to our work. Project requirements are reviewed by professionals who understand spatial data, coordinate systems, feature specifications and delivery dependencies."
                             },
                             {
-                              title: "Experience Across Detailed Projects",
-                              desc: "Our published project experience covers railway corridors, mining feature extraction, pipeline digitisation, land-use mapping, utility data and infrastructure assignments."
+                              title: "Experience Across Complex Assignments",
+                              desc: "Our experience includes railway corridors, pipeline digitisation, mining feature extraction, land-use mapping, utility data and infrastructure assignments—covering detailed, large-area and linear projects."
                             },
                             {
-                              title: "Multiple Source-Data Capabilities",
-                              desc: "We can work with drone imagery, LiDAR point clouds, satellite imagery, survey inputs, GIS layers, CAD drawings, scanned maps and client databases."
+                              title: "Requirements Aligned Before Production",
+                              desc: "We review the project specification, available source data, assumptions, sample requirements and expected output formats before full-scale production so that both teams begin with a clear understanding of the scope."
                             },
                             {
-                              title: "Structured QA/QC",
-                              desc: "Review checks can cover geometry, topology, attributes, projection, completeness, alignment, file structure and compliance with the agreed specification."
+                              title: "QA/QC Throughout the Workflow",
+                              desc: "Quality checks are built into production and final review. Depending on the project, these checks cover geometry, topology, attributes, projection, completeness, alignment, naming and file structure against the agreed requirements."
                             },
                             {
-                              title: "Multi-Format Delivery",
-                              desc: "Outputs are prepared according to the client's required GIS, CAD, raster, point-cloud, reporting or digital-application environment."
+                              title: "Outputs Prepared for Practical Use",
+                              desc: "Deliverables are organised in the agreed GIS, CAD, raster, point-cloud or reporting formats so they can move into the client’s next stage of analysis, design, review, submission or application use."
                             },
                             {
-                              title: "Clear Project Communication",
-                              desc: "Scope assumptions, input dependencies, samples, production stages, review packages and final deliverables are defined before full-scale execution."
+                              title: "Geospatial and Digital Capability",
+                              desc: "Alongside GIS and drone services, our development team builds Web GIS platforms, dashboards, websites and mobile applications. Scope, milestones, review stages and final handover are coordinated through a clear project process."
                             }
                         ].map((item, idx) => (
                             <div key={idx} className="flex items-start gap-4 bg-gray-50 p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">

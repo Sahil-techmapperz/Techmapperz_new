@@ -3,13 +3,16 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Cookies from 'js-cookie'
-import { Lock, Mail, ArrowRight, Loader2, ShieldCheck } from 'lucide-react'
+import { Lock, Mail, ArrowRight, Loader2, ShieldCheck, Map, Layers, Eye, EyeOff } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default function LoginPage() {
   const router = useRouter()
   const [formData, setFormData] = useState({ email: '', password: '' })
   const [loading, setLoading] = useState(false)
   const [alert, setAlert] = useState({ show: false, message: '', type: '' })
+  const [showPassword, setShowPassword] = useState(false)
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -60,42 +63,106 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center relative overflow-hidden bg-[#0f172a]">
-      {/* Dynamic Background Elements */}
-      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-blue-600/30 blur-[120px] mix-blend-screen animate-pulse" style={{ animationDuration: '8s' }}></div>
-      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-purple-600/30 blur-[120px] mix-blend-screen animate-pulse" style={{ animationDuration: '10s' }}></div>
-      <div className="absolute top-[20%] right-[10%] w-[20%] h-[20%] rounded-full bg-teal-500/20 blur-[90px] mix-blend-screen animate-pulse" style={{ animationDuration: '6s' }}></div>
+    <div className="min-h-screen w-full flex bg-[#030712] overflow-hidden text-slate-200 font-sans">
+      
+      {/* ── LEFT PANEL (Branding & Visuals) ── */}
+      <div className="hidden lg:flex w-1/2 relative flex-col justify-between p-12 overflow-hidden border-r border-white/5 bg-[#0f172a]">
+        {/* Animated Background Gradients */}
+        <div className="absolute top-[-20%] left-[-10%] w-[70%] h-[70%] rounded-full bg-blue-600/20 blur-[120px] mix-blend-screen animate-pulse" style={{ animationDuration: '8s' }}></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] rounded-full bg-emerald-600/10 blur-[100px] mix-blend-screen animate-pulse" style={{ animationDuration: '10s' }}></div>
+        
+        {/* Subtle Grid Pattern Overlay */}
+        <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
 
-      <div className="relative z-10 w-full max-w-md px-6 py-12">
-        {/* Glassmorphism Card */}
-        <div className="backdrop-blur-xl bg-white/10 border border-white/20 p-8 sm:p-10 rounded-3xl shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] relative overflow-hidden transition-all duration-500 hover:border-white/30 hover:shadow-[0_8px_40px_0_rgba(0,0,0,0.5)] group">
+        <div className="relative z-10 flex items-center">
+          <Link href="/" className="bg-white rounded-xl px-4 py-3 shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-200" style={{ display: 'inline-flex', alignItems: 'center' }}>
+            <Image
+              src="/logo.png"
+              alt="Techmapperz Logo"
+              width={180}
+              height={50}
+              style={{ height: '44px', width: 'auto', maxWidth: '200px', objectFit: 'contain' }}
+              priority
+            />
+          </Link>
+        </div>
+
+        <div className="relative z-10 max-w-md">
+          <h1 className="text-5xl font-extrabold text-white mb-6 leading-tight tracking-tight">
+            Geospatial <br/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">
+              Intelligence Hub
+            </span>
+          </h1>
+          <p className="text-lg text-slate-400 leading-relaxed mb-8">
+            Access the central dashboard to manage maps, spatial data, and infrastructure projects across all technical sectors.
+          </p>
           
-          {/* Subtle reflection overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-          <div className="relative z-10">
-            <div className="flex justify-center mb-8">
-              <div className="bg-gradient-to-tr from-blue-500 to-purple-500 p-3 rounded-2xl shadow-lg transform transition-transform duration-500 hover:scale-110 hover:rotate-3">
-                <ShieldCheck className="w-10 h-10 text-white" />
+          <div className="flex items-center gap-4">
+            <div className="flex -space-x-4">
+              <div className="w-10 h-10 rounded-full border-2 border-[#0f172a] bg-blue-600 flex items-center justify-center text-xs font-bold text-white shadow-md">TM</div>
+              <div className="w-10 h-10 rounded-full border-2 border-[#0f172a] bg-emerald-600 flex items-center justify-center text-xs font-bold text-white shadow-md">GIS</div>
+              <div className="w-10 h-10 rounded-full border-2 border-[#0f172a] bg-purple-600 flex items-center justify-center text-xs font-bold text-white shadow-md">
+                <Layers className="w-4 h-4"/>
               </div>
             </div>
+            <p className="text-sm font-medium text-slate-400">Secure Admin Portal</p>
+          </div>
+        </div>
 
-            <h2 className="text-3xl font-bold text-center text-white mb-2 tracking-tight">Admin Portal</h2>
-            <p className="text-center text-gray-300 text-sm mb-8">Enter your credentials to access the dashboard</p>
+        <div className="relative z-10">
+          <p className="text-sm text-slate-500 font-medium">
+            &copy; {new Date().getFullYear()} Techmapperz. All rights reserved.
+          </p>
+        </div>
+      </div>
 
-            {alert.show && (
-              <div className={`mb-6 p-4 rounded-xl text-sm font-medium flex items-center transform transition-all duration-300 translate-y-0 opacity-100 ${
-                alert.type === 'success' ? 'bg-emerald-500/20 text-emerald-200 border border-emerald-500/30' : 'bg-red-500/20 text-red-200 border border-red-500/30'
-              }`}>
-                {alert.message}
+      {/* ── RIGHT PANEL (Login Form) ── */}
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12 relative bg-[#030712]">
+        
+        {/* Mobile background */}
+        <div className="lg:hidden absolute top-0 left-0 w-full h-full overflow-hidden">
+          <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] rounded-full bg-blue-600/10 blur-[100px]"></div>
+          <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] rounded-full bg-emerald-600/10 blur-[100px]"></div>
+        </div>
+
+        <div className="w-full max-w-md relative z-10">
+          <div className="mb-10 text-center lg:text-left">
+            {/* Mobile Logo */}
+            <div className="lg:hidden flex justify-center mb-6">
+              <div className="bg-white rounded-xl px-4 py-3 shadow-lg" style={{ display: 'inline-flex', alignItems: 'center' }}>
+                <Image
+                  src="/logo.png"
+                  alt="Techmapperz Logo"
+                  width={180}
+                  height={50}
+                  style={{ height: '44px', width: 'auto', maxWidth: '200px', objectFit: 'contain' }}
+                  priority
+                />
               </div>
-            )}
+            </div>
+            
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-3 tracking-tight">Welcome Back</h2>
+            <p className="text-slate-400 text-base">Sign in to your account to continue</p>
+          </div>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="space-y-4">
+          {alert.show && (
+            <div className={`mb-8 p-4 rounded-xl text-sm font-semibold flex items-center border ${
+              alert.type === 'success' ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' : 'bg-red-500/10 text-red-400 border-red-500/20'
+            }`}>
+              <ShieldCheck className="w-5 h-5 mr-3 shrink-0" />
+              {alert.message}
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="space-y-5">
+              {/* Email Field */}
+              <div className="space-y-2">
+                <label className="text-sm font-semibold text-slate-300 ml-1">Email Address</label>
                 <div className="relative group">
                   <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                    <Mail className="h-5 w-5 text-gray-400 group-focus-within:text-blue-400 transition-colors" />
+                    <Mail className="h-5 w-5 text-slate-500 group-focus-within:text-blue-500 transition-colors duration-300" />
                   </div>
                   <input
                     type="email"
@@ -103,55 +170,78 @@ export default function LoginPage() {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="block w-full pl-12 pr-4 py-3.5 bg-gray-900/40 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 focus:bg-gray-900/60 transition-all duration-300"
-                    placeholder="Email address"
-                  />
-                </div>
-
-                <div className="relative group">
-                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                    <Lock className="h-5 w-5 text-gray-400 group-focus-within:text-purple-400 transition-colors" />
-                  </div>
-                  <input
-                    type="password"
-                    name="password"
-                    required
-                    value={formData.password}
-                    onChange={handleChange}
-                    className="block w-full pl-12 pr-4 py-3.5 bg-gray-900/40 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500 focus:bg-gray-900/60 transition-all duration-300"
-                    placeholder="Password"
+                    className="block w-full pl-11 pr-4 py-3.5 bg-[#0f172a]/60 border border-slate-700/50 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all duration-300 shadow-sm"
+                    placeholder="admin@techmapperz.com"
                   />
                 </div>
               </div>
 
-              <button
-                type="submit"
-                disabled={loading}
-                className="group relative w-full flex justify-center py-3.5 px-4 border border-transparent rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-purple-500 transition-all duration-300 overflow-hidden shadow-lg hover:shadow-blue-500/25 disabled:opacity-70 disabled:cursor-not-allowed"
-              >
-                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out"></div>
-                <span className="relative flex items-center">
-                  {loading ? (
-                    <>
-                      <Loader2 className="animate-spin -ml-1 mr-2 h-5 w-5" />
-                      Authenticating...
-                    </>
-                  ) : (
-                    <>
-                      Sign In
-                      <ArrowRight className="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
-                    </>
-                  )}
-                </span>
-              </button>
-            </form>
+              {/* Password Field */}
+              <div className="space-y-2">
+                <div className="flex justify-between items-center ml-1">
+                  <label className="text-sm font-semibold text-slate-300">Password</label>
+                  <a href="/admin/forgot-password" className="text-xs font-medium text-blue-500 hover:text-blue-400 transition-colors">Forgot password?</a>
+                </div>
+                <div className="relative group">
+                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    <Lock className="h-5 w-5 text-slate-500 group-focus-within:text-emerald-500 transition-colors duration-300" />
+                  </div>
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    name="password"
+                    required
+                    value={formData.password}
+                    onChange={handleChange}
+                    className="block w-full pl-11 pr-12 py-3.5 bg-[#0f172a]/60 border border-slate-700/50 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all duration-300 shadow-sm"
+                    placeholder="••••••••"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(prev => !prev)}
+                    className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-500 hover:text-slate-300 transition-colors duration-200"
+                    tabIndex={-1}
+                  >
+                    {showPassword
+                      ? <EyeOff className="h-5 w-5" />
+                      : <Eye className="h-5 w-5" />}
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="group relative w-full flex justify-center py-4 px-4 border border-transparent rounded-xl text-sm font-bold text-white bg-white/5 hover:bg-white/10 backdrop-blur-md overflow-hidden transition-all duration-300 disabled:opacity-50 shadow-[0_0_40px_-10px_rgba(37,99,235,0.2)] hover:shadow-[0_0_60px_-15px_rgba(37,99,235,0.4)]"
+              style={{
+                background: 'linear-gradient(90deg, #2563eb, #059669)'
+              }}
+            >
+              <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <span className="relative flex items-center">
+                {loading ? (
+                  <>
+                    <Loader2 className="animate-spin -ml-1 mr-2 h-5 w-5" />
+                    Authenticating...
+                  </>
+                ) : (
+                  <>
+                    Sign In to Dashboard
+                    <ArrowRight className="ml-2 h-5 w-5 transform group-hover:translate-x-1 transition-transform" />
+                  </>
+                )}
+              </span>
+            </button>
+          </form>
+          
+          <div className="mt-8 text-center lg:hidden">
+            <p className="text-xs text-slate-600 font-medium">
+              &copy; {new Date().getFullYear()} Techmapperz. All rights reserved.
+            </p>
           </div>
         </div>
-        
-        <div className="mt-8 text-center text-sm text-gray-500">
-          <p>&copy; {new Date().getFullYear()} Techmapperz. All rights reserved.</p>
-        </div>
       </div>
+      
     </div>
   )
 }

@@ -5,28 +5,28 @@ import Link from 'next/link';
 
 const projectCards = [
   {
-    title: "Drone LiDAR and Railway Corridor Mapping",
-    subtitle: "",
-    description: "An integrated geospatial workflow for a railway corridor covering a survey width of approximately 100 metres.\n\nThe assignment involved drone LiDAR data, DGPS control information, point-cloud processing, terrain-product generation and GIS/CAD delivery for infrastructure use.",
-    keyOutputs: "Point cloud, DEM, DSM, contours, orthomosaic, cross-sections and GIS/CAD data.",
-    cta: "View Railway Mapping Project",
+    title: "Railway Corridor Survey & Mapping with Drone LiDAR & GIS",
+    subtitle: "173 km Railway Corridor",
+    description: "Drone-based LiDAR survey and geospatial mapping for a 173 km railway corridor, covering terrain, elevation, cross-sections and key infrastructure features to support engineering planning and design.",
+    cta: "View Case Study",
+    link: "/portfolios/topographical_railway_survey",
     image: "/gis_images/drone_services/drone_surveying_mapping/corridor_mapping.webp"
   },
   {
-    title: "Mining Feature Extraction and CAD Mapping",
-    subtitle: "556.67 sq. km Large-Area Mapping Assignment",
-    description: "A detailed 2D feature-extraction and CAD-mapping project prepared from high-resolution source imagery for mining and surrounding land areas.\n\nMapped features included roads and haul roads, built-up and industrial areas, agriculture and land cover, water bodies and sumps, railway-related features, conveyors and mine infrastructure.",
-    keyOutputs: "Structured GIS layers, CAD drawings, feature attribution and project-specific mapping data.",
-    cta: "View Mining Mapping Project",
-    image: "/gis_images/drone_services/drone_surveying_mapping/3D_Drone_Terrain.webp"
+    title: "Pipeline & Transmission Corridor Survey with Drone LiDAR",
+    subtitle: "45 km Corridor",
+    description: "Drone-based LiDAR survey and GIS mapping for ammonia and water pipeline routes and transmission infrastructure, covering alignment, terrain and associated assets to support planning, monitoring and project management.",
+    cta: "View Case Study",
+    link: "/portfolios/ammonia_water_pipeline",
+    image: "/gis_images/Gas Pipeline.webp"
   },
   {
-    title: "Gas Pipeline Digitisation and Asset Registry",
-    subtitle: "6,000 km Pipeline Mapping Experience",
-    description: "A large-scale GIS digitisation assignment supporting the preparation of a structured digital asset database for a natural-gas transmission network.\n\nThe mapped database covered pipeline alignments and associated infrastructure such as stations and operational asset locations.",
-    keyOutputs: "Pipeline GIS layers, asset records, attributed network information and structured geospatial delivery.",
-    cta: "View Pipeline Digitisation Project",
-    image: "/gis_images/Gas Pipeline.webp"
+    title: "Mining Feature Extraction & GIS/CAD Mapping",
+    subtitle: "Mining & Natural Resources",
+    description: "Large-area 2D feature extraction and CAD mapping from high-resolution drone imagery, covering haul roads, mine infrastructure, water bodies, sumps, railway features, conveyors and land-use features for structured geospatial delivery.",
+    cta: "View Case Study",
+    link: "/portfolios/mining_area_extraction",
+    image: "/gis_images/drone_services/drone_surveying_mapping/3D_Drone_Terrain.webp"
   }
 ];
 
@@ -131,7 +131,7 @@ const FeaturedProjects = () => {
                       </p>
                     )}
                     {project.description && (
-                      <p className="text-gray-400 text-[11px] md:text-xs whitespace-pre-line mb-3 md:mb-4 leading-relaxed line-clamp-4">
+                      <p className="text-gray-400 text-[11px] md:text-xs whitespace-pre-line mb-4 leading-relaxed line-clamp-4">
                         {project.description}
                       </p>
                     )}
@@ -142,8 +142,8 @@ const FeaturedProjects = () => {
                       </div>
                     )}
                     {project.cta && (
-                      <div className="mt-2 pt-1">
-                        <Link href="/portfolios" className="inline-flex items-center text-[#6ac045] text-xs font-bold hover:text-white transition-colors group/link">
+                      <div className="mt-auto pt-2">
+                        <Link href={project.link || "/portfolios"} className="inline-flex items-center text-[#6ac045] text-xs font-bold hover:text-white transition-colors group/link">
                           {project.cta} 
                           <span className="ml-1 transform transition-transform group-hover/link:translate-x-1">&rarr;</span>
                         </Link>

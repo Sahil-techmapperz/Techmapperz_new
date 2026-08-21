@@ -6,7 +6,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { LogOut, Mail } from 'lucide-react'
 import Cookies from 'js-cookie'
-import company_logo from '@/public/logo.webp'
+import company_logo from '@/public/logo.png'
 
 export default function AdminNavbar() {
   const router = useRouter()
@@ -37,9 +37,9 @@ export default function AdminNavbar() {
                 src={company_logo}
                 alt="Techmapperz Logo"
                 priority
-                width={150}
-                height={40}
-                className="h-8 w-auto"
+                width={140}
+                height={36}
+                style={{ height: '36px', width: 'auto', maxWidth: '160px', objectFit: 'contain' }}
               />
             </Link>
           </div>

@@ -281,23 +281,14 @@ const IndustryExpertise = () => {
                   <span className="text-gray-400 text-xs font-bold tracking-[0.15em] uppercase mb-1.5 sm:mb-3" style={sansSerifStyle}>
                     {activeTab.tag}
                   </span>
-                  <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-bold text-white leading-snug mb-2 sm:mb-5" style={sansSerifStyle}>
+                  <h3 className="text-lg sm:text-xl md:text-2xl lg:text-[26px] font-bold text-white leading-snug mb-2 sm:mb-5" style={sansSerifStyle}>
                     {activeTab.title}
                   </h3>
-                  <p className="text-gray-300 text-xs sm:text-sm md:text-[15px] leading-relaxed mb-4 sm:mb-8 max-w-lg" style={sansSerifStyle}>
-                    {activeTab.description}
-                  </p>
-
-                  <Link
-                    href={activeTab.buttonLink}
-                    className="inline-flex justify-center items-center gap-2 bg-[#082046] hover:bg-[#061836] text-white font-bold text-sm sm:text-base px-8 py-3.5 rounded-xl transition-all duration-300 shadow-md hover:-translate-y-0.5"
-                    style={sansSerifStyle}
-                  >
-                    {activeTab.buttonText}
-                    <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
-                  </Link>
+                  {activeTab.description && (
+                    <p className="text-gray-300 text-xs sm:text-sm md:text-[15px] leading-relaxed mb-4 sm:mb-8 max-w-lg" style={sansSerifStyle}>
+                      {activeTab.description}
+                    </p>
+                  )}
                 </div>
 
                 {/* Right Column — Overlapping image composition */}

@@ -167,7 +167,7 @@ const DronePartnership = () => {
 
             <Link href="/contact" className="cta">
               <span className="cta-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 12c-2.4 4-5.4 6-9 6s-6.6-2-9-6c2.4-4 5.4-6 9-6s6.6 2 9 6z"></path><circle cx="12" cy="12" r="3"></circle></svg></span>
-              <strong>Discuss a <br />Data-Processing <br />Partnership</strong>
+              <strong>Discuss a <br />Data-Processing <br />Requirement</strong>
               <span className="arrow">→</span>
             </Link>
           </div>
