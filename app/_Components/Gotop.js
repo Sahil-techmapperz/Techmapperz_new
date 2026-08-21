@@ -34,7 +34,7 @@ const Gotop = () => {
     <div>
       {isVisible && (
         <Image
-          className="fixed right-4 bottom-5 sm:bottom-[80px] z-50 cursor-pointer w-10 sm:w-[55px] transition-all duration-300 hover:scale-110"
+          className="fixed right-4 sm:right-6 bottom-4 sm:bottom-6 z-50 cursor-pointer w-[36px] sm:w-[44px] md:w-[46px] transition-all duration-300 hover:scale-110 shadow-xl rounded-full"
           onClick={handleScrollToTop}
           src={Up_arrow}
           alt="Up arrow"

@@ -165,10 +165,45 @@ const DronePartnership = () => {
               </div>
             </div>
 
-            <Link href="/contact" className="cta">
-              <span className="cta-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 12c-2.4 4-5.4 6-9 6s-6.6-2-9-6c2.4-4 5.4-6 9-6s6.6 2 9 6z"></path><circle cx="12" cy="12" r="3"></circle></svg></span>
-              <strong>Discuss a <br />Data-Processing <br />Requirement</strong>
-              <span className="arrow">→</span>
+            <Link 
+              href="/contact" 
+              className="cta"
+              style={{
+                background: '#1656b8',
+                color: '#ffffff',
+                borderRadius: '16px',
+                padding: '16px 26px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '12px',
+                textDecoration: 'none',
+                boxShadow: '0 8px 22px rgba(22,86,184,0.28)',
+                whiteSpace: 'nowrap',
+                flexShrink: 0
+              }}
+            >
+              <span 
+                className="cta-icon"
+                style={{
+                  width: '36px',
+                  height: '36px',
+                  borderRadius: '50%',
+                  background: 'rgba(255,255,255,0.2)',
+                  display: 'grid',
+                  placeItems: 'center',
+                  color: '#ffffff',
+                  flexShrink: 0
+                }}
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ width: '20px', height: '20px' }}>
+                  <path d="M21 12c-2.4 4-5.4 6-9 6s-6.6-2-9-6c2.4-4 5.4-6 9-6s6.6 2 9 6z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+              </span>
+              <strong style={{ fontSize: '15px', fontWeight: '700', color: '#ffffff', whiteSpace: 'nowrap' }}>
+                Discuss a Data-Processing Requirement
+              </strong>
+              <span className="arrow" style={{ fontSize: '20px', color: '#ffffff', fontWeight: '700', marginLeft: '2px' }}>&rarr;</span>
             </Link>
           </div>
         </div>
@@ -395,10 +430,11 @@ const DronePartnership = () => {
 
         .bottom-row {
           margin-top:30px;
-          display:grid;
-          grid-template-columns:minmax(0, 1fr) 350px;
-          gap:24px;
-          align-items:stretch;
+          display:flex;
+          flex-wrap:wrap;
+          gap:20px;
+          align-items:center;
+          justify-content:space-between;
         }
 
         .benefits {
@@ -408,6 +444,7 @@ const DronePartnership = () => {
           display:grid;
           grid-template-columns:repeat(4,1fr);
           padding:16px 18px;
+          flex:1 1 620px;
         }
 
         .benefit {
@@ -456,46 +493,59 @@ const DronePartnership = () => {
 
         .cta {
           border:0;
-          border-radius:18px;
-          padding:22px 24px;
-          display:grid;
-          grid-template-columns:62px 1fr 26px;
-          gap:16px;
+          border-radius:16px;
+          padding:16px 26px;
+          display:inline-flex;
           align-items:center;
+          gap:12px;
           text-decoration:none;
-          color:#fff;
-          background:linear-gradient(135deg, #1457ad, #0067c9);
-          box-shadow:0 15px 30px rgba(18,86,171,.16);
-          transition:transform .2s ease, box-shadow .2s ease;
+          color:#fff !important;
+          background:#1656b8 !important;
+          box-shadow:0 8px 22px rgba(22,86,184,.28);
+          transition:all .2s ease;
+          white-space:nowrap;
+          flex-shrink:0;
         }
 
         .cta:hover {
+          background:#114799 !important;
           transform:translateY(-2px);
-          box-shadow:0 20px 34px rgba(18,86,171,.24);
+          box-shadow:0 12px 26px rgba(22,86,184,.36);
         }
 
         .cta-icon {
-          width:58px;
-          height:58px;
+          width:36px;
+          height:36px;
           border-radius:50%;
-          background:#fff;
-          color:#1257ad;
+          background:rgba(255,255,255,.2);
+          color:#fff;
           display:grid;
           place-items:center;
+          flex-shrink:0;
         }
 
-        .cta-icon svg { width:31px; height:31px; }
+        .cta-icon svg { width:20px; height:20px; }
 
         .cta strong {
-          display:block;
-          font-size:19px;
-          line-height:1.25;
+          display:inline-block;
+          font-size:15px;
+          font-weight:700;
+          color:#fff !important;
+          white-space:nowrap;
+          line-height:1.2;
         }
 
         .cta .arrow {
-          font-size:31px;
+          font-size:20px;
           line-height:1;
-          font-weight:300;
+          font-weight:700;
+          color:#fff;
+          margin-left:2px;
+          transition:transform .2s ease;
+        }
+
+        .cta:hover .arrow {
+          transform:translateX(3px);
         }
 
         @media (max-width:1100px) {

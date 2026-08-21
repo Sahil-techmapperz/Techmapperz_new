@@ -46,12 +46,11 @@ const Footer = () => {
     { label: 'Home', href: '/' },
     { label: 'Services', href: '/service' },
     { label: 'About Us', href: '/about' },
-    { label: 'Career', href: '/career' },
+    { label: 'Careers', href: '/career' },
     { label: 'Contact', href: '/contact' },
   ];
   const resourceLinks = [
     { label: 'Blog & Insights', href: '/blog' },
-    { label: 'Events', href: '/events' },
     { label: 'Portfolio', href: '/portfolios' },
     { label: 'Privacy Policy', href: '/privacy' },
     { label: 'Sitemap', href: '/sitemap' },
@@ -63,7 +62,6 @@ const Footer = () => {
     { icon: <BsTwitterX />, href: 'https://x.com/Techmapperzllp', label: 'Twitter' },
     { icon: <FaFacebookF />, href: 'https://www.facebook.com/techmapperz', label: 'Facebook' },
     { icon: <FaYoutube />, href: 'https://www.youtube.com/channel/UCWogNBwwxTvoX8Ax24j6c6Q', label: 'YouTube' },
-    { icon: <FaPinterest />, href: 'https://pin.it/2nsXnBd', label: 'Pinterest' },
   ];
 
   return (
@@ -151,7 +149,7 @@ const Footer = () => {
                 Stay Updated
               </h3>
               <p className="text-xs sm:text-sm mb-4 sm:mb-5 leading-relaxed sm:leading-6" style={{ color: '#a8c4e8' }}>
-                Get the latest news, tips, and updates from Techmapperz delivered to your inbox.
+                Get GIS, drone and mapping insights delivered to your inbox.
               </p>
 
               <div className="flex flex-col gap-3">
@@ -185,10 +183,10 @@ const Footer = () => {
           </div>
 
           {/* Divider */}
-          <div className="mt-8 sm:mt-12 mb-6 sm:mb-8" style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)' }} />
+          <div className="mt-4 sm:mt-5 mb-4 sm:mb-5" style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)' }} />
 
           {/* Bottom Row — Socials + Copyright */}
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-5">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-5 sm:pr-16 md:pr-20">
 
             {/* Social Icons */}
             <div className="flex flex-wrap justify-center items-center gap-2.5">

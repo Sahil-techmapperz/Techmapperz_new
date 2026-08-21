@@ -16,13 +16,13 @@ const Homecontact = () => {
                     {/* Text Section */}
                     <div className="space-y-3 sm:space-y-4 max-w-2xl relative z-10 text-left">
                         <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.15em] mb-1.5 block">
-                            LET’S DISCUSS YOUR REQUIREMENT
+                            LET’S DISCUSS YOUR PROJECT
                         </span>
                         <h2 className="text-xl sm:text-2xl md:text-[34px] font-extrabold text-white tracking-tight leading-snug sm:leading-tight">
-                            Planning a GIS, Drone Survey or Data-Processing Project?
+                            Have a GIS, Drone or Digital Project in Mind?
                         </h2>
                         <p className="text-blue-100 text-xs sm:text-sm md:text-[15px] leading-relaxed">
-                            Share your project location, area of interest, source data, survey-control information, coordinate system, required outputs, file formats and expected timeline. Our team will review the requirement and recommend a practical workflow for survey, processing, mapping, analysis or application development.
+                            Share your project location, available source data, required outputs and expected timeline. Our team will review the scope and suggest a practical approach for survey, mapping, data processing, analysis or application development.
                         </p>
                     </div>
 
@@ -32,13 +32,13 @@ const Homecontact = () => {
                             href="/contact" 
                             className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 rounded-xl font-bold text-xs sm:text-sm text-white bg-[#e33434] hover:bg-[#c92828] shadow-md hover:-translate-y-0.5 transition-all duration-200 w-full sm:w-auto text-center"
                         >
-                            Request a Project Discussion →
+                            Discuss Your Project →
                         </Link>
                         <Link 
                             href="/contact" 
                             className="inline-flex items-center justify-center px-5 sm:px-6 py-3 sm:py-3.5 rounded-xl font-bold text-xs sm:text-sm text-[#0c2e60] bg-white border border-transparent hover:-translate-y-0.5 transition-all duration-200 w-full sm:w-auto text-center"
                         >
-                            Send Your Scope of Work
+                            Send Your Scope
                         </Link>
                     </div>
                 </div>
