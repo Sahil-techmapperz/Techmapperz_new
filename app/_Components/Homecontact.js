@@ -8,7 +8,7 @@ const sansSerifStyle = {
 const Homecontact = () => {
     return (
         <div className="relative bg-white py-10 md:py-16 overflow-hidden border-t border-gray-100">
-            <div className="w-full max-w-7xl mx-auto relative z-20 px-4 sm:px-6 lg:px-12">
+            <div className="w-full max-w-[1600px] mx-auto relative z-20 px-4 md:px-8 lg:px-12">
                 <div className="bg-gradient-to-br from-[#0b2341] via-[#10477b] to-[#0b6b69] rounded-2xl sm:rounded-[26px] p-6 sm:p-8 md:p-14 text-white relative overflow-hidden flex flex-col lg:flex-row lg:items-center justify-between gap-6 sm:gap-10 shadow-xl">
                     {/* Circle graphic */}
                     <div className="absolute right-[-80px] top-[-120px] w-[360px] h-[360px] border border-white/10 rounded-full shadow-[0_0_0_48px_rgba(255,255,255,0.05),0_0_0_96px_rgba(255,255,255,0.03)] pointer-events-none" />

@@ -204,9 +204,9 @@ const Home = async () => {
     <div className='bg-theme-bg'>
       <ScrollToTop />
       <HomeHero bannerData={latestBanner} />
-      <section className="bg-theme-bg pt-16 pb-12 max-sm:py-8 max-sm:px-4 px-[4rem] relative overflow-x-hidden w-full border-t border-gray-200">
+      <section className="bg-theme-bg py-12 md:py-16 relative overflow-x-hidden w-full border-t border-gray-200">
         <ScrollReveal>
-          <div className="w-full max-w-7xl mx-auto mb-16">
+          <div className="w-full max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12 mb-12 md:mb-16">
             <div className="text-center flex flex-col items-center">
               <span className="text-[#6ac045] text-[11px] sm:text-xs md:text-[14px] font-bold tracking-[0.15em] uppercase mb-2 sm:mb-3">
                 OUR SERVICES
@@ -220,7 +220,7 @@ const Home = async () => {
             </div>
           </div>
           <Features />
-          <div className="flex relative justify-center mt-10 mb-[50px]">
+          <div className="flex relative justify-center mt-10 mb-4">
             <Link href="/service">
               <button
                 className="bg-[#0c2e60] hover:bg-[#082046] text-white font-bold text-sm px-8 py-3 rounded-full flex items-center gap-2 transition-all duration-300 shadow-md"

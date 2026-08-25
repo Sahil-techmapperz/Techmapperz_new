@@ -47,7 +47,7 @@ export default function MobileAppDevelopmentPage() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#0c2e60]/95 via-[#0c2e60]/75 to-[#0c2e60]/40"></div>
         </div>
 
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20 relative z-10 w-full py-20 mt-16">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12 relative z-10 w-full py-20 mt-16">
           <div className="max-w-3xl">
             <span className="text-[#6ac045] font-bold tracking-widest text-sm uppercase mb-4 block">MOBILE APP DEVELOPMENT SERVICES</span>
             <h1 className="text-4xl md:text-5xl lg:text-[60px] font-bold text-white leading-tight mb-6 tracking-tight">
@@ -56,7 +56,7 @@ export default function MobileAppDevelopmentPage() {
             <p className="text-base md:text-[17px] text-gray-300 mb-8 max-w-xl leading-relaxed">
               A useful mobile application should make a task easier - whether that means collecting information from the field, managing assets, serving customers, coordinating teams or accessing business data away from a desktop.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-5 mt-2 w-full sm:w-auto">
               <Link href="#contact" className="w-full sm:w-auto"><button className="whitespace-nowrap w-full sm:w-auto py-[12px] px-8 rounded-full border border-[#6ac045] bg-[#6ac045] text-white font-semibold text-[15px] hover:bg-[#5aad38] transition-all duration-300 shadow-lg shadow-[#6ac045]/20">Discuss Your App Requirement</button></Link>
               <Link href="#projects" className="w-full sm:w-auto"><button className="whitespace-nowrap w-full sm:w-auto py-[12px] px-8 rounded-full border border-gray-400 bg-transparent text-white font-semibold text-[15px] hover:bg-white/10 transition-all duration-300">View Mobile App Work</button></Link>
@@ -66,7 +66,7 @@ export default function MobileAppDevelopmentPage() {
 
         {/* Capability Strip */}
         <div className="absolute bottom-0 left-0 w-full bg-white/10 backdrop-blur-md border-t border-white/10 py-4 hidden md:block">
-          <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20">
+          <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
             <div className="flex flex-wrap items-center justify-between text-white/80 text-sm font-semibold tracking-wide uppercase">
               <span>Android</span>
               <span className="w-1.5 h-1.5 rounded-full bg-[#6ac045]"></span>
@@ -86,7 +86,7 @@ export default function MobileAppDevelopmentPage() {
 
       {/* SECTION 2: INTRODUCTION */}
       <section className="py-20 md:py-28 bg-white relative">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
           <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-20 mb-16">
 
             {/* Left: Text */}
@@ -137,7 +137,7 @@ export default function MobileAppDevelopmentPage() {
 
       {/* SECTION 3: DEVELOPMENT SERVICES */}
       <section className="py-20 md:py-28 bg-[#f8fafc] border-y border-gray-100">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-[#6ac045] text-sm font-bold uppercase tracking-widest mb-3 block">OUR MOBILE DEVELOPMENT SERVICES</span>
             <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] mb-6">Expertise Across the Mobile Stack</h2>
@@ -197,7 +197,7 @@ export default function MobileAppDevelopmentPage() {
 
       {/* SECTION 4: WHAT WE DEVELOP */}
       <section className="py-20 md:py-28 bg-white">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-[#6ac045] text-sm font-bold uppercase tracking-widest mb-3 block">WHAT WE DEVELOP</span>
             <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] mb-6">Mobile Applications for Real Workflows</h2>
@@ -332,7 +332,7 @@ export default function MobileAppDevelopmentPage() {
 
       {/* SECTION 5: INDUSTRIES */}
       <section className="py-20 md:py-28 bg-[#f8fafc] border-y border-gray-100" id="industries">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20 text-center">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12 text-center">
           <span className="text-[#6ac045] text-sm font-bold uppercase tracking-widest mb-3 block">INDUSTRIES</span>
           <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] mb-12">Apps Built for Specific Sectors</h2>
 
@@ -371,7 +371,7 @@ export default function MobileAppDevelopmentPage() {
 
       {/* SECTION 8: DEVELOPMENT PROCESS (7-Step Timeline) */}
       <section className="py-20 md:py-28 bg-white">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20 text-center">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12 text-center">
           <span className="text-[#6ac045] text-sm font-bold uppercase tracking-widest mb-3 block">DEVELOPMENT PROCESS</span>
           <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] mb-16">A Clear Path from Requirement to Mobile Release</h2>
 
@@ -499,7 +499,7 @@ export default function MobileAppDevelopmentPage() {
 
       {/* SECTION 12: TECHNOLOGY */}
       <section className="py-20 md:py-28 bg-[#f8fafc] border-y border-gray-100">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20 text-center">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12 text-center">
           <span className="text-[#6ac045] text-sm font-bold uppercase tracking-widest mb-3 block">TECHNOLOGY</span>
           <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] mb-6">Platform Choice Should Follow the Product Requirement</h2>
           <p className="text-gray-600 text-lg leading-relaxed mb-12 max-w-3xl mx-auto">
@@ -512,7 +512,7 @@ export default function MobileAppDevelopmentPage() {
 
       {/* SECTION 13: SELECTED MOBILE APP EXPERIENCE */}
       <section className="py-20 md:py-28 bg-white" id="projects">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-[#6ac045] text-sm font-bold uppercase tracking-widest mb-3 block">SELECTED MOBILE APP WORK</span>
             <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] mb-6">Use Real Projects, Not Generic Statistics</h2>
@@ -562,7 +562,7 @@ export default function MobileAppDevelopmentPage() {
 
       {/* SECTION 14: WHY TECHMAPPERZ */}
       <section className="py-20 md:py-28 bg-[#f8fafc] border-y border-gray-100">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
           <div className="flex flex-col lg:flex-row gap-16 items-center">
             <div className="lg:w-1/3">
               <span className="text-[#6ac045] text-sm font-bold uppercase tracking-widest mb-3 block">WHY TECHMAPPERZ</span>
@@ -624,7 +624,7 @@ export default function MobileAppDevelopmentPage() {
           <Map className="w-[400px] h-[400px] text-white absolute -right-20 -top-20" strokeWidth={0.5} />
           <Smartphone className="w-[300px] h-[300px] text-white absolute -left-10 -bottom-10" strokeWidth={0.5} />
         </div>
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20 relative z-10">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12 relative z-10">
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 lg:gap-12">
             <div className="lg:max-w-2xl">
               <span className="text-[#6ac045] text-sm font-bold uppercase tracking-[0.2em] mb-3 block">START WITH THE WORKFLOW</span>

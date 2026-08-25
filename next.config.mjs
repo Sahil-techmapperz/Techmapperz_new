@@ -5,6 +5,9 @@ const nextConfig = {
     ignoreBuildErrors: false,
   },
 
+  // Disable on-screen development indicators (Compiling... and ISR status badge)
+  devIndicators: false,
+
   // Performance optimizations
   compress: true,
   poweredByHeader: false,
@@ -171,6 +174,16 @@ const nextConfig = {
     }
 
     return redirects;
+  },
+
+  // Rewrites configuration
+  async rewrites() {
+    return [
+      {
+        source: '/service/mobile-app-development',
+        destination: '/service/it/mobile-app-development',
+      },
+    ];
   },
 };
 

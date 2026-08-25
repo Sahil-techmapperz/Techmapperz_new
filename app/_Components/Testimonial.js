@@ -62,7 +62,7 @@ const Testimonial = async () => {
         <div className="w-16 sm:w-24 h-[3px] bg-gradient-to-r from-theme-blue to-theme-teal mx-auto rounded-full" />
       </div>
 
-      <div className="w-full max-w-7xl mx-auto px-1 sm:px-4 md:px-6 relative z-10">
+      <div className="w-full max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12 relative z-10">
         <CarouselWrapper responsive={responsive}>
           {safeTestimonials.length > 0 ? safeTestimonials.map((data, idx) => (
             <div

@@ -26,18 +26,18 @@ const Navbar = () => {
 
   const sections = [
     {
-      title: 'IT Services',
+      title: 'Geospatial Services',
       items: [
-        { name: 'Website Development', link: '/service/it/webdevelopment' },
-        { name: 'Mobile App Development', link: '/service/it/mobile-app-development' },
+        { name: 'GIS Services', link: '/service/gisservice' },
+        { name: 'Drone Survey & Mapping', link: '/service/droneservice' },
+        { name: 'LiDAR & 3D Modeling', link: '/service/lidar' },
       ],
     },
     {
-      title: 'Geospatial Services',
+      title: 'IT & Digital Services',
       items: [
-        { name: 'Drone Survey & Mapping', link: '/service/droneservice' },
-        { name: 'GIS Services', link: '/service/gisservice' },
-        { name: 'LiDAR & 3D Modeling', link: '/service/lidar' },
+        { name: 'Website Development', link: '/service/it/webdevelopment' },
+        { name: 'Mobile App Development', link: '/service/mobile-app-development' },
       ],
     },
   ];
@@ -136,7 +136,7 @@ const Navbar = () => {
                 <Resources
                   sections={sections}
                   title="Services"
-                  subtitle="Providing cutting-edge IT solutions and GIS services to streamline operations, enhance decision-making, and drive business success."
+                  subtitle="Enterprise GIS mapping, drone surveys, LiDAR data processing, and custom digital web & mobile applications."
                   link="/service"
                   isActive={pathname.startsWith('/service')}
                 />

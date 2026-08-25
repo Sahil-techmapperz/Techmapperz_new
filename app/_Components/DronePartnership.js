@@ -239,10 +239,24 @@ const DronePartnership = () => {
         }
 
         .container {
-          width:min(1240px, calc(100% - 40px));
-          margin:0 auto;
-          position:relative;
-          z-index:1;
+          width: 100%;
+          max-width: 1600px;
+          padding: 0 48px;
+          margin: 0 auto;
+          position: relative;
+          z-index: 1;
+        }
+
+        @media (max-width: 1024px) {
+          .container {
+            padding: 0 32px;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .container {
+            padding: 0 16px;
+          }
         }
 
         .hero {

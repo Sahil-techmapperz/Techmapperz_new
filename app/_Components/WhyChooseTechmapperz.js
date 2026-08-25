@@ -5,7 +5,7 @@ import Link from 'next/link';
 const WhyChooseTechmapperz = () => {
     return (
         <section className="relative py-12 md:py-20 bg-white overflow-hidden border-t border-gray-100">
-            <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 lg:px-20 relative z-10">
+            <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12 relative z-10">
                 <div className="flex flex-col items-center md:items-start text-center md:text-left">
                     <span className="text-[#6ac045] text-xs md:text-[13px] font-bold uppercase tracking-[0.15em] mb-2 sm:mb-3">
                         WHY TECHMAPPERZ

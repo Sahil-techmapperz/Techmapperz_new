@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { 
-  Globe, Laptop, ShoppingCart, Code, RefreshCw, Layers, 
+import {
+  Globe, Laptop, ShoppingCart, Code, RefreshCw, Layers,
   CheckCircle, ChevronRight, ShieldCheck, Database, Server, Smartphone, Users, MapPin, Map
 } from 'lucide-react';
 import FaqItem from '../../../industry/FaqItem';
@@ -30,21 +30,21 @@ export default function WebDevelopmentPage() {
 
   return (
     <div className="font-sans text-gray-800 bg-[#f8fafc]">
-      
+
       {/* SECTION 1: HERO */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-[#0a192f]">
         <div className="absolute inset-0 z-0">
-          <Image 
-            src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1920&q=80" 
-            alt="Website Development Background" 
+          <Image
+            src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1920&q=80"
+            alt="Website Development Background"
             fill
             className="object-cover opacity-30 mix-blend-overlay"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0c2e60]/95 via-[#0c2e60]/75 to-[#0c2e60]/40"></div>
         </div>
-        
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20 relative z-10 w-full py-20 mt-16">
+
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12 relative z-10 w-full py-20 mt-16">
           <div className="max-w-3xl">
             <span className="text-[#6ac045] font-bold tracking-widest text-sm uppercase mb-4 block">WEBSITE DEVELOPMENT SERVICES</span>
             <h1 className="text-4xl md:text-5xl lg:text-[60px] font-bold text-white leading-tight mb-6 tracking-tight">
@@ -56,7 +56,7 @@ export default function WebDevelopmentPage() {
             <p className="text-base md:text-[17px] text-gray-400 mb-8 max-w-2xl leading-relaxed">
               Techmapperz designs and develops responsive business websites, e-commerce platforms and custom web applications with clear information architecture, practical user journeys and a technical foundation built for long-term use.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-5 mt-2 w-full sm:w-auto">
               <Link href="#contact" className="w-full sm:w-auto">
                 <button className="whitespace-nowrap w-full sm:w-auto py-[12px] px-8 rounded-full border border-[#6ac045] bg-[#6ac045] text-white font-semibold text-[15px] hover:bg-[#5aad38] transition-all duration-300 shadow-lg shadow-[#6ac045]/20">
@@ -71,10 +71,10 @@ export default function WebDevelopmentPage() {
             </div>
           </div>
         </div>
-        
+
         {/* Capability Strip */}
         <div className="absolute bottom-0 left-0 w-full bg-white/10 backdrop-blur-md border-t border-white/10 py-4 hidden md:block">
-          <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20">
+          <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
             <div className="flex flex-wrap items-center justify-between text-white/80 text-sm font-semibold tracking-wide uppercase">
               <span>Business Websites</span>
               <span className="w-1.5 h-1.5 rounded-full bg-[#6ac045]"></span>
@@ -94,9 +94,9 @@ export default function WebDevelopmentPage() {
 
       {/* SECTION 2: INTRODUCTION */}
       <section className="py-20 md:py-28 bg-white relative">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
           <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-20 mb-16">
-            
+
             {/* Left: Text */}
             <div className="lg:w-1/2">
               <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] mb-6">A Good Website Helps Visitors Make a Decision</h2>
@@ -113,7 +113,7 @@ export default function WebDevelopmentPage() {
                 We organise services, industries, projects, company information and calls to action so that the website supports both the visitor journey and the way your business wants to generate enquiries.
               </p>
             </div>
-            
+
             {/* Right: Checklist */}
             <div className="lg:w-1/2">
               <div className="bg-[#f8fafc] rounded-2xl p-8 md:p-10 border border-gray-100 shadow-sm">
@@ -126,9 +126,9 @@ export default function WebDevelopmentPage() {
                 </ul>
               </div>
             </div>
-            
+
           </div>
-          
+
           {/* Small Strip Banner */}
           <div className="bg-gradient-to-r from-[#0c2e60] to-[#1a4b91] rounded-2xl p-8 md:p-12 text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl">
             <div className="max-w-2xl">
@@ -146,7 +146,7 @@ export default function WebDevelopmentPage() {
 
       {/* SECTION 3: WHO WE BUILD FOR */}
       <section className="py-20 md:py-28 bg-[#f8fafc] border-y border-gray-100">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-[#6ac045] text-sm font-bold uppercase tracking-widest mb-3 block">BUILT AROUND YOUR BUSINESS</span>
             <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] mb-6">Different Businesses Need Different Website Journeys</h2>
@@ -154,9 +154,9 @@ export default function WebDevelopmentPage() {
               A technical consultancy should not be structured like an online store. An infrastructure company should not present projects the same way as a publisher. We plan the page structure around how your customer evaluates your company.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            
+
             <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300">
               <h3 className="text-xl font-bold text-[#0c2e60] mb-3">GIS, Drone & Survey Companies</h3>
               <p className="text-gray-600 text-sm mb-5 leading-relaxed">Present technical services, mapping capabilities, equipment or methodologies where relevant, industries, project outputs and real project experience without overwhelming non-technical buyers.</p>
@@ -207,14 +207,14 @@ export default function WebDevelopmentPage() {
 
       {/* SECTION 4: SERVICES */}
       <section className="py-20 md:py-28 bg-white">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-[#6ac045] text-sm font-bold uppercase tracking-widest mb-3 block">SERVICES</span>
             <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] mb-6">Website Solutions for Different Business Requirements</h2>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            
+
             <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
               <div>
                 <span className="text-[#6ac045] text-sm font-bold mb-2 block">01</span>
@@ -275,7 +275,7 @@ export default function WebDevelopmentPage() {
 
       {/* SECTION 5: PERFORMANCE & MOBILE EXPERIENCE */}
       <section className="py-20 md:py-28 bg-[#f8fafc] border-y border-gray-100">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-[#6ac045] text-sm font-bold uppercase tracking-widest mb-3 block">BUILT FOR REAL USERS</span>
             <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] mb-6">Your Website Has to Work Beyond a Desktop Design Mock-up</h2>
@@ -283,7 +283,7 @@ export default function WebDevelopmentPage() {
               Visitors may access the site on large office screens, laptops, tablets and mobile phones. Responsive layouts should therefore be planned as part of development rather than treated as a final adjustment.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-16">
             {[
               "Responsive layouts",
@@ -316,13 +316,13 @@ export default function WebDevelopmentPage() {
 
       {/* SECTION 6: DEVELOPMENT PROCESS (5-Step Timeline) */}
       <section className="py-20 md:py-28 bg-white">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20 text-center">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12 text-center">
           <span className="text-[#6ac045] text-sm font-bold uppercase tracking-widest mb-3 block">HOW WE WORK</span>
           <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] mb-16">A Structured Path from Business Requirement to Launch</h2>
-          
+
           <div className="relative mt-8 w-full max-w-5xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-4 relative z-10">
-              
+
               {/* Step 1 */}
               <div className="flex flex-col items-center relative">
                 <div className="hidden md:block absolute top-[40px] left-[calc(50%+45px)] w-[calc(100%+1rem-90px)] pointer-events-none -translate-y-1/2">
@@ -330,7 +330,7 @@ export default function WebDevelopmentPage() {
                     <div className="absolute right-[-2px] top-[-5px] w-2.5 h-2.5 border-t border-r border-gray-400 rotate-45"></div>
                   </div>
                 </div>
-                
+
                 <div className="w-[80px] h-[80px] rounded-full bg-white border border-gray-300 shadow-sm flex items-center justify-center text-[#0c2e60] mb-4 z-10">
                   <span className="font-bold text-xl">01</span>
                 </div>
@@ -348,7 +348,7 @@ export default function WebDevelopmentPage() {
                     <div className="absolute right-[-2px] top-[-5px] w-2.5 h-2.5 border-t border-r border-gray-400 rotate-45"></div>
                   </div>
                 </div>
-                
+
                 <div className="w-[80px] h-[80px] rounded-full bg-white border border-[#6ac045] shadow-sm flex items-center justify-center text-[#0c2e60] mb-4 z-10">
                   <span className="font-bold text-xl">02</span>
                 </div>
@@ -366,7 +366,7 @@ export default function WebDevelopmentPage() {
                     <div className="absolute right-[-2px] top-[-5px] w-2.5 h-2.5 border-t border-r border-gray-400 rotate-45"></div>
                   </div>
                 </div>
-                
+
                 <div className="w-[80px] h-[80px] rounded-full bg-white border border-gray-300 shadow-sm flex items-center justify-center text-[#0c2e60] mb-4 z-10">
                   <span className="font-bold text-xl">03</span>
                 </div>
@@ -384,7 +384,7 @@ export default function WebDevelopmentPage() {
                     <div className="absolute right-[-2px] top-[-5px] w-2.5 h-2.5 border-t border-r border-gray-400 rotate-45"></div>
                   </div>
                 </div>
-                
+
                 <div className="w-[80px] h-[80px] rounded-full bg-white border border-[#6ac045] shadow-sm flex items-center justify-center text-[#0c2e60] mb-4 z-10">
                   <span className="font-bold text-xl">04</span>
                 </div>
@@ -409,7 +409,7 @@ export default function WebDevelopmentPage() {
 
             </div>
           </div>
-          
+
           <div className="text-center mt-12">
             <Link href="#contact">
               <button className="py-3.5 px-8 rounded-full bg-[#0c2e60] text-white font-bold text-sm hover:bg-[#1656b8] transition-colors shadow-md">
@@ -422,7 +422,7 @@ export default function WebDevelopmentPage() {
 
       {/* SECTION 7: TECHNOLOGY */}
       <section className="py-20 md:py-28 bg-[#f8fafc] border-y border-gray-100">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20 text-center">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12 text-center">
           <span className="text-[#6ac045] text-sm font-bold uppercase tracking-widest mb-3 block">TECHNOLOGY SELECTED FOR THE PROJECT</span>
           <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] mb-6">The Framework Should Support the Requirement, Not Lead It</h2>
           <p className="text-gray-600 text-lg leading-relaxed mb-12 max-w-3xl mx-auto">
@@ -439,15 +439,15 @@ export default function WebDevelopmentPage() {
 
       {/* SECTION 8: SELECTED EXPERIENCE */}
       <section className="py-20 md:py-28 bg-white" id="projects">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-[#6ac045] text-sm font-bold uppercase tracking-widest mb-3 block">SELECTED WEBSITE & WEB APPLICATION WORK</span>
             <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] mb-4">Show What Was Built and Why</h2>
             <p className="text-gray-500 text-base">Use real, approved project screenshots and concise case-study summaries rather than generic conceptual mock-ups.</p>
           </div>
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-            
+
             {/* Project 1 */}
             <div className="bg-[#f8fafc] rounded-2xl overflow-hidden border border-gray-100 shadow-sm flex flex-col justify-between">
               <div className="h-48 relative overflow-hidden bg-gray-200">
@@ -525,7 +525,7 @@ export default function WebDevelopmentPage() {
 
       {/* SECTION 9: WHY TECHMAPPERZ */}
       <section className="py-20 md:py-28 bg-[#f8fafc] border-y border-gray-100">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
           <div className="flex flex-col lg:flex-row gap-16 items-center">
             <div className="lg:w-1/3">
               <span className="text-[#6ac045] text-sm font-bold uppercase tracking-widest mb-3 block">WHY TECHMAPPERZ</span>
@@ -534,7 +534,7 @@ export default function WebDevelopmentPage() {
                 We define what information the visitor needs and how pages should connect before focusing on visual details.
               </p>
             </div>
-            
+
             <div className="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
                 <h4 className="font-bold text-[#0c2e60] text-base mb-2">Structure Before Styling</h4>
@@ -580,7 +580,7 @@ export default function WebDevelopmentPage() {
             <span className="text-[#6ac045] text-sm font-bold uppercase tracking-widest mb-3 block">FAQ</span>
             <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60]">Frequently Asked Questions</h2>
           </div>
-          
+
           <div className="space-y-4">
             {faqs.map((faq, index) => (
               <FaqItem key={index} faq={faq} defaultOpen={index === 0} />
@@ -595,7 +595,7 @@ export default function WebDevelopmentPage() {
           <Globe className="w-[400px] h-[400px] text-white absolute -right-20 -top-20" strokeWidth={0.5} />
           <Laptop className="w-[300px] h-[300px] text-white absolute -left-10 -bottom-10" strokeWidth={0.5} />
         </div>
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20 relative z-10">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12 relative z-10">
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 lg:gap-12">
             <div className="lg:max-w-2xl">
               <span className="text-[#6ac045] text-sm font-bold uppercase tracking-[0.2em] mb-3 block">START WITH YOUR REQUIREMENT</span>
@@ -607,7 +607,7 @@ export default function WebDevelopmentPage() {
                 We can review the requirement and recommend a website structure and development approach based on what your customers need to understand and what your internal team needs to manage.
               </p>
             </div>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto lg:shrink-0 lg:justify-end">
               <Link href="/contact" className="w-full sm:w-auto">
                 <button className="whitespace-nowrap w-full sm:w-auto py-3.5 px-8 rounded-full bg-[#6ac045] hover:bg-[#5aad38] text-white font-bold text-[15px] transition-all shadow-md">

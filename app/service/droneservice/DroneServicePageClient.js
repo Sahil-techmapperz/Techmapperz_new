@@ -79,9 +79,18 @@ export default function DroneServicePageClient() {
   return (
     <div className="bg-white text-gray-900">
       {/* HERO */}
-      <section className="relative min-h-[auto] sm:min-h-[85vh] flex flex-col justify-start sm:justify-center items-start bg-cover bg-center text-white pt-32 sm:pt-40 pb-16 sm:pb-28" style={{ backgroundImage: 'url("/gis_images/drone_services/drone_surveying_mapping/corridor_mapping.webp")' }}>
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/30" />
-        <div className="relative z-10 max-w-[1400px] w-full mx-auto px-4 sm:px-8 md:px-12 lg:px-20 flex flex-col gap-5 sm:gap-6">
+      <section className="relative min-h-[auto] sm:min-h-[85vh] flex flex-col justify-start sm:justify-center items-start text-white pt-32 sm:pt-40 pb-16 sm:pb-28 overflow-hidden">
+        <Image
+          src="/Drone_Service/Drone_Survey&Mapping_banner.png"
+          alt="Drone Survey & Mapping Services Banner"
+          fill
+          priority
+          quality={100}
+          sizes="100vw"
+          className="object-cover object-center pointer-events-none"
+        />
+        <div className="absolute inset-y-0 left-0 w-full md:w-[60%] lg:w-[50%] bg-gradient-to-r from-black/90 via-black/60 to-transparent pointer-events-none" />
+        <div className="relative z-10 max-w-[1600px] w-full mx-auto px-4 md:px-8 lg:px-12 flex flex-col gap-5 sm:gap-6">
           <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em]">DRONE SURVEY & MAPPING SERVICES</span>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-bold leading-tight tracking-tight max-w-3xl">Turn Aerial Survey Data into Usable Maps, Models and Spatial Information</h1>
           <p className="text-gray-300 text-sm sm:text-base md:text-[17px] max-w-2xl leading-relaxed">Techmapperz supports infrastructure, mining, utility, land-development, architecture and planning projects with drone survey, aerial mapping and geospatial data-processing services.</p>
@@ -95,7 +104,7 @@ export default function DroneServicePageClient() {
 
       {/* INTRODUCTION */}
       <section className="py-16 md:py-24 bg-[#f8fafc]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div>
               <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-4 block">FROM DATA CAPTURE TO FINAL MAPPING</span>
@@ -118,7 +127,7 @@ export default function DroneServicePageClient() {
 
       {/* DRONE SERVICES */}
       <section className="py-16 md:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
           <div className="text-center mb-16">
             <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-3 block">WHAT WE CAN SUPPORT</span>
             <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] tracking-tight">Drone Mapping Services for Different Project Stages</h2>
@@ -150,7 +159,7 @@ export default function DroneServicePageClient() {
 
       {/* WHAT WE NEED */}
       <section className="py-16 md:py-24 bg-[#0c2e60] text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
           <div className="text-center mb-14">
             <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-3 block">STARTING A DRONE PROJECT</span>
             <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">Share the Information That Defines the Survey</h2>
@@ -176,7 +185,7 @@ export default function DroneServicePageClient() {
 
       {/* WORKFLOW */}
       <section className="py-16 md:py-24 bg-white border-t border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
           <div className="text-center mb-16">
             <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-3 block">HOW WE WORK</span>
             <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] tracking-tight">A Defined Workflow from Requirement Review to Final Delivery</h2>
@@ -195,7 +204,7 @@ export default function DroneServicePageClient() {
 
       {/* INDUSTRIES */}
       <section className="py-16 md:py-24 bg-[#f8fafc]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
           <div className="text-center mb-14">
             <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-3 block">WHERE DRONE MAPPING IS USED</span>
             <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] tracking-tight">Supporting Survey and Mapping Requirements Across Different Sectors</h2>
@@ -208,7 +217,7 @@ export default function DroneServicePageClient() {
 
       {/* PROJECT EXPERIENCE */}
       <section className="py-16 md:py-24 bg-[#0c2e60] text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
           <div className="text-center mb-14">
             <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-3 block">SELECTED DRONE & GEOSPATIAL EXPERIENCE</span>
             <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">Show the Work, Not Just the Service List</h2>
@@ -230,7 +239,7 @@ export default function DroneServicePageClient() {
 
       {/* WHY TECHMAPPERZ */}
       <section className="py-16 md:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
           <div className="text-center mb-14">
             <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-3 block">WHY TECHMAPPERZ</span>
             <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] tracking-tight">Geospatial Understanding Beyond the Drone Flight</h2>
@@ -254,7 +263,7 @@ export default function DroneServicePageClient() {
 
       {/* FINAL CTA */}
       <section className="py-16 md:py-20 bg-white border-t border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
           <div className="bg-gradient-to-br from-[#0b2341] via-[#10477b] to-[#0b6b69] rounded-2xl sm:rounded-[26px] p-8 md:p-14 text-white relative overflow-hidden flex flex-col lg:flex-row lg:items-center justify-between gap-8 shadow-xl">
             <div className="absolute right-[-80px] top-[-120px] w-[360px] h-[360px] border border-white/10 rounded-full shadow-[0_0_0_48px_rgba(255,255,255,0.05),0_0_0_96px_rgba(255,255,255,0.03)] pointer-events-none" />
             <div className="space-y-4 max-w-2xl relative z-10">

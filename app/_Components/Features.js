@@ -11,7 +11,7 @@ const Features = () => {
     {
       bgImage: "/Photos/feature_6.webp",
       icon: <FiLayers className="text-2xl text-[#1656b8]" />,
-      title: "01. GIS Mapping & Data Analyzing",
+      title: "01. GIS Services",
       description: "We prepare structured GIS and CAD data for infrastructure, utilities, mining, land, transportation and planning projects. Services include digitisation, feature extraction, utility and cadastral mapping, land-use mapping, georeferencing, spatial analysis and CAD–GIS conversion.",
       link: "/service/gisservice",
       ctaText: "Explore GIS Mapping Services",
@@ -27,7 +27,7 @@ const Features = () => {
     {
       bgImage: "/Photos/about_us_banner.png",
       icon: <BiCloud className="text-2xl text-[#1656b8]" />,
-      title: "03. Drone Data Processing & Photogrammetry",
+      title: "03. Drone Data Processing",
       description: "If the flight is already complete, we can assess the imagery, overlap, flight information, coordinates and control data before processing. Outputs may include orthomosaics, point clouds, DEM, DTM, DSM, contours and mapping deliverables, subject to input quality.",
       link: "/service/droneservice/dronedataprocessing",
       ctaText: "Explore Drone Data Processing",
@@ -35,15 +35,15 @@ const Features = () => {
     {
       bgImage: "/Photos/feature_5.webp",
       icon: <AiOutlineCloudServer className="text-2xl text-[#1656b8]" />,
-      title: "04. Website & Mobile App Development",
-      description: "We process aerial and terrestrial point-cloud data into terrain, surface, feature and engineering-ready products.\nServices include point-cloud classification, noise removal, ground filtering, feature extraction, bare-earth terrain generation, elevation modelling, contours, profiles, cross-sections and point-cloud-to-CAD or GIS conversion.",
+      title: "04. Website & App Development",
+      description: "Responsive websites, custom portals and mobile applications built around practical business requirements. Our work includes UI development, dashboards, APIs, integrations, location-enabled applications and support after launch.",
       link: "/service/lidar",
       ctaText: "Explore Website & Mobile App",
     }
   ];
 
   return (
-    <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6">
+    <div className="w-full max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {features.map((feature, index) => (
           <div

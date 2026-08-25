@@ -36,7 +36,7 @@ const OurBlog = async () => {
         <div className="w-12 h-[3px] bg-[#078a86] mx-auto rounded-full" />
       </div>
 
-      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
+      <div className="relative z-10 w-full max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-10">
           {blogPosts.length > 0 ? blogPosts.map(post => (
             <div key={post._id || post.id || Math.random()}>

@@ -3,7 +3,6 @@ Allow: /
 Disallow: /api/
 Disallow: /admin/
 Disallow: /tmp/
-Disallow: /_next/
 Disallow: /404
 Disallow: /500
 

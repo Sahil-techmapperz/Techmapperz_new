@@ -189,7 +189,7 @@ const IndustryExpertise = () => {
 
       {/* ── MAIN CONTAINER (Tabs + Content) ── */}
       <div className="w-full flex justify-center relative z-10 border-b" style={{ backgroundColor: '#1a1a1a', borderColor: '#2d2d2d' }}>
-        <div className="flex flex-col md:flex-row relative z-10 w-full max-w-[1440px]">
+        <div className="flex flex-col md:flex-row relative z-10 w-full max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
           
           {/* ── LEFT TABS BAR ── */}
           <div 

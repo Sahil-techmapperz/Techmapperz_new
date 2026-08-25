@@ -47,7 +47,7 @@ const FeaturedProjects = () => {
 
   return (
     <section className="relative py-10 md:py-12 overflow-hidden text-white" style={{ backgroundColor: '#0c2e60' }}>
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-8 md:px-12 lg:px-16 relative z-10">
+      <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center">
           
           {/* Left Column — Text info */}

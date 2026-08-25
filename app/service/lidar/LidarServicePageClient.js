@@ -77,7 +77,7 @@ export default function LidarServicePageClient() {
         <div className="absolute top-[18%] left-[11%] w-[400px] h-[400px] bg-[#1267b1]/10 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute top-[25%] right-[16%] w-[450px] h-[450px] bg-[#078a86]/10 rounded-full blur-[130px] pointer-events-none" />
 
-        <div className="max-w-[1240px] mx-auto px-6">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-12 lg:gap-16 items-center">
             
             {/* Left Column: Hero Content */}
@@ -185,7 +185,7 @@ export default function LidarServicePageClient() {
 
       {/* Core Services Section */}
       <section className="py-24 bg-white relative">
-        <div className="max-w-[1240px] mx-auto px-6">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <div className="inline-flex items-center justify-center gap-2 text-xs font-bold tracking-[0.15em] text-[#1267b1] uppercase mb-4">
               <span className="w-4 h-[2px] bg-[#e33434] rounded-full" />
@@ -239,7 +239,7 @@ export default function LidarServicePageClient() {
 
       {/* Deliverables Section with Tabs */}
       <section className="py-24 bg-[#0a192f] relative overflow-hidden">
-        <div className="max-w-[1240px] mx-auto px-6 relative z-10">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-[400px_1fr] gap-12 lg:gap-20">
             <div className="space-y-6">
               <div className="inline-flex items-center gap-3 text-xs font-bold tracking-[0.15em] text-[#078a86] uppercase">
@@ -298,7 +298,7 @@ export default function LidarServicePageClient() {
 
       {/* Industries Grid */}
       <section className="py-24 bg-white relative border-b border-[#e2e8f0]">
-        <div className="max-w-[1240px] mx-auto px-6">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <h2 className="text-[32px] lg:text-[40px] font-extrabold text-[#0b2341] leading-tight mb-6">
               Industries Powered by LiDAR

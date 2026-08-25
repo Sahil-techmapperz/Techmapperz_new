@@ -43,7 +43,7 @@ const steps = [
 const HowWeWork = () => {
   return (
     <section className="relative py-20 bg-white overflow-hidden border-t border-gray-100">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 relative z-10">
+      <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12 relative z-10">
 
         {/* Header Row */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-16">

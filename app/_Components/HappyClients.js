@@ -6,12 +6,12 @@ import gsap from "gsap";
 import Genesys_logo from "@/public/Photos/Genesys_logo.webp";
 import Cocreatelab_logo from "@/public/Photos/Cocreatelab_logo.webp";
 import manusherghorbari_logo from "@/public/Photos/manusherghorbari_logo.webp";
-import premierautosource_logo from "@/public/Photos/premierautosource_logo.webp";
+import premierautosource_logo from "@/public/Photos/premierautosource_logo_dark.webp";
 import shrc_logo from "@/public/Photos/Shrc_logo.webp";
-import whitespreadfoods_logo from "@/public/Photos/whitespreadfoods_logo.webp";
+import whitespreadfoods_logo from "@/public/Photos/whitespreadfoods_logo_dark.webp";
 import NS_logo from "@/public/Photos/NS_logo.webp";
-import khanconsultants_logo from "@/public/Photos/khanconsultants_logo.webp";
-import new_company_logo from "@/public/Photos/new_company_logo.webp";
+import khanconsultants_logo from "@/public/Photos/khanconsultants_logo_dark.webp";
+import new_company_logo from "@/public/Photos/new_company_logo_trans.webp";
 import Facalties_online_logo from "@/public/Photos/Facalties_online_logo.webp";
 import English_faculties_logo from "@/public/Photos/English_faculties_logo.webp";
 import Fabcon_Logo from "@/public/Photos/Fabcon Logo.webp";
@@ -71,13 +71,12 @@ const HappyClients = () => {
     return () => ctx.revert();
   }, []);
 
-  // Reusable Logo Card Component
+  // Reusable Logo Card Component with high-contrast white card container
   const LogoCard = ({ client }) => (
-    <div className="flex-shrink-0 w-[180px] sm:w-[240px] h-[100px] sm:h-[120px] flex items-center justify-center bg-white/5 backdrop-blur-md border border-white/10 shadow-lg hover:bg-white/10 transition-colors duration-300 px-4 sm:px-6 group rounded-2xl">
-      <div className="relative w-[130px] sm:w-[160px] h-[55px] sm:h-[70px] flex items-center justify-center">
+    <div className="flex-shrink-0 w-[180px] sm:w-[230px] h-[95px] sm:h-[115px] flex items-center justify-center bg-white rounded-2xl shadow-md border border-white/20 hover:shadow-xl hover:scale-[1.03] transition-all duration-300 px-4 sm:px-6 group">
+      <div className="relative w-[130px] sm:w-[160px] h-[50px] sm:h-[65px] flex items-center justify-center">
         <Image
-          className="object-contain transition-transform duration-500 transform group-hover:scale-105"
-          style={{ filter: 'drop-shadow(0px 0px 4px rgba(255,255,255,0.4))' }}
+          className="object-contain transition-transform duration-300 transform group-hover:scale-105"
           src={client.src}
           alt={client.alt}
           fill
@@ -88,16 +87,15 @@ const HappyClients = () => {
   );
 
   return (
-    <section className="relative py-16 sm:py-24 bg-[#0c2e60] overflow-hidden" ref={containerRef} style={sansSerifStyle}>
+    <section className="relative py-12 sm:py-16 bg-[#0c2e60] overflow-hidden" ref={containerRef} style={sansSerifStyle}>
 
       {/* Background Glows */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-r from-blue-500/10 to-red-500/10 rounded-full blur-[120px] pointer-events-none"></div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 mb-10 sm:mb-16 text-center">
-
+      <div className="relative z-10 max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12 mb-8 sm:mb-12 text-center">
 
         {/* Heading */}
-        <h2 className="text-3xl sm:text-4xl md:text-[54px] font-bold mb-4 sm:mb-6 tracking-tight leading-tight text-white">
+        <h2 className="text-3xl sm:text-4xl md:text-[54px] font-bold mb-3 sm:mb-4 tracking-tight leading-tight text-white">
           Our Happy Clients
         </h2>
 
