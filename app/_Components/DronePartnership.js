@@ -23,7 +23,7 @@ const DronePartnership = () => {
                 For Drone and Survey Service Providers
               </div>
 
-              <h1>Extend Your Processing Capacity Without Expanding Your Field Team</h1>
+              <h2>Extend Your Processing Capacity Without Expanding Your Field Team</h2>
 
               <p className="intro">
                 Already completed the survey? Techmapperz can work as a back-office processing partner for drone and survey companies that require additional capacity for photogrammetry, point-cloud processing, GIS production, feature extraction or final client-format preparation.
@@ -213,7 +213,7 @@ const DronePartnership = () => {
         .tm-partnership {
           position:relative;
           overflow:hidden;
-          padding:72px 0 54px;
+          padding:44px 0 36px;
           background:
             radial-gradient(circle at 86% 13%, rgba(23,100,192,.08), transparent 28%),
             radial-gradient(circle at 5% 100%, rgba(20,134,61,.05), transparent 26%),
@@ -290,7 +290,7 @@ const DronePartnership = () => {
 
         .eyebrow svg { width:23px; height:23px; }
 
-        h1 {
+        h2, h1 {
           margin:0;
           max-width:720px;
           font-size:clamp(26px, 3vw, 34px);

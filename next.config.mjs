@@ -173,6 +173,12 @@ const nextConfig = {
       });
     }
 
+    redirects.push({
+      source: '/service/droneservice',
+      destination: '/service/drone-survey-mapping',
+      permanent: true,
+    });
+
     return redirects;
   },
 

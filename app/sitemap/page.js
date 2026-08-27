@@ -70,12 +70,12 @@ const Sitemap = () => {
           ]
         },
         { 
-          name: 'Drone Services', 
-          href: '/service/gis/droneservice',
+          name: 'Drone Survey & Mapping', 
+          href: '/service/drone-survey-mapping',
           subLinks: [
             { name: 'Drone Survey and Mapping', href: '/service/gis/droneservice/dronesurveyandmapping' },
             { name: 'Inspection and Analysis', href: '/service/gis/droneservice/inspectionandanalysis' },
-            { name: 'Drone Data Processing', href: '/service/gis/droneservice/dronedataprocessing' },
+            { name: 'Drone Data Processing', href: '/service/drone-data-processing' },
           ]
         },
       ]
@@ -87,7 +87,7 @@ const Sitemap = () => {
       mainLink: '/service',
       links: [
         { name: 'Mobile App Development', href: '/service/it/mobile-app-development' },
-        { name: 'Website Development', href: '/service/it/webdevelopment' },
+        { name: 'Website Development', href: '/service/webdevelopment' },
         { name: 'CRM Software Solution', href: '/service/it/crmservice' },
         { name: 'IT Consultancy', href: '/service/it/itconsultingservice' },
       ]

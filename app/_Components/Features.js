@@ -21,7 +21,7 @@ const Features = () => {
       icon: <BiTargetLock className="text-2xl text-[#1656b8]" />,
       title: "Drone Survey & Mapping",
       description: "We support topographic, corridor, mining, construction, land and asset-mapping projects. The survey method and outputs are planned around the terrain, available survey control, coordinate system, accuracy requirement and intended use of the data.",
-      link: "/service/droneservice",
+      link: "/service/drone-survey-mapping",
       ctaText: "Explore Drone Survey Services",
     },
     {
@@ -29,7 +29,7 @@ const Features = () => {
       icon: <BiCloud className="text-2xl text-[#1656b8]" />,
       title: "Drone Data Processing",
       description: "If the flight is already complete, we can assess the imagery, overlap, flight information, coordinates and control data before processing. Outputs may include orthomosaics, point clouds, DEM, DTM, DSM, contours and mapping deliverables, subject to input quality.",
-      link: "/service/droneservice/dronedataprocessing",
+      link: "/service/drone-data-processing",
       ctaText: "Explore Drone Data Processing",
     },
     {
@@ -37,7 +37,7 @@ const Features = () => {
       icon: <AiOutlineCloudServer className="text-2xl text-[#1656b8]" />,
       title: "Website & App Development",
       description: "Responsive websites, custom portals and mobile applications built around practical business requirements. Our work includes UI development, dashboards, APIs, integrations, location-enabled applications and support after launch.",
-      link: "/service/lidar",
+      link: "/service/webdevelopment",
       ctaText: "Explore Website & Mobile App",
     }
   ];

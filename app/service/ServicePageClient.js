@@ -42,7 +42,7 @@ const coreServices = [
       "Urban and regional planning",
       "Pipeline corridor mapping",
     ],
-    link: "/service/droneservice",
+    link: "/service/drone-survey-mapping",
   },
   {
     number: "03",
@@ -61,33 +61,13 @@ const coreServices = [
       "Feature extraction",
       "GIS and CAD output preparation",
     ],
-    link: "/service/droneservice/dronedataprocessing",
-  },
-  {
-    number: "04",
-    title: "LiDAR Survey & Mapping",
-    image: "/gis_images/Gas Pipeline.webp",
-    description:
-      "LiDAR provides detailed three-dimensional information that can support terrain analysis, corridor mapping, infrastructure planning, vegetation assessment and feature extraction. Techmapperz supports LiDAR survey projects and processes point-cloud datasets into classified, measurable and project-ready GIS, CAD and terrain products.",
-    heading: "Services include",
-    services: [
-      "LAS/LAZ data processing",
-      "Point-cloud cleaning",
-      "Noise identification and removal",
-      "2D and 3D feature extraction",
-      "DEM, DTM and DSM preparation",
-      "Contour generation",
-      "Profiles and cross-sections",
-      "Point-cloud-to-CAD conversion",
-      "Point-cloud-to-GIS conversion",
-    ],
-    link: "/service/lidar",
+    link: "/service/drone-data-processing",
   },
 ];
 
 const digitalServices = [
   {
-    number: "05",
+    number: "04",
     title: "Website Development",
     image: "/Photos/feature_4.webp",
     description:
@@ -105,10 +85,10 @@ const digitalServices = [
       "Responsive front-end development",
       "Website maintenance and enhancements",
     ],
-    link: "/service/it/webdevelopment",
+    link: "/service/webdevelopment",
   },
   {
-    number: "06",
+    number: "05",
     title: "Mobile App Development",
     image: "/Photos/feature_3.webp",
     description:

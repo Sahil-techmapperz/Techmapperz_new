@@ -29,14 +29,14 @@ const Navbar = () => {
       title: 'Geospatial Services',
       items: [
         { name: 'GIS Services', link: '/service/gisservice' },
-        { name: 'Drone Survey & Mapping', link: '/service/droneservice' },
-        { name: 'LiDAR & 3D Modeling', link: '/service/lidar' },
+        { name: 'Drone Survey & Mapping', link: '/service/drone-survey-mapping' },
+        { name: 'Drone Data Processing', link: '/service/drone-data-processing' },
       ],
     },
     {
       title: 'IT & Digital Services',
       items: [
-        { name: 'Website Development', link: '/service/it/webdevelopment' },
+        { name: 'Website Development', link: '/service/webdevelopment' },
         { name: 'Mobile App Development', link: '/service/mobile-app-development' },
       ],
     },
