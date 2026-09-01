@@ -9,7 +9,7 @@ import { AiOutlineCloudServer } from "react-icons/ai";
 const Features = () => {
   const features = [
     {
-      bgImage: "/Photos/feature_6.webp",
+      bgImage: "/home/GIS Mapping & Data Production.png",
       icon: <FiLayers className="text-2xl text-[#1656b8]" />,
       title: "GIS Services",
       description: "We prepare structured GIS and CAD data for infrastructure, utilities, mining, land, transportation and planning projects. Services include digitisation, feature extraction, utility and cadastral mapping, land-use mapping, georeferencing, spatial analysis and CAD–GIS conversion.",
@@ -17,7 +17,7 @@ const Features = () => {
       ctaText: "Explore GIS Mapping Services",
     },
     {
-      bgImage: "/Photos/feature_3.webp",
+      bgImage: "/home/Drone Survey & Mapping.png",
       icon: <BiTargetLock className="text-2xl text-[#1656b8]" />,
       title: "Drone Survey & Mapping",
       description: "We support topographic, corridor, mining, construction, land and asset-mapping projects. The survey method and outputs are planned around the terrain, available survey control, coordinate system, accuracy requirement and intended use of the data.",
@@ -25,7 +25,7 @@ const Features = () => {
       ctaText: "Explore Drone Survey Services",
     },
     {
-      bgImage: "/Photos/about_us_banner.png",
+      bgImage: "/home/Drone Data Processing & Photogrammetry.png",
       icon: <BiCloud className="text-2xl text-[#1656b8]" />,
       title: "Drone Data Processing",
       description: "If the flight is already complete, we can assess the imagery, overlap, flight information, coordinates and control data before processing. Outputs may include orthomosaics, point clouds, DEM, DTM, DSM, contours and mapping deliverables, subject to input quality.",
@@ -33,7 +33,7 @@ const Features = () => {
       ctaText: "Explore Drone Data Processing",
     },
     {
-      bgImage: "/Photos/feature_5.webp",
+      bgImage: "/home/Website Development.png",
       icon: <AiOutlineCloudServer className="text-2xl text-[#1656b8]" />,
       title: "Website & App Development",
       description: "Responsive websites, custom portals and mobile applications built around practical business requirements. Our work includes UI development, dashboards, APIs, integrations, location-enabled applications and support after launch.",

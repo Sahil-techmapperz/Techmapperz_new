@@ -1,426 +1,662 @@
 "use client";
 
-import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import './about.css';
+import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import {
+  Map,
+  FileDigit,
+  Layers,
+  Zap,
+  TreePine,
+  LineChart,
+  Monitor,
+  Route,
+  Mountain,
+  Landmark,
+  Building2,
+  Code,
+  Smartphone,
+  ShieldCheck,
+  Award,
+  Globe,
+  Users,
+  Linkedin,
+  ExternalLink,
+  CheckCircle2,
+  Compass,
+  ArrowRight,
+  Briefcase
+} from "lucide-react";
+
+const capabilities = [
+  {
+    id: "gis-mapping",
+    title: "GIS & Mapping",
+    tagline: "SPATIAL DATA & GEOPROCESSING",
+    description: "GIS digitisation, feature extraction, utility and land mapping, spatial analysis, and CAD–GIS conversion. We prepare datasets for the client’s required structure and working environment.",
+    items: [
+      "GIS digitisation & geodatabase creation",
+      "2D & 3D geospatial feature extraction",
+      "Utility, pipeline & network asset mapping",
+      "Cadastral, parcel & land-record mapping",
+      "Land Use & Land Cover (LULC) classification",
+      "Spatial queries, buffer & proximity analysis",
+      "CAD to GIS data restructuring & conversion",
+      "Rigorous topology validation & QA/QC checks"
+    ],
+    cta: "Explore GIS Services",
+    link: "/service/gisservice",
+    image: "/gis_images/GIS_Main_Page/GIS_Mapping.webp",
+    alt: "GIS digitisation and mapping services by Techmapperz"
+  },
+  {
+    id: "drone-survey",
+    title: "Drone Survey & Data Processing",
+    tagline: "AERIAL PHOTOGRAMMETRY & LIDAR",
+    description: "Drone survey and mapping, photogrammetry and LiDAR processing. Depending on the assignment, outputs include orthomosaics, classified point clouds, terrain models and contours.",
+    items: [
+      "High-precision drone survey & mapping",
+      "Aerial photogrammetry & image alignment",
+      "LiDAR point-cloud classification (LAS/LAZ)",
+      "Orthomosaic generation & georeferencing",
+      "Digital Surface & Terrain Models (DSM/DTM)",
+      "Topographic contours & elevation analysis",
+      "Stockpile volume & earthwork calculation",
+      "Linear corridor & infrastructure inspection"
+    ],
+    cta: "Explore Drone Services",
+    link: "/service/droneservice",
+    image: "/gis_images/drone_services/drone_surveying_mapping/3D_Drone_Terrain.webp",
+    alt: "Drone survey and LiDAR processing by Techmapperz"
+  },
+  {
+    id: "web-mobile",
+    title: "Web & Mobile Applications",
+    tagline: "DIGITAL DEVELOPMENT & WEB GIS",
+    description: "Websites, Android and iOS applications, Web GIS and mapping dashboards. Development is scoped around how the client’s staff or customers will use the application.",
+    items: [
+      "Corporate, service & e-commerce websites",
+      "Interactive Web GIS portals & dashboards",
+      "Native & cross-platform Android & iOS apps",
+      "Field survey & spatial data collection tools",
+      "Custom business portals & workflow engines",
+      "Spatial database (PostGIS) & REST API integration",
+      "Role-based access & operational analytics",
+      "Responsive, secure & scalable architecture"
+    ],
+    cta: "Explore Web & App Development",
+    link: "/service/webdevelopment",
+    image: "/Photos/Webdevelopment_Mockup_banner.webp",
+    alt: "Web and mobile application development by Techmapperz"
+  }
+];
+
+const leaders = [
+  {
+    name: "Santanu Nandi",
+    designation: "Co-founder & CEO",
+    roleCategory: "Executive Leadership",
+    bio: "Santanu brings over 14 years of experience in the geospatial industry, spanning GIS production, remote sensing, presales and business development. At Techmapperz, he leads business strategy and client engagement, drawing on that background to understand project requirements and guide the company's growth.",
+    linkedin: "https://www.linkedin.com/in/santanu-nandi-65775899/",
+    initials: "SN",
+    image: "/Photos/testimonial_aveter.webp"
+  },
+  {
+    name: "Head of Technology & Solutions",
+    designation: "Chief Technology Officer (CTO)",
+    roleCategory: "Technology & Software",
+    bio: "Leads geospatial software architecture and digital application development at Techmapperz. With deep expertise in full-stack engineering, cloud systems, and Web GIS, oversees technical workflows, system integration and scalable software delivery for client platforms.",
+    linkedin: "https://www.linkedin.com/company/techmapperz",
+    initials: "TS",
+    image: "/Photos/testimonial_aveter.webp"
+  },
+  {
+    name: "Head of GIS Operations",
+    designation: "Lead GIS & Photogrammetry Specialist",
+    roleCategory: "Geospatial Production",
+    bio: "Oversees GIS mapping production, CAD-to-GIS conversion, and multi-source spatial data processing. Ensures rigorous QA/QC standards across large-scale vector digitisation, feature extraction, utility mapping and geodatabase creation projects.",
+    linkedin: "https://www.linkedin.com/company/techmapperz",
+    initials: "GO",
+    image: "/Photos/testimonial_aveter.webp"
+  },
+  {
+    name: "Head of Drone & LiDAR Survey",
+    designation: "Lead Drone Survey Operations",
+    roleCategory: "Field Survey & Remote Sensing",
+    bio: "Directs aerial survey flight planning, high-resolution sensor data capture, photogrammetry processing and LiDAR point cloud classification across infrastructure corridors, mining areas, and regional land surveys.",
+    linkedin: "https://www.linkedin.com/company/techmapperz",
+    initials: "DL",
+    image: "/Photos/testimonial_aveter.webp"
+  },
+  {
+    name: "Lead Full-Stack & Mobile Architect",
+    designation: "Head of Web & Mobile Engineering",
+    roleCategory: "Digital Engineering",
+    bio: "Directs web application and mobile app engineering teams. Specialises in building responsive corporate platforms, cross-platform Android/iOS applications, and spatial mapping dashboards tailored to operational workflows.",
+    linkedin: "https://www.linkedin.com/company/techmapperz",
+    initials: "FM",
+    image: "/Photos/testimonial_aveter.webp"
+  },
+  {
+    name: "Head of Project Delivery & QA",
+    designation: "Director of Operations & Compliance",
+    roleCategory: "Operations & Quality Control",
+    bio: "Responsible for end-to-end project scheduling, client coordination, milestone delivery, and quality compliance across national and international mapping, survey, and software development assignments.",
+    linkedin: "https://www.linkedin.com/company/techmapperz",
+    initials: "PD",
+    image: "/Photos/testimonial_aveter.webp"
+  }
+];
+
+const howWeWorkSteps = [
+  {
+    num: "01",
+    title: "Understand the Requirement",
+    desc: "We review the location, available data, intended use, required outputs and timeline. We clarify assumptions and gaps before setting the scope."
+  },
+  {
+    num: "02",
+    title: "Agree the Approach",
+    desc: "We define the production method, delivery formats and review stages. Where appropriate, an initial sample helps confirm the specification before the wider work begins."
+  },
+  {
+    num: "03",
+    title: "Produce and Check",
+    desc: "We carry out the agreed work and check the relevant geometry, attributes, coordinate system, completeness and accuracy requirements. Questions that affect delivery are raised during the project."
+  },
+  {
+    num: "04",
+    title: "Review and Hand Over",
+    desc: "We share outputs for review, address agreed corrections and organise the final files for the client’s working environment."
+  }
+];
+
+const industries = [
+  {
+    title: "Infrastructure & Transportation",
+    desc: "Railway corridors, road networks, bridge & highway feature extraction, and construction base maps.",
+    icon: Route
+  },
+  {
+    title: "Utilities & Energy",
+    desc: "Gas pipeline digitisation, water distribution networks, electrical grid assets and transmission lines.",
+    icon: Zap
+  },
+  {
+    title: "Mining & Natural Resources",
+    desc: "Mining-area feature extraction, quarry boundaries, stockpile volumes, and environmental monitoring.",
+    icon: Mountain
+  },
+  {
+    title: "Government & Land Administration",
+    desc: "Cadastral map digitisation, revenue parcel boundaries, municipal assets and property record databases.",
+    icon: Landmark
+  },
+  {
+    title: "Architecture & Urban Planning",
+    desc: "Existing-condition base maps, 3D terrain models, master planning datasets and building footprints.",
+    icon: Building2
+  },
+  {
+    title: "Agriculture & Forestry",
+    desc: "Crop health interpretation, plantation boundaries, watershed mapping, and Land Use/Land Cover analysis.",
+    icon: TreePine
+  }
+];
+
+const credentials = [
+  {
+    tag: "Business Structure",
+    title: "Limited Liability Partnership",
+    desc: "A formally registered Indian business entity supporting national and international commercial project engagements."
+  },
+  {
+    tag: "Government Recognition",
+    title: "Startup India Recognised",
+    desc: "Recognised under the Startup India initiative, highlighting our commitment to innovation and geospatial technology advancement."
+  },
+  {
+    tag: "Enterprise Registration",
+    title: "MSME Registered Entity",
+    desc: "Officially registered as an Indian Micro, Small and Medium Enterprise compliant with statutory standards."
+  },
+  {
+    tag: "Delivery Reach",
+    title: "India & International Projects",
+    desc: "Proven project experience delivering high-accuracy geospatial, drone, and digital solutions for domestic and global clients."
+  }
+];
 
 export default function AboutPageClient() {
   return (
-    <div className="about-page-wrapper">
-      <main>
-        <section className="hero">
-          <div className="container hero-grid">
+    <div className="bg-white text-gray-900 font-sans antialiased">
+      
+      {/* 01 • HERO SECTION */}
+      <section className="relative min-h-[auto] sm:min-h-[75vh] md:min-h-[80vh] flex flex-col justify-center items-start text-white pt-32 sm:pt-40 pb-16 sm:pb-24 md:pb-28 overflow-hidden">
+        <Image
+          src="/Photos/about_us_banner.png"
+          alt="Techmapperz About Us - GIS, Drone Mapping & Digital Development"
+          fill
+          priority
+          quality={100}
+          sizes="100vw"
+          className="object-cover object-center pointer-events-none"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/45 pointer-events-none" />
+        
+        <div className="relative z-10 max-w-[1600px] w-full mx-auto px-4 md:px-8 lg:px-12 flex flex-col gap-5 sm:gap-6">
+          <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] drop-shadow-sm">
+            01 • ABOUT TECHMAPPERZ
+          </span>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-bold leading-tight tracking-tight max-w-3xl drop-shadow-md text-white">
+            Bringing Mapping and Technology Together
+          </h1>
+          <p className="text-gray-200 text-base md:text-[17px] max-w-2xl leading-relaxed font-normal drop-shadow-sm">
+            Techmapperz combines GIS expertise with drone surveying, data processing and digital development. Our work spans railway corridors, utility networks and mining areas, alongside websites and mobile applications for businesses. Based in India, we support clients across the country and internationally.
+          </p>
+          <p className="text-white/95 text-base md:text-[17px] max-w-2xl leading-relaxed font-medium drop-shadow-sm">
+            From preparing accurate spatial databases to building custom digital applications, we ensure your data is ready for engineering, planning and real-world operational decisions.
+          </p>
+          <div className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-5 mt-2 w-full sm:w-auto">
+            <Link 
+              href="/portfolios" 
+              className="inline-flex items-center justify-center py-[13px] px-8 rounded-full bg-[#1656b8] hover:bg-[#0c2e60] text-white font-semibold text-[15px] shadow-lg hover:shadow-xl transition-all duration-300 text-center w-full sm:w-auto"
+            >
+              Explore Our Work
+            </Link>
+            <Link 
+              href="/contact" 
+              className="inline-flex items-center justify-center py-[12px] px-8 rounded-full border border-gray-300 bg-transparent text-white font-semibold text-[15px] hover:bg-white/15 transition-all duration-300 text-center w-full sm:w-auto"
+            >
+              Talk to Our Team
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 02 • WHO WE ARE SECTION */}
+      <section className="py-10 md:py-16 bg-[#04203a] text-white" id="who-we-are">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            
+            {/* Left Narrative */}
             <div>
-              <div className="breadcrumb">
-                <Link href="/">Home</Link> / <span>About Techmapperz</span>
-              </div>
-              <div className="eyebrow">About Techmapperz</div>
-              <h1>Built on Geospatial Expertise. <em>Focused on Real-World Decisions.</em></h1>
-              <p className="lead">Techmapperz is an India-based geospatial services company specialising in GIS mapping, drone survey and mapping, LiDAR and photogrammetry processing, and custom Web and Mobile GIS applications.</p>
-              <div className="hero-actions">
-                <a className="btn btn-primary" href="#story">Discover Our Story <span>→</span></a>
-                <Link className="btn btn-secondary" href="/portfolios">Explore Project Experience</Link>
-              </div>
-              <div className="hero-trust">
-                <span className="trust-pill"><i></i> Geospatial-led delivery</span>
-                <span className="trust-pill"><i></i> GIS, CAD, raster & point cloud</span>
-                <span className="trust-pill"><i></i> India and international assignments</span>
-              </div>
-            </div>
-            <div className="hero-visual">
-              <div className="geo-card" style={{ padding: 0 }}>
-                <video 
-                  src="/media/Introducation_video.mp4" 
-                  autoPlay 
-                  loop 
-                  muted 
-                  playsInline
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
-
-        <section id="story">
-          <div className="container intro-grid">
-            <div className="intro-copy">
-              <div className="eyebrow">Who We Are</div>
-              <h2 style={{ marginTop: '12px' }}>A geospatial-first company built to make complex location data usable.</h2>
-              <p>We help organisations turn survey data, drone imagery, LiDAR point clouds, satellite data, legacy drawings and field information into accurate maps, engineering-ready deliverables and accessible digital applications.</p>
-              <p>Our work supports infrastructure planning, utilities, mining, government, agriculture, land management and other sectors where reliable spatial information directly influences cost, design, compliance and operational decisions.</p>
-              <div className="intro-list">
-                <div><i></i><span>GIS data creation, conversion and quality control</span></div>
-                <div><i></i><span>Drone survey, photogrammetry and LiDAR workflows</span></div>
-                <div><i></i><span>CAD, raster and point-cloud deliverables</span></div>
-                <div><i></i><span>Custom Web GIS and Mobile GIS applications</span></div>
-              </div>
-            </div>
-            <aside className="position-card">
-              <h3>Our position is simple: geospatial services first, digital development where it adds value.</h3>
-              <p>Website and mobile app development remain part of our capability, but our core identity is GIS, drone mapping and geospatial application development.</p>
-              <div className="position-tags">
-                <span>GIS Mapping</span>
-                <span>Drone Survey</span>
-                <span>LiDAR Processing</span>
-                <span>Web GIS</span>
-                <span>Mobile GIS</span>
-                <span>Website Development</span>
-                <span>Mobile Apps</span>
-              </div>
-            </aside>
-          </div>
-        </section>
-
-        <section className="evolution">
-          <div className="container">
-            <div className="section-head">
-              <div className="copy">
-                <div className="eyebrow">Our Evolution</div>
-                <h2 style={{ marginTop: '12px' }}>From broad technology services to a focused geospatial company.</h2>
-                <p>Techmapperz has evolved through practical project experience. The new direction reflects the work our team understands best and the value clients increasingly seek from us.</p>
-              </div>
-              <div className="side-note">This section communicates strategic clarity without criticising the company’s earlier IT-service journey.</div>
-            </div>
-            <div className="timeline">
-              <div className="time-card">
-                <span className="time-dot"></span>
-                <small>Foundation</small>
-                <h3>GIS expertise at the core</h3>
-                <p>The company was shaped by hands-on experience in GIS production, remote sensing, survey support and geospatial consulting.</p>
-              </div>
-              <div className="time-card">
-                <span className="time-dot"></span>
-                <small>Expansion</small>
-                <h3>Digital and drone capabilities</h3>
-                <p>Website, mobile development and drone-data workflows expanded the ability to deliver complete digital and spatial solutions.</p>
-              </div>
-              <div className="time-card">
-                <span className="time-dot"></span>
-                <small>Specialisation</small>
-                <h3>Geospatial-first positioning</h3>
-                <p>GIS, drone survey and mapping, LiDAR processing, and Web/Mobile GIS became the primary business focus.</p>
-              </div>
-              <div className="time-card">
-                <span className="time-dot"></span>
-                <small>Future</small>
-                <h3>Decision-ready geospatial systems</h3>
-                <p>The next phase connects reliable spatial data with dashboards, field applications and sector-specific geospatial workflows.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <div className="container">
-            <div className="section-head">
-              <div className="copy">
-                <div className="eyebrow">What We Do</div>
-                <h2 style={{ marginTop: '12px' }}>Capabilities that cover the full geospatial workflow.</h2>
-                <p>From source-data review and field acquisition through production, QA/QC and application development, Techmapperz supports projects at each stage.</p>
-              </div>
-              <div className="side-note">Real project screenshots can later replace the simple capability icons for stronger proof.</div>
-            </div>
-            <div className="cap-grid">
-              <article className="cap-card">
-                <div className="cap-icon">01</div>
-                <h3>GIS & Mapping Services</h3>
-                <p>Digitisation, feature extraction, utility mapping, cadastral mapping, LULC, CAD–GIS conversion, spatial analysis and geodatabase development.</p>
-                <Link href="/services/gis-mapping">Explore GIS Services →</Link>
-              </article>
-              <article className="cap-card">
-                <div className="cap-icon">02</div>
-                <h3>Drone Survey & Mapping</h3>
-                <p>Drone photogrammetry, topographic surveys, corridor mapping, LiDAR workflows, orthomosaics, terrain models and construction monitoring.</p>
-                <Link href="/services/drone-mapping">Explore Drone Services →</Link>
-              </article>
-              <article className="cap-card">
-                <div className="cap-icon">03</div>
-                <h3>LiDAR & Point-Cloud Processing</h3>
-                <p>Point-cloud classification, ground filtering, DTM/DSM creation, contour generation, corridor extraction and 3D geospatial outputs.</p>
-                <Link href="/services/lidar">View LiDAR Capability →</Link>
-              </article>
-              <article className="cap-card">
-                <div className="cap-icon">04</div>
-                <h3>Web & Mobile GIS</h3>
-                <p>Geoportals, GIS dashboards, asset-management applications, field-data collection apps and database/API integration.</p>
-                <Link href="/services/application-development">Explore GIS Development →</Link>
-              </article>
-              <article className="cap-card">
-                <div className="cap-icon">05</div>
-                <h3>Website Development</h3>
-                <p>SEO-ready corporate, service and e-commerce websites developed as a supporting digital capability for organisations and brands.</p>
-                <Link href="/services/web-development">View Website Services →</Link>
-              </article>
-              <article className="cap-card">
-                <div className="cap-icon">06</div>
-                <h3>Mobile App Development</h3>
-                <p>Android, iOS and cross-platform applications, including field, business and customer-facing mobile solutions.</p>
-                <Link href="/services/application-development">View Mobile Services →</Link>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        <section className="leadership">
-          <div className="container leader-grid">
-            <div className="leader-visual">
-              <svg className="leader-map" viewBox="0 0 600 600" preserveAspectRatio="none">
-                <g fill="none" stroke="#8fbcd4" strokeWidth="2" opacity=".5">
-                  <path d="M0 100 C140 50 160 200 300 140 S470 80 620 180"/>
-                  <path d="M-20 310 C110 210 260 410 370 290 S530 220 640 350"/>
-                  <path d="M30 520 C140 430 250 560 360 470 S520 430 620 500"/>
-                </g>
-                <g fill="#1267b1" opacity=".12">
-                  <circle cx="100" cy="120" r="80"/>
-                  <circle cx="510" cy="190" r="95"/>
-                  <circle cx="430" cy="500" r="120"/>
-                </g>
-              </svg>
-              <div className="portrait"></div>
-              <div className="leader-badge">
-                <b>14+ years</b>
-                <span>GIS & drone industry experience</span>
-              </div>
-            </div>
-            <div className="leader-copy">
-              <div className="eyebrow">Leadership</div>
-              <h2>Guided by practical GIS experience—not only business theory.</h2>
-              <div className="role">Santanu Nandi · Co-founder & CEO</div>
-              <p>Techmapperz’s strategic direction is led by a GIS professional with extensive experience across mapping production, remote sensing, geospatial presales, business development and drone-related project delivery.</p>
-              <p>This background helps the company understand both the technical realities of data production and the commercial expectations of engineering consultants, government organisations, infrastructure companies and international clients.</p>
-              <div className="leader-quote">“Our aim is to deliver spatial data that project teams can actually use—accurate, clearly structured and compatible with their engineering and operational workflows.”</div>
-            </div>
-          </div>
-        </section>
-
-        <section className="leadership" style={{ paddingTop: '20px' }}>
-          <div className="container leader-grid" style={{ gridTemplateColumns: '1.1fr .9fr' }}>
-            <div className="leader-copy">
-              <div className="eyebrow">Vision & Strategy</div>
-              <h2>Driving innovation through accurate spatial intelligence.</h2>
-              <div className="role">Team Leadership</div>
-              <p>Our strategic focus is on delivering comprehensive geospatial solutions that empower organizations to make informed decisions. We bridge the gap between complex data and actionable insights.</p>
-              <p>By continuously adopting new technologies and refining our workflows, we ensure our clients receive the most accurate and reliable spatial data for their critical projects.</p>
-              <div className="leader-quote">“Innovation in geospatial technology is not just about better tools, but about providing clearer perspectives for real-world challenges.”</div>
-            </div>
-            <div className="leader-visual">
-              <svg className="leader-map" viewBox="0 0 600 600" preserveAspectRatio="none">
-                <g fill="none" stroke="#8fbcd4" strokeWidth="2" opacity=".5">
-                  <path d="M0 100 C140 50 160 200 300 140 S470 80 620 180"/>
-                  <path d="M-20 310 C110 210 260 410 370 290 S530 220 640 350"/>
-                  <path d="M30 520 C140 430 250 560 360 470 S520 430 620 500"/>
-                </g>
-                <g fill="#1267b1" opacity=".12">
-                  <circle cx="100" cy="120" r="80"/>
-                  <circle cx="510" cy="190" r="95"/>
-                  <circle cx="430" cy="500" r="120"/>
-                </g>
-              </svg>
-              <div className="portrait"></div>
-              <div className="leader-badge" style={{ right: 'auto', left: '20px' }}>
-                <b>Global</b>
-                <span>Delivery Capabilities</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="workflow">
-          <div className="container">
-            <div className="section-head">
-              <div className="copy">
-                <div className="eyebrow" style={{ color: '#8ed1ff' }}>How We Work</div>
-                <h2 style={{ marginTop: '12px' }}>A transparent path from requirement to final delivery.</h2>
-                <p>Every assignment is structured around scope clarity, data quality, review milestones and usable outputs.</p>
-              </div>
-            </div>
-            <div className="workflow-grid">
-              <div className="work-card">
-                <b>01</b>
-                <h3>Understand</h3>
-                <p>Review project objectives, geography, source data, accuracy requirements, formats and timeline.</p>
-              </div>
-              <div className="work-card">
-                <b>02</b>
-                <h3>Plan</h3>
-                <p>Define methodology, resources, control strategy, production stages and acceptance criteria.</p>
-              </div>
-              <div className="work-card">
-                <b>03</b>
-                <h3>Produce</h3>
-                <p>Execute survey, processing, digitisation, modelling, database creation or application development.</p>
-              </div>
-              <div className="work-card">
-                <b>04</b>
-                <h3>Validate</h3>
-                <p>Check geometry, topology, attributes, projection, completeness, positional quality and formats.</p>
-              </div>
-              <div className="work-card">
-                <b>05</b>
-                <h3>Deliver</h3>
-                <p>Share review outputs, incorporate approved corrections and hand over final project-ready data.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <div className="container">
-            <div className="section-head">
-              <div className="copy">
-                <div className="eyebrow">Industries We Support</div>
-                <h2 style={{ marginTop: '12px' }}>Geospatial services designed around sector workflows.</h2>
-                <p>We combine common geospatial methods with industry-specific deliverables, terminology and decision needs.</p>
-              </div>
-            </div>
-            <div className="industry-grid">
-              <article className="industry-card">
-                <span>01</span>
-                <h3>Infrastructure & AEC</h3>
-                <p>Roads, highways, railways, metro, construction, real estate and engineering surveys.</p>
-              </article>
-              <article className="industry-card">
-                <span>02</span>
-                <h3>Government & Land</h3>
-                <p>Cadastral mapping, municipal GIS, land records, property mapping and public asset inventories.</p>
-              </article>
-              <article className="industry-card">
-                <span>03</span>
-                <h3>Utilities & Energy</h3>
-                <p>Power, water, wastewater, oil and gas pipelines, renewable energy and network mapping.</p>
-              </article>
-              <article className="industry-card">
-                <span>04</span>
-                <h3>Mining & Resources</h3>
-                <p>Mine feature extraction, terrain mapping, stockpile surveys and environmental monitoring.</p>
-              </article>
-              <article className="industry-card">
-                <span>05</span>
-                <h3>Agriculture & Forestry</h3>
-                <p>Plantation mapping, crop inventory, terrain analysis, LULC and environmental assessment.</p>
-              </article>
-              <article className="industry-card">
-                <span>06</span>
-                <h3>Transportation</h3>
-                <p>Corridor mapping, navigation datasets, railway assets, logistics and network analysis.</p>
-              </article>
-              <article className="industry-card">
-                <span>07</span>
-                <h3>Telecommunications</h3>
-                <p>Fibre-route mapping, tower assets, network planning, field inventory and Web GIS.</p>
-              </article>
-              <article className="industry-card">
-                <span>08</span>
-                <h3>Water & Resilience</h3>
-                <p>Drainage, flood studies, watershed mapping, terrain models and damage assessment.</p>
-              </article>
-            </div>
-          </div>
-        </section>
-
-
-        <section>
-          <div className="container tech-wrap">
-            <div className="tech-copy">
-              <div className="eyebrow">Technology Ecosystem</div>
-              <h2 style={{ marginTop: '12px' }}>Established GIS tools combined with modern application technologies.</h2>
-              <p>We select tools according to the project workflow, input data, client environment and required outputs—not simply according to trends.</p>
-            </div>
-            <div className="tech-cloud">
-              <span>ArcGIS Pro</span><span>QGIS</span><span>Agisoft Metashape</span>
-              <span>AutoCAD</span><span>Global Mapper</span><span>ENVI</span>
-              <span>ERDAS Imagine</span><span>PostGIS</span><span>Python</span>
-              <span>JavaScript</span><span>React</span><span>Next.js</span>
-              <span>Node.js</span><span>PHP</span><span>MySQL</span>
-              <span>MongoDB</span><span>Android / iOS</span><span>Cloud & APIs</span>
-            </div>
-          </div>
-        </section>
-
-        <section className="values">
-          <div className="container">
-            <div className="section-head">
-              <div className="copy">
-                <div className="eyebrow">What Guides Us</div>
-                <h2 style={{ marginTop: '12px' }}>Practical values for technical project delivery.</h2>
-              </div>
-            </div>
-            <div className="value-grid">
-              <article className="value-card">
-                <b>01</b>
-                <h3>Accuracy with context</h3>
-                <p>Data quality matters only when it matches the intended scale, accuracy, specification and project use.</p>
-              </article>
-              <article className="value-card">
-                <b>02</b>
-                <h3>Clear communication</h3>
-                <p>We define assumptions, risks, milestones, reviews and dependencies before they become project problems.</p>
-              </article>
-              <article className="value-card">
-                <b>03</b>
-                <h3>Usable deliverables</h3>
-                <p>Outputs are structured for the client’s GIS, CAD, engineering, reporting or application environment.</p>
-              </article>
-              <article className="value-card">
-                <b>04</b>
-                <h3>Continuous improvement</h3>
-                <p>Each project strengthens our templates, QA procedures, automation, technical knowledge and client support.</p>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <div className="container">
-            <div className="section-head">
-              <div className="copy">
-                <div className="eyebrow">Company Credentials</div>
-                <h2 style={{ marginTop: '12px' }}>A growing Indian company with verified business registrations.</h2>
-                <p>Only documented registrations and credentials should be displayed. Unsupported awards or certification claims should not be used.</p>
-              </div>
-            </div>
-            <div className="credentials-grid">
-              <article className="cred">
-                <span className="cred-label">Business Structure</span>
-                <h3>Limited Liability Partnership</h3>
-                <p>A formally registered Indian business entity supporting commercial and project engagements.</p>
-              </article>
-              <article className="cred">
-                <span className="cred-label">Recognition</span>
-                <h3>Startup India Recognised</h3>
-                <p>Recognition that reflects the company’s growth and innovation journey.</p>
-              </article>
-              <article className="cred">
-                <span className="cred-label">Registration</span>
-                <h3>MSME Registered</h3>
-                <p>Registered as an Indian micro, small or medium enterprise, subject to current official records.</p>
-              </article>
-              <article className="cred">
-                <span className="cred-label">Delivery Reach</span>
-                <h3>India & International Projects</h3>
-                <p>Experience supporting domestic requirements and overseas geospatial production assignments.</p>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        <section className="cta" id="contact">
-          <div className="container">
-            <div className="cta-box">
+              <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-3 block">
+                02 • WHO WE ARE
+              </span>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-tight mb-4">
+                Geospatial experience, with a practical approach.
+              </h2>
+              <p className="text-blue-100/90 text-base md:text-[17px] leading-relaxed mb-4">
+                Techmapperz LLP provides GIS mapping, drone survey and LiDAR data processing services. Our work includes turning survey data, aerial imagery, point clouds and existing drawings into maps, terrain models and organised GIS or CAD datasets.
+              </p>
+              <p className="text-blue-100/90 text-base md:text-[17px] leading-relaxed mb-4">
+                The team brings together experience in geospatial production and application development. That combination helps us support clients at different stages of a project, from preparing the underlying data to developing an application that makes it easier to use.
+              </p>
+              <p className="text-blue-100/90 text-base md:text-[17px] leading-relaxed mb-4">
+                Our project experience includes railway corridor mapping, gas pipeline digitisation, mining-area feature extraction and e-commerce Website &amp; iOS and Android Mobile app for XYZ Finders etc. Each assignment has its own specifications, source-data limitations and review requirements. Understanding those details is an important part of the work.
+              </p>
+              <p className="text-blue-100/90 text-base md:text-[17px] leading-relaxed mb-6">
+                We also build websites and mobile applications for businesses across other sectors.
+              </p>
+              
               <div>
-                <h2>Looking for a GIS, drone survey or geospatial-development partner?</h2>
-                <p>Share your project location, area, source data, required accuracy, expected outputs and timeline. Our team will review the requirement and recommend a practical delivery approach.</p>
-              </div>
-              <div className="cta-actions">
-                <Link href="/contact" className="btn btn-primary">Discuss Your Project</Link>
+                <Link 
+                  href="/industry" 
+                  className="inline-flex items-center gap-2 text-[#6ac045] hover:text-[#5aad38] font-bold text-base transition-colors group"
+                >
+                  <span>Explore the industries we support</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
               </div>
             </div>
+
+            {/* Right Side Visual */}
+            <div>
+              <div className="relative h-[320px] sm:h-[420px] rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+                <Image 
+                  src="/gis_images/gis_services/GIS Service Page Introduction.png" 
+                  alt="Techmapperz Geospatial Team and Production Workspace" 
+                  fill 
+                  sizes="(max-width: 1024px) 100vw, 50vw" 
+                  className="object-cover object-center" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#04203a]/70 via-transparent to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4 bg-[#0a1930]/90 backdrop-blur-md rounded-xl p-4 border border-white/10">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-lg bg-[#1656b8] flex items-center justify-center text-white flex-shrink-0">
+                      <ShieldCheck className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="text-white font-bold text-sm">Geospatial &amp; Digital Precision</p>
+                      <p className="text-blue-200/80 text-xs">Structured workflows for accurate maps, terrain models &amp; web platforms.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
-        </section>
-      </main>
+          
+          {/* Small Strip Banner */}
+          <div className="mt-8 bg-white/10 backdrop-blur-md rounded-2xl px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-6 shadow-md border border-white/15">
+            <div>
+              <p className="text-white font-bold text-lg mb-1">Looking for proven project deliverables?</p>
+              <p className="text-blue-200 text-sm md:text-base">We combine geospatial data preparation with custom application development tailored to your sector workflows.</p>
+            </div>
+            <Link 
+              href="/portfolios" 
+              className="inline-flex flex-shrink-0 items-center justify-center gap-2 bg-[#6ac045] hover:bg-[#5aad38] text-white font-bold text-sm px-7 py-3 rounded-full transition-all duration-300 shadow-md w-full md:w-auto"
+            >
+              Explore Our Work &#8594;
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 03 • WHAT WE DO (OUR CORE CAPABILITIES) */}
+      <section className="py-10 md:py-16 bg-white" id="capabilities">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
+          
+          <div className="text-center mb-10 max-w-3xl mx-auto">
+            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-2 block">
+              03 • WHAT WE DO
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] tracking-tight">
+              Our Core Capabilities
+            </h2>
+            <p className="text-gray-600 text-base md:text-[17px] mt-3 leading-relaxed">
+              We deliver end-to-end technical services spanning geospatial data production, drone photogrammetry, point cloud analysis, and digital software development.
+            </p>
+          </div>
+
+          <div className="flex flex-col divide-y divide-gray-100">
+            {capabilities.map((cap, i) => (
+              <div 
+                key={cap.id} 
+                className={`py-8 md:py-12 flex flex-col ${i % 2 !== 0 ? "lg:flex-row-reverse" : "lg:flex-row"} gap-6 sm:gap-8 lg:gap-12 items-start`}
+              >
+                <div className="relative w-full lg:w-[42%] h-[260px] sm:h-[340px] rounded-2xl overflow-hidden shadow-lg flex-shrink-0">
+                  <Image 
+                    src={cap.image} 
+                    alt={cap.alt || cap.title} 
+                    fill 
+                    sizes="(max-width: 1024px) 100vw, 50vw" 
+                    className="object-cover object-center" 
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                  <div className="absolute top-4 left-4">
+                    <span className="bg-[#0c2e60]/90 backdrop-blur-md text-[#6ac045] text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
+                      {cap.tagline}
+                    </span>
+                  </div>
+                </div>
+                
+                <div className="flex flex-col flex-1">
+                  <h3 className="text-2xl md:text-3xl font-bold text-[#0c2e60] mb-4 leading-tight">
+                    {cap.title}
+                  </h3>
+                  <p className="text-gray-600 text-base leading-relaxed mb-6">
+                    {cap.description}
+                  </p>
+
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5 mb-8">
+                    {cap.items.map((item, j) => (
+                      <li key={j} className="flex items-start gap-2 text-gray-700 text-sm md:text-base">
+                        <span className="text-[#6ac045] font-bold mt-0.5 flex-shrink-0">&#10003;</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <Link 
+                    href={cap.link} 
+                    className="inline-flex items-center justify-center gap-2 bg-[#0c2e60] hover:bg-[#082046] text-white font-bold text-sm px-8 py-3.5 rounded-full transition-all duration-300 shadow-md w-full sm:w-fit"
+                  >
+                    {cap.cta} &#8594;
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* 05 • LEADERSHIP SECTION (6 BOXES GRID) */}
+      <section className="py-10 md:py-16 bg-[#04203a] text-white" id="leadership">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
+          
+          <div className="text-center mb-12 max-w-3xl mx-auto">
+            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-2 block">
+              05 • LEADERSHIP
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+              Meet Our Leadership
+            </h2>
+            <p className="text-blue-100/90 text-base md:text-[17px] mt-3 leading-relaxed">
+              Meet the people guiding Techmapperz’s business, technical work and project delivery.
+            </p>
+          </div>
+
+          {/* 6 Leadership Boxes Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+            {leaders.map((ldr, idx) => (
+              <div 
+                key={idx}
+                className="bg-white text-gray-900 rounded-2xl p-6 sm:p-7 shadow-lg border border-gray-100 hover:shadow-2xl hover:border-[#1656b8]/40 transition-all duration-300 flex flex-col justify-between group"
+              >
+                <div>
+                  {/* Portrait Placeholder / Avatar Card Header */}
+                  <div className="relative w-full h-[180px] sm:h-[200px] rounded-xl bg-gradient-to-br from-[#e8f1fa] to-[#d6e6f7] border border-blue-100/80 mb-5 flex flex-col items-center justify-center text-center p-4 overflow-hidden group-hover:scale-[1.01] transition-transform">
+                    <div className="w-16 h-16 rounded-full bg-[#0c2e60] text-white flex items-center justify-center text-xl font-bold mb-2 shadow-md">
+                      {ldr.initials}
+                    </div>
+                    <span className="text-xs text-gray-500 font-medium">Portrait / Leadership Profile</span>
+                    <span className="text-xs font-semibold text-[#0c2e60] mt-0.5">{ldr.name}</span>
+                    <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-xs px-2.5 py-1 rounded-full text-[10px] font-bold text-[#1656b8] shadow-xs">
+                      {ldr.roleCategory}
+                    </div>
+                  </div>
+
+                  {/* Leader Info */}
+                  <h3 className="text-xl font-bold text-[#0c2e60] leading-tight mb-1 group-hover:text-[#1656b8] transition-colors">
+                    {ldr.name}
+                  </h3>
+                  <p className="text-sm font-semibold text-[#1656b8] mb-4">
+                    {ldr.designation}
+                  </p>
+                </div>
+
+                {/* LinkedIn Link Footer */}
+                <div className="pt-4 border-t border-gray-100 mt-auto flex items-center justify-between">
+                  <a 
+                    href={ldr.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-[#0a66c2] hover:text-[#004182] transition-colors group/link"
+                  >
+                    <Linkedin className="w-4 h-4 fill-[#0a66c2] text-transparent" />
+                    <span>View LinkedIn Profile</span>
+                    <ExternalLink className="w-3.5 h-3.5 opacity-70 group-hover/link:translate-x-0.5 transition-transform" />
+                  </a>
+                  <span className="text-[11px] font-medium text-gray-400">Verified</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* 06 • HOW WE WORK SECTION (4-STAGE PROCESS) */}
+      <section className="py-10 md:py-16 bg-white" id="how-we-work">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
+          
+          <div className="text-center mb-10 max-w-3xl mx-auto">
+            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-2 block">
+              06 • HOW WE WORK
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] tracking-tight">
+              Clear Scope. Regular Reviews. Careful Handover.
+            </h2>
+            <p className="text-gray-600 text-base md:text-[17px] mt-3 leading-relaxed">
+              A project runs more smoothly when the requirements and review process are clear from the start. Our approach covers four stages.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            {howWeWorkSteps.map((step, i) => (
+              <div 
+                key={i} 
+                className="bg-[#f8fafc] rounded-2xl p-6 sm:p-7 border border-gray-200/80 hover:shadow-lg hover:border-[#1656b8]/40 transition-all flex flex-col justify-between"
+              >
+                <div>
+                  <div className="w-10 h-10 rounded-full bg-[#0c2e60] flex items-center justify-center text-white font-bold text-sm mb-4 shadow-sm">
+                    {step.num}
+                  </div>
+                  <h3 className="text-[#0c2e60] font-bold text-lg mb-2 leading-snug">{step.title}</h3>
+                  <p className="text-gray-600 text-sm md:text-[15px] leading-relaxed">{step.desc}</p>
+                </div>
+                <div className="mt-5 pt-3 border-t border-gray-200/60 flex items-center gap-2 text-xs font-medium text-gray-500">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#6ac045]" />
+                  <span>Stage {step.num} Quality Gate</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-6">
+            <Link 
+              href="/contact" 
+              className="inline-flex items-center justify-center gap-2 py-3.5 px-8 rounded-full bg-[#0c2e60] hover:bg-[#082046] text-white font-bold text-sm transition-all duration-300 shadow-md w-full sm:w-auto"
+            >
+              Discuss Your Project &#8594;
+            </Link>
+          </div>
+
+        </div>
+      </section>
+
+      {/* 07 • INDUSTRIES WE SUPPORT */}
+      <section className="py-10 md:py-16 bg-[#04203a] text-white" id="industries">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
+          
+          <div className="text-center mb-10 max-w-3xl mx-auto">
+            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-2 block">
+              INDUSTRIES WE SUPPORT
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+              Geospatial &amp; Digital Solutions Aligned with Sector Workflows
+            </h2>
+            <p className="text-blue-100/80 text-base md:text-[17px] mt-2 leading-relaxed">
+              Every industry works with specific data formats, regulatory standards and precision tolerances. Techmapperz tailors its delivery to meet these specialized operational demands.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {industries.map((ind, i) => {
+              const Icon = ind.icon;
+              return (
+                <div 
+                  key={i} 
+                  className="bg-[#f8fafc] text-gray-900 border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-[#1656b8]/30 transition-all duration-300 group"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-white border border-gray-200/80 shadow-xs flex items-center justify-center mb-4 text-[#1656b8] group-hover:bg-[#1656b8] group-hover:text-white transition-all duration-300">
+                    <Icon className="w-6 h-6" />
+                  </div>
+                  <h3 className="font-bold text-base md:text-lg mb-2 text-[#0c2e60] group-hover:text-[#1656b8] transition-colors">
+                    {ind.title}
+                  </h3>
+                  <p className="text-sm md:text-base leading-relaxed text-gray-600">
+                    {ind.desc}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="text-center mt-8">
+            <Link 
+              href="/industry" 
+              className="inline-flex items-center justify-center gap-2 py-3 px-8 rounded-full bg-[#1656b8] hover:bg-[#10477b] text-white font-bold text-sm transition-all duration-300 shadow-md"
+            >
+              Explore All Industry Solutions &#8594;
+            </Link>
+          </div>
+
+        </div>
+      </section>
+
+      {/* 08 • COMPANY CREDENTIALS & VALUES */}
+      <section className="py-10 md:py-16 bg-white" id="credentials">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
+          
+          <div className="text-center mb-10 max-w-3xl mx-auto">
+            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-2 block">
+              COMPANY CREDENTIALS
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] tracking-tight">
+              A Growing Indian Company with Verified Registrations
+            </h2>
+            <p className="text-gray-600 text-base md:text-[17px] mt-2 leading-relaxed">
+              We operate with transparent corporate governance, official certifications, and proven delivery track records.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {credentials.map((cred, i) => (
+              <div 
+                key={i} 
+                className="bg-[#f8fafc] rounded-2xl p-6 border border-gray-200/80 hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div>
+                  <span className="text-[11px] font-bold text-[#1656b8] uppercase tracking-wider block mb-2">
+                    {cred.tag}
+                  </span>
+                  <h3 className="text-lg font-bold text-[#0c2e60] mb-2">{cred.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{cred.desc}</p>
+                </div>
+                <div className="mt-4 pt-3 border-t border-gray-200 flex items-center gap-2 text-xs font-semibold text-[#0c2e60]">
+                  <ShieldCheck className="w-4 h-4 text-[#6ac045]" />
+                  <span>Verified Entity</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* 08 • CLOSING CALL TO ACTION BANNER */}
+      <section className="py-10 md:py-14 bg-white border-t border-gray-100" id="contact">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
+          <div className="bg-gradient-to-br from-[#0c2e60] via-[#10477b] to-[#0b6b69] rounded-2xl sm:rounded-[32px] p-8 md:p-14 text-white relative overflow-hidden text-center shadow-xl">
+            <div className="absolute right-[-80px] top-[-120px] w-[360px] h-[360px] border border-white/10 rounded-full shadow-[0_0_0_48px_rgba(255,255,255,0.05),0_0_0_96px_rgba(255,255,255,0.03)] pointer-events-none" />
+            <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
+              <div className="inline-flex items-center gap-2 text-[#6ac045] text-xs sm:text-sm font-bold uppercase tracking-[0.2em] mb-4">
+                <span className="w-6 h-[2px] bg-[#6ac045]"></span>
+                08 • CLOSING CALL TO ACTION
+                <span className="w-6 h-[2px] bg-[#6ac045]"></span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl md:text-[38px] font-bold text-white tracking-tight leading-tight mb-5">
+                Have a Project in Mind?
+              </h2>
+              <p className="text-white/90 text-sm sm:text-base md:text-[16px] leading-relaxed mb-8 font-normal max-w-2xl">
+                Tell us what you need to survey, map or build. Share a project brief, drawing or sample data, and we’ll discuss the scope, required outputs and a suitable approach.
+              </p>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-[#C92828] hover:bg-[#b02222] text-white font-bold text-sm sm:text-base shadow-lg shadow-[#C92828]/30 transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5"
+              >
+                Discuss Your Project &#8594;
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 }
