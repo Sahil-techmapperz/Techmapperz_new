@@ -4,29 +4,11 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
-  Map,
-  FileDigit,
-  Layers,
-  Zap,
-  TreePine,
-  LineChart,
-  Monitor,
-  Route,
-  Mountain,
-  Landmark,
-  Building2,
-  Code,
-  Smartphone,
   ShieldCheck,
-  Award,
-  Globe,
-  Users,
-  Linkedin,
-  ExternalLink,
   CheckCircle2,
-  Compass,
   ArrowRight,
-  Briefcase
+  Linkedin,
+  ExternalLink
 } from "lucide-react";
 
 const capabilities = [
@@ -172,66 +154,10 @@ const howWeWorkSteps = [
   }
 ];
 
-const industries = [
-  {
-    title: "Infrastructure & Transportation",
-    desc: "Railway corridors, road networks, bridge & highway feature extraction, and construction base maps.",
-    icon: Route
-  },
-  {
-    title: "Utilities & Energy",
-    desc: "Gas pipeline digitisation, water distribution networks, electrical grid assets and transmission lines.",
-    icon: Zap
-  },
-  {
-    title: "Mining & Natural Resources",
-    desc: "Mining-area feature extraction, quarry boundaries, stockpile volumes, and environmental monitoring.",
-    icon: Mountain
-  },
-  {
-    title: "Government & Land Administration",
-    desc: "Cadastral map digitisation, revenue parcel boundaries, municipal assets and property record databases.",
-    icon: Landmark
-  },
-  {
-    title: "Architecture & Urban Planning",
-    desc: "Existing-condition base maps, 3D terrain models, master planning datasets and building footprints.",
-    icon: Building2
-  },
-  {
-    title: "Agriculture & Forestry",
-    desc: "Crop health interpretation, plantation boundaries, watershed mapping, and Land Use/Land Cover analysis.",
-    icon: TreePine
-  }
-];
-
-const credentials = [
-  {
-    tag: "Business Structure",
-    title: "Limited Liability Partnership",
-    desc: "A formally registered Indian business entity supporting national and international commercial project engagements."
-  },
-  {
-    tag: "Government Recognition",
-    title: "Startup India Recognised",
-    desc: "Recognised under the Startup India initiative, highlighting our commitment to innovation and geospatial technology advancement."
-  },
-  {
-    tag: "Enterprise Registration",
-    title: "MSME Registered Entity",
-    desc: "Officially registered as an Indian Micro, Small and Medium Enterprise compliant with statutory standards."
-  },
-  {
-    tag: "Delivery Reach",
-    title: "India & International Projects",
-    desc: "Proven project experience delivering high-accuracy geospatial, drone, and digital solutions for domestic and global clients."
-  }
-];
-
 export default function AboutPageClient() {
   return (
     <div className="bg-white text-gray-900 font-sans antialiased">
-      
+
       {/* 01 • HERO SECTION */}
       <section className="relative min-h-[auto] sm:min-h-[75vh] md:min-h-[80vh] flex flex-col justify-center items-start text-white pt-32 sm:pt-40 pb-16 sm:pb-24 md:pb-28 overflow-hidden">
         <Image
@@ -244,12 +170,12 @@ export default function AboutPageClient() {
           className="object-cover object-center pointer-events-none"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/45 pointer-events-none" />
-        
+
         <div className="relative z-10 max-w-[1600px] w-full mx-auto px-4 md:px-8 lg:px-12 flex flex-col gap-5 sm:gap-6">
           <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] drop-shadow-sm">
-            01 • ABOUT TECHMAPPERZ
+            ABOUT TECHMAPPERZ
           </span>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-bold leading-tight tracking-tight max-w-3xl drop-shadow-md text-white">
+          <h1 className="text-3xl sm:text-4xl md:text-[38px] lg:text-[42px] xl:text-[46px] font-bold leading-tight tracking-tight max-w-none drop-shadow-md text-white">
             Bringing Mapping and Technology Together
           </h1>
           <p className="text-gray-200 text-base md:text-[17px] max-w-2xl leading-relaxed font-normal drop-shadow-sm">
@@ -259,14 +185,14 @@ export default function AboutPageClient() {
             From preparing accurate spatial databases to building custom digital applications, we ensure your data is ready for engineering, planning and real-world operational decisions.
           </p>
           <div className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-5 mt-2 w-full sm:w-auto">
-            <Link 
-              href="/portfolios" 
+            <Link
+              href="/portfolios"
               className="inline-flex items-center justify-center py-[13px] px-8 rounded-full bg-[#1656b8] hover:bg-[#0c2e60] text-white font-semibold text-[15px] shadow-lg hover:shadow-xl transition-all duration-300 text-center w-full sm:w-auto"
             >
               Explore Our Work
             </Link>
-            <Link 
-              href="/contact" 
+            <Link
+              href="/contact"
               className="inline-flex items-center justify-center py-[12px] px-8 rounded-full border border-gray-300 bg-transparent text-white font-semibold text-[15px] hover:bg-white/15 transition-all duration-300 text-center w-full sm:w-auto"
             >
               Talk to Our Team
@@ -278,16 +204,19 @@ export default function AboutPageClient() {
       {/* 02 • WHO WE ARE SECTION */}
       <section className="py-10 md:py-16 bg-[#04203a] text-white" id="who-we-are">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-            
+          <div >
+            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-2.5 block">
+              WHO WE ARE
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-[38px] lg:text-[42px] xl:text-[46px] font-bold text-white leading-tight tracking-tight">
+              Geospatial experience, with a practical approach.
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-center">
+
             {/* Left Narrative */}
-            <div>
-              <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-3 block">
-                02 • WHO WE ARE
-              </span>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-tight mb-4">
-                Geospatial experience, with a practical approach.
-              </h2>
+            <div className="lg:col-span-7">
               <p className="text-blue-100/90 text-base md:text-[17px] leading-relaxed mb-4">
                 Techmapperz LLP provides GIS mapping, drone survey and LiDAR data processing services. Our work includes turning survey data, aerial imagery, point clouds and existing drawings into maps, terrain models and organised GIS or CAD datasets.
               </p>
@@ -300,10 +229,10 @@ export default function AboutPageClient() {
               <p className="text-blue-100/90 text-base md:text-[17px] leading-relaxed mb-6">
                 We also build websites and mobile applications for businesses across other sectors.
               </p>
-              
+
               <div>
-                <Link 
-                  href="/industry" 
+                <Link
+                  href="/industry"
                   className="inline-flex items-center gap-2 text-[#6ac045] hover:text-[#5aad38] font-bold text-base transition-colors group"
                 >
                   <span>Explore the industries we support</span>
@@ -313,14 +242,14 @@ export default function AboutPageClient() {
             </div>
 
             {/* Right Side Visual */}
-            <div>
+            <div className="lg:col-span-5">
               <div className="relative h-[320px] sm:h-[420px] rounded-2xl overflow-hidden shadow-2xl border border-white/10">
-                <Image 
-                  src="/gis_images/gis_services/GIS Service Page Introduction.png" 
-                  alt="Techmapperz Geospatial Team and Production Workspace" 
-                  fill 
-                  sizes="(max-width: 1024px) 100vw, 50vw" 
-                  className="object-cover object-center" 
+                <Image
+                  src="/gis_images/gis_services/GIS Service Page Introduction.png"
+                  alt="Techmapperz Geospatial Team and Production Workspace"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover object-center"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#04203a]/70 via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4 bg-[#0a1930]/90 backdrop-blur-md rounded-xl p-4 border border-white/10">
@@ -338,15 +267,15 @@ export default function AboutPageClient() {
             </div>
 
           </div>
-          
+
           {/* Small Strip Banner */}
           <div className="mt-8 bg-white/10 backdrop-blur-md rounded-2xl px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-6 shadow-md border border-white/15">
             <div>
               <p className="text-white font-bold text-lg mb-1">Looking for proven project deliverables?</p>
               <p className="text-blue-200 text-sm md:text-base">We combine geospatial data preparation with custom application development tailored to your sector workflows.</p>
             </div>
-            <Link 
-              href="/portfolios" 
+            <Link
+              href="/portfolios"
               className="inline-flex flex-shrink-0 items-center justify-center gap-2 bg-[#6ac045] hover:bg-[#5aad38] text-white font-bold text-sm px-7 py-3 rounded-full transition-all duration-300 shadow-md w-full md:w-auto"
             >
               Explore Our Work &#8594;
@@ -358,10 +287,10 @@ export default function AboutPageClient() {
       {/* 03 • WHAT WE DO (OUR CORE CAPABILITIES) */}
       <section className="py-10 md:py-16 bg-white" id="capabilities">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
-          
+
           <div className="text-center mb-10 max-w-3xl mx-auto">
             <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-2 block">
-              03 • WHAT WE DO
+              WHAT WE DO
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] tracking-tight">
               Our Core Capabilities
@@ -373,17 +302,17 @@ export default function AboutPageClient() {
 
           <div className="flex flex-col divide-y divide-gray-100">
             {capabilities.map((cap, i) => (
-              <div 
-                key={cap.id} 
+              <div
+                key={cap.id}
                 className={`py-8 md:py-12 flex flex-col ${i % 2 !== 0 ? "lg:flex-row-reverse" : "lg:flex-row"} gap-6 sm:gap-8 lg:gap-12 items-start`}
               >
                 <div className="relative w-full lg:w-[42%] h-[260px] sm:h-[340px] rounded-2xl overflow-hidden shadow-lg flex-shrink-0">
-                  <Image 
-                    src={cap.image} 
-                    alt={cap.alt || cap.title} 
-                    fill 
-                    sizes="(max-width: 1024px) 100vw, 50vw" 
-                    className="object-cover object-center" 
+                  <Image
+                    src={cap.image}
+                    alt={cap.alt || cap.title}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover object-center"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                   <div className="absolute top-4 left-4">
@@ -392,7 +321,7 @@ export default function AboutPageClient() {
                     </span>
                   </div>
                 </div>
-                
+
                 <div className="flex flex-col flex-1">
                   <h3 className="text-2xl md:text-3xl font-bold text-[#0c2e60] mb-4 leading-tight">
                     {cap.title}
@@ -410,8 +339,8 @@ export default function AboutPageClient() {
                     ))}
                   </ul>
 
-                  <Link 
-                    href={cap.link} 
+                  <Link
+                    href={cap.link}
                     className="inline-flex items-center justify-center gap-2 bg-[#0c2e60] hover:bg-[#082046] text-white font-bold text-sm px-8 py-3.5 rounded-full transition-all duration-300 shadow-md w-full sm:w-fit"
                   >
                     {cap.cta} &#8594;
@@ -427,10 +356,10 @@ export default function AboutPageClient() {
       {/* 05 • LEADERSHIP SECTION (6 BOXES GRID) */}
       <section className="py-10 md:py-16 bg-[#04203a] text-white" id="leadership">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
-          
+
           <div className="text-center mb-12 max-w-3xl mx-auto">
             <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-2 block">
-              05 • LEADERSHIP
+              LEADERSHIP
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
               Meet Our Leadership
@@ -441,23 +370,20 @@ export default function AboutPageClient() {
           </div>
 
           {/* 6 Leadership Boxes Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 max-w-6xl mx-auto">
             {leaders.map((ldr, idx) => (
-              <div 
+              <div
                 key={idx}
                 className="bg-white text-gray-900 rounded-2xl p-6 sm:p-7 shadow-lg border border-gray-100 hover:shadow-2xl hover:border-[#1656b8]/40 transition-all duration-300 flex flex-col justify-between group"
               >
                 <div>
                   {/* Portrait Placeholder / Avatar Card Header */}
-                  <div className="relative w-full h-[180px] sm:h-[200px] rounded-xl bg-gradient-to-br from-[#e8f1fa] to-[#d6e6f7] border border-blue-100/80 mb-5 flex flex-col items-center justify-center text-center p-4 overflow-hidden group-hover:scale-[1.01] transition-transform">
-                    <div className="w-16 h-16 rounded-full bg-[#0c2e60] text-white flex items-center justify-center text-xl font-bold mb-2 shadow-md">
+                  <div className="relative w-full aspect-square rounded-2xl bg-gradient-to-br from-[#e8f1fa] to-[#d6e6f7] border border-blue-100/80 mb-5 flex flex-col items-center justify-center text-center p-6 overflow-hidden group-hover:scale-[1.01] transition-transform shadow-xs">
+                    <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-[#0c2e60] text-white flex items-center justify-center text-2xl sm:text-3xl font-bold mb-3 shadow-lg border-2 border-white/60">
                       {ldr.initials}
                     </div>
                     <span className="text-xs text-gray-500 font-medium">Portrait / Leadership Profile</span>
-                    <span className="text-xs font-semibold text-[#0c2e60] mt-0.5">{ldr.name}</span>
-                    <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-xs px-2.5 py-1 rounded-full text-[10px] font-bold text-[#1656b8] shadow-xs">
-                      {ldr.roleCategory}
-                    </div>
+                    <span className="text-base font-bold text-[#0c2e60] mt-1">{ldr.name}</span>
                   </div>
 
                   {/* Leader Info */}
@@ -471,7 +397,7 @@ export default function AboutPageClient() {
 
                 {/* LinkedIn Link Footer */}
                 <div className="pt-4 border-t border-gray-100 mt-auto flex items-center justify-between">
-                  <a 
+                  <a
                     href={ldr.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -493,10 +419,10 @@ export default function AboutPageClient() {
       {/* 06 • HOW WE WORK SECTION (4-STAGE PROCESS) */}
       <section className="py-10 md:py-16 bg-white" id="how-we-work">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
-          
+
           <div className="text-center mb-10 max-w-3xl mx-auto">
             <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-2 block">
-              06 • HOW WE WORK
+              HOW WE WORK
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] tracking-tight">
               Clear Scope. Regular Reviews. Careful Handover.
@@ -508,8 +434,8 @@ export default function AboutPageClient() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             {howWeWorkSteps.map((step, i) => (
-              <div 
-                key={i} 
+              <div
+                key={i}
                 className="bg-[#f8fafc] rounded-2xl p-6 sm:p-7 border border-gray-200/80 hover:shadow-lg hover:border-[#1656b8]/40 transition-all flex flex-col justify-between"
               >
                 <div>
@@ -528,102 +454,12 @@ export default function AboutPageClient() {
           </div>
 
           <div className="text-center mt-6">
-            <Link 
-              href="/contact" 
+            <Link
+              href="/contact"
               className="inline-flex items-center justify-center gap-2 py-3.5 px-8 rounded-full bg-[#0c2e60] hover:bg-[#082046] text-white font-bold text-sm transition-all duration-300 shadow-md w-full sm:w-auto"
             >
               Discuss Your Project &#8594;
             </Link>
-          </div>
-
-        </div>
-      </section>
-
-      {/* 07 • INDUSTRIES WE SUPPORT */}
-      <section className="py-10 md:py-16 bg-[#04203a] text-white" id="industries">
-        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
-          
-          <div className="text-center mb-10 max-w-3xl mx-auto">
-            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-2 block">
-              INDUSTRIES WE SUPPORT
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
-              Geospatial &amp; Digital Solutions Aligned with Sector Workflows
-            </h2>
-            <p className="text-blue-100/80 text-base md:text-[17px] mt-2 leading-relaxed">
-              Every industry works with specific data formats, regulatory standards and precision tolerances. Techmapperz tailors its delivery to meet these specialized operational demands.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {industries.map((ind, i) => {
-              const Icon = ind.icon;
-              return (
-                <div 
-                  key={i} 
-                  className="bg-[#f8fafc] text-gray-900 border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-[#1656b8]/30 transition-all duration-300 group"
-                >
-                  <div className="w-12 h-12 rounded-xl bg-white border border-gray-200/80 shadow-xs flex items-center justify-center mb-4 text-[#1656b8] group-hover:bg-[#1656b8] group-hover:text-white transition-all duration-300">
-                    <Icon className="w-6 h-6" />
-                  </div>
-                  <h3 className="font-bold text-base md:text-lg mb-2 text-[#0c2e60] group-hover:text-[#1656b8] transition-colors">
-                    {ind.title}
-                  </h3>
-                  <p className="text-sm md:text-base leading-relaxed text-gray-600">
-                    {ind.desc}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-
-          <div className="text-center mt-8">
-            <Link 
-              href="/industry" 
-              className="inline-flex items-center justify-center gap-2 py-3 px-8 rounded-full bg-[#1656b8] hover:bg-[#10477b] text-white font-bold text-sm transition-all duration-300 shadow-md"
-            >
-              Explore All Industry Solutions &#8594;
-            </Link>
-          </div>
-
-        </div>
-      </section>
-
-      {/* 08 • COMPANY CREDENTIALS & VALUES */}
-      <section className="py-10 md:py-16 bg-white" id="credentials">
-        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
-          
-          <div className="text-center mb-10 max-w-3xl mx-auto">
-            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-2 block">
-              COMPANY CREDENTIALS
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] tracking-tight">
-              A Growing Indian Company with Verified Registrations
-            </h2>
-            <p className="text-gray-600 text-base md:text-[17px] mt-2 leading-relaxed">
-              We operate with transparent corporate governance, official certifications, and proven delivery track records.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {credentials.map((cred, i) => (
-              <div 
-                key={i} 
-                className="bg-[#f8fafc] rounded-2xl p-6 border border-gray-200/80 hover:shadow-md transition-all flex flex-col justify-between"
-              >
-                <div>
-                  <span className="text-[11px] font-bold text-[#1656b8] uppercase tracking-wider block mb-2">
-                    {cred.tag}
-                  </span>
-                  <h3 className="text-lg font-bold text-[#0c2e60] mb-2">{cred.title}</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">{cred.desc}</p>
-                </div>
-                <div className="mt-4 pt-3 border-t border-gray-200 flex items-center gap-2 text-xs font-semibold text-[#0c2e60]">
-                  <ShieldCheck className="w-4 h-4 text-[#6ac045]" />
-                  <span>Verified Entity</span>
-                </div>
-              </div>
-            ))}
           </div>
 
         </div>
@@ -635,11 +471,6 @@ export default function AboutPageClient() {
           <div className="bg-gradient-to-br from-[#0c2e60] via-[#10477b] to-[#0b6b69] rounded-2xl sm:rounded-[32px] p-8 md:p-14 text-white relative overflow-hidden text-center shadow-xl">
             <div className="absolute right-[-80px] top-[-120px] w-[360px] h-[360px] border border-white/10 rounded-full shadow-[0_0_0_48px_rgba(255,255,255,0.05),0_0_0_96px_rgba(255,255,255,0.03)] pointer-events-none" />
             <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
-              <div className="inline-flex items-center gap-2 text-[#6ac045] text-xs sm:text-sm font-bold uppercase tracking-[0.2em] mb-4">
-                <span className="w-6 h-[2px] bg-[#6ac045]"></span>
-                08 • CLOSING CALL TO ACTION
-                <span className="w-6 h-[2px] bg-[#6ac045]"></span>
-              </div>
               <h2 className="text-2xl sm:text-3xl md:text-[38px] font-bold text-white tracking-tight leading-tight mb-5">
                 Have a Project in Mind?
               </h2>
