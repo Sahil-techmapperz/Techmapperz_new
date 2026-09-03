@@ -22,7 +22,7 @@ export default function IndustriesPage() {
 
       {/* SECTION 1: HERO */}
       <section
-        className="relative min-h-[auto] sm:min-h-[85vh] flex flex-col justify-start sm:justify-center items-start bg-cover bg-center text-white pt-32 sm:pt-40 pb-40 sm:pb-36"
+        className="relative min-h-[auto] sm:min-h-[75vh] md:min-h-[80vh] flex flex-col justify-center items-start bg-cover bg-center text-white pt-32 sm:pt-40 pb-16 sm:pb-24 md:pb-28"
         style={{ backgroundImage: 'url("/gis_images/aerial_gis_mapping_banner.png")' }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/30" />
@@ -37,49 +37,6 @@ export default function IndustriesPage() {
           <div className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-5 mt-2 w-full sm:w-auto">
             <Link href="#industries" className="w-full sm:w-auto"><button className="whitespace-nowrap w-full sm:w-auto py-[12px] px-8 rounded-full border border-[#6ac045] bg-[#6ac045] text-white font-semibold text-[15px] hover:bg-[#5aad38] transition-all duration-300">Explore Industries</button></Link>
             <Link href="#contact" className="w-full sm:w-auto"><button className="whitespace-nowrap w-full sm:w-auto py-[12px] px-8 rounded-full border border-gray-300 bg-transparent text-white font-semibold text-[15px] hover:bg-white/10 transition-all duration-300">Discuss Your Project</button></Link>
-          </div>
-        </div>
-
-        {/* Bottom Capabilities Strip */}
-        <div className="absolute bottom-0 left-0 w-full bg-[#0a1930]/95 backdrop-blur-md border-t border-[#6ac045]/30 z-20">
-          <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20 py-4 sm:py-5 overflow-x-auto hide-scrollbar">
-            <div className="flex items-center justify-between gap-6 min-w-max md:min-w-0">
-              <div className="flex items-start gap-3 group cursor-default">
-                <Activity className="w-6 h-6 text-[#6ac045] mt-0.5 group-hover:scale-110 transition-transform" />
-                <div>
-                  <h4 className="text-white text-sm font-bold mb-0.5 tracking-wide">Industry Focused</h4>
-                  <p className="text-gray-400 text-[11px] uppercase tracking-wider">Solutions</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3 group cursor-default">
-                <Database className="w-6 h-6 text-[#6ac045] mt-0.5 group-hover:scale-110 transition-transform" />
-                <div>
-                  <h4 className="text-white text-sm font-bold mb-0.5 tracking-wide">Works with Multiple</h4>
-                  <p className="text-gray-400 text-[11px] uppercase tracking-wider">Data Sources</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3 group cursor-default">
-                <Map className="w-6 h-6 text-[#6ac045] mt-0.5 group-hover:scale-110 transition-transform" />
-                <div>
-                  <h4 className="text-white text-sm font-bold mb-0.5 tracking-wide">GIS, CAD & Digital</h4>
-                  <p className="text-gray-400 text-[11px] uppercase tracking-wider">Deliverables</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3 group cursor-default">
-                <Briefcase className="w-6 h-6 text-[#6ac045] mt-0.5 group-hover:scale-110 transition-transform" />
-                <div>
-                  <h4 className="text-white text-sm font-bold mb-0.5 tracking-wide">Experienced Technical</h4>
-                  <p className="text-gray-400 text-[11px] uppercase tracking-wider">Team</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3 group cursor-default">
-                <ShieldCheck className="w-6 h-6 text-[#6ac045] mt-0.5 group-hover:scale-110 transition-transform" />
-                <div>
-                  <h4 className="text-white text-sm font-bold mb-0.5 tracking-wide">Clear Communication</h4>
-                  <p className="text-gray-400 text-[11px] uppercase tracking-wider">& Support</p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>

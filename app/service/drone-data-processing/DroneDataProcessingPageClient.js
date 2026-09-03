@@ -61,7 +61,8 @@ export default function DroneDataProcessingPageClient() {
   const coreServices = [
     {
       id: "orthomosaic",
-      icon: <FiGrid className="w-6 h-6 text-[#d2292b]" />,
+      icon: <FiGrid className="w-6 h-6 transition-colors duration-300" />,
+      color: "text-[#d2292b]",
       title: "Orthomosaic Production",
       desc: "Georeferenced orthomosaics prepared in the agreed coordinate system, resolution and tiling plan. Coverage gaps, visible distortion and seam issues are reviewed and corrected where the source imagery allows.",
       features: [
@@ -73,7 +74,8 @@ export default function DroneDataProcessingPageClient() {
     },
     {
       id: "lidar-processing",
-      icon: <FiActivity className="w-6 h-6 text-[#1267b1]" />,
+      icon: <FiActivity className="w-6 h-6 transition-colors duration-300" />,
+      color: "text-[#1267b1]",
       title: "LiDAR Point-Cloud Processing",
       desc: "LAS/LAZ data review, noise identification, cleaning, classification and ground/non-ground separation. Required classes and feature groups are agreed before production begins.",
       features: [
@@ -85,7 +87,8 @@ export default function DroneDataProcessingPageClient() {
     },
     {
       id: "terrain-elevation",
-      icon: <FiSliders className="w-6 h-6 text-[#078a86]" />,
+      icon: <FiSliders className="w-6 h-6 transition-colors duration-300" />,
+      color: "text-[#078a86]",
       title: "Terrain & Elevation Products",
       desc: "DTM, DSM, DEM, contours, slope and surface products prepared from suitable classified point clouds. Cut-fill or stockpile volumes can be calculated where the required boundaries and reference surfaces are available.",
       features: [
@@ -97,7 +100,8 @@ export default function DroneDataProcessingPageClient() {
     },
     {
       id: "corridor-drawings",
-      icon: <FiCompass className="w-6 h-6 text-[#e33434]" />,
+      icon: <FiCompass className="w-6 h-6 transition-colors duration-300" />,
+      color: "text-[#e33434]",
       title: "Profiles, Sections & Corridor Drawings",
       desc: "Longitudinal profiles, cross-sections, L-sections and gradient drawings for railway, road, pipeline and other corridor assignments, prepared at agreed intervals and drawing standards.",
       features: [
@@ -109,7 +113,8 @@ export default function DroneDataProcessingPageClient() {
     },
     {
       id: "photogrammetric",
-      icon: <FiBox className="w-6 h-6 text-[#1267b1]" />,
+      icon: <FiBox className="w-6 h-6 transition-colors duration-300" />,
+      color: "text-[#1267b1]",
       title: "Photogrammetric Reconstruction",
       desc: "Image alignment, camera optimisation and dense reconstruction from suitable overlapping drone photographs. Depending on the project, outputs can include an aligned image block, dense RGB point cloud and 3D surface or mesh.",
       features: [
@@ -121,7 +126,8 @@ export default function DroneDataProcessingPageClient() {
     },
     {
       id: "feature-extraction",
-      icon: <FiLayers className="w-6 h-6 text-[#0c2e60]" />,
+      icon: <FiLayers className="w-6 h-6 transition-colors duration-300" />,
+      color: "text-[#0c2e60]",
       title: "GIS/CAD Feature Extraction",
       desc: "Specified visible features—such as roads, railways, buildings, utilities, water bodies, mine features and land parcels—captured into structured GIS or CAD layers with the required attributes and layer organisation.",
       features: [
@@ -359,36 +365,28 @@ export default function DroneDataProcessingPageClient() {
       {/* ── INTRODUCTION SECTION ── */}
       <section className="py-16 md:py-24 bg-white border-b border-gray-200">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+            {/* Left Column: Heading & Narrative */}
             <div className="lg:col-span-7 space-y-6">
               <div className="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.2em] text-[#d2292b]">
                 <span className="w-6 h-0.5 bg-[#d2292b] rounded-full" />
                 FROM RAW DATA TO USABLE DELIVERABLES
               </div>
 
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0c2e60] leading-tight">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-extrabold text-[#0c2e60] leading-tight">
                 The Flight Is Complete. The Mapping Work Is Not.
               </h2>
 
-              <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
+              <p className="text-gray-700 text-base sm:text-[17px] leading-relaxed">
                 Drone photographs and point clouds become useful only after they are checked, processed and structured for their intended purpose. A visually good orthomosaic may be suitable for site reference, but engineering, terrain or GIS/CAD work can require additional control, classification and quality checks.
               </p>
 
-              <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
+              <p className="text-gray-700 text-base sm:text-[17px] leading-relaxed">
                 Techmapperz supports processing-only assignments using data captured by clients, drone operators and project contractors. Depending on the available inputs and agreed scope, our work can continue from photogrammetry and LiDAR processing to terrain products, profiles, sections, feature extraction and final GIS/CAD preparation.
               </p>
 
-              <div className="p-5 rounded-2xl bg-[#f0f4f9] border-l-4 border-[#1267b1] space-y-2">
-                <p className="text-xs font-bold uppercase tracking-wider text-[#0c2e60]">
-                  Pre-Processing Review &amp; Reliability Check
-                </p>
-                <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
-                  Before confirming the workflow, we review image overlap and sharpness, geotags or flight metadata, GCP/RTK/PPK information, coordinate reference system, point-cloud condition and expected outputs. If the source data has limitations, we explain what can be produced reliably before full processing begins.
-                </p>
-              </div>
-
               {/* Link back to Drone Survey & Mapping for clients needing field capture */}
-              <div className="pt-2 flex items-center gap-2 text-xs sm:text-sm text-gray-600">
+              <div className="pt-2 flex flex-wrap items-center gap-2 text-sm sm:text-base text-gray-600">
                 <span>Need complete drone data capture as well?</span>
                 <Link
                   href="/service/drone-survey-mapping"
@@ -399,47 +397,50 @@ export default function DroneDataProcessingPageClient() {
               </div>
             </div>
 
-            {/* Right side illustration / highlights */}
+            {/* Right Column: Pre-Processing Review & Reliability Check Card */}
             <div className="lg:col-span-5">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="p-6 rounded-2xl bg-[#0c2e60] text-white space-y-3 shadow-md">
-                  <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-[#8fc2f2]">
-                    <FiCheckCircle className="w-5 h-5" />
+              <div className="bg-[#f0f4f9] border border-blue-100 rounded-3xl p-7 sm:p-8 shadow-sm space-y-5">
+                <div className="flex items-center gap-3.5">
+                  <div className="w-12 h-12 rounded-2xl bg-[#0c2e60] text-white flex items-center justify-center font-bold shadow-md">
+                    <FiShield className="w-6 h-6 text-[#8fc2f2]" />
                   </div>
-                  <h3 className="text-base font-bold">Raw Imagery Check</h3>
-                  <p className="text-xs text-gray-300 leading-relaxed">
-                    Reviewing overlap, GSD, camera calibration parameters and lighting conditions before alignment.
-                  </p>
+                  <div>
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#1267b1] block">
+                      Quality Assurance
+                    </span>
+                    <h3 className="text-lg sm:text-xl font-bold text-[#0c2e60]">
+                      Pre-Processing Review &amp; Reliability Check
+                    </h3>
+                  </div>
                 </div>
 
-                <div className="p-6 rounded-2xl bg-[#f8fafc] border border-gray-200 text-[#0c2e60] space-y-3 shadow-sm">
-                  <div className="w-10 h-10 rounded-xl bg-[#1267b1]/10 flex items-center justify-center text-[#1267b1]">
-                    <FiCompass className="w-5 h-5" />
-                  </div>
-                  <h3 className="text-base font-bold">Survey Control Review</h3>
-                  <p className="text-xs text-gray-600 leading-relaxed">
-                    Validating GCP coordinates, checkpoint residuals and coordinate reference system datum.
-                  </p>
-                </div>
+                <p className="text-sm sm:text-[15px] text-gray-700 leading-relaxed">
+                  Before confirming the workflow, we review image overlap and sharpness, geotags or flight metadata, GCP/RTK/PPK information, coordinate reference system, point-cloud condition and expected outputs. If the source data has limitations, we explain what can be produced reliably before full processing begins.
+                </p>
 
-                <div className="p-6 rounded-2xl bg-[#f8fafc] border border-gray-200 text-[#0c2e60] space-y-3 shadow-sm">
-                  <div className="w-10 h-10 rounded-xl bg-[#078a86]/10 flex items-center justify-center text-[#078a86]">
-                    <FiSliders className="w-5 h-5" />
-                  </div>
-                  <h3 className="text-base font-bold">Point Cloud Quality</h3>
-                  <p className="text-xs text-gray-600 leading-relaxed">
-                    Checking density, noise distribution, vegetation penetration and surface integrity.
+                {/* Key Verification Checks Grid */}
+                <div className="pt-4 border-t border-blue-200/60 space-y-3">
+                  <p className="text-xs font-bold text-[#0c2e60] uppercase tracking-wider">
+                    What We Review First:
                   </p>
-                </div>
-
-                <div className="p-6 rounded-2xl bg-[#d2292b] text-white space-y-3 shadow-md">
-                  <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white">
-                    <FiFileText className="w-5 h-5" />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs font-semibold text-gray-700">
+                    <div className="flex items-center gap-2.5 bg-white px-3.5 py-2.5 rounded-xl border border-blue-100/80 shadow-xs">
+                      <span className="w-2 h-2 rounded-full bg-[#1267b1] flex-shrink-0" />
+                      <span>Overlap &amp; Sharpness</span>
+                    </div>
+                    <div className="flex items-center gap-2.5 bg-white px-3.5 py-2.5 rounded-xl border border-blue-100/80 shadow-xs">
+                      <span className="w-2 h-2 rounded-full bg-[#1267b1] flex-shrink-0" />
+                      <span>GCP &amp; RTK/PPK Data</span>
+                    </div>
+                    <div className="flex items-center gap-2.5 bg-white px-3.5 py-2.5 rounded-xl border border-blue-100/80 shadow-xs">
+                      <span className="w-2 h-2 rounded-full bg-[#1267b1] flex-shrink-0" />
+                      <span>CRS &amp; Datum Alignment</span>
+                    </div>
+                    <div className="flex items-center gap-2.5 bg-white px-3.5 py-2.5 rounded-xl border border-blue-100/80 shadow-xs">
+                      <span className="w-2 h-2 rounded-full bg-[#1267b1] flex-shrink-0" />
+                      <span>Point Cloud Density</span>
+                    </div>
                   </div>
-                  <h3 className="text-base font-bold">Deliverable Readiness</h3>
-                  <p className="text-xs text-gray-100 leading-relaxed">
-                    Structuring outputs directly into standard GIS, CAD, BIM and engineering drawing formats.
-                  </p>
                 </div>
               </div>
             </div>
@@ -473,7 +474,7 @@ export default function DroneDataProcessingPageClient() {
                 className="group bg-white text-gray-900 rounded-2xl border border-gray-150 p-7 shadow-lg hover:shadow-2xl hover:border-[#1267b1] transition-all duration-300 flex flex-col justify-between"
               >
                 <div className="space-y-4">
-                  <div className="w-12 h-12 rounded-xl bg-gray-50 border border-gray-150 flex items-center justify-center group-hover:scale-110 group-hover:bg-[#0c2e60] group-hover:text-white transition-all duration-300">
+                  <div className={`w-12 h-12 rounded-xl bg-gray-50 border border-gray-150 flex items-center justify-center ${service.color} group-hover:scale-110 group-hover:bg-[#0c2e60] group-hover:text-white transition-all duration-300`}>
                     {service.icon}
                   </div>
                   <h3 className="text-xl font-bold text-[#0c2e60] group-hover:text-[#1267b1] transition-colors">
@@ -545,12 +546,10 @@ export default function DroneDataProcessingPageClient() {
                   </div>
 
                   <ul className="space-y-3.5">
-                    {col.items.map((item) => (
-                      <li key={item.num} className="flex items-start gap-3 text-sm text-gray-700">
-                        <span className="inline-block px-2 py-0.5 rounded bg-white text-xs font-mono font-bold text-[#1267b1] border border-gray-200 shrink-0">
-                          {item.num}
-                        </span>
-                        <span className="font-medium">{item.name}</span>
+                    {col.items.map((item, i) => (
+                      <li key={i} className="flex items-start gap-2.5 text-sm text-gray-700">
+                        <FiCheckCircle className="w-4 h-4 text-[#1267b1] shrink-0 mt-0.5" />
+                        <span className="font-medium text-gray-800">{item.name}</span>
                       </li>
                     ))}
                   </ul>
