@@ -105,11 +105,7 @@ export const metadata = {
     creator: '@techmapperz',
     site: '@techmapperz'
   },
-  verification: {
-    google: 'your-google-verification-code',
-    yandex: 'your-yandex-verification-code',
-    bing: 'your-bing-verification-code'
-  },
+
   alternates: {
     canonical: 'https://www.techmapperz.com',
     languages: {

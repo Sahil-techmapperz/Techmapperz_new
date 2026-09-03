@@ -228,33 +228,33 @@ const featuredMiningProject = {
 };
 
 const whyPoints = [
-  { 
-    title: "Project-Specific Scope Review", 
+  {
+    title: "Project-Specific Scope Review",
     desc: "We review the intended application, available source data, required features, attribute information, output formats and acceptance requirements before full-scale production begins.",
     icon: "/gis_images/gis_services/WHY_TECHMAPPERZ/gis-scope-review-icon.png"
   },
-  { 
-    title: "Relevant GIS Project Experience", 
+  {
+    title: "Relevant GIS Project Experience",
     desc: "Our published project experience includes mining feature extraction, pipeline digitisation, railway-corridor mapping, land-use mapping and infrastructure-related GIS assignments.",
     icon: "/gis_images/gis_services/WHY_TECHMAPPERZ/gis-project-experience-icon.png"
   },
-  { 
-    title: "Multiple Source-Data Capability", 
+  {
+    title: "Multiple Source-Data Capability",
     desc: "We can work with drone and satellite imagery, LiDAR point clouds, survey information, CAD drawings, scanned maps, existing GIS layers and client databases.",
     icon: "/gis_images/gis_services/WHY_TECHMAPPERZ/multi-source-data-icon.png"
   },
-  { 
-    title: "Structured QA/QC", 
+  {
+    title: "Structured QA/QC",
     desc: "Quality checks can cover geometry, topology, projection, attributes, connectivity, completeness and file structure according to the agreed project specifications.",
     icon: "/gis_images/gis_services/WHY_TECHMAPPERZ/structured-qaqc-icon.png"
   },
-  { 
-    title: "GIS & CAD-Ready Delivery", 
+  {
+    title: "GIS & CAD-Ready Delivery",
     desc: "Outputs are prepared for the required GIS, CAD, raster, point-cloud or database environment, with file formats, layer structures and naming requirements defined before delivery.",
     icon: "/gis_images/gis_services/WHY_TECHMAPPERZ/gis-cad-delivery-icon.png"
   },
-  { 
-    title: "Clear Review and Communication", 
+  {
+    title: "Clear Review and Communication",
     desc: "Scope assumptions, input dependencies, sample reviews, production milestones and final deliverables are communicated throughout the assignment so that decisions are recorded before they affect production.",
     icon: "/gis_images/gis_services/WHY_TECHMAPPERZ/clear-communication-icon.png"
   }
@@ -311,7 +311,7 @@ export default function GISServicePageClient() {
 
   return (
     <div className="bg-white text-gray-900 font-sans antialiased">
-      
+
       {/* 1. HERO SECTION */}
       <section className="relative min-h-[auto] sm:min-h-[85vh] flex flex-col justify-start sm:justify-center items-start text-white pt-32 sm:pt-40 pb-40 sm:pb-36 overflow-hidden">
         <Image
@@ -338,14 +338,14 @@ export default function GISServicePageClient() {
             Our services cover GIS data digitisation, feature extraction, utility and asset mapping, CAD/GIS conversion, spatial analysis and geospatial database preparation—organised around the required layers, attributes, coordinate system and delivery format.
           </p>
           <div className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-5 mt-2 w-full sm:w-auto">
-            <Link 
-              href="/contact" 
+            <Link
+              href="/contact"
               className="inline-flex items-center justify-center py-[13px] px-8 rounded-full bg-[#1656b8] hover:bg-[#0c2e60] text-white font-semibold text-[15px] shadow-lg hover:shadow-xl transition-all duration-300 text-center w-full sm:w-auto"
             >
               Discuss Your GIS Project
             </Link>
-            <a 
-              href="#services" 
+            <a
+              href="#services"
               className="inline-flex items-center justify-center py-[12px] px-8 rounded-full border border-gray-300 bg-transparent text-white font-semibold text-[15px] hover:bg-white/15 transition-all duration-300 text-center w-full sm:w-auto"
             >
               Explore Our GIS Services
@@ -357,12 +357,12 @@ export default function GISServicePageClient() {
         <div className="absolute bottom-0 left-0 w-full bg-[#0a1930]/95 backdrop-blur-md border-t border-[#6ac045]/30 z-20">
           <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12 py-4 sm:py-5 overflow-x-auto hide-scrollbar">
             <div className="flex items-center justify-between gap-6 min-w-max md:min-w-0">
-              
+
               <div className="flex items-center gap-3 group cursor-default">
                 <Map className="w-6 h-6 text-[#6ac045] group-hover:scale-110 transition-transform" />
                 <span className="text-sm font-semibold text-white tracking-wide">GIS Mapping</span>
               </div>
-              
+
               <div className="flex items-center gap-3 group cursor-default">
                 <FileDigit className="w-6 h-6 text-[#6ac045] group-hover:scale-110 transition-transform" />
                 <span className="text-sm font-semibold text-white tracking-wide">Digitisation</span>
@@ -402,7 +402,7 @@ export default function GISServicePageClient() {
       <section className="py-10 md:py-16 bg-[#04203a] text-white" id="about">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-            
+
             {/* Left Narrative */}
             <div>
               <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-3 block">
@@ -422,26 +422,26 @@ export default function GISServicePageClient() {
             {/* Right Side Column: Image */}
             <div>
               <div className="relative h-[300px] sm:h-[400px] rounded-2xl overflow-hidden shadow-xl border border-white/10">
-                <Image 
-                  src="/gis_images/gis_services/GIS Service Page Introduction.png" 
-                  alt="GIS data preparation and mapping production workspace" 
-                  fill 
-                  sizes="(max-width: 1024px) 100vw, 50vw" 
-                  className="object-cover object-center" 
+                <Image
+                  src="/gis_images/gis_services/GIS Service Page Introduction.png"
+                  alt="GIS data preparation and mapping production workspace"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover object-center"
                 />
               </div>
             </div>
 
           </div>
-          
+
           {/* Small Strip Banner */}
           <div className="mt-8 bg-white/10 backdrop-blur-md rounded-2xl px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-6 shadow-md border border-white/15">
             <div>
               <p className="text-white font-bold text-lg mb-1">Already have GIS, CAD or survey data?</p>
               <p className="text-blue-200 text-sm md:text-base">We can also review, clean, restructure, convert or update existing datasets without rebuilding the project from the beginning.</p>
             </div>
-            <Link 
-              href="/contact" 
+            <Link
+              href="/contact"
               className="inline-flex flex-shrink-0 items-center justify-center gap-2 bg-[#6ac045] hover:bg-[#5aad38] text-white font-bold text-sm px-7 py-3 rounded-full transition-all duration-300 shadow-md w-full md:w-auto"
             >
               Share Your Existing Data &#8594;
@@ -453,7 +453,7 @@ export default function GISServicePageClient() {
       {/* 3. GIS SERVICES LIST */}
       <section className="py-10 md:py-16 bg-white" id="services">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
-          
+
           <div className="text-center mb-10 max-w-3xl mx-auto">
             <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-2 block">
               OUR GIS SERVICES
@@ -468,17 +468,17 @@ export default function GISServicePageClient() {
 
           <div className="flex flex-col divide-y divide-gray-100">
             {gisServices.map((svc, i) => (
-              <div 
-                key={svc.title} 
+              <div
+                key={svc.title}
                 className={`py-8 md:py-12 flex flex-col ${i % 2 !== 0 ? "lg:flex-row-reverse" : "lg:flex-row"} gap-6 sm:gap-8 lg:gap-12 items-start`}
               >
                 <div className="relative w-full lg:w-[42%] h-[240px] sm:h-[320px] rounded-2xl overflow-hidden shadow-lg flex-shrink-0">
-                  <Image 
-                    src={svc.image} 
-                    alt={svc.alt || svc.title} 
-                    fill 
-                    sizes="(max-width: 1024px) 100vw, 50vw" 
-                    className="object-cover object-center" 
+                  <Image
+                    src={svc.image}
+                    alt={svc.alt || svc.title}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover object-center"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                 </div>
@@ -499,8 +499,8 @@ export default function GISServicePageClient() {
                     ))}
                   </ul>
 
-                  <Link 
-                    href={svc.link} 
+                  <Link
+                    href={svc.link}
                     className="inline-flex items-center justify-center gap-2 bg-[#0c2e60] hover:bg-[#082046] text-white font-bold text-sm px-8 py-3.5 rounded-full transition-all duration-300 shadow-md w-full sm:w-fit"
                   >
                     {svc.cta} &#8594;
@@ -516,7 +516,7 @@ export default function GISServicePageClient() {
       {/* 4. SOURCE FORMATS SECTION */}
       <section className="py-10 md:py-16 bg-[#04203a] text-white" id="source-data">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
-          
+
           <div className="text-center mb-10">
             <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-2 block">
               START WITH THE DATA YOU HAVE
@@ -551,8 +551,8 @@ export default function GISServicePageClient() {
           </div>
 
           <div className="text-center">
-            <Link 
-              href="/contact" 
+            <Link
+              href="/contact"
               className="inline-flex items-center justify-center py-3.5 px-8 rounded-full bg-[#1656b8] hover:bg-[#10477b] text-white font-bold text-sm transition-all duration-300 shadow-md w-full sm:w-auto"
             >
               Share Your Source Data &#8594;
@@ -565,7 +565,7 @@ export default function GISServicePageClient() {
       {/* 5. WORKFLOW SECTION */}
       <section className="py-10 md:py-16 bg-white" id="workflow">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
-          
+
           <div className="text-center mb-10">
             <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-2 block">
               HOW WE WORK
@@ -588,8 +588,8 @@ export default function GISServicePageClient() {
           </div>
 
           <div className="text-center">
-            <Link 
-              href="/contact" 
+            <Link
+              href="/contact"
               className="inline-flex items-center justify-center py-3.5 px-8 rounded-full bg-[#0c2e60] hover:bg-[#082046] text-white font-bold text-sm transition-all duration-300 shadow-md w-full sm:w-auto"
             >
               Discuss Your GIS Workflow &#8594;
@@ -602,7 +602,7 @@ export default function GISServicePageClient() {
       {/* 6. DELIVERY FORMATS SECTION */}
       <section className="py-10 md:py-16 bg-[#04203a] text-white" id="deliverables">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
-          
+
           <div className="text-center mb-8">
             <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-2 block">
               DELIVERY FORMATS
@@ -622,11 +622,10 @@ export default function GISServicePageClient() {
                 type="button"
                 key={idx}
                 onClick={() => setActiveFormatTab(cat)}
-                className={`px-5 py-2.5 rounded-full font-bold text-xs border transition-all duration-200 ${
-                  activeFormatTab === cat 
-                    ? 'bg-[#1656b8] border-[#1656b8] text-white shadow-md' 
+                className={`px-5 py-2.5 rounded-full font-bold text-xs border transition-all duration-200 ${activeFormatTab === cat
+                    ? 'bg-[#1656b8] border-[#1656b8] text-white shadow-md'
                     : 'bg-white/5 border-white/15 text-blue-100 hover:border-white/40 hover:text-white'
-                }`}
+                  }`}
               >
                 {cat}
               </button>
@@ -649,7 +648,7 @@ export default function GISServicePageClient() {
       {/* 7. INDUSTRIES / SECTORS SECTION */}
       <section className="py-10 md:py-16 bg-white" id="sectors">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
-          
+
           <div className="text-center mb-10">
             <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-2 block">
               INDUSTRIES
@@ -666,8 +665,8 @@ export default function GISServicePageClient() {
             {industries.map((ind, i) => {
               const Icon = ind.icon;
               return (
-                <div 
-                  key={i} 
+                <div
+                  key={i}
                   className="bg-[#f8fafc] text-gray-900 border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-[#1656b8]/30 transition-all duration-300 group"
                 >
                   <div className="w-12 h-12 rounded-xl bg-white border border-gray-200/80 shadow-xs flex items-center justify-center mb-4 text-[#1656b8] group-hover:bg-[#1656b8] group-hover:text-white transition-all duration-300">
@@ -690,7 +689,7 @@ export default function GISServicePageClient() {
       {/* 8. FEATURED GIS PROJECT EXPERIENCE */}
       <section className="py-10 md:py-16 bg-[#04203a] text-white" id="experience">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
-          
+
           <div className="text-center mb-10">
             <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-2 block">
               {featuredMiningProject.tag}
@@ -701,7 +700,7 @@ export default function GISServicePageClient() {
           </div>
 
           <div className="bg-white/5 border border-white/10 rounded-3xl overflow-hidden shadow-2xl flex flex-col lg:flex-row">
-            
+
             {/* Left Visual Container */}
             <div className="relative w-full lg:w-[48%] bg-black/20 flex flex-col justify-between p-6 sm:p-8 border-b lg:border-b-0 lg:border-r border-white/10">
               <div className="flex items-center justify-between mb-4">
@@ -712,12 +711,12 @@ export default function GISServicePageClient() {
               </div>
 
               <div className="relative w-full h-[260px] sm:h-[340px] rounded-2xl overflow-hidden border border-white/10 shadow-inner my-auto">
-                <Image 
-                  src={featuredMiningProject.image} 
-                  alt={featuredMiningProject.title} 
-                  fill 
-                  sizes="(max-width: 1024px) 100vw, 50vw" 
-                  className="object-cover object-center" 
+                <Image
+                  src={featuredMiningProject.image}
+                  alt={featuredMiningProject.title}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover object-center"
                 />
               </div>
 
@@ -768,8 +767,8 @@ export default function GISServicePageClient() {
               </p>
 
               <div>
-                <Link 
-                  href={featuredMiningProject.link} 
+                <Link
+                  href={featuredMiningProject.link}
                   className="inline-flex items-center justify-center gap-2 py-3 px-8 rounded-full bg-[#1656b8] hover:bg-[#10477b] text-white font-bold text-sm transition-all duration-300 shadow-md w-full sm:w-fit"
                 >
                   {featuredMiningProject.ctaLabel} &#8599;
@@ -785,7 +784,7 @@ export default function GISServicePageClient() {
       {/* 11. WHY TECHMAPPERZ */}
       <section className="py-10 md:py-16 bg-white" id="why-us">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
-          
+
           <div className="text-center mb-10">
             <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-2 block">
               WHY TECHMAPPERZ
@@ -799,11 +798,11 @@ export default function GISServicePageClient() {
             {whyPoints.map((pt, i) => (
               <div key={i} className="bg-[#f8fafc] rounded-2xl p-6 sm:p-7 border border-gray-100 hover:shadow-md transition-shadow">
                 <div className="w-12 h-12 rounded-xl bg-white border border-gray-100 shadow-sm flex items-center justify-center mb-5 p-2.5">
-                  <Image 
-                    src={pt.icon} 
-                    alt={pt.title} 
-                    width={32} 
-                    height={32} 
+                  <Image
+                    src={pt.icon}
+                    alt={pt.title}
+                    width={32}
+                    height={32}
                     className="w-full h-full object-contain"
                   />
                 </div>
@@ -819,7 +818,7 @@ export default function GISServicePageClient() {
       {/* 12. FREQUENTLY ASKED QUESTIONS */}
       <section className="py-10 md:py-16 bg-[#04203a] text-white" id="faqs">
         <div className="max-w-4xl mx-auto px-4 sm:px-8">
-          
+
           <div className="text-center mb-10">
             <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-2 block">
               COMMON QUESTIONS

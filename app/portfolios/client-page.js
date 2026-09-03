@@ -5,71 +5,259 @@ import Image from "next/image";
 import Link from "next/link";
 import "./projects.css";
 
-const Casestudies = ({ 
-  portfolioData, 
-  defaultCategory = "All"
-}) => {
+const curatedProjects = [
+  // ── GIS & Mapping ──
+  {
+    id: 1,
+    title: "Gas Pipeline Digitisation & Digital Asset Registry",
+    summary: "GIS digitisation of a 6,000 km gas pipeline network and its associated assets, bringing route information and engineering records into a structured spatial database.",
+    category: "GIS & Mapping",
+    filterGroup: "gis",
+    image: "/Photos/GIS_portfolio/Gas Pipeline Digitization and Report Making/1.webp",
+    link: "/portfolios/gas_pipeline_digitization",
+    tags: ["GIS Database", "Asset Mapping", "Pipeline"]
+  },
+  {
+    id: 2,
+    title: "Hooghly Riverfront GIS Mapping",
+    summary: "Land-use and GIS mapping across approximately 100 km² along both banks of the Hooghly River within the Kolkata Metropolitan Area, supporting riverfront planning.",
+    category: "GIS & Mapping",
+    filterGroup: "gis",
+    image: "/Photos/GIS_portfolio/Hooghly Riverfront GIS Mapping Project/1.webp",
+    link: "/portfolios/hooghly_riverfront_mapping",
+    tags: ["Riverfront", "Land Use", "Urban GIS"]
+  },
+  {
+    id: 3,
+    title: "Urban and Rural Land-Use Mapping",
+    summary: "Land-use and land-cover mapping across 400 km² of urban and rural areas, with settlement features organised into more than 15 mapping layers.",
+    category: "GIS & Mapping",
+    filterGroup: "gis",
+    image: "/Photos/GIS_portfolio/Urban & Rural Areas 2D Feature Extraction/1.webp",
+    link: "/portfolios/urban_rural_extraction",
+    tags: ["LULC", "Settlements", "15+ Layers"]
+  },
+  {
+    id: 4,
+    title: "GIS Mapping for an Industrial Area",
+    summary: "GIS mapping of a 65.45 km² industrial area, with more than 50 feature layers organised to support land-use and infrastructure planning.",
+    category: "GIS & Mapping",
+    filterGroup: "gis",
+    image: "/Photos/GIS_portfolio/Industrial Mapping & Planning/1.webp",
+    link: "/portfolios/industrial_mapping_planning",
+    tags: ["Industrial", "Planning", "50+ Layers"]
+  },
+  {
+    id: 5,
+    title: "Road Network Mapping",
+    summary: "GIS mapping work covering an 8,000 km road network, with road information prepared for navigation-related use.",
+    category: "GIS & Mapping",
+    filterGroup: "gis",
+    image: "/Photos/GIS_portfolio/Navigation Mapping/1.webp",
+    link: "/portfolios/navigation_mapping",
+    tags: ["Roads", "8,000 km", "Navigation"]
+  },
+  {
+    id: 6,
+    title: "Map Georeferencing and Attribute Capture",
+    summary: "Georeferencing of scanned maps and capture of plot and village attributes to prepare a spatially referenced GIS dataset.",
+    category: "GIS & Mapping",
+    filterGroup: "gis",
+    image: "/Photos/GIS_portfolio/Georeferencing_of_Maps/1.webp",
+    link: "/portfolios/georeferencing",
+    tags: ["Cadastral", "Georeferencing", "Attributes"]
+  },
+
+  // ── Drone & LiDAR ──
+  {
+    id: 7,
+    title: "Railway Corridor Mapping with Drone LiDAR",
+    summary: "Topographic survey and mapping for the Gonda–Anand Nagar railway corridor in Uttar Pradesh, covering 173 km along a 100 m-wide corridor.",
+    category: "Drone & LiDAR",
+    filterGroup: "drone",
+    image: "/Photos/GIS_portfolio/Topographical Survey & Mapping of Proposed Railway Track/1.webp",
+    link: "/portfolios/topographical_railway_survey",
+    tags: ["LiDAR", "Railway", "173 km Corridor"]
+  },
+  {
+    id: 8,
+    title: "Drone-Based 2D Feature Extraction for Mining Areas",
+    summary: "2D feature extraction and CAD mapping across approximately 556.67 km² of mining areas, using drone imagery to map surface features, infrastructure, water bodies and land use.",
+    category: "Drone & LiDAR",
+    filterGroup: "drone",
+    image: "/Photos/GIS_portfolio/Drone-Based 2D Feature Extraction of Mining Area/1.webp",
+    link: "/portfolios/mining_area_extraction",
+    tags: ["Mining", "556.67 km²", "CAD & GIS"]
+  },
+  {
+    id: 9,
+    title: "Drone Survey and Mapping of Pipeline Assets",
+    summary: "Drone survey and GIS digitisation for a 45 km ammonia and water pipeline network in Gujarat, mapping the route and associated assets.",
+    category: "Drone & LiDAR",
+    filterGroup: "drone",
+    image: "/Photos/GIS_portfolio/Ammonia and Water Pipeline Drone Survey & Digitization Project/1.webp",
+    link: "/portfolios/ammonia_water_pipeline",
+    tags: ["Drone Survey", "Pipeline Assets", "45 km"]
+  },
+
+  // ── Websites & Apps ──
+  {
+    id: 10,
+    title: "Aaheli Publishers — Online Bookstore",
+    summary: "An e-commerce website for Aaheli Publishers, with book categories, product pages, customer accounts and a shopping cart for direct online purchases.",
+    category: "Websites & Apps",
+    filterGroup: "digital",
+    image: "/Photos/IT_portfolio/aahelipublishers/1.webp",
+    link: "/portfolios/aahelipublishers",
+    tags: ["E-commerce", "Online Store", "Cart & Checkout"]
+  },
+  {
+    id: 11,
+    title: "White Spread Foods — B2B Sales Portal",
+    summary: "A B2B ordering platform and sales dashboard for White Spread Foods, with approval-based order workflows and connections to the company’s wider operational systems.",
+    category: "Websites & Apps",
+    filterGroup: "digital",
+    image: "/Photos/whitespreadfoods_banner.webp",
+    link: "/portfolios/white-spread-foods",
+    tags: ["B2B Portal", "Sales Dashboard", "Workflows"]
+  },
+  {
+    id: 12,
+    title: "Project Expo Guru — Business Website",
+    summary: "A business website for Project Expo Guru, presenting its interior design services, company information and creative work.",
+    category: "Websites & Apps",
+    filterGroup: "digital",
+    image: "/Photos/IT_portfolio/Expoguru/1.webp",
+    link: "/portfolios/expoguru",
+    tags: ["Interior Design", "Portfolio Showcase", "Creative"]
+  },
+  {
+    id: 13,
+    title: "SHRC — Membership and Complaint Website",
+    summary: "A website supporting member onboarding and complaint management for a welfare organisation.",
+    category: "Websites & Apps",
+    filterGroup: "digital",
+    image: "/Photos/shrc_banner.webp",
+    link: "/portfolios/shrc",
+    tags: ["NGO / Welfare", "Member Onboarding", "Complaints"]
+  },
+  {
+    id: 14,
+    title: "FacultiesOnline — Student and Teacher Platform",
+    summary: "An online platform developed to connect students and teachers.",
+    category: "Websites & Apps",
+    filterGroup: "digital",
+    image: "/Photos/IT_portfolio/FacultiesOnline/1.webp",
+    link: "/portfolios/facultiesOnline",
+    tags: ["EdTech", "Teacher Connect", "Community"]
+  },
+  {
+    id: 15,
+    title: "Welho — Dairy Company Website",
+    summary: "A company website developed for Welho to present its dairy business online.",
+    category: "Websites & Apps",
+    filterGroup: "digital",
+    image: "/Photos/Welho_banner.webp",
+    link: "/portfolios/welho",
+    tags: ["Corporate Website", "Food & Dairy", "Product Catalog"]
+  },
+  {
+    id: 16,
+    title: "Manusher Ghorbari — Accommodation Booking Website",
+    summary: "An accommodation website with property information and booking functionality.",
+    category: "Websites & Apps",
+    filterGroup: "digital",
+    image: "/Photos/manuser-ghorbaari1.webp",
+    link: "/portfolios/manusher-ghorbari",
+    tags: ["Hospitality", "Booking Engine", "Property Profiles"]
+  },
+  {
+    id: 17,
+    title: "Novustech — Drone Services Website",
+    summary: "A website developed for Novustech to introduce its drone services and company information.",
+    category: "Websites & Apps",
+    filterGroup: "digital",
+    image: "/Photos/IT_portfolio/Novustech/1.webp",
+    link: "/portfolios/novustech",
+    tags: ["Drone Industry", "Company Website", "Service Showcase"]
+  },
+  {
+    id: 18,
+    title: "UrPayroll — HRM Application",
+    summary: "An HRM application covering attendance and employee workflows.",
+    category: "Websites & Apps",
+    filterGroup: "digital",
+    image: "/Photos/IT_portfolio/Urpayroll/1.webp",
+    link: "/portfolios/urpayroll",
+    tags: ["HRM App", "Attendance", "Employee Portal"]
+  },
+  {
+    id: 19,
+    title: "PAS Auto Source — Automobile Business Website",
+    summary: "A business website developed for PAS Auto Source to present its automobile-related services.",
+    category: "Websites & Apps",
+    filterGroup: "digital",
+    image: "/Photos/premierautosource_banner.webp",
+    link: "/portfolios/pas-auto-source",
+    tags: ["Automotive", "Business Website", "Vehicle Inventory"]
+  },
+  {
+    id: 20,
+    title: "Ambient Construction — Company Website",
+    summary: "A company website developed for Ambient Construction to present its business online.",
+    category: "Websites & Apps",
+    filterGroup: "digital",
+    image: "/Photos/IT_portfolio/ambientconstruction/1.webp",
+    link: "/portfolios/ambientconstruction",
+    tags: ["Construction", "Company Website", "Project Portfolio"]
+  },
+  {
+    id: 21,
+    title: "XYZ Finders — Classified Marketplace App",
+    summary: "Android and iOS applications for XYZFinders, a multi-category marketplace connecting buyers, sellers, service providers and store owners.",
+    category: "Websites & Apps",
+    filterGroup: "digital",
+    image: "/XYZ-Mockup.png",
+    link: "/service/it/mobile-app-development",
+    tags: ["Mobile App", "Android & iOS", "Marketplace"]
+  }
+];
+
+const Casestudies = ({ portfolioData }) => {
   const [filter, setFilter] = useState("all");
 
-  const transformedProjects = portfolioData.map((item, index) => {
-    const slug = item.slug || item.link?.replace('/portfolios/', '') || 
-                item.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-    
-    // Attempt to map older categories to new filter names
-    let categoryClass = "";
-    const catLower = item.category?.toLowerCase() || "";
-    if (catLower.includes("gis")) categoryClass += "gis ";
-    if (catLower.includes("drone") || catLower.includes("lidar")) categoryClass += "drone ";
-    if (catLower.includes("infrastructure") || catLower.includes("railway") || catLower.includes("mining")) categoryClass += "infrastructure ";
-    if (catLower.includes("web") || catLower.includes("app") || catLower.includes("it")) categoryClass += "digital ";
-    
-    // Ensure all has something, if not just default to gis or digital based on "IT" vs "GIS"
-    if (categoryClass === "") {
-        if (item.category === "IT") categoryClass = "digital";
-        else categoryClass = "gis";
-    }
-
-    return {
-      id: index,
-      title: item.name,
-      category: item.category,
-      categoryClass: categoryClass.trim(),
-      techStack: item.techStack,
-      description: Array.isArray(item.details) ? item.details[0] : item.description,
-      image: item.image,
-      link: `/portfolios/${slug}`,
-      period: item.projectDetails?.year || "2024",
-      location: item.projectDetails?.location || "India",
-      slug: slug,
-    };
-  });
-
   const filteredProjects = useMemo(() => {
-    if (filter === "all") return transformedProjects;
-    return transformedProjects.filter(project => project.categoryClass.includes(filter));
-  }, [transformedProjects, filter]);
+    if (filter === "all") return curatedProjects;
+    return curatedProjects.filter(project => project.filterGroup === filter);
+  }, [filter]);
 
   return (
     <div className="projects-page-wrapper">
       <main>
+        {/* BANNER SECTION */}
         <section className="hero">
           <div className="container hero-grid">
             <div>
               <div className="breadcrumb">Home <b>›</b> <span>Projects</span></div>
               <div className="eyebrow">Selected Project Experience</div>
-              <h1 style={{marginTop: '13px'}}>Real geospatial work.<br/><em>Clear project evidence.</em></h1>
-              <p className="lead">Explore GIS mapping, drone survey, LiDAR, feature extraction, pipeline, land-use and geospatial application projects delivered for infrastructure, utilities, mining, government and commercial organisations.</p>
+              <h1 style={{ marginTop: '13px' }}>
+                Our Work in GIS, Drone Surveys and Development
+              </h1>
+              <p className="lead">
+                Explore selected projects from Techmapperz, including GIS mapping, drone surveys, LiDAR data processing, websites and mobile applications. From railway corridors and mining areas to online stores, these examples show the different requirements our team has worked on.
+              </p>
               <div className="hero-actions">
                 <a className="btn btn-primary" href="#projects">Explore Projects</a>
-                <a className="btn btn-secondary" href="/contact">Share Your Requirement</a>
+                <a className="btn btn-secondary" href="/contact">Discuss Your Project</a>
               </div>
               <div className="hero-tags">
                 <span><i></i>GIS & CAD</span>
                 <span><i></i>Drone & LiDAR</span>
                 <span><i></i>Raster & Point Cloud</span>
-                <span><i></i>Web & Mobile GIS</span>
+                <span><i></i>Web & Mobile Apps</span>
               </div>
             </div>
+
             <div className="hero-visual">
               <div className="map-window">
                 <div className="window-top">
@@ -125,140 +313,126 @@ const Casestudies = ({
                 </div>
               </div>
               <div className="floating float-a">
-                <strong>10+ flagship projects</strong>
-                <span>Geospatial work featured first</span>
+                <strong>20+ delivered projects</strong>
+                <span>GIS, Drone & IT solutions</span>
                 <div className="progress"><i></i></div>
               </div>
               <div className="floating float-b">
                 <strong>Project-ready outputs</strong>
-                <span>GIS · CAD · LAS · GeoTIFF · Dashboards</span>
+                <span>GIS · CAD · LAS · GeoTIFF · Web & Apps</span>
               </div>
             </div>
           </div>
         </section>
 
-
+        {/* FEATURED PROJECT */}
         <section className="featured">
           <div className="container">
             <div className="section-head">
               <div className="copy">
-                <div className="eyebrow">Featured Case Study</div>
-                <h2 style={{marginTop: '12px'}}>Lead with the work that best represents Techmapperz today.</h2>
-                <p>The projects page should open with a technically strong geospatial assignment rather than a general website or software card.</p>
-              </div>
-              <div className="side-note">
-                Replace the illustrative map with approved project imagery, classified point-cloud views and final deliverable screenshots before publishing.
+                <div className="eyebrow">FEATURED PROJECT</div>
+                <h2 style={{ marginTop: '12px' }}>Railway Corridor Mapping with Drone LiDAR</h2>
+                <p>
+                  Techmapperz worked on topographic survey and mapping for the Gonda–Anand Nagar railway corridor in Uttar Pradesh. The project covered 173 km along a 100 m-wide corridor, with LiDAR data processing and mapping outputs for railway planning.
+                </p>
               </div>
             </div>
+
             <article className="feature-card">
-              <div className="feature-visual">
-                <svg viewBox="0 0 720 540" preserveAspectRatio="none" aria-hidden="true">
-                  <defs>
-                    <linearGradient id="fbg" x1="0" x2="1" y1="0" y2="1">
-                      <stop stopColor="#b8d8c3"/>
-                      <stop offset=".48" stopColor="#e2d8aa"/>
-                      <stop offset="1" stopColor="#92b7ca"/>
-                    </linearGradient>
-                    <pattern id="fg" width="38" height="38" patternUnits="userSpaceOnUse">
-                      <path d="M38 0H0V38" fill="none" stroke="#fff" strokeOpacity=".26"/>
-                    </pattern>
-                  </defs>
-                  <rect width="720" height="540" fill="url(#fbg)"/>
-                  <g fill="none" stroke="#809b78" strokeWidth="2" opacity=".65">
-                    <path d="M-20 130 C120 45 245 195 365 105 S570 10 750 120"/>
-                    <path d="M-20 240 C100 170 230 310 370 220 S580 125 750 220"/>
-                    <path d="M-20 365 C130 275 270 435 410 340 S610 260 750 335"/>
-                    <path d="M-20 470 C150 380 280 520 455 435 S610 375 750 430"/>
-                  </g>
-                  <g fill="#d6b879" stroke="#a88c52" strokeWidth="2">
-                    <path d="M72 115 L235 80 L282 195 L115 230Z"/>
-                    <path d="M410 95 L590 70 L633 180 L455 206Z"/>
-                    <path d="M335 302 L515 265 L568 397 L380 425Z"/>
-                  </g>
-                  <path d="M45 485 C135 420 185 435 252 365 S335 295 395 225 S500 165 675 45" fill="none" stroke="#f8fbfd" strokeWidth="31"/>
-                  <path d="M45 485 C135 420 185 435 252 365 S335 295 395 225 S500 165 675 45" fill="none" stroke="#202d3b" strokeWidth="7"/>
-                  <path d="M45 485 C135 420 185 435 252 365 S335 295 395 225 S500 165 675 45" fill="none" stroke="#e33434" strokeWidth="2.5" strokeDasharray="13 10"/>
-                  <g fill="#fff" stroke="#1267b1" strokeWidth="4">
-                    <circle cx="74" cy="466" r="9"/>
-                    <circle cx="252" cy="365" r="9"/>
-                    <circle cx="395" cy="225" r="9"/>
-                    <circle cx="638" cy="72" r="9"/>
-                  </g>
-                  <rect width="720" height="540" fill="url(#fg)"/>
-                </svg>
+              <div className="feature-visual relative min-h-[420px]">
+                <Image
+                  src="/Photos/GIS_portfolio/Topographical Survey & Mapping of Proposed Railway Track/1.webp"
+                  alt="Railway Corridor Mapping with Drone LiDAR"
+                  fill
+                  className="object-cover"
+                />
                 <span className="feature-badge">Railway & Infrastructure</span>
                 <div className="feature-layer">
                   <b>Integrated geospatial workflow</b>
-                  <p>Drone LiDAR · DGPS control · Point-cloud processing · Terrain products · CAD/GIS delivery</p>
+                  <p>Drone LiDAR · Point-cloud processing · Terrain mapping · L Section</p>
                 </div>
               </div>
+
               <div className="feature-copy">
                 <div className="project-category"><i></i> Drone LiDAR & Corridor Mapping</div>
-                <h2>Topographic survey and mapping for a 173 km railway corridor</h2>
-                <p>A large linear-infrastructure assignment covering a 100 m corridor, integrating drone LiDAR data, terrain processing, contours and engineering-ready geospatial deliverables.</p>
+                <h2>Gonda–Anand Nagar Railway Corridor</h2>
+                <p>A major linear-infrastructure survey covering 173 km along a 100 m-wide corridor, delivering dense point clouds, DEM, DSM, contours and drawing-ready railway alignments.</p>
+                
                 <div className="metric-grid">
-                  <div className="metric"><b>173 km</b><span>Project corridor</span></div>
+                  <div className="metric"><b>173 km</b><span>Corridor length</span></div>
                   <div className="metric"><b>100 m</b><span>Survey width</span></div>
-                  <div className="metric"><b>LiDAR + DGPS</b><span>Acquisition workflow</span></div>
-                  <div className="metric"><b>DEM · DSM · CAD</b><span>Key outputs</span></div>
+                  <div className="metric"><b>Drone LiDAR</b><span>Acquisition workflow</span></div>
+                  <div className="metric"><b>L Section · CAD</b><span>Key outputs</span></div>
                 </div>
+
                 <div className="feature-tags">
-                  <span>Point Cloud</span>
-                  <span>Contours</span>
-                  <span>Orthomosaic</span>
-                  <span>Cross Sections</span>
+                  <span>Drone LiDAR</span>
+                  <span>Point-cloud processing</span>
+                  <span>Terrain mapping</span>
+                  <span>L Section</span>
                   <span>GIS & CAD</span>
                 </div>
-                <Link className="btn btn-dark" href="/portfolios/lidar-case-study">View Full Case Study →</Link>
+
+                <Link className="btn btn-dark" href="/portfolios/topographical_railway_survey">
+                  View Railway Case Study →
+                </Link>
               </div>
             </article>
           </div>
         </section>
 
+        {/* EXPLORE OUR PROJECTS GRID */}
         <section id="projects">
           <div className="container projects-shell">
             <div className="section-head">
               <div className="copy">
-                <div className="eyebrow">Project Portfolio</div>
-                <h2 style={{marginTop: '12px'}}>Browse work by service and project type.</h2>
-                <p>Each card summarises the client problem, project scale, technical workflow and final outputs. Dedicated case-study pages can provide the complete methodology and results.</p>
-              </div>
-              <div className="side-note">
-                Use the category taxonomy across cards, case-study pages and URLs.
+                <div className="eyebrow">PROJECT PORTFOLIO</div>
+                <h2 style={{ marginTop: '12px' }}>Explore Our Projects</h2>
+                <p>Browse by service to find work relevant to your requirement. Open a project to see the scope, our contribution and the outputs delivered.</p>
               </div>
             </div>
             
+            {/* Filter Tabs */}
             <div className="filter-bar" aria-label="Project filters">
-              <button className={`filter-btn ${filter === 'all' ? 'active' : ''}`} onClick={() => setFilter('all')}>All Projects</button>
-              <button className={`filter-btn ${filter === 'gis' ? 'active' : ''}`} onClick={() => setFilter('gis')}>GIS & Mapping</button>
-              <button className={`filter-btn ${filter === 'drone' ? 'active' : ''}`} onClick={() => setFilter('drone')}>Drone & LiDAR</button>
-              <button className={`filter-btn ${filter === 'infrastructure' ? 'active' : ''}`} onClick={() => setFilter('infrastructure')}>Infrastructure</button>
-              <button className={`filter-btn ${filter === 'webgis' ? 'active' : ''}`} onClick={() => setFilter('webgis')}>Web & Mobile GIS</button>
-              <button className={`filter-btn ${filter === 'digital' ? 'active' : ''}`} onClick={() => setFilter('digital')}>Websites & Apps</button>
+              <button className={`filter-btn ${filter === 'all' ? 'active' : ''}`} onClick={() => setFilter('all')}>
+                All Projects
+              </button>
+              <button className={`filter-btn ${filter === 'gis' ? 'active' : ''}`} onClick={() => setFilter('gis')}>
+                GIS & Mapping
+              </button>
+              <button className={`filter-btn ${filter === 'drone' ? 'active' : ''}`} onClick={() => setFilter('drone')}>
+                Drone & LiDAR
+              </button>
+              <button className={`filter-btn ${filter === 'digital' ? 'active' : ''}`} onClick={() => setFilter('digital')}>
+                Websites & Apps
+              </button>
             </div>
             
+            {/* Projects Grid */}
             <div className="project-grid">
               {filteredProjects.map((project) => (
-                <article key={project.id} className="project-card" onClick={() => window.location.href = project.link}>
-                  <div className="thumb">
+                <article key={project.id} className="project-card">
+                  <Link href={project.link} className="thumb block relative h-56 w-full overflow-hidden">
                     <Image 
                       src={project.image} 
                       alt={project.title} 
                       fill 
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="object-cover"
+                      className="object-cover hover:scale-105 transition-transform duration-500"
                     />
-                    <span className="thumb-label">{project.category || 'Techmapperz'}</span>
-                  </div>
+                    <span className="thumb-label">{project.category}</span>
+                  </Link>
                   <div className="project-body">
                     <h3>{project.title}</h3>
-                    <p className="line-clamp-3 text-sm text-slate-500 mt-2">{project.description}</p>
+                    <p className="line-clamp-3 text-sm text-slate-600 mt-2">{project.summary}</p>
                     <div className="project-meta">
-                      {project.techStack?.split(',').slice(0, 3).map((tech, idx) => (
-                        <span key={idx}>{tech.trim()}</span>
+                      {project.tags.map((tag, idx) => (
+                        <span key={idx}>{tag}</span>
                       ))}
                     </div>
-                    <Link className="project-link" href={project.link}>View Case Study <i>→</i></Link>
+                    <Link className="project-link" href={project.link}>
+                      View Case Study <i>→</i>
+                    </Link>
                   </div>
                 </article>
               ))}
@@ -267,18 +441,17 @@ const Casestudies = ({
             {filteredProjects.length === 0 && (
               <p className="projects-note py-8 text-center">No projects found for the selected category.</p>
             )}
-
-            <p className="projects-note">Only publish projects with approved descriptions, imagery and non-confidential information. Sensitive client names and locations can remain anonymised.</p>
           </div>
         </section>
 
+        {/* CASE STUDY STRUCTURE */}
         <section className="case-structure">
           <div className="container">
             <div className="section-head">
               <div className="copy">
-                <div className="eyebrow" style={{color: '#8ed4ff'}}>Case Study Structure</div>
-                <h2 style={{marginTop: '12px'}}>Every project deserves more than a thumbnail and two generic sentences.</h2>
-                <p>Dedicated case-study pages should explain the work in a consistent, buyer-friendly order.</p>
+                <div className="eyebrow" style={{ color: '#8ed4ff' }}>Case Study Structure</div>
+                <h2 style={{ marginTop: '12px' }}>Every project deserves more than a thumbnail and two generic sentences.</h2>
+                <p>Dedicated case-study pages explain the work in a consistent, buyer-friendly order.</p>
               </div>
             </div>
             <div className="case-grid">
@@ -306,13 +479,14 @@ const Casestudies = ({
           </div>
         </section>
 
+        {/* DELIVERY PATH */}
         <section>
           <div className="container">
             <div className="section-head">
               <div className="copy">
                 <div className="eyebrow">Our Delivery Path</div>
-                <h2 style={{marginTop: '12px'}}>A repeatable process behind every successful project.</h2>
-                <p>The portfolio should show not only what was delivered, but also how Techmapperz manages scope, production and quality.</p>
+                <h2 style={{ marginTop: '12px' }}>A repeatable process behind every successful project.</h2>
+                <p>The portfolio shows not only what was delivered, but also how Techmapperz manages scope, production and quality.</p>
               </div>
             </div>
             <div className="workflow-grid">
@@ -345,109 +519,29 @@ const Casestudies = ({
           </div>
         </section>
 
-        <section className="quality">
-          <div className="container quality-grid">
-            <div className="quality-panel">
-              <div className="check-row">
-                <div className="check-icon">01</div>
-                <div><b>Projection & coordinate system</b><span>Correct spatial reference and units</span></div>
-                <div className="status">CHECKED</div>
-              </div>
-              <div className="check-row">
-                <div className="check-icon">02</div>
-                <div><b>Geometry & topology</b><span>Gaps, overlaps, dangles and closure rules</span></div>
-                <div className="status">CHECKED</div>
-              </div>
-              <div className="check-row">
-                <div className="check-icon">03</div>
-                <div><b>Attributes & coding</b><span>Feature codes, domains and required values</span></div>
-                <div className="status">CHECKED</div>
-              </div>
-              <div className="check-row">
-                <div className="check-icon">04</div>
-                <div><b>Completeness & formats</b><span>Coverage, naming and output compatibility</span></div>
-                <div className="status">CHECKED</div>
-              </div>
-              <div className="check-row">
-                <div className="check-icon">05</div>
-                <div><b>Final review package</b><span>Client comments and acceptance record</span></div>
-                <div className="status">READY</div>
-              </div>
-            </div>
-            <div className="quality-copy">
-              <div className="eyebrow">Quality Is Part of the Story</div>
-              <h2 style={{marginTop: '12px'}}>Show the controls behind the final map, model or application.</h2>
-              <p>A strong project page should demonstrate that Techmapperz understands production quality, not simply attractive screenshots. Include non-confidential examples of QA reports, topology checks, classified point clouds and review workflows.</p>
-              <div className="quality-list">
-                <div><i></i>Independent production checks</div>
-                <div><i></i>Client-defined specifications</div>
-                <div><i></i>Controlled review cycles</div>
-                <div><i></i>Multi-format validation</div>
-                <div><i></i>Data naming standards</div>
-                <div><i></i>Final delivery register</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="digital">
-          <div className="container digital-grid">
-            <div className="screens">
-              <div className="screen-main">
-                <svg viewBox="0 0 600 400" preserveAspectRatio="none">
-                  <rect width="600" height="400" fill="#f5f8fa"/>
-                  <rect width="600" height="42" fill="#0b2341"/>
-                  <rect x="20" y="62" width="118" height="315" rx="10" fill="#fff" stroke="#d8e3eb"/>
-                  <rect x="158" y="62" width="422" height="210" rx="11" fill="#d9e8ef"/>
-                  <path d="M165 250C250 170 300 230 365 150S475 100 570 130" fill="none" stroke="#1267b1" strokeWidth="10"/>
-                  <g fill="#fff" stroke="#e33434" strokeWidth="4">
-                    <circle cx="250" cy="190" r="9"/>
-                    <circle cx="365" cy="150" r="9"/>
-                    <circle cx="520" cy="120" r="9"/>
-                  </g>
-                  <rect x="158" y="291" width="125" height="86" rx="10" fill="#e7f1f8"/>
-                  <rect x="297" y="291" width="125" height="86" rx="10" fill="#e9f5f2"/>
-                  <rect x="436" y="291" width="144" height="86" rx="10" fill="#fbefef"/>
-                </svg>
-              </div>
-              <div className="screen-phone">
-                <svg viewBox="0 0 250 500" preserveAspectRatio="none">
-                  <rect width="250" height="500" fill="#fff"/>
-                  <rect width="250" height="55" fill="#0b2341"/>
-                  <rect x="18" y="75" width="214" height="205" rx="16" fill="#d9e8ef"/>
-                  <path d="M25 250C70 195 105 225 145 165S195 135 228 110" fill="none" stroke="#1267b1" strokeWidth="7"/>
-                  <circle cx="145" cy="165" r="9" fill="#fff" stroke="#e33434" strokeWidth="4"/>
-                  <rect x="18" y="300" width="214" height="60" rx="13" fill="#edf5fa"/>
-                  <rect x="18" y="375" width="102" height="95" rx="13" fill="#eaf5f2"/>
-                  <rect x="130" y="375" width="102" height="95" rx="13" fill="#fbefef"/>
-                </svg>
-              </div>
-            </div>
-            <div className="digital-copy">
-              <div className="eyebrow">From Project Data to Digital Access</div>
-              <h2 style={{marginTop: '12px'}}>Connect selected projects to Web and Mobile GIS solutions.</h2>
-              <p>The Projects page can also demonstrate how survey, mapping and asset data can evolve into searchable dashboards, geoportals and field applications.</p>
-              <div className="digital-list">
-                <div><i>01</i><span><b>Project dashboards:</b> progress, quantities, status and map-based reporting.</span></div>
-                <div><i>02</i><span><b>Asset applications:</b> search, inspect and update geotagged assets.</span></div>
-                <div><i>03</i><span><b>Field workflows:</b> mobile data collection, photographs and validation.</span></div>
-                <div><i>04</i><span><b>Secure sharing:</b> role-based access to selected project layers and reports.</span></div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="cta" id="contact">
-          <div className="container">
-            <div className="cta-card">
-              <div className="cta-copy">
-                <div className="eyebrow" style={{color: '#8ed4ff'}}>Start a Project Conversation</div>
-                <h2 style={{marginTop: '12px', color: '#fff'}}>Have a GIS, drone survey or geospatial application requirement?</h2>
-                <p>Share the project location, area or corridor length, available inputs, required accuracy, expected deliverables and timeline. Our team can review the scope and suggest a practical delivery approach.</p>
-              </div>
-              <div className="cta-actions">
-                <Link className="btn btn-primary" href="/contact">Discuss Your Project</Link>
-                <Link className="btn btn-secondary" href="/contact">Send Your Scope of Work</Link>
+        {/* BOTTOM CTA BANNER */}
+        <section className="py-12 md:py-20 bg-white" id="contact">
+          <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
+            <div className="bg-gradient-to-br from-[#0c2e60] via-[#10477b] to-[#0b6b69] rounded-2xl sm:rounded-[32px] p-8 md:p-14 text-white relative overflow-hidden text-center shadow-xl">
+              <div className="absolute right-[-80px] top-[-120px] w-[360px] h-[360px] border border-white/10 rounded-full shadow-[0_0_0_48px_rgba(255,255,255,0.05),0_0_0_96px_rgba(255,255,255,0.03)] pointer-events-none" />
+              <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
+                <div className="inline-flex items-center gap-2 text-[#6ac045] text-xs sm:text-sm font-bold uppercase tracking-[0.2em] mb-4">
+                  <span className="w-6 h-[2px] bg-[#6ac045]" />
+                  START A PROJECT CONVERSATION
+                  <span className="w-6 h-[2px] bg-[#6ac045]" />
+                </div>
+                <h2 className="text-2xl sm:text-3xl md:text-[38px] font-bold text-white tracking-tight leading-tight mb-5">
+                  Have a Similar Project in Mind?
+                </h2>
+                <p className="text-white/90 text-sm sm:text-base md:text-[16px] leading-relaxed mb-8 font-normal">
+                  Tell us what you need to map, survey or develop. Share your scope, available data and expected timeline, and our team will help you work through the next steps.
+                </p>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-[#C92828] hover:bg-[#b02222] text-white font-bold text-sm sm:text-base shadow-lg shadow-[#C92828]/30 transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5"
+                >
+                  Discuss Your Project &rarr;
+                </Link>
               </div>
             </div>
           </div>

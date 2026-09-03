@@ -6,14 +6,23 @@ import Portfolio from '@/app/lib/models/Portfolio';
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://www.techmapperz.com"; // Fallback URL
 
 export const metadata = {
-  title: 'Our Work Portfolio | IT, GIS & Drone Projects | Techmapperz',
-  description: 'Discover Techmapperz diverse portfolio of IT and GIS projects—from drone-based mapping to custom software development—and see how we drive real-world innovation across industries.',
-  keywords: ['portfolio', 'IT services', 'GIS solutions', 'case studies', 'web development', 'technology consulting'],
+  title: 'GIS & Drone Projects | Web & App Portfolio | Techmapperz',
+  description: 'Explore selected projects from Techmapperz, including GIS mapping, drone surveys, LiDAR data processing, websites and mobile applications.',
+  keywords: ['GIS projects', 'drone surveys', 'LiDAR mapping', 'web development portfolio', 'mobile app portfolio', 'Techmapperz projects'],
   openGraph: {
-    title: 'Our Work Portfolio | IT, GIS & Drone Projects | Techmapperz',
-    description: 'Explore our comprehensive portfolio of IT and GIS solutions',
+    title: 'GIS & Drone Projects | Web & App Portfolio | Techmapperz',
+    description: 'Explore selected projects from Techmapperz, including GIS mapping, drone surveys, LiDAR data processing, websites and mobile applications.',
     type: 'website',
+    url: 'https://www.techmapperz.com/portfolios',
     siteName: 'Techmapperz',
+    images: [
+      {
+        url: '/gis_images/aerial_gis_mapping_banner.png',
+        width: 1200,
+        height: 630,
+        alt: 'Techmapperz Projects Portfolio'
+      }
+    ]
   },
   robots: {
     index: true,
@@ -21,11 +30,12 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Our Work Portfolio | IT, GIS & Drone Projects | Techmapperz',
-    description: 'Explore our comprehensive portfolio of IT and GIS solutions',
+    title: 'GIS & Drone Projects | Web & App Portfolio | Techmapperz',
+    description: 'Explore selected projects from Techmapperz, including GIS mapping, drone surveys, LiDAR data processing, websites and mobile applications.',
+    images: ['/gis_images/aerial_gis_mapping_banner.png'],
   },
   alternates: {
-    canonical: `${BASE_URL}/portfolios`,
+    canonical: 'https://www.techmapperz.com/portfolios',
   },
 };
 

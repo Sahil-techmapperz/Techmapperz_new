@@ -309,7 +309,7 @@ export default function DroneDataProcessingPageClient() {
       {/* ── HERO SECTION ── */}
       <section className="relative min-h-[auto] sm:min-h-[85vh] flex flex-col justify-start sm:justify-center items-start text-white pt-32 sm:pt-40 pb-16 sm:pb-28 overflow-hidden">
         <Image
-          src="/Drone_Service/Drone_Survey&Mapping_banner.png"
+          src="/drone-data-processing.png"
           alt="Drone Data Processing Services Banner"
           fill
           priority
