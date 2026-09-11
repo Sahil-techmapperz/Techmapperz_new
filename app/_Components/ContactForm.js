@@ -1,0 +1,190 @@
+// components/ContactForm.js
+'use client'
+import React, { useState } from 'react';
+import { useToast } from '../_hooks/useToast';
+import { useRouter } from 'next/navigation';
+
+const init = {
+  name: "",
+  email: "",
+  mobile: "",
+  projectType: "",
+  projectdetails: ""
+};
+
+const ContactForm = () => {
+  const [contactdata, setcontactdata] = useState(init);
+  const [hasError, setHasError] = useState({});
+  const toast = useToast();
+  const router = useRouter();
+
+  const validateForm = () => {
+    const errors = {};
+
+    if (!contactdata.name) {
+      errors.name = "required*";
+    }
+
+    if (!contactdata.email) {
+      errors.email = "required*";
+    }
+
+    if (!contactdata.mobile) {
+      errors.mobile = "required*";
+    } else if (!/^\d{10}$/.test(contactdata.mobile)) {
+      errors.mobile = "enter 10 digit mobile number";
+    }
+
+    return errors;
+  };
+
+  const handalechange = (e) => {
+    const { name, value } = e.target;
+    setcontactdata({ ...contactdata, [name]: value });
+  };
+
+  const handalesubmit = (e) => {
+    e.preventDefault();
+    const validationErrors = validateForm();
+
+    if (Object.keys(validationErrors).length > 0) {
+      setHasError(validationErrors);
+      return;
+    } else {
+      setHasError({});
+      const { name, email, mobile, projectType, projectdetails } = contactdata;
+      let data = { name, email, mobile, projectType, projectdetails };
+      if (data.projectType == "") {
+        data.projectType = "none";
+      }
+      if (data.projectdetails == "") {
+        data.projectdetails = "none";
+      }
+      fetch(`/api/contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      }).then(res => {
+        if (res.status === 200) {
+          setHasError({});
+          setcontactdata(init);
+          router.push('./thankyou');
+
+          // Reload the page after navigating
+          // router.refresh();
+
+        } else {
+          toast({
+            title: 'Failed',
+            description: "failed to save contact details",
+            status: 'error',
+            duration: 3000,
+            isClosable: true,
+          });
+          setHasError({});
+          setcontactdata(init);
+        }
+
+      }).catch(err => {
+        toast({
+          title: 'Failed',
+          description: err.message,
+          status: 'error',
+          duration: 3000,
+          isClosable: true,
+        });
+        setHasError({});
+        setcontactdata(init);
+      });
+    }
+  };
+
+  return (
+    <form onSubmit={handalesubmit} className="w-full">
+
+      <div className="space-y-3 sm:space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-6">
+          <div>
+            <input
+              type="text"
+              name="name"
+              value={contactdata.name}
+              onChange={handalechange}
+              placeholder="Enter Full Name *"
+              className={`w-full px-3 sm:px-4 py-3 sm:py-4 rounded-lg border ${hasError.name ? "border-red-500" : "border-gray-300"} 
+            bg-white/70 backdrop-blur-sm focus:ring-2 focus:ring-[#396BA9] focus:border-transparent transition-all duration-300
+            placeholder:text-gray-400 text-gray-700`}
+            />
+            {hasError.name && <p className="text-red-500 text-xs sm:text-sm mt-1">{hasError.name}</p>}
+          </div>
+
+          <div>
+            <input
+              type="email"
+              name="email"
+              value={contactdata.email}
+              onChange={handalechange}
+              placeholder="Enter Email *"
+              className={`w-full px-3 sm:px-4 py-3 sm:py-4 rounded-lg border ${hasError.email ? "border-red-500" : "border-gray-300"}
+            bg-white/70 backdrop-blur-sm focus:ring-2 focus:ring-[#396BA9] focus:border-transparent transition-all duration-300
+            placeholder:text-gray-400 text-gray-700`}
+            />
+            {hasError.email && <p className="text-red-500 text-xs sm:text-sm mt-1">{hasError.email}</p>}
+          </div>
+
+          <div>
+            <input
+              type="text"
+              name="projectType"
+              value={contactdata.projectType}
+              onChange={handalechange}
+              placeholder="Enter Project Type"
+              className="w-full px-3 sm:px-4 py-3 sm:py-4 rounded-lg border border-gray-300 bg-white/70 backdrop-blur-sm
+            focus:ring-2 focus:ring-[#396BA9] focus:border-transparent transition-all duration-300
+            placeholder:text-gray-400 text-gray-700"
+            />
+          </div>
+
+          <div>
+            <input
+              type="tel"
+              name="mobile"
+              value={contactdata.mobile}
+              onChange={handalechange}
+              placeholder="Enter Mobile *"
+              pattern="\d{10}"
+              className={`w-full px-3 sm:px-4 py-3 sm:py-4 rounded-lg border ${hasError.mobile ? "border-red-500" : "border-gray-300"}
+            bg-white/70 backdrop-blur-sm focus:ring-2 focus:ring-[#396BA9] focus:border-transparent transition-all duration-300
+            placeholder:text-gray-400 text-gray-700`}
+            />
+            {hasError.mobile && <p className="text-red-500 text-xs sm:text-sm mt-1">{hasError.mobile}</p>}
+          </div>
+        </div>
+
+        <div>
+          <textarea
+            name="projectdetails"
+            value={contactdata.projectdetails}
+            onChange={handalechange}
+            placeholder="Write Project Details"
+            rows="6"
+            className="w-full px-3 sm:px-4 py-3 sm:py-4 rounded-lg border border-gray-300 bg-white/70 backdrop-blur-sm
+            focus:ring-2 focus:ring-[#396BA9] focus:border-transparent transition-all duration-300
+            placeholder:text-gray-400 text-gray-700 resize-none"
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          className="w-full py-3.5 px-6 rounded-xl font-bold text-sm text-white transition-all duration-200 hover:opacity-90 active:scale-95 shadow-lg"
+          style={{ background: 'linear-gradient(135deg, #0c2e60, #1a5ea8)' }}
+        >
+          Send Message →
+        </button>
+      </div>
+    </form>
+
+  );
+};
+
+export default ContactForm;

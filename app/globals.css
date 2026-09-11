@@ -1,0 +1,485 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+:root {
+  /* ── 1. BRAND COLORS (TEST DESIGN SPEC) ── */
+  --color-brand-navy: #0C2E60;            /* Primary Deep Navy */
+  --color-brand-navy-dark: #0A1F40;       /* Dark Midnight Navy (Footer Base) */
+  --color-brand-navy-light: #10366F;      /* Active Navy */
+  --color-brand-navy-hover: #082046;      /* Button Hover State */
+  
+  --color-brand-blue: #1656B8;            /* Action Blue (Primary buttons and links) */
+  --color-brand-blue-hover: #0C2E60;      /* Primary button hover */
+  --color-brand-blue-light: #EDF5FB;      /* Ice Blue Surface */
+  --color-brand-blue-sky: #00B0FE;        /* Theme Meta / Sky Accent */
+
+  --color-brand-teal: #0F766E;            /* Geospatial Teal (New supporting accent on white) */
+  --color-brand-teal-light: #5EEAD4;      /* Lighter Teal (On Navy labels) */
+  --color-brand-teal-bg: #E8F5F3;         /* Teal Tint (Light teal background) */
+  --color-brand-green: #0F766E;           /* Supporting Teal mapped to green tokens for consistency */
+
+  --color-brand-red: #D2292B;             /* Techmapperz Red (Brand accent only) */
+  --color-brand-red-hover: #B01E20;       /* Red Hover */
+  --color-brand-red-vibrant: #E33434;     /* Vibrant Red Accent */
+  --color-brand-red-light: #FFF1F1;       /* Light Red Tint */
+
+  /* ── 2. SPECIALIZED & TECH ACCENTS ── */
+  --color-accent-cyan: #05D7DE;           /* Neon Cyan */
+  --color-accent-teal: #0F766E;           /* Geospatial Teal */
+  --color-accent-amber: #EFB548;          /* Amber */
+  --color-accent-slate: #2D5689;          /* Slate Navy */
+
+  /* ── 3. NEUTRALS & SURFACES ── */
+  --color-bg-primary: #FFFFFF;            /* White (Main background: 65-70%) */
+  --color-bg-alt: #F6F8FB;                /* Cool Off-white (Alternate background) */
+  --color-bg-card: #FFFFFF;               /* Standard Card Surface */
+  --color-bg-card-hover: #F8FAFC;         /* Card Hover Surface */
+  --color-bg-soft: #EDF5FB;               /* Soft Blue Surface */
+  --color-bg-teal: #E8F5F3;               /* Teal Tint Section Background */
+
+  /* ── 4. BORDERS & DIVIDERS ── */
+  --color-border-subtle: #DDE3EA;         /* Light Grey Borders */
+  --color-border-light: #DDE3EA;          /* Light Grey Borders */
+  --color-border-white-10: rgba(255, 255, 255, 0.10); /* Border on Dark */
+  --color-border-white-20: rgba(255, 255, 255, 0.20); /* Border on Dark Highlight */
+
+  /* ── 5. TYPOGRAPHY & TEXT ── */
+  --color-text-title: #0C2E60;            /* Deep Navy Heading */
+  --color-text-dark: #17202A;             /* Charcoal Main text */
+  --color-text-body: #4B5563;             /* Slate Grey Paragraph text */
+  --color-text-muted: #4B5563;            /* Slate Grey */
+  --color-text-light: #6B7280;            /* Captions */
+  --color-text-white: #FFFFFF;            /* White Text on Dark */
+  --color-text-white-muted: #A8C4E8;      /* Footer text */
+
+  /* ── 6. FONT FAMILIES ── */
+  --font-primary: var(--font-ibm-plex-sans), 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-heading: var(--font-ibm-plex-sans), 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-editorial: 'Georgia', serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* ── 7. SHADOWS & ELEVATION ── */
+  --shadow-sm: 0 2px 4px rgba(12, 46, 96, 0.04);
+  --shadow-md: 0 8px 20px rgba(12, 46, 96, 0.08);
+  --shadow-lg: 0 14px 32px rgba(12, 46, 96, 0.12);
+  --shadow-xl: 0 22px 54px rgba(11, 35, 65, 0.12);
+  --shadow-red: 0 14px 28px rgba(210, 41, 43, 0.22);
+  --shadow-blue: 0 14px 28px rgba(22, 86, 184, 0.22);
+  --shadow-green: 0 14px 28px rgba(106, 192, 69, 0.22);
+
+  /* ── 8. BORDER RADII ── */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-xl: 22px;
+  --radius-2xl: 28px;
+  --radius-pill: 9999px;
+
+  /* ── 9. GRADIENTS ── */
+  --gradient-brand: linear-gradient(90deg, #376bab 60%, #d2292b 100%);
+  --gradient-footer: linear-gradient(160deg, #0a1f40 0%, #0c2e60 50%, #0d3875 100%);
+  --gradient-contact: linear-gradient(135deg, #0b2341 0%, #10477b 50%, #0b6b69 100%);
+  --gradient-tech: linear-gradient(90deg, #05d7de 0%, #2d5689 100%);
+  --gradient-red-btn: linear-gradient(135deg, #e33434 0%, #c22020 100%);
+  --gradient-dark-overlay: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.60) 50%, rgba(0,0,0,0.35) 100%);
+}
+
+/* SEO-friendly skip link */
+.skip-link {
+  @apply absolute left-0 top-0 z-50 bg-blue-600 text-white px-4 py-2 rounded-br-lg transform -translate-y-full focus:translate-y-0 transition-transform;
+}
+
+/* Performance optimizations */
+@layer base {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  .lenis.lenis-scrolling iframe {
+    pointer-events: none;
+  }
+
+
+  body, h1, h2, h3, h4, h5, h6, button, input, select, textarea {
+    font-family: var(--font-primary);
+  }
+
+  body {
+    @apply font-sans antialiased;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Improve focus visibility for accessibility */
+  *:focus-visible {
+    @apply outline-2 outline-blue-500 outline-offset-2;
+  }
+
+  /* Hide focus ring for mouse users */
+  *:focus:not(:focus-visible) {
+    @apply outline-none;
+  }
+}
+
+/* Loading animation */
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: .5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Lazy loading placeholder */
+.lazy-section {
+  min-height: 200px;
+}
+
+/* Responsive images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Print styles for better SEO */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    color: black !important;
+    background: white !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  body {
+    --tw-text-opacity: 1;
+    color: rgb(0 0 0 / var(--tw-text-opacity));
+    --tw-bg-opacity: 1;
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Font display swap for performance */
+@font-face {
+  font-family: 'Montserrat';
+  font-display: swap;
+}
+
+
+
+/* ─── CASE STUDY SECTION STYLES FROM PREVIEW.HTML ─── */
+.case-section {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(220, 38, 38, 0.16), transparent 32%),
+    radial-gradient(circle at 92% 88%, rgba(37, 99, 235, 0.15), transparent 34%),
+    #050505;
+  padding: 92px 20px;
+}
+
+.case-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.65), transparent 82%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.65), transparent 82%);
+  pointer-events: none;
+}
+
+.case-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(239, 68, 68, 0.32);
+  background: rgba(239, 68, 68, 0.10);
+  color: #fca5a5;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.case-eyebrow span {
+  width: 7px;
+  height: 7px;
+  background: #ef4444;
+  border-radius: 999px;
+  box-shadow: 0 0 16px rgba(239, 68, 68, 0.9);
+}
+
+.case-gradient-text {
+  background: linear-gradient(90deg, #f87171, #60a5fa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.case-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 58px;
+}
+
+.case-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 390px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.025));
+  border-radius: 28px;
+  padding: 28px;
+  transition: all 0.28s ease;
+}
+
+.case-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(239, 68, 68, 0.45);
+  background: linear-gradient(180deg, rgba(255,255,255,0.075), rgba(255,255,255,0.035));
+  box-shadow: 0 24px 80px rgba(0,0,0,0.45);
+}
+
+.case-card::before {
+  content: "";
+  position: absolute;
+  left: 26px;
+  right: 26px;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(239, 68, 68, 0.75), transparent);
+  opacity: 0;
+  transition: 0.28s ease;
+}
+
+.case-card:hover::before {
+  opacity: 1;
+}
+
+.case-icon {
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(0,0,0,0.35);
+  margin-bottom: 24px;
+  font-size: 27px;
+  color: #f87171;
+}
+
+.case-tag {
+  display: inline-flex;
+  border: 1px solid rgba(59, 130, 246, 0.28);
+  background: rgba(59, 130, 246, 0.10);
+  color: #93c5fd;
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.case-card h3 {
+  margin-top: 22px;
+  font-size: 22px;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  font-weight: 750;
+  color: #ffffff;
+}
+
+.case-card p {
+  margin-top: 17px;
+  color: #a1a1aa;
+  font-size: 15px;
+  line-height: 1.8;
+  min-height: 110px;
+}
+
+.case-card a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  color: #fca5a5;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  transition: 0.25s ease;
+}
+
+.case-card a:hover {
+  color: #fecaca;
+  gap: 12px;
+}
+
+.case-bottom-cta {
+  margin-top: 34px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background:
+    linear-gradient(90deg, rgba(255,255,255,0.07), rgba(255,255,255,0.025)),
+    linear-gradient(90deg, rgba(239,68,68,0.08), rgba(37,99,235,0.08));
+  border-radius: 30px;
+  padding: 34px;
+  text-align: center;
+}
+
+.case-bottom-cta h3 {
+  font-size: 28px;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  margin-bottom: 0;
+}
+
+.case-bottom-cta p {
+  max-width: 720px;
+  margin: 14px auto 0;
+  color: #a1a1aa;
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.case-cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 26px;
+  flex-wrap: wrap;
+}
+
+.case-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 24px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 750;
+  transition: 0.25s ease;
+}
+
+.case-btn-primary {
+  background: #dc2626;
+  color: #fff;
+  box-shadow: 0 14px 35px rgba(220, 38, 38, 0.26);
+}
+
+.case-btn-primary:hover {
+  background: #b91c1c;
+  transform: translateY(-2px);
+}
+
+.case-btn-secondary {
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(255,255,255,0.035);
+}
+
+.case-btn-secondary:hover {
+  border-color: rgba(96, 165, 250, 0.58);
+  background: rgba(37, 99, 235, 0.12);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 980px) {
+  .case-cards {
+    grid-template-columns: 1fr;
+  }
+  .case-card {
+    min-height: auto;
+  }
+  .case-card p {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .case-section {
+    padding: 70px 16px;
+  }
+  .case-bottom-cta {
+    padding: 28px 20px;
+  }
+  .case-btn {
+    width: 100%;
+  }
+}
+
+/* Equal height cards for Swiper Carousels */
+.swiper-wrapper {
+  display: flex !important;
+  align-items: stretch !important;
+}
+
+.swiper-slide {
+  height: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.swiper-slide > div {
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 1 100% !important;
+  height: 100% !important;
+}
+
+.testimonial-card {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  flex: 1 1 100% !important;
+  height: 100% !important;
+}
