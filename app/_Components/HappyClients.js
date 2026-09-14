@@ -96,12 +96,12 @@ const HappyClients = () => {
         </span>
 
         {/* Standardized H2 Heading */}
-        <h2 className="text-[26px] sm:text-[28px] md:text-[36px] lg:text-[38px] font-bold mb-1.5 tracking-tight leading-[1.2] text-[#0C2E60]">
+        <h2 className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold mb-1.5 tracking-tight leading-[1.2] text-[#0C2E60]">
           Our Clients & Partners
         </h2>
 
         {/* Subtitle */}
-        <p className="text-[#4B5563] text-[14px] md:text-[16px] max-w-2xl mx-auto leading-[1.5]">
+        <p className="text-[#4B5563] text-base md:text-[18px] max-w-2xl mx-auto leading-[1.65]">
           Empowering government agencies, infrastructure leaders, and enterprises across India with precision geospatial solutions.
         </p>
       </div>

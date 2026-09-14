@@ -50,7 +50,7 @@ const WhyChooseTechmapperz = () => {
                                     </svg>
                                 </span>
                                 <div>
-                                    <h3 className="text-[#0C2E60] font-bold text-[17px] md:text-[19px] mb-1">{item.title}</h3>
+                                    <h3 className="text-[#0C2E60] font-bold text-[18px] md:text-[20px] mb-1">{item.title}</h3>
                                     <p className="text-[#4B5563] text-[14px] sm:text-[15px] leading-[1.55]">{item.desc}</p>
                                 </div>
                             </div>
@@ -58,10 +58,11 @@ const WhyChooseTechmapperz = () => {
                     </div>
 
                     <div className="w-full flex justify-center mt-1">
-                        <Link href="/about">
-                            <button className="bg-[#1656B8] hover:bg-[#0C2E60] text-white font-bold text-[15px] sm:text-[16px] px-7 py-2.5 rounded-full flex items-center gap-2 transition-all duration-300 shadow-md hover:-translate-y-0.5 cursor-pointer min-h-[44px] sm:min-h-[46px]">
-                                About Us &rarr;
-                            </button>
+                        <Link 
+                            href="/about" 
+                            className="inline-flex items-center justify-center bg-[#1656B8] hover:bg-[#0C2E60] text-white font-bold text-[15px] sm:text-[16px] px-8 py-3 min-h-[46px] sm:min-h-[48px] rounded-full transition-all duration-300 shadow-md hover:-translate-y-0.5"
+                        >
+                            Learn More About Our Approach &rarr;
                         </Link>
                     </div>
                 </div>

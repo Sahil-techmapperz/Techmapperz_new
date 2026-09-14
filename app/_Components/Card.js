@@ -78,7 +78,7 @@ const Card = ({ post }) => {
 
         {/* Title */}
         <Link href={`/blog/${post._id}`} className="group/title flex-grow">
-          <h3 className="text-[16px] md:text-[18px] font-bold leading-snug tracking-tight text-[#0C2E60] group-hover/title:text-[#1656B8] transition-colors duration-300 line-clamp-2">
+          <h3 className="text-[18px] md:text-[19px] lg:text-[20px] font-bold leading-snug tracking-tight text-[#0C2E60] group-hover/title:text-[#1656B8] transition-colors duration-300 line-clamp-2">
             {post.title}
           </h3>
         </Link>

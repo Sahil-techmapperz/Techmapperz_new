@@ -4,6 +4,10 @@ import ScrollToTop from '@/app/_Components/ScrollToTop';
 import React, { useState } from 'react';
 import Image from 'next/image';
 
+const sansSerifStyle = {
+  fontFamily: 'var(--font-ibm-plex-sans), "IBM Plex Sans", sans-serif',
+};
+
 const coreServices = [
   {
     number: "01",
@@ -141,8 +145,8 @@ const faqs = [
 ];
 
 const ServiceCard = ({ service, reverse, dark = false }) => (
-  <div className={`flex flex-col ${reverse ? "lg:flex-row-reverse" : "lg:flex-row"} gap-6 sm:gap-10 lg:gap-16 items-start`}>
-    <div className="relative w-full lg:w-[45%] h-[240px] sm:h-[340px] rounded-2xl overflow-hidden shadow-xl flex-shrink-0 border border-white/10">
+  <div className={`flex flex-col ${reverse ? "lg:flex-row-reverse" : "lg:flex-row"} gap-6 sm:gap-10 lg:gap-14 items-start`}>
+    <div className={`relative w-full lg:w-[45%] h-[240px] sm:h-[320px] md:h-[340px] rounded-2xl overflow-hidden flex-shrink-0 border ${dark ? "border-white/10 shadow-xl" : "border-[#DDE3EA] shadow-md"}`}>
       <Image
         src={service.image}
         alt={service.title}
@@ -150,31 +154,35 @@ const ServiceCard = ({ service, reverse, dark = false }) => (
         sizes="(max-width: 1024px) 100vw, 50vw"
         className="object-cover object-center"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+      <div className={`absolute inset-0 ${dark ? "bg-gradient-to-t from-black/50 to-transparent" : "bg-gradient-to-t from-[#0C2E60]/15 to-transparent"}`} />
     </div>
     <div className="flex flex-col flex-1">
-      <h3 className={`text-2xl md:text-3xl font-bold ${dark ? "text-white" : "text-[#0c2e60]"} mb-4 leading-tight`}>
+      <h3 className={`text-[18px] md:text-[20px] font-bold ${dark ? "text-white" : "text-[#0C2E60]"} mb-2.5 leading-[1.25]`}>
         {service.title}
       </h3>
-      <p className={`${dark ? "text-blue-100/90" : "text-gray-600"} text-sm md:text-[15px] leading-relaxed mb-6`}>
+      <p className={`${dark ? "text-[#E8F5F3]" : "text-[#4B5563]"} text-[15px] sm:text-[16px] leading-[1.65] mb-4`}>
         {service.description}
       </p>
-      <p className={`${dark ? "text-[#6ac045]" : "text-[#0c2e60]"} font-bold text-xs uppercase tracking-widest mb-3`}>
+      <p className={`${dark ? "text-[#5EEAD4]" : "text-[#0F766E]"} font-bold text-[12px] md:text-[13px] uppercase tracking-[0.15em] mb-2.5`}>
         {service.heading}
       </p>
-      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 mb-8">
+      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 mb-6">
         {service.services.map((item, i) => (
-          <li key={i} className={`flex items-start gap-2 ${dark ? "text-blue-100/90" : "text-gray-600"} text-sm`}>
-            <span className="text-[#6ac045] font-bold mt-0.5 flex-shrink-0">&#10003;</span>
-            {item}
+          <li key={i} className={`flex items-start gap-2.5 ${dark ? "text-[#E8F5F3]" : "text-[#4B5563]"} text-[14px] sm:text-[15px] leading-snug`}>
+            <span className={`w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${dark ? "bg-[#0F766E]/40 text-[#5EEAD4] border border-[#5EEAD4]/40" : "bg-[#E8F5F3] text-[#0F766E] border border-[#0F766E]/30"}`}>
+              <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+            </span>
+            <span>{item}</span>
           </li>
         ))}
       </ul>
       <Link
         href={service.link}
-        className="inline-flex items-center justify-center gap-2 bg-[#1656b8] hover:bg-[#0c2e60] text-white font-bold text-sm px-8 py-3.5 rounded-full transition-all duration-300 shadow-md w-full sm:w-fit"
+        className="inline-flex items-center justify-center gap-2 bg-[#1656B8] hover:bg-[#0C2E60] text-white font-bold text-[15px] sm:text-[16px] px-8 py-3 rounded-full transition-all duration-300 shadow-md hover:shadow-lg w-full sm:w-fit min-h-[46px] sm:min-h-[48px]"
       >
-        Learn more &#8594;
+        Learn more &rarr;
       </Link>
     </div>
   </div>
@@ -183,20 +191,20 @@ const ServiceCard = ({ service, reverse, dark = false }) => (
 const FaqItem = ({ faq, defaultOpen = false, dark = false }) => {
   const [open, setOpen] = useState(defaultOpen);
   return (
-    <div className={`border-b ${dark ? "border-white/10" : "border-gray-200"}`}>
+    <div className={`border-b ${dark ? "border-white/10" : "border-[#DDE3EA]"}`}>
       <button
         onClick={() => setOpen(!open)}
-        className="w-full text-left py-5 flex items-start justify-between gap-4 group"
+        className="w-full text-left py-4 sm:py-5 flex items-start justify-between gap-4 group"
       >
-        <span className={`${dark ? "text-white group-hover:text-[#6ac045]" : "text-[#0c2e60] group-hover:text-[#1656b8]"} font-semibold text-sm md:text-base leading-snug transition-colors`}>
+        <span className={`${dark ? "text-white group-hover:text-[#5EEAD4]" : "text-[#0C2E60] group-hover:text-[#1656B8]"} font-semibold text-[16px] md:text-[18px] leading-snug transition-colors`}>
           {faq.q}
         </span>
-        <span className={`${dark ? "text-[#6ac045]" : "text-[#1656b8]"} font-bold text-xl flex-shrink-0 transition-transform duration-300 ${open ? "rotate-45" : ""}`}>
+        <span className={`${dark ? "text-[#5EEAD4]" : "text-[#1656B8]"} font-bold text-xl flex-shrink-0 transition-transform duration-300 ${open ? "rotate-45" : ""}`}>
           +
         </span>
       </button>
       {open && (
-        <p className={`${dark ? "text-blue-100/90" : "text-gray-600"} text-sm md:text-[15px] leading-relaxed pb-5`}>
+        <p className={`${dark ? "text-[#E8F5F3]" : "text-[#4B5563]"} text-[15px] sm:text-[16px] leading-[1.65] pb-5`}>
           {faq.a}
         </p>
       )}
@@ -206,11 +214,11 @@ const FaqItem = ({ faq, defaultOpen = false, dark = false }) => {
 
 const ServicePageClient = () => {
   return (
-    <div className="bg-white text-gray-900">
+    <div className="bg-white text-[#17202A]" style={sansSerifStyle}>
       <ScrollToTop />
 
       {/* HERO */}
-      <section className="relative min-h-[580px] sm:min-h-[85vh] flex flex-col justify-center items-center text-white pt-28 sm:pt-36 pb-16 sm:pb-24 overflow-hidden">
+      <section className="relative min-h-[520px] sm:min-h-[75vh] flex flex-col justify-center items-center text-white pt-24 sm:pt-32 pb-12 sm:pb-16 overflow-hidden">
         <Image
           src="/Service.png"
           alt="Techmapperz Services - GIS, Drone, Web & App Development"
@@ -220,28 +228,28 @@ const ServicePageClient = () => {
           sizes="100vw"
           className="object-cover object-center pointer-events-none"
         />
-        {/* Balanced contrast overlay - keeps artwork vivid while ensuring high text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/65 pointer-events-none" />
+        {/* Balanced contrast overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0C2E60]/80 via-black/40 to-[#0C2E60]/85 pointer-events-none" />
         <div className="absolute inset-0 bg-black/20 pointer-events-none" />
         
-        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-8 text-center flex flex-col items-center gap-5 sm:gap-6">
-          <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] drop-shadow-md">
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-8 text-center flex flex-col items-center gap-4 sm:gap-5">
+          <span className="text-[#5EEAD4] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] drop-shadow-md">
             OUR SERVICES
           </span>
-          <h1 className="text-[36px] sm:text-[40px] md:text-5xl lg:text-[54px] font-bold leading-tight tracking-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
+          <h1 className="text-[32px] sm:text-[34px] md:text-[54px] lg:text-[56px] font-bold leading-[1.18] tracking-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)] text-white">
             GIS Mapping, Drone Survey &amp; <br className="hidden sm:inline" />Web and App Development
           </h1>
-          <p className="text-gray-200 text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
+          <p className="text-[#E8F5F3] text-[16px] md:text-[18px] font-normal max-w-2xl leading-[1.65] drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
             We deliver GIS mapping, drone surveys, LiDAR and geospatial data processing for infrastructure, utility, mining, government and planning projects. We also develop websites and mobile applications for organisations across sectors.
           </p>
-          <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 sm:gap-5 mt-4 w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4 mt-2 w-full sm:w-auto">
             <Link href="/contact" className="w-full sm:w-auto">
-              <button className="w-full sm:w-auto py-[13px] px-8 rounded-full bg-[#1656b8] hover:bg-[#0c2e60] text-white font-semibold text-[15px] shadow-xl hover:shadow-2xl transition-all duration-300">
-                Discuss Your Project
+              <button className="w-full sm:w-auto min-h-[46px] sm:min-h-[48px] py-3 px-8 rounded-full bg-[#1656B8] hover:bg-[#0C2E60] text-white font-bold text-[15px] sm:text-[16px] shadow-xl hover:shadow-2xl transition-all duration-300">
+                Discuss Your Project &rarr;
               </button>
             </Link>
             <a href="#services" className="w-full sm:w-auto">
-              <button className="w-full sm:w-auto py-[12px] px-8 rounded-full border border-white/40 bg-black/20 backdrop-blur-sm text-white font-semibold text-[15px] hover:bg-white/20 transition-all duration-300 shadow-md">
+              <button className="w-full sm:w-auto min-h-[46px] sm:min-h-[48px] py-3 px-8 rounded-full border border-white/40 bg-white/10 backdrop-blur-sm text-white font-bold text-[15px] sm:text-[16px] hover:bg-white/20 transition-all duration-300 shadow-md">
                 View All Services
               </button>
             </a>
@@ -250,20 +258,20 @@ const ServicePageClient = () => {
       </section>
 
       {/* CORE GEOSPATIAL SERVICES */}
-      <section id="services" className="py-10 md:py-16 bg-[#04203a] text-white">
+      <section id="services" className="relative py-4 md:py-10 bg-white border-t border-[#DDE3EA] overflow-hidden">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
-          <div className="text-center mb-10">
-            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-2 block">
+          <div className="text-center mb-8 md:mb-10">
+            <span className="text-[#0F766E] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] mb-2 block">
               CORE GEOSPATIAL SERVICES
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-[42px] font-bold text-white leading-tight tracking-tight max-w-3xl mx-auto">
+            <h2 className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-[#0C2E60] leading-[1.2] tracking-tight max-w-3xl mx-auto">
               Spatial Data, Drone &amp; LiDAR Services
             </h2>
           </div>
-          <div className="flex flex-col divide-y divide-white/10">
+          <div className="flex flex-col divide-y divide-[#DDE3EA]">
             {coreServices.map((service, i) => (
-              <div key={service.number} className="py-8 md:py-12 first:pt-0">
-                <ServiceCard service={service} reverse={i % 2 !== 0} dark={true} />
+              <div key={service.number} className="py-6 md:py-8 first:pt-0">
+                <ServiceCard service={service} reverse={i % 2 !== 0} dark={false} />
               </div>
             ))}
           </div>
@@ -271,19 +279,19 @@ const ServicePageClient = () => {
       </section>
 
       {/* DIGITAL DEVELOPMENT SERVICES */}
-      <section className="py-10 md:py-16 bg-white">
+      <section className="relative py-4 md:py-10 bg-[#F6F8FB] border-t border-[#DDE3EA] overflow-hidden">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
-          <div className="text-center mb-10">
-            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-2 block">
+          <div className="text-center mb-8 md:mb-10">
+            <span className="text-[#0F766E] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] mb-2 block">
               DIGITAL DEVELOPMENT
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-[42px] font-bold text-[#0c2e60] leading-tight tracking-tight max-w-3xl mx-auto">
+            <h2 className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-[#0C2E60] leading-[1.2] tracking-tight max-w-3xl mx-auto">
               Website &amp; Mobile App Development
             </h2>
           </div>
-          <div className="flex flex-col divide-y divide-gray-200">
+          <div className="flex flex-col divide-y divide-[#DDE3EA]">
             {digitalServices.map((service, i) => (
-              <div key={service.number} className="py-8 md:py-12 first:pt-0">
+              <div key={service.number} className="py-6 md:py-8 first:pt-0">
                 <ServiceCard service={service} reverse={i % 2 !== 0} dark={false} />
               </div>
             ))}
@@ -292,13 +300,13 @@ const ServicePageClient = () => {
       </section>
 
       {/* FAQ */}
-      <section className="py-10 md:py-16 bg-[#04203a] text-white">
+      <section className="relative py-4 md:py-10 bg-[#0C2E60] text-white border-t border-white/10 overflow-hidden">
         <div className="max-w-4xl mx-auto px-4 sm:px-8">
-          <div className="text-center mb-10">
-            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-2 block">
+          <div className="text-center mb-8 md:mb-10">
+            <span className="text-[#5EEAD4] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] mb-2 block">
               FAQ
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+            <h2 className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-white tracking-tight leading-[1.2]">
               Frequently Asked Questions
             </h2>
           </div>
@@ -311,28 +319,31 @@ const ServicePageClient = () => {
       </section>
 
       {/* FINAL CTA */}
-      <section className="py-10 md:py-14 bg-white border-t border-gray-100">
+      <section className="relative py-4 md:py-10 bg-white border-t border-[#DDE3EA] overflow-hidden">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
-          <div className="bg-gradient-to-br from-[#0b2341] via-[#10477b] to-[#0b6b69] rounded-2xl sm:rounded-[26px] p-8 md:p-14 text-white relative overflow-hidden flex flex-col lg:flex-row lg:items-center justify-between gap-8 shadow-xl">
+          <div className="bg-gradient-to-br from-[#0C2E60] via-[#0d4277] to-[#0F766E] rounded-2xl sm:rounded-[24px] p-6 sm:p-8 md:p-10 text-white relative overflow-hidden flex flex-col lg:flex-row lg:items-center justify-between gap-6 md:gap-8 shadow-xl border border-white/10">
             <div className="absolute right-[-80px] top-[-120px] w-[360px] h-[360px] border border-white/10 rounded-full shadow-[0_0_0_48px_rgba(255,255,255,0.05),0_0_0_96px_rgba(255,255,255,0.03)] pointer-events-none" />
-            <div className="space-y-4 max-w-2xl relative z-10">
-              <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] block">
+            <div className="space-y-2.5 max-w-2xl relative z-10 text-left">
+              <span className="text-[#5EEAD4] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] block">
                 LET'S DISCUSS YOUR REQUIREMENT
               </span>
-              <h2 className="text-2xl sm:text-3xl md:text-[36px] font-extrabold text-white tracking-tight leading-snug">
+              <h2 className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-white tracking-tight leading-[1.2]">
                 Planning a GIS, Drone, LiDAR, Website or Mobile App Project?
               </h2>
+              <p className="text-[#E8F5F3] text-[15px] sm:text-[16px] leading-[1.65] font-normal">
+                Share your project details, available data and timeline. Our specialists will review your requirements and propose an effective execution plan.
+              </p>
             </div>
-            <div className="flex flex-col sm:flex-row lg:flex-col gap-3 sm:gap-4 relative z-10 shrink-0 w-full lg:w-auto">
+            <div className="flex flex-col sm:flex-row lg:flex-col gap-2.5 sm:gap-3 relative z-10 shrink-0 w-full lg:w-auto self-stretch sm:self-start lg:self-center">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl font-bold text-sm text-white bg-[#e33434] hover:bg-[#c92828] shadow-md hover:-translate-y-0.5 transition-all duration-200 text-center whitespace-nowrap w-full sm:w-auto lg:w-full"
+                className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 min-h-[46px] sm:min-h-[48px] rounded-xl font-bold text-[15px] sm:text-[16px] text-white bg-[#1656B8] hover:bg-[#0C2E60] border border-white/20 shadow-sm hover:-translate-y-0.5 transition-all duration-200 text-center whitespace-nowrap w-full sm:w-auto"
               >
-                Discuss Your Project &#8594;
+                Discuss Your Project &rarr;
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center px-8 py-3.5 rounded-xl font-bold text-sm text-[#0c2e60] bg-white border border-transparent hover:-translate-y-0.5 transition-all duration-200 text-center whitespace-nowrap w-full sm:w-auto lg:w-full"
+                className="inline-flex items-center justify-center px-6 sm:px-8 py-3 min-h-[46px] sm:min-h-[48px] rounded-xl font-bold text-[15px] sm:text-[16px] text-[#0C2E60] bg-white border border-[#0C2E60] hover:bg-slate-50 hover:-translate-y-0.5 transition-all duration-200 text-center whitespace-nowrap w-full sm:w-auto"
               >
                 Send Your Scope of Work
               </Link>

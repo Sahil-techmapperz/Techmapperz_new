@@ -57,14 +57,14 @@ const DronePartnership = () => {
                   <div className="support-column">
                     <div className="support-item">
                       <span className="check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2.2 6.2l2.2 2.2L9.8 3"></path></svg></span>
-                      <span className="service-icon green">
+                      <span className="service-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M4 3h16v18H4zM8 3v18M12 3v18M16 3v18M4 8h16M4 13h16M4 18h16"></path></svg>
                       </span>
                       <span>Orthophoto and orthomosaic generation</span>
                     </div>
                     <div className="support-item">
                       <span className="check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2.2 6.2l2.2 2.2L9.8 3"></path></svg></span>
-                      <span className="service-icon">
+                      <span className="service-icon green">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                           <circle cx="12" cy="4" r="1.5" /><circle cx="7" cy="8" r="1.5" /><circle cx="17" cy="8" r="1.5" />
                           <circle cx="5" cy="14" r="1.5" /><circle cx="12" cy="12" r="1.5" /><circle cx="19" cy="14" r="1.5" />
@@ -75,7 +75,7 @@ const DronePartnership = () => {
                     </div>
                     <div className="support-item">
                       <span className="check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2.2 6.2l2.2 2.2L9.8 3"></path></svg></span>
-                      <span className="service-icon green">
+                      <span className="service-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M4 7l8-4 8 4-8 4-8-4zM4 12l8 4 8-4M4 17l8 4 8-4"></path></svg>
                       </span>
                       <span>DEM, DTM and DSM preparation</span>
@@ -99,37 +99,22 @@ const DronePartnership = () => {
                   <div className="support-column">
                     <div className="support-item">
                       <span className="check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2.2 6.2l2.2 2.2L9.8 3"></path></svg></span>
-                      <span className="service-icon green">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M4 6l8-4 8 4v12l-8 4-8-4V6zM4 6l8 4 8-4M12 10v12"></path></svg>
-                      </span>
                       <span>2D and 3D feature extraction</span>
                     </div>
                     <div className="support-item">
                       <span className="check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2.2 6.2l2.2 2.2L9.8 3"></path></svg></span>
-                      <span className="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 21s6-5.1 6-11a6 6 0 10-12 0c0 5.9 6 11 6 11z" /><circle cx="12" cy="10" r="2" /><path d="M3 20h6M15 20h6"></path></svg>
-                      </span>
                       <span>Topographic and asset mapping</span>
                     </div>
                     <div className="support-item">
                       <span className="check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2.2 6.2l2.2 2.2L9.8 3"></path></svg></span>
-                      <span className="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4"><rect x="3" y="4" width="8" height="12" rx="1" /><rect x="13" y="8" width="8" height="12" rx="1" /><path d="M5 8h4M15 12h4M9 18h6"></path></svg>
-                      </span>
                       <span>GIS and CAD conversion</span>
                     </div>
                     <div className="support-item">
                       <span className="check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2.2 6.2l2.2 2.2L9.8 3"></path></svg></span>
-                      <span className="service-icon green">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M4 17h16M6 17l3-7 3 3 3-6 3 10M8 20h8"></path></svg>
-                      </span>
                       <span>Mining volumetric analysis</span>
                     </div>
                     <div className="support-item">
                       <span className="check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2.2 6.2l2.2 2.2L9.8 3"></path></svg></span>
-                      <span className="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 2l8 3v6c0 5-3.2 8.8-8 11-4.8-2.2-8-6-8-11V5l8-3z" /><path d="M8 12l2.5 2.5L16 9"></path></svg>
-                      </span>
                       <span>QA/QC and final delivery-package preparation</span>
                     </div>
                   </div>
@@ -418,6 +403,10 @@ const DronePartnership = () => {
           font-weight:500;
         }
 
+        .support-column + .support-column .support-item {
+          grid-template-columns:24px 1fr;
+        }
+
         .check {
           width:18px;
           height:18px;
@@ -492,7 +481,7 @@ const DronePartnership = () => {
 
         .benefit strong {
           display:block;
-          color:#14863d;
+          color:#164f9e;
           font-size:13.5px;
         }
 

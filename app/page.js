@@ -194,7 +194,7 @@ const Home = async () => {
           <div className="flex relative justify-center mt-6 mb-2">
             <Link href="/service">
               <button
-                className="bg-[#1656B8] hover:bg-[#0C2E60] text-white font-bold text-[15px] sm:text-[16px] px-8 py-2.5 rounded-full flex items-center gap-2 transition-all duration-300 shadow-md min-h-[44px] sm:min-h-[46px]"
+                className="bg-[#1656B8] hover:bg-[#0C2E60] text-white font-bold text-[15px] sm:text-[16px] px-8 py-3 rounded-full flex items-center gap-2 transition-all duration-300 shadow-md min-h-[46px] sm:min-h-[48px]"
               >
                 View All Services &rarr;
               </button>

@@ -51,7 +51,7 @@ const Testimonial = async () => {
       
       <div className="relative z-10 text-center mb-4 sm:mb-5 px-4">
         <span className="text-[#0F766E] text-[12px] md:text-[13px] font-bold tracking-[0.15em] uppercase">Testimonials</span>
-        <h2 className="text-[26px] sm:text-[28px] md:text-[36px] lg:text-[38px] font-bold text-[#0C2E60] mt-1 mb-1.5 tracking-tight leading-[1.2]">
+        <h2 className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-[#0C2E60] mt-1 mb-1.5 tracking-tight leading-[1.2]">
           Hear From Our Clients
         </h2>
         <div className="w-10 h-[2.5px] bg-[#0F766E] mx-auto rounded-full mt-1.5" />

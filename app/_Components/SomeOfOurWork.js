@@ -63,7 +63,7 @@ const SomeOfOurWork = () => {
   };
 
   const sansSerifStyle = {
-    fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+    fontFamily: 'var(--font-primary), "IBM Plex Sans", sans-serif'
   };
 
   const ActionIcons = () => (

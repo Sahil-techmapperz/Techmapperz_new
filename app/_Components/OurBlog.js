@@ -26,7 +26,7 @@ const OurBlog = async () => {
       {/* Header */}
       <div className="relative z-10 text-center mb-4 sm:mb-5">
         <span className="text-[#0F766E] text-[12px] md:text-[13px] font-bold tracking-[0.15em] uppercase">Techmapperz Insights</span>
-        <h2 className="text-[26px] sm:text-[28px] md:text-[36px] lg:text-[38px] font-bold text-[#0C2E60] mt-1 mb-1.5 tracking-tight leading-[1.2]">
+        <h2 className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-[#0C2E60] mt-1 mb-1.5 tracking-tight leading-[1.2]">
           Our Latest Blogs
         </h2>
         <div className="w-10 h-[2.5px] bg-[#0F766E] mx-auto rounded-full mt-1.5" />
@@ -50,7 +50,7 @@ const OurBlog = async () => {
       <div className="relative z-10 flex justify-center mt-4 sm:mt-5 mb-1">
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 px-6 sm:px-7 py-2.5 sm:py-3 bg-[#1656B8] hover:bg-[#0C2E60] text-white font-bold text-[14px] sm:text-[15px] rounded-full transition-all duration-300 shadow-sm hover:shadow-md min-h-[42px] sm:min-h-[44px]"
+          className="inline-flex items-center gap-2 px-6 sm:px-7 py-2.5 sm:py-3 bg-[#1656B8] hover:bg-[#0C2E60] text-white font-bold text-[15px] sm:text-[16px] rounded-full transition-all duration-300 shadow-sm hover:shadow-md min-h-[46px] sm:min-h-[48px]"
         >
           <span>Explore More Blogs</span>
           <ArrowRight className="w-4 h-4" />

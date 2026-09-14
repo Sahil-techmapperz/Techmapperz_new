@@ -54,13 +54,13 @@ const HowWeWork = () => {
                 OUR DELIVERY PROCESS
               </span>
             </div>
-            <h2 className="text-[26px] sm:text-[28px] md:text-[36px] lg:text-[38px] font-bold text-[#0C2E60] leading-[1.2] tracking-tight">
+            <h2 className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-[#0C2E60] leading-[1.2] tracking-tight">
               A Clear Workflow from Requirement Review to Final Handover
             </h2>
           </div>
 
           <div className="lg:col-span-4 text-left lg:text-left lg:pb-1">
-            <p className="text-[#4B5563] text-[15px] md:text-[16px] leading-[1.55] max-w-full lg:max-w-sm">
+            <p className="text-[#4B5563] text-base md:text-[18px] leading-[1.65] max-w-full lg:max-w-sm">
               A clear workflow makes scope, accuracy, quality control and delivery expectations visible before production starts.
             </p>
           </div>
@@ -81,7 +81,7 @@ const HowWeWork = () => {
                 </div>
 
                 {/* Step Content */}
-                <h3 className="text-[#0C2E60] font-bold text-[16px] md:text-[18px] mb-1">
+                <h3 className="text-[#0C2E60] font-bold text-[18px] md:text-[20px] mb-1">
                   {step.title}
                 </h3>
                 <p className="text-[#4B5563] text-[13.5px] sm:text-[14.5px] leading-[1.5]">

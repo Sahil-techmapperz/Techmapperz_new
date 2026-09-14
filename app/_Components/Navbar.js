@@ -183,13 +183,13 @@ const Navbar = () => {
             <div className="hidden md:flex items-center gap-3">
               <Link
                 href="/portfolios"
-                className="px-5 py-2.5 min-h-[44px] rounded-xl border border-[#0C2E60] text-[#0C2E60] bg-white hover:bg-[#F6F8FB] font-bold text-sm transition-colors whitespace-nowrap"
+                className="px-5 py-2.5 min-h-[46px] rounded-xl border border-[#0C2E60] text-[#0C2E60] bg-white hover:bg-[#F6F8FB] font-bold text-[15px] transition-colors whitespace-nowrap inline-flex items-center justify-center"
               >
                 View Work
               </Link>
               <button
                 onClick={() => setIsQuoteModalOpen(true)}
-                className="px-5 py-2.5 min-h-[44px] rounded-xl bg-[#1656B8] hover:bg-[#0C2E60] text-white font-bold text-sm shadow-md hover:shadow-lg transition-all whitespace-nowrap"
+                className="px-5 py-2.5 min-h-[46px] rounded-xl bg-[#1656B8] hover:bg-[#0C2E60] text-white font-bold text-[15px] shadow-md hover:shadow-lg transition-all whitespace-nowrap inline-flex items-center justify-center"
               >
                 Discuss Your Project
               </button>
