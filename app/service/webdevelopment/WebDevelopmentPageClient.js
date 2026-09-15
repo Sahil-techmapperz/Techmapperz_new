@@ -41,17 +41,17 @@ import {
 const FaqItem = ({ faq, defaultOpen = false }) => {
   const [open, setOpen] = useState(defaultOpen);
   return (
-    <div className="border-b border-gray-200">
+    <div className="border-b border-[#DDE3EA] last:border-b-0">
       <button
         onClick={() => setOpen(!open)}
         className="w-full text-left py-5 flex items-start justify-between gap-4 group"
         aria-expanded={open}
       >
-        <span className="text-[#0c2e60] font-semibold text-sm md:text-base leading-snug group-hover:text-[#1656b8] transition-colors">
+        <span className="text-[#0C2E60] font-bold text-[16px] md:text-[18px] leading-snug group-hover:text-[#1656B8] transition-colors">
           {faq.q}
         </span>
         <span
-          className={`text-[#1656b8] font-bold text-xl flex-shrink-0 transition-transform duration-300 ${
+          className={`text-[#1656B8] font-bold text-xl flex-shrink-0 transition-transform duration-300 ${
             open ? "rotate-45" : ""
           }`}
         >
@@ -59,7 +59,7 @@ const FaqItem = ({ faq, defaultOpen = false }) => {
         </span>
       </button>
       {open && (
-        <p className="text-gray-600 text-sm md:text-[15px] leading-relaxed pb-5">
+        <p className="text-[#4B5563] text-[15px] sm:text-[16px] leading-[1.65] pb-5">
           {faq.a}
         </p>
       )}
@@ -280,11 +280,11 @@ export default function WebDevelopmentPageClient() {
   ];
 
   return (
-    <div className="bg-white text-gray-900 font-sans antialiased selection:bg-[#1267b1]/10">
+    <div className="bg-white text-[#17202A] selection:bg-[#1656B8]/10">
       <ScrollToTop />
 
       {/* ── HERO SECTION ── */}
-      <section className="relative min-h-[auto] sm:min-h-[85vh] flex flex-col justify-start sm:justify-center items-start text-white pt-32 sm:pt-40 pb-16 sm:pb-28 overflow-hidden bg-[#0a192f]">
+      <section className="relative min-h-[auto] sm:min-h-[85vh] flex flex-col justify-start sm:justify-center items-start text-white pt-32 sm:pt-40 pb-16 sm:pb-28 overflow-hidden bg-[#0C2E60]">
         <Image
           src="/Website_Development_service/Website_Development_banner.png"
           alt="Website Development Services Banner"
@@ -294,7 +294,7 @@ export default function WebDevelopmentPageClient() {
           sizes="100vw"
           className="object-cover object-center pointer-events-none"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/75 to-black/20 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/75 to-black/30 pointer-events-none" />
 
         <div className="relative z-10 max-w-[1600px] w-full mx-auto px-4 md:px-8 lg:px-12 flex flex-col gap-5 sm:gap-6">
           {/* Breadcrumb Navigation */}
@@ -312,31 +312,31 @@ export default function WebDevelopmentPageClient() {
             </ol>
           </nav>
 
-          <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] drop-shadow-sm">
+          <span className="text-[#5EEAD4] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em]">
             WEBSITE DEVELOPMENT COMPANY IN INDIA
           </span>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-bold leading-tight tracking-tight max-w-3xl text-white drop-shadow-md">
+          <h1 className="text-[32px] sm:text-[34px] md:text-[54px] lg:text-[56px] font-bold leading-[1.18] tracking-tight max-w-3xl text-white">
             Website Development Services Built Around Your Business
           </h1>
 
-          <div className="space-y-3 max-w-2xl text-gray-200 text-sm sm:text-base md:text-[17px] leading-relaxed drop-shadow-sm">
+          <div className="space-y-3 max-w-2xl text-[#E8F5F3] text-[16px] md:text-[18px] leading-[1.65]">
             <p>
               A website should help the right visitor understand your business, find relevant evidence and take the next step without unnecessary effort.
             </p>
-            <p className="text-gray-300 text-sm sm:text-[15px]">
+            <p className="text-[#E8F5F3]/90 text-[15px] sm:text-[16px]">
               Techmapperz designs and develops responsive business websites, e-commerce platforms and browser-based applications around the content, users and workflows that matter to each project. We can support a new build or review an existing website that no longer reflects the organisation clearly.
             </p>
           </div>
 
           <div className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-5 mt-2 w-full sm:w-auto">
             <Link href="/contact" className="w-full sm:w-auto">
-              <button className="w-full sm:w-auto py-[12px] px-8 rounded-full border border-[#1656b8] bg-[#1656b8] text-white font-semibold text-[15px] hover:bg-[#1656b8] transition-all duration-300 shadow-md">
-                Discuss Your Website Requirement
+              <button className="inline-flex items-center justify-center gap-2 bg-[#1656B8] hover:bg-[#0C2E60] text-white font-bold text-[15px] sm:text-[16px] px-8 py-3 rounded-full transition-all duration-300 shadow-md hover:shadow-lg min-h-[46px] sm:min-h-[48px] w-full sm:w-auto">
+                Discuss Your Website Requirement &rarr;
               </button>
             </Link>
             <Link href="/portfolios" className="w-full sm:w-auto">
-              <button className="w-full sm:w-auto py-[12px] px-8 rounded-full border border-gray-300 bg-transparent text-white font-semibold text-[15px] hover:bg-white/10 transition-all duration-300">
+              <button className="inline-flex items-center justify-center gap-2 bg-transparent hover:bg-white/10 text-white font-bold text-[15px] sm:text-[16px] px-8 py-3 rounded-full border border-white/60 transition-all duration-300 min-h-[46px] sm:min-h-[48px] w-full sm:w-auto">
                 View Website Projects
               </button>
             </Link>
@@ -345,63 +345,62 @@ export default function WebDevelopmentPageClient() {
       </section>
 
       {/* ── SECTION 2: BUILT FOR CLEARER DECISIONS ── */}
-      <section className="py-16 md:py-24 bg-white border-b border-gray-200">
+      <section className="py-4 md:py-10 bg-white border-t border-[#DDE3EA]">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.2em] text-[#d2292b]">
-                <span className="w-6 h-0.5 bg-[#d2292b] rounded-full" />
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            <div className="lg:col-span-7 space-y-4 sm:space-y-5">
+              <span className="text-[#0F766E] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] block">
                 BUILT FOR CLEARER DECISIONS
-              </div>
+              </span>
 
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0c2e60] leading-tight">
+              <h2 className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-[#0C2E60] leading-[1.2] tracking-tight">
                 A Website Should Make the Next Step Easier
               </h2>
 
-              <p className="text-gray-700 text-base sm:text-lg leading-relaxed font-medium">
+              <p className="text-[#17202A] text-[16px] md:text-[18px] leading-[1.65] font-medium">
                 Most visitors arrive with a small set of questions: What does this company do? Is the experience relevant to my requirement? Can I trust the information? How do I enquire or buy?
               </p>
 
-              <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+              <p className="text-[#4B5563] text-[16px] md:text-[18px] leading-[1.65]">
                 We begin with those questions before choosing page effects or a technology stack. The sitemap, navigation, service pages, project evidence and calls to action are organised around what visitors need to understand and what the client team needs to manage after launch.
               </p>
             </div>
 
             <div className="lg:col-span-5">
-              <div className="bg-[#f8fafc] rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-sm space-y-4">
-                <p className="text-xs font-bold uppercase tracking-wider text-[#0c2e60] mb-2">
+              <div className="bg-[#F6F8FB] rounded-2xl p-6 sm:p-7 border border-[#DDE3EA] shadow-sm space-y-4">
+                <p className="text-xs font-bold uppercase tracking-wider text-[#0C2E60] mb-2">
                   Key Questions Every Visitor Asks
                 </p>
-                <div className="space-y-3">
-                  <div className="flex items-start gap-3 p-3.5 bg-white rounded-xl border border-gray-100 shadow-2xs">
-                    <span className="w-6 h-6 rounded-full bg-[#1656b8]/10 text-[#1656b8] font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
+                <div className="space-y-2.5">
+                  <div className="flex items-start gap-3 p-3.5 bg-white rounded-xl border border-[#DDE3EA] shadow-2xs">
+                    <span className="w-6 h-6 rounded-full bg-[#E8F5F3] text-[#0F766E] border border-[#0F766E]/30 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
                     <div>
-                      <p className="text-sm font-bold text-[#0c2e60]">What does this company do?</p>
-                      <p className="text-xs text-gray-500 mt-0.5">Clear value proposition and core service positioning</p>
+                      <p className="text-sm font-bold text-[#0C2E60]">What does this company do?</p>
+                      <p className="text-xs text-[#4B5563] mt-0.5">Clear value proposition and core service positioning</p>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3 p-3.5 bg-white rounded-xl border border-gray-100 shadow-2xs">
-                    <span className="w-6 h-6 rounded-full bg-[#1656b8]/10 text-[#1656b8] font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
+                  <div className="flex items-start gap-3 p-3.5 bg-white rounded-xl border border-[#DDE3EA] shadow-2xs">
+                    <span className="w-6 h-6 rounded-full bg-[#E8F5F3] text-[#0F766E] border border-[#0F766E]/30 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
                     <div>
-                      <p className="text-sm font-bold text-[#0c2e60]">Is the experience relevant to my requirement?</p>
-                      <p className="text-xs text-gray-500 mt-0.5">Industry case studies and proven project deliverables</p>
+                      <p className="text-sm font-bold text-[#0C2E60]">Is the experience relevant to my requirement?</p>
+                      <p className="text-xs text-[#4B5563] mt-0.5">Industry case studies and proven project deliverables</p>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3 p-3.5 bg-white rounded-xl border border-gray-100 shadow-2xs">
-                    <span className="w-6 h-6 rounded-full bg-[#1656b8]/10 text-[#1656b8] font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
+                  <div className="flex items-start gap-3 p-3.5 bg-white rounded-xl border border-[#DDE3EA] shadow-2xs">
+                    <span className="w-6 h-6 rounded-full bg-[#E8F5F3] text-[#0F766E] border border-[#0F766E]/30 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
                     <div>
-                      <p className="text-sm font-bold text-[#0c2e60]">Can I trust the information?</p>
-                      <p className="text-xs text-gray-500 mt-0.5">Client credentials, testimonials and technical depth</p>
+                      <p className="text-sm font-bold text-[#0C2E60]">Can I trust the information?</p>
+                      <p className="text-xs text-[#4B5563] mt-0.5">Client credentials, testimonials and technical depth</p>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3 p-3.5 bg-white rounded-xl border border-gray-100 shadow-2xs">
-                    <span className="w-6 h-6 rounded-full bg-[#1656b8]/10 text-[#1656b8] font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">4</span>
+                  <div className="flex items-start gap-3 p-3.5 bg-white rounded-xl border border-[#DDE3EA] shadow-2xs">
+                    <span className="w-6 h-6 rounded-full bg-[#E8F5F3] text-[#0F766E] border border-[#0F766E]/30 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">4</span>
                     <div>
-                      <p className="text-sm font-bold text-[#0c2e60]">How do I enquire or buy?</p>
-                      <p className="text-xs text-gray-500 mt-0.5">Frictionless inquiry forms, phone links and clear CTAs</p>
+                      <p className="text-sm font-bold text-[#0C2E60]">How do I enquire or buy?</p>
+                      <p className="text-xs text-[#4B5563] mt-0.5">Frictionless inquiry forms, phone links and clear CTAs</p>
                     </div>
                   </div>
                 </div>
@@ -412,49 +411,47 @@ export default function WebDevelopmentPageClient() {
       </section>
 
       {/* ── SECTION 3: WHAT WE BUILD (SERVICES) ── */}
-      <section className="py-16 md:py-24 bg-white border-b border-gray-200">
+      <section className="py-4 md:py-10 bg-[#F6F8FB] border-t border-[#DDE3EA]">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
           {/* Section Header */}
-          <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-            <div className="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.2em] text-[#d2292b]">
-              <span className="w-6 h-0.5 bg-[#d2292b] rounded-full" />
+          <div className="text-center max-w-3xl mx-auto mb-10 space-y-2">
+            <span className="text-[#0F766E] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] block">
               WHAT WE BUILD
-              <span className="w-6 h-0.5 bg-[#d2292b] rounded-full" />
-            </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0c2e60] tracking-tight">
+            </span>
+            <h2 className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-[#0C2E60] tracking-tight leading-[1.2]">
               Website Solutions for Different Business Requirements
             </h2>
-            <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+            <p className="text-[#4B5563] text-[16px] md:text-[18px] leading-[1.65]">
               The right website format depends on what users need to do, how often the content changes and which systems or people need to support it.
             </p>
           </div>
 
           {/* 6 Services Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service) => {
               const IconComponent = service.icon;
               return (
                 <div
                   key={service.id}
-                  className="group bg-[#f8fafc] rounded-2xl border border-gray-200/80 p-7 shadow-sm hover:shadow-xl hover:border-[#1656b8]/40 transition-all duration-300 flex flex-col justify-between"
+                  className="group bg-white rounded-2xl border border-[#DDE3EA] p-6 sm:p-7 shadow-sm hover:shadow-md hover:border-[#1656B8]/40 transition-all duration-300 flex flex-col justify-between"
                 >
-                  <div className="space-y-4">
-                    <div className="w-12 h-12 rounded-xl bg-white border border-gray-200 flex items-center justify-center text-[#1656b8] group-hover:scale-110 group-hover:bg-[#0c2e60] group-hover:text-white transition-all duration-300">
-                      <IconComponent className="w-6 h-6 text-[#1656b8] group-hover:text-white transition-colors duration-300" />
+                  <div className="space-y-3">
+                    <div className="w-12 h-12 rounded-xl bg-[#F0F4F8] border border-[#DDE3EA] flex items-center justify-center text-[#1656B8] group-hover:bg-[#1656B8] group-hover:text-white transition-all duration-300">
+                      <IconComponent className="w-6 h-6 text-[#1656B8] group-hover:text-white transition-colors duration-300" />
                     </div>
-                    <h3 className="text-xl font-bold text-[#0c2e60] group-hover:text-[#1656b8] transition-colors">
+                    <h3 className="text-[18px] md:text-[20px] font-bold text-[#0C2E60] group-hover:text-[#1656B8] transition-colors">
                       {service.title}
                     </h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">
+                    <p className="text-[#4B5563] text-[15px] sm:text-[16px] leading-[1.65]">
                       {service.desc}
                     </p>
                   </div>
 
-                  <div className="pt-6 mt-6 border-t border-gray-200/60">
+                  <div className="pt-5 mt-5 border-t border-[#DDE3EA]">
                     <ul className="space-y-2">
                       {service.features.map((feat, idx) => (
-                        <li key={idx} className="flex items-center gap-2 text-xs font-medium text-gray-700">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#d2292b] shrink-0" />
+                        <li key={idx} className="flex items-center gap-2 text-xs sm:text-sm font-medium text-[#4B5563]">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#0F766E] shrink-0" />
                           <span>{feat}</span>
                         </li>
                       ))}
@@ -466,64 +463,61 @@ export default function WebDevelopmentPageClient() {
           </div>
 
           {/* Combined CTA */}
-          <div className="mt-12 text-center">
+          <div className="mt-10 text-center">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-[#0c2e60] hover:bg-[#082046] text-white font-bold text-sm sm:text-base shadow-md hover:shadow-lg transition-all duration-200"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full bg-[#1656B8] hover:bg-[#0C2E60] text-white font-bold text-[15px] sm:text-[16px] shadow-md hover:shadow-lg transition-all duration-300 min-h-[46px] w-full sm:w-auto"
             >
-              Discuss Your Website Requirement
-              <FiArrowRight className="w-5 h-5 text-[#8fc2f2]" />
+              Discuss Your Website Requirement &rarr;
             </Link>
           </div>
         </div>
       </section>
 
       {/* ── SECTION 4: WHO WE BUILD FOR ── */}
-      <section className="py-16 md:py-24 bg-white border-b border-gray-200">
+      <section className="py-4 md:py-10 bg-white border-t border-[#DDE3EA]">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
-          <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-            <div className="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.2em] text-[#d2292b]">
-              <span className="w-6 h-0.5 bg-[#d2292b] rounded-full" />
+          <div className="text-center max-w-3xl mx-auto mb-10 space-y-2">
+            <span className="text-[#0F766E] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] block">
               WHO WE BUILD FOR
-              <span className="w-6 h-0.5 bg-[#d2292b] rounded-full" />
-            </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0c2e60] tracking-tight">
+            </span>
+            <h2 className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-[#0C2E60] tracking-tight leading-[1.2]">
               Websites Built for Technical and Project-Based Businesses
             </h2>
-            <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+            <p className="text-[#4B5563] text-[16px] md:text-[18px] leading-[1.65]">
               A survey firm needs to show its deliverables and project experience. An engineering consultancy needs clear capabilities and credentials. We plan each website around the information its clients need before they make contact.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {whoWeBuildFor.map((item, index) => {
               const IconComponent = item.icon;
               return (
                 <div
                   key={index}
-                  className="bg-[#f8fafc] rounded-2xl p-7 border border-gray-200/80 shadow-sm hover:shadow-md hover:border-[#1656b8]/30 transition-all duration-300 flex flex-col justify-between group"
+                  className="bg-[#F6F8FB] rounded-2xl p-6 sm:p-7 border border-[#DDE3EA] shadow-sm hover:shadow-md hover:border-[#1656B8]/30 transition-all duration-300 flex flex-col justify-between group"
                 >
                   <div className="space-y-3">
-                    <div className="w-12 h-12 rounded-xl bg-white border border-gray-200 flex items-center justify-center text-[#1656b8] group-hover:bg-[#1656b8] group-hover:text-white transition-all duration-300">
-                      <IconComponent className="w-6 h-6 text-[#1656b8] group-hover:text-white transition-colors duration-300" />
+                    <div className="w-12 h-12 rounded-xl bg-white border border-[#DDE3EA] shadow-xs flex items-center justify-center text-[#1656B8] group-hover:bg-[#1656B8] group-hover:text-white transition-all duration-300">
+                      <IconComponent className="w-6 h-6 text-[#1656B8] group-hover:text-white transition-colors duration-300" />
                     </div>
-                    <h3 className="text-lg font-bold text-[#0c2e60] group-hover:text-[#1656b8] transition-colors">
+                    <h3 className="text-[18px] md:text-[20px] font-bold text-[#0C2E60] group-hover:text-[#1656B8] transition-colors">
                       {item.title}
                     </h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">
+                    <p className="text-[#4B5563] text-[15px] sm:text-[16px] leading-[1.65]">
                       {item.desc}
                     </p>
                   </div>
 
-                  <div className="mt-5 pt-4 border-t border-gray-200/60">
-                    <p className="text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-2">
+                  <div className="mt-5 pt-4 border-t border-[#DDE3EA]">
+                    <p className="text-[11px] font-bold text-[#4B5563] uppercase tracking-wider mb-2">
                       Website Focus
                     </p>
                     <div className="flex flex-wrap gap-1.5">
                       {item.focus.map((f, i) => (
                         <span
                           key={i}
-                          className="text-xs px-2.5 py-1 rounded-md bg-white border border-gray-200 text-[#0c2e60] font-medium"
+                          className="text-xs px-2.5 py-1 rounded-md bg-white border border-[#DDE3EA] text-[#0C2E60] font-medium"
                         >
                           {f}
                         </span>
@@ -535,25 +529,25 @@ export default function WebDevelopmentPageClient() {
             })}
           </div>
 
-          <div className="mt-12 text-center">
+          <div className="mt-10 text-center">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-[#0c2e60] hover:bg-[#082046] text-white font-bold text-sm sm:text-base shadow-md hover:shadow-lg transition-all duration-200"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full bg-[#1656B8] hover:bg-[#0C2E60] text-white font-bold text-[15px] sm:text-[16px] shadow-md hover:shadow-lg transition-all duration-300 min-h-[46px] w-full sm:w-auto"
             >
-              Discuss Your Website Project →
+              Discuss Your Website Project &rarr;
             </Link>
           </div>
         </div>
       </section>
 
       {/* ── SECTION 5: SELECTED PROJECT EXPERIENCE (Case Study) ── */}
-      <section className="py-12 md:py-20 bg-[#0c2e60] text-white">
+      <section className="py-4 md:py-10 bg-[#0C2E60] text-white border-t border-white/10">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
-          <div className="text-center mb-10 md:mb-12">
-            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-2 block">
+          <div className="text-center mb-10">
+            <span className="text-[#5EEAD4] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] mb-2 block">
               SELECTED PROJECT EXPERIENCE
             </span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
+            <h2 className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-white tracking-tight leading-[1.2]">
               Selected Website &amp; Web Application Work
             </h2>
           </div>
@@ -569,46 +563,58 @@ export default function WebDevelopmentPageClient() {
                 className="object-cover object-top"
               />
             </div>
-            <div className="p-8 md:p-10 lg:p-12 flex flex-col justify-center gap-5">
-              <p className="text-[#6ac045] text-xs font-bold uppercase tracking-widest">
+            <div className="p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col justify-center gap-5">
+              <span className="text-[#5EEAD4] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em]">
                 PUBLISHING &amp; E-COMMERCE
-              </p>
-              <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight">
+              </span>
+              <h3 className="text-[22px] md:text-[28px] font-bold text-white leading-[1.2]">
                 An E-commerce Website Built Around How Readers Find Books
               </h3>
-              <p className="text-blue-100 text-sm md:text-[15px] leading-relaxed">
+              <p className="text-[#E8F5F3] text-[15px] sm:text-[16px] leading-[1.65]">
                 Techmapperz developed an e-commerce website for AA Heli Publishers, bringing the publisher’s book catalogue, promotional collections and online buying journey into one platform.
               </p>
-              <p className="text-blue-200 text-sm md:text-[15px] leading-relaxed">
+              <p className="text-[#E8F5F3] text-[15px] sm:text-[16px] leading-[1.65]">
                 Rather than presenting every title in one long product list, the storefront helps visitors explore books by syllabus, examination, age group and featured collection. The structure supports students, parents and other readers who often arrive with a specific academic requirement in mind.
               </p>
               <div>
                 <p className="text-white font-bold text-xs sm:text-sm uppercase tracking-wider mb-3">
                   PROJECT FOCUS
                 </p>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5 text-blue-100 text-xs sm:text-sm">
-                  <li className="flex items-start gap-2">
-                    <span className="text-[#6ac045] font-bold flex-shrink-0 mt-0.5">&#10003;</span>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-[#E8F5F3] text-[15px]">
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 bg-[#0F766E]/40 text-[#5EEAD4] border border-[#5EEAD4]/40">
+                      <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                    </span>
                     <span>Structured book catalogue</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-[#6ac045] font-bold flex-shrink-0 mt-0.5">&#10003;</span>
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 bg-[#0F766E]/40 text-[#5EEAD4] border border-[#5EEAD4]/40">
+                      <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                    </span>
                     <span>Syllabus and examination categories</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-[#6ac045] font-bold flex-shrink-0 mt-0.5">&#10003;</span>
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 bg-[#0F766E]/40 text-[#5EEAD4] border border-[#5EEAD4]/40">
+                      <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                    </span>
                     <span>Children’s and educational collections</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-[#6ac045] font-bold flex-shrink-0 mt-0.5">&#10003;</span>
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 bg-[#0F766E]/40 text-[#5EEAD4] border border-[#5EEAD4]/40">
+                      <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                    </span>
                     <span>Featured titles and promotional sections</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-[#6ac045] font-bold flex-shrink-0 mt-0.5">&#10003;</span>
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 bg-[#0F766E]/40 text-[#5EEAD4] border border-[#5EEAD4]/40">
+                      <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                    </span>
                     <span>Responsive storefront</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-[#6ac045] font-bold flex-shrink-0 mt-0.5">&#10003;</span>
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 bg-[#0F766E]/40 text-[#5EEAD4] border border-[#5EEAD4]/40">
+                      <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                    </span>
                     <span>Publisher-focused brand presentation</span>
                   </li>
                 </ul>
@@ -618,8 +624,8 @@ export default function WebDevelopmentPageClient() {
                   href="/portfolios/aahelipublishers"
                   className="inline-block w-full sm:w-fit"
                 >
-                  <button className="w-full sm:w-auto py-3 px-7 rounded-full bg-[#6ac045] hover:bg-[#5aad38] text-white font-bold text-sm transition-all duration-300 shadow-md">
-                    View E-commerce Case Study &#8594;
+                  <button className="inline-flex items-center justify-center gap-2 bg-[#1656B8] hover:bg-[#0C2E60] text-white border border-white/20 font-bold text-[15px] sm:text-[16px] px-8 py-3 rounded-full transition-all duration-300 shadow-md min-h-[46px] w-full sm:w-auto">
+                    View E-commerce Case Study &rarr;
                   </button>
                 </Link>
               </div>
@@ -629,44 +635,42 @@ export default function WebDevelopmentPageClient() {
       </section>
 
       {/* ── SECTION 6: HOW WE WORK (DEVELOPMENT PROCESS) ── */}
-      <section className="py-16 md:py-24 bg-white border-b border-gray-200">
+      <section className="py-4 md:py-10 bg-white border-t border-[#DDE3EA]">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
-          <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-            <div className="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.2em] text-[#d2292b]">
-              <span className="w-6 h-0.5 bg-[#d2292b] rounded-full" />
+          <div className="text-center max-w-3xl mx-auto mb-10 space-y-2">
+            <span className="text-[#0F766E] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] block">
               HOW WE WORK
-              <span className="w-6 h-0.5 bg-[#d2292b] rounded-full" />
-            </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0c2e60] tracking-tight">
+            </span>
+            <h2 className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-[#0C2E60] tracking-tight leading-[1.2]">
               From Requirement Review to a Website Ready for Use
             </h2>
-            <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+            <p className="text-[#4B5563] text-[16px] md:text-[18px] leading-[1.65]">
               A transparent, phased delivery approach ensuring alignment from planning through launch.
             </p>
           </div>
 
-          {/* 5 Process Cards with connection line on desktop */}
+          {/* 5 Process Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {workflowSteps.map((step, idx) => {
               const IconComponent = step.icon;
               return (
                 <div
                   key={idx}
-                  className="group relative bg-[#f8fafc] rounded-2xl p-6 border border-gray-200/90 shadow-sm hover:shadow-xl hover:border-[#1656b8]/40 transition-all duration-300 flex flex-col justify-between"
+                  className="group relative bg-[#F6F8FB] rounded-2xl p-6 border border-[#DDE3EA] shadow-sm hover:shadow-md hover:border-[#1656B8]/40 transition-all duration-300 flex flex-col justify-between"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-4">
-                      <div className="w-12 h-12 rounded-xl bg-white border border-gray-200 flex items-center justify-center text-[#1656b8] group-hover:bg-[#1656b8] group-hover:text-white transition-all duration-300">
-                        <IconComponent className="w-6 h-6 text-[#1656b8] group-hover:text-white transition-colors duration-300" />
+                      <div className="w-12 h-12 rounded-xl bg-white border border-[#DDE3EA] shadow-xs flex items-center justify-center text-[#1656B8] group-hover:bg-[#1656B8] group-hover:text-white transition-all duration-300">
+                        <IconComponent className="w-6 h-6 text-[#1656B8] group-hover:text-white transition-colors duration-300" />
                       </div>
-                      <span className="text-2xl font-black text-gray-300 group-hover:text-[#6ac045] transition-colors">
+                      <span className="text-2xl font-black text-gray-300 group-hover:text-[#0F766E] transition-colors">
                         {step.step}
                       </span>
                     </div>
-                    <h3 className="text-base font-bold text-[#0c2e60] mb-2 group-hover:text-[#1656b8] transition-colors">
+                    <h3 className="text-[16px] md:text-[18px] font-bold text-[#0C2E60] mb-2 group-hover:text-[#1656B8] transition-colors">
                       {step.title}
                     </h3>
-                    <p className="text-xs text-gray-600 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-[#4B5563] leading-relaxed">
                       {step.desc}
                     </p>
                   </div>
@@ -675,29 +679,28 @@ export default function WebDevelopmentPageClient() {
             })}
           </div>
 
-          <div className="mt-12 text-center">
+          <div className="mt-10 text-center">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-[#0c2e60] hover:bg-[#082046] text-white font-bold text-sm sm:text-base shadow-md hover:shadow-lg transition-all duration-200"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full bg-[#1656B8] hover:bg-[#0C2E60] text-white font-bold text-[15px] sm:text-[16px] shadow-md hover:shadow-lg transition-all duration-300 min-h-[46px] w-full sm:w-auto"
             >
-              Start with a Requirement Discussion
-              <FiArrowRight className="w-5 h-5 text-[#8fc2f2]" />
+              Start with a Requirement Discussion &rarr;
             </Link>
           </div>
         </div>
       </section>
 
       {/* ── SECTION 7: TECHNOLOGY ── */}
-      <section className="py-12 md:py-16 bg-[#0c2e60] text-white border-b border-white/10">
+      <section className="py-4 md:py-10 bg-[#0C2E60] text-white border-t border-white/10">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12 text-center">
           <div className="max-w-3xl mx-auto mb-8 space-y-2.5">
-            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] block">
+            <span className="text-[#5EEAD4] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] block">
               TECHNOLOGY SELECTED FOR THE PROJECT
             </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            <h2 className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-white tracking-tight leading-[1.2]">
               The Framework Should Support the Requirement, Not Lead It
             </h2>
-            <p className="text-blue-100 text-sm leading-relaxed max-w-2xl mx-auto">
+            <p className="text-[#E8F5F3] text-[15px] sm:text-[16px] leading-[1.65] max-w-2xl mx-auto">
               Technology choices should support performance, content management, security, integrations and long-term maintenance rather than being selected simply because they are fashionable.
             </p>
           </div>
@@ -707,35 +710,33 @@ export default function WebDevelopmentPageClient() {
       </section>
 
       {/* ── SECTION 8: WHY TECHMAPPERZ ── */}
-      <section className="py-16 md:py-24 bg-white border-b border-gray-200">
+      <section className="py-4 md:py-10 bg-white border-t border-[#DDE3EA]">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
-          <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-            <div className="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.2em] text-[#d2292b]">
-              <span className="w-6 h-0.5 bg-[#d2292b] rounded-full" />
+          <div className="text-center max-w-3xl mx-auto mb-10 space-y-2">
+            <span className="text-[#0F766E] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] block">
               WHY TECHMAPPERZ
-              <span className="w-6 h-0.5 bg-[#d2292b] rounded-full" />
-            </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0c2e60] tracking-tight">
+            </span>
+            <h2 className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-[#0C2E60] tracking-tight leading-[1.2]">
               A Practical Development Partner for Content, Function and Long-Term Use
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {whyChooseUs.map((item, idx) => {
               const IconComponent = item.icon;
               return (
                 <div
                   key={idx}
-                  className="bg-[#f8fafc] rounded-2xl p-7 border border-gray-200/80 shadow-sm hover:shadow-md hover:border-[#1656b8]/30 transition-all duration-300 flex flex-col justify-between group"
+                  className="bg-[#F6F8FB] rounded-2xl p-6 sm:p-7 border border-[#DDE3EA] shadow-sm hover:shadow-md hover:border-[#1656B8]/30 transition-all duration-300 flex flex-col justify-between group"
                 >
                   <div className="space-y-3">
-                    <div className="w-12 h-12 rounded-xl bg-white border border-gray-200 flex items-center justify-center text-[#1656b8] group-hover:bg-[#1656b8] group-hover:text-white transition-all duration-300">
-                      <IconComponent className="w-6 h-6 text-[#1656b8] group-hover:text-white transition-colors duration-300" />
+                    <div className="w-12 h-12 rounded-xl bg-white border border-[#DDE3EA] shadow-xs flex items-center justify-center text-[#1656B8] group-hover:bg-[#1656B8] group-hover:text-white transition-all duration-300">
+                      <IconComponent className="w-6 h-6 text-[#1656B8] group-hover:text-white transition-colors duration-300" />
                     </div>
-                    <h3 className="text-lg font-bold text-[#0c2e60] group-hover:text-[#1656b8] transition-colors">
+                    <h3 className="text-[18px] md:text-[20px] font-bold text-[#0C2E60] group-hover:text-[#1656B8] transition-colors">
                       {item.title}
                     </h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">
+                    <p className="text-[#4B5563] text-[15px] sm:text-[16px] leading-[1.65]">
                       {item.desc}
                     </p>
                   </div>
@@ -747,18 +748,18 @@ export default function WebDevelopmentPageClient() {
       </section>
 
       {/* ── SECTION 9: FAQ ACCORDION ── */}
-      <section className="py-16 md:py-24 bg-[#f8fafc] border-b border-gray-200">
-        <div className="max-w-[1000px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20">
-          <div className="text-center mb-12">
-            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-2 block">
+      <section className="py-4 md:py-10 bg-[#F6F8FB] border-t border-[#DDE3EA]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-8">
+          <div className="text-center mb-10">
+            <span className="text-[#0F766E] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] mb-2 block">
               FREQUENTLY ASKED QUESTIONS
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] tracking-tight">
+            <h2 className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-[#0C2E60] tracking-tight leading-[1.2]">
               Frequently Asked Questions
             </h2>
           </div>
 
-          <div className="space-y-3 bg-white p-6 sm:p-10 rounded-3xl border border-gray-200/80 shadow-sm">
+          <div className="bg-white p-6 sm:p-8 rounded-2xl border border-[#DDE3EA] shadow-sm divide-y divide-[#DDE3EA]">
             {faqs.map((faq, index) => (
               <FaqItem key={index} faq={faq} defaultOpen={index === 0} />
             ))}
@@ -767,27 +768,33 @@ export default function WebDevelopmentPageClient() {
       </section>
 
       {/* ── SECTION 10: FINAL CALL TO ACTION BANNER ── */}
-      <section className="py-10 md:py-16 bg-white border-t border-gray-100" id="contact">
+      <section className="relative py-4 md:py-10 bg-white border-t border-[#DDE3EA]" id="contact">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
-          <div className="bg-gradient-to-br from-[#0c2e60] via-[#10477b] to-[#0b6b69] rounded-2xl sm:rounded-[32px] p-8 md:p-14 text-white relative overflow-hidden text-center shadow-xl">
+          <div className="bg-gradient-to-br from-[#0C2E60] via-[#0d4277] to-[#0F766E] rounded-2xl sm:rounded-[24px] p-6 sm:p-8 md:p-10 text-white relative overflow-hidden flex flex-col lg:flex-row lg:items-center justify-between gap-6 md:gap-8 shadow-xl border border-white/10">
             <div className="absolute right-[-80px] top-[-120px] w-[360px] h-[360px] border border-white/10 rounded-full shadow-[0_0_0_48px_rgba(255,255,255,0.05),0_0_0_96px_rgba(255,255,255,0.03)] pointer-events-none" />
-            <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
-              <div className="inline-flex items-center gap-2 text-[#6ac045] text-xs sm:text-sm font-bold uppercase tracking-[0.2em] mb-4">
-                <span className="w-6 h-[2px] bg-[#6ac045]" />
+            <div className="space-y-2.5 max-w-2xl relative z-10 text-left">
+              <span className="text-[#5EEAD4] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] block">
                 START YOUR WEBSITE PROJECT
-                <span className="w-6 h-[2px] bg-[#6ac045]" />
-              </div>
-              <h2 className="text-2xl sm:text-3xl md:text-[38px] font-bold text-white tracking-tight leading-tight mb-5">
+              </span>
+              <h2 className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-white tracking-tight leading-[1.2]">
                 Planning a New Website or Fixing One That No Longer Fits Your Business?
               </h2>
-              <p className="text-white/90 text-sm sm:text-base md:text-[16px] leading-relaxed mb-8 font-normal">
-                Share whatever information is available—your business services, required pages or web application workflows, reference designs, and expected timeline. If the scope is still being prepared, send what you have and we’ll help confirm the remaining inputs.
+              <p className="text-[#E8F5F3] text-[15px] sm:text-[16px] leading-[1.65] font-normal">
+                Share whatever information is available&mdash;your business services, required pages or web application workflows, reference designs, and expected timeline. If the scope is still being prepared, send what you have and we’ll help confirm the remaining inputs.
               </p>
+            </div>
+            <div className="flex flex-col sm:flex-row lg:flex-col gap-2.5 sm:gap-3 relative z-10 shrink-0 w-full lg:w-auto self-stretch sm:self-start lg:self-center">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-[#C92828] hover:bg-[#b02222] text-white font-bold text-sm sm:text-base shadow-lg shadow-[#C92828]/30 transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 min-h-[46px] sm:min-h-[48px] rounded-xl font-bold text-[15px] sm:text-[16px] text-white bg-[#1656B8] hover:bg-[#0C2E60] border border-white/20 shadow-sm hover:-translate-y-0.5 transition-all duration-200 text-center whitespace-nowrap w-full sm:w-auto"
               >
-                Discuss Your Website Requirement &#8594;
+                Discuss Your Website Requirement &rarr;
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center px-6 sm:px-8 py-3 min-h-[46px] sm:min-h-[48px] rounded-xl font-bold text-[15px] sm:text-[16px] text-[#0C2E60] bg-white border border-[#0C2E60] hover:bg-slate-50 hover:-translate-y-0.5 transition-all duration-200 text-center whitespace-nowrap w-full sm:w-auto"
+              >
+                Send Your Scope of Work
               </Link>
             </div>
           </div>

@@ -1,9 +1,8 @@
-import CriticalCSS from './_Components/CriticalCSS';
 import MarketingScripts from './_Components/MarketingScripts';
 import "./globals.css";
 import dynamic from 'next/dynamic';
 import Script from 'next/script';
-import { IBM_Plex_Sans, Poppins } from 'next/font/google';
+import { IBM_Plex_Sans } from 'next/font/google';
 
 // Configure the IBM Plex Sans font
 const ibmPlexSans = IBM_Plex_Sans({
@@ -13,16 +12,9 @@ const ibmPlexSans = IBM_Plex_Sans({
   variable: '--font-ibm-plex-sans',
 });
 
-const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['400', '600', '700'],
-  display: 'swap',
-  variable: '--font-poppins',
-});
-
 // Conditional layout component that handles Navbar/Footer based on route
 const ConditionalLayout = dynamic(() => import('./_Components/ConditionalLayout'));
-const ToastContainer = dynamic(() => import('./_Components/Toast'));
+import ToastContainer from './_Components/Toast';
 
 // Enhanced SEO metadata for the root layout
 export const metadata = {
@@ -128,7 +120,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${ibmPlexSans.variable} ${poppins.variable}`}>
+    <html lang="en" suppressHydrationWarning className={ibmPlexSans.variable}>
       <head>
         {/* Preload critical assets */}
         <link rel="preload" href="/logo.webp" as="image" />
@@ -187,7 +179,6 @@ export default function RootLayout({ children }) {
       </head>
 
       <body suppressHydrationWarning style={{ fontFamily: "var(--font-primary)" }}>
-        <CriticalCSS />
         <a href="#main-content" className="skip-link">Skip to main content</a>
         <ConditionalLayout>{children}</ConditionalLayout>
 

@@ -153,20 +153,28 @@ export const metadata = {
 
 
 
+export const revalidate = 3600;
+
 const Home = async () => {
   let latestBanner = null;
   try {
-    await connectDB();
-    // Try to find specifically the Home Hero banner, otherwise fallback to any banner
-    let banners = await Banner.find({ pageName: "Home Hero" }).sort({ _id: -1 }).limit(1).lean();
+    const fetchBannerPromise = (async () => {
+      await connectDB();
+      // Try to find specifically the Home Hero banner, otherwise fallback to any banner
+      let banners = await Banner.find({ pageName: "Home Hero" }).sort({ _id: -1 }).limit(1).lean();
 
-    if (!banners || banners.length === 0) {
-      banners = await Banner.find().sort({ _id: -1 }).limit(1).lean();
-    }
-    if (banners && banners.length > 0) {
-      // lean() returns plain JS object but we stringify and parse to avoid Mongoose doc issues across server boundaries
-      latestBanner = JSON.parse(JSON.stringify(banners[0]));
-    }
+      if (!banners || banners.length === 0) {
+        banners = await Banner.find().sort({ _id: -1 }).limit(1).lean();
+      }
+      if (banners && banners.length > 0) {
+        // lean() returns plain JS object but we stringify and parse to avoid Mongoose doc issues across server boundaries
+        return JSON.parse(JSON.stringify(banners[0]));
+      }
+      return null;
+    })();
+
+    const timeoutPromise = new Promise((resolve) => setTimeout(() => resolve(null), 1500));
+    latestBanner = await Promise.race([fetchBannerPromise, timeoutPromise]);
   } catch (error) {
     console.error("Failed to fetch banner data:", error);
   }

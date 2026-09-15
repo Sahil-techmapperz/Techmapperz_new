@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import moment from 'moment';
+import { formatDate } from '@/app/lib/dateFormat';
 
 const RelatedPosts = ({ relatedPosts }) => {
   return (
@@ -11,7 +11,7 @@ const RelatedPosts = ({ relatedPosts }) => {
           <Image src={recent.images[0]} alt={recent.title} width={96} height={96} className="w-24 h-24 object-cover rounded-md" sizes="96px" />
           <div>
             <h1><Link href={`/blog/${recent._id}`}>{recent.title}</Link></h1>
-            <h1>{moment(recent.created_at).format('YYYY-MM-DD')}</h1>
+            <h1>{formatDate(recent.created_at)}</h1>
           </div>
         </div>
       )) : <h1 className="text-center">No related posts found</h1>}

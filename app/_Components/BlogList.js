@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import moment from 'moment';
+import { formatDate } from '@/app/lib/dateFormat';
 import PaginationButtons from './PaginationButtons';
 import getallblogs from '@/lib/getallblogs';
 
@@ -32,7 +32,7 @@ const BlogList = async ({ page }) => {
                 <div className="flex justify-between text-xs  mb-2">
                   <span>{`BY ${post.author?.name?.toUpperCase() ?? "Unknown"}`}</span>
                   <span>{`${post.category}`}</span>
-                  <span>{moment(post.created_at).format('YYYY-MM-DD')}</span>
+                  <span>{formatDate(post.created_at)}</span>
                 </div>
                 <h3 className="text-lg font-semibold mb-2">
                   <Link href={`/blog/${post._id}`} className="hover:underline">

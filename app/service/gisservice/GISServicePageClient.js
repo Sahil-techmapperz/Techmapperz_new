@@ -284,16 +284,16 @@ const FaqItem = ({ faq, index, defaultOpen = false }) => {
         onClick={() => setOpen(!open)}
         className="w-full text-left py-5 flex items-start justify-between gap-4 group"
       >
-        <span className="text-white font-semibold text-base md:text-lg leading-snug group-hover:text-[#6ac045] transition-colors">
+        <span className="text-white font-semibold text-[16px] md:text-[18px] leading-snug group-hover:text-[#5EEAD4] transition-colors">
           {faq.q}
         </span>
-        <span className={`text-[#6ac045] font-bold text-xl flex-shrink-0 transition-transform duration-300 ${open ? "rotate-45" : ""}`}>
+        <span className={`text-[#5EEAD4] font-bold text-xl flex-shrink-0 transition-transform duration-300 ${open ? "rotate-45" : ""}`}>
           +
         </span>
       </button>
       {open && (
         <div id={panelId} role="region" aria-labelledby={buttonId}>
-          <p className="text-blue-100/90 text-base leading-relaxed pb-5">
+          <p className="text-[#E8F5F3] text-[15px] sm:text-[16px] leading-[1.65] pb-5">
             {faq.a}
           </p>
         </div>
@@ -325,28 +325,28 @@ export default function GISServicePageClient() {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/35 pointer-events-none" />
         <div className="relative z-10 max-w-[1600px] w-full mx-auto px-4 md:px-8 lg:px-12 flex flex-col gap-5 sm:gap-6">
-          <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] drop-shadow-sm">
+          <span className="text-[#5EEAD4] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] drop-shadow-sm">
             GIS MAPPING &amp; DATA SERVICES
           </span>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-bold leading-tight tracking-tight max-w-3xl drop-shadow-md">
+          <h1 className="text-[32px] sm:text-[34px] md:text-[54px] lg:text-[56px] font-bold leading-[1.18] tracking-tight max-w-3xl drop-shadow-md">
             GIS Mapping Services for Clearer Planning, Analysis and Project Delivery
           </h1>
-          <p className="text-gray-200 text-base md:text-[17px] max-w-2xl leading-relaxed font-normal drop-shadow-sm">
+          <p className="text-[#E8F5F3] text-[16px] md:text-[18px] max-w-2xl leading-[1.65] font-normal drop-shadow-sm">
             Techmapperz converts satellite and drone imagery, LiDAR point clouds, survey inputs, CAD drawings, scanned maps and existing GIS databases into structured spatial information for infrastructure, utilities, mining, land administration and planning projects.
           </p>
-          <p className="text-white/95 text-base md:text-[17px] max-w-2xl leading-relaxed font-medium drop-shadow-sm">
+          <p className="text-white/95 text-[16px] md:text-[18px] max-w-2xl leading-[1.65] font-medium drop-shadow-sm">
             Our services cover GIS data digitisation, feature extraction, utility and asset mapping, CAD/GIS conversion, spatial analysis and geospatial database preparation—organised around the required layers, attributes, coordinate system and delivery format.
           </p>
           <div className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-5 mt-2 w-full sm:w-auto">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center py-[13px] px-8 rounded-full bg-[#1656b8] hover:bg-[#0c2e60] text-white font-semibold text-[15px] shadow-lg hover:shadow-xl transition-all duration-300 text-center w-full sm:w-auto"
+              className="inline-flex items-center justify-center gap-2 bg-[#1656B8] hover:bg-[#0C2E60] text-white font-bold text-[15px] sm:text-[16px] px-8 py-3 rounded-full transition-all duration-300 shadow-md hover:shadow-lg min-h-[46px] sm:min-h-[48px] w-full sm:w-auto"
             >
               Discuss Your GIS Project
             </Link>
             <a
               href="#services"
-              className="inline-flex items-center justify-center py-[12px] px-8 rounded-full border border-gray-300 bg-transparent text-white font-semibold text-[15px] hover:bg-white/15 transition-all duration-300 text-center w-full sm:w-auto"
+              className="inline-flex items-center justify-center gap-2 border border-white/40 bg-white/10 hover:bg-white/20 text-white font-bold text-[15px] sm:text-[16px] px-8 py-3 rounded-full transition-all duration-300 min-h-[46px] sm:min-h-[48px] w-full sm:w-auto"
             >
               Explore Our GIS Services
             </a>
@@ -355,23 +355,23 @@ export default function GISServicePageClient() {
       </section>
 
       {/* 2. INTRODUCTION SECTION */}
-      <section className="py-10 md:py-16 bg-[#04203a] text-white" id="about">
+      <section className="relative py-4 md:py-10 bg-[#0C2E60] text-white border-t border-white/10" id="about">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
 
             {/* Left Narrative */}
             <div>
-              <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-3 block">
+              <span className="text-[#5EEAD4] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] mb-3 block">
                 FROM SOURCE DATA TO USABLE GIS
               </span>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-tight mb-4">
+              <h2 className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-white leading-[1.2] tracking-tight mb-4">
                 GIS Data Prepared for the Way Your Project Works
               </h2>
-              <p className="text-blue-100/90 text-base md:text-[17px] leading-relaxed mb-4">
+              <p className="text-[#E8F5F3] text-[16px] md:text-[18px] leading-[1.65] mb-4">
                 GIS requirements differ from one project to another. Infrastructure teams may need CAD-compatible base maps, utility operators may require connected asset networks with structured attributes, while land and planning assignments may depend on classified layers, parcel information or spatial analysis.
               </p>
-              <p className="text-blue-100/90 text-base md:text-[17px] leading-relaxed mb-6">
-                Before production begins, Techmapperz reviews the available source data, coordinate system, mapping scale, feature catalogue, attribute structure, topology rules and required delivery format. This helps us prepare GIS data that fits the client’s engineering, planning, analysis or asset-management workflow.
+              <p className="text-[#E8F5F3] text-[16px] md:text-[18px] leading-[1.65] mb-6">
+                Before production begins, Techmapperz reviews the available source data, coordinate system, mapping scale, feature catalogue, attribute structure, topology rules and required delivery format. This helps us prepare GIS data that fits the client's engineering, planning, analysis or asset-management workflow.
               </p>
             </div>
 
@@ -393,36 +393,36 @@ export default function GISServicePageClient() {
           {/* Small Strip Banner */}
           <div className="mt-8 bg-white/10 backdrop-blur-md rounded-2xl px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-6 shadow-md border border-white/15">
             <div>
-              <p className="text-white font-bold text-lg mb-1">Already have GIS, CAD or survey data?</p>
-              <p className="text-blue-200 text-sm md:text-base">We can also review, clean, restructure, convert or update existing datasets without rebuilding the project from the beginning.</p>
+              <p className="text-white font-bold text-[18px] mb-1">Already have GIS, CAD or survey data?</p>
+              <p className="text-[#E8F5F3] text-[15px] md:text-[16px] leading-[1.65]">We can also review, clean, restructure, convert or update existing datasets without rebuilding the project from the beginning.</p>
             </div>
             <Link
               href="/contact"
-              className="inline-flex flex-shrink-0 items-center justify-center gap-2 bg-[#6ac045] hover:bg-[#5aad38] text-white font-bold text-sm px-7 py-3 rounded-full transition-all duration-300 shadow-md w-full md:w-auto"
+              className="inline-flex flex-shrink-0 items-center justify-center gap-2 bg-[#1656B8] hover:bg-white hover:text-[#0C2E60] text-white font-bold text-[15px] px-7 py-3 rounded-full transition-all duration-300 shadow-md min-h-[46px] w-full md:w-auto"
             >
-              Share Your Existing Data &#8594;
+              Share Your Existing Data &rarr;
             </Link>
           </div>
         </div>
       </section>
 
       {/* 3. GIS SERVICES LIST */}
-      <section className="py-10 md:py-16 bg-white" id="services">
+      <section className="relative py-4 md:py-10 bg-white border-t border-[#DDE3EA]" id="services">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
 
           <div className="text-center mb-10 max-w-3xl mx-auto">
-            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-2 block">
+            <span className="text-[#0F766E] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] mb-2 block">
               OUR GIS SERVICES
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] tracking-tight">
+            <h2 className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-[#0C2E60] leading-[1.2] tracking-tight">
               GIS Production and Analysis for Different Project Requirements
             </h2>
-            <p className="text-gray-600 text-base md:text-[17px] mt-3 leading-relaxed">
+            <p className="text-[#4B5563] text-[16px] md:text-[18px] font-normal leading-[1.65] mt-2.5">
               Techmapperz supports core GIS service areas, covering data digitisation, feature extraction, utility and land mapping, spatial analysis and land-use mapping.
             </p>
           </div>
 
-          <div className="flex flex-col divide-y divide-gray-100">
+          <div className="flex flex-col divide-y divide-[#DDE3EA]">
             {gisServices.map((svc, i) => (
               <div
                 key={svc.title}
@@ -439,17 +439,19 @@ export default function GISServicePageClient() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                 </div>
                 <div className="flex flex-col flex-1">
-                  <h3 className="text-2xl md:text-3xl font-bold text-[#0c2e60] mb-4 leading-tight">
+                  <h3 className="text-[20px] md:text-[24px] font-bold text-[#0C2E60] mb-4 leading-[1.25]">
                     {svc.title}
                   </h3>
-                  <p className="text-gray-600 text-base leading-relaxed mb-6">
+                  <p className="text-[#4B5563] text-[15px] sm:text-[16px] leading-[1.65] mb-6">
                     {svc.description}
                   </p>
 
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5 mb-8">
                     {svc.items.map((item, j) => (
-                      <li key={j} className="flex items-start gap-2 text-gray-700 text-sm md:text-base">
-                        <span className="text-[#6ac045] font-bold mt-0.5 flex-shrink-0">&#10003;</span>
+                      <li key={j} className="flex items-start gap-2 text-[#17202A] text-[15px]">
+                        <span className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 bg-[#E8F5F3] text-[#0F766E] border border-[#0F766E]/30">
+                          <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                        </span>
                         {item}
                       </li>
                     ))}
@@ -457,9 +459,9 @@ export default function GISServicePageClient() {
 
                   <Link
                     href={svc.link}
-                    className="inline-flex items-center justify-center gap-2 bg-[#0c2e60] hover:bg-[#082046] text-white font-bold text-sm px-8 py-3.5 rounded-full transition-all duration-300 shadow-md w-full sm:w-fit"
+                    className="inline-flex items-center justify-center gap-2 bg-[#1656B8] hover:bg-[#0C2E60] text-white font-bold text-[15px] sm:text-[16px] px-8 py-3 rounded-full transition-all duration-300 shadow-md hover:shadow-lg min-h-[46px] sm:min-h-[48px] w-full sm:w-fit"
                   >
-                    {svc.cta} &#8594;
+                    {svc.cta} &rarr;
                   </Link>
                 </div>
               </div>
@@ -470,34 +472,36 @@ export default function GISServicePageClient() {
       </section>
 
       {/* 4. SOURCE FORMATS SECTION */}
-      <section className="py-10 md:py-16 bg-[#04203a] text-white" id="source-data">
+      <section className="relative py-4 md:py-10 bg-[#0C2E60] text-white border-t border-white/10" id="source-data">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
 
           <div className="text-center mb-10">
-            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-2 block">
+            <span className="text-[#5EEAD4] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] mb-2 block">
               START WITH THE DATA YOU HAVE
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+            <h2 className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-white leading-[1.2] tracking-tight">
               GIS Projects Can Begin with Many Different Source Formats
             </h2>
-            <p className="text-blue-100/80 text-base md:text-[17px] mt-2 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-[#E8F5F3] text-[16px] md:text-[18px] font-normal leading-[1.65] mt-2.5 max-w-2xl mx-auto">
               You do not need to convert all of your information before sharing a requirement with us. We review the available source data and determine what is suitable for the required output.
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             {sourceDataCategories.map((cat, i) => (
-              <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-6 shadow-sm hover:border-[#6ac045]/50 hover:bg-white/10 transition-all">
+              <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-6 shadow-sm hover:border-[#5EEAD4]/50 hover:bg-white/10 transition-all">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="w-8 h-8 rounded-full bg-[#1656b8] text-white font-bold text-xs flex items-center justify-center">
+                  <span className="w-8 h-8 rounded-full bg-[#1656B8] text-white font-bold text-xs flex items-center justify-center">
                     0{i + 1}
                   </span>
-                  <h3 className="text-white font-bold text-base md:text-lg">{cat.title}</h3>
+                  <h3 className="text-white font-bold text-[18px] md:text-[20px]">{cat.title}</h3>
                 </div>
                 <ul className="flex flex-col gap-2">
                   {cat.items.map((item, j) => (
-                    <li key={j} className="flex items-center gap-2 text-blue-100/90 text-sm md:text-base">
-                      <span className="text-[#6ac045] font-bold">&#10003;</span>
+                    <li key={j} className="flex items-center gap-2 text-[#E8F5F3] text-[15px]">
+                      <span className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 bg-[#0F766E]/40 text-[#5EEAD4] border border-[#5EEAD4]/40">
+                        <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                      </span>
                       {item}
                     </li>
                   ))}
@@ -509,9 +513,9 @@ export default function GISServicePageClient() {
           <div className="text-center">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center py-3.5 px-8 rounded-full bg-[#1656b8] hover:bg-[#10477b] text-white font-bold text-sm transition-all duration-300 shadow-md w-full sm:w-auto"
+              className="inline-flex items-center justify-center gap-2 bg-[#1656B8] hover:bg-white hover:text-[#0C2E60] text-white font-bold text-[15px] sm:text-[16px] px-8 py-3 rounded-full transition-all duration-300 shadow-md min-h-[46px] sm:min-h-[48px] w-full sm:w-auto"
             >
-              Share Your Source Data &#8594;
+              Share Your Source Data &rarr;
             </Link>
           </div>
 
@@ -519,26 +523,26 @@ export default function GISServicePageClient() {
       </section>
 
       {/* 5. WORKFLOW SECTION */}
-      <section className="py-10 md:py-16 bg-white" id="workflow">
+      <section className="relative py-4 md:py-10 bg-white border-t border-[#DDE3EA]" id="workflow">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
 
           <div className="text-center mb-10">
-            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-2 block">
+            <span className="text-[#0F766E] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] mb-2 block">
               HOW WE WORK
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] tracking-tight">
+            <h2 className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-[#0C2E60] leading-[1.2] tracking-tight">
               From Requirement Review to Final GIS Delivery
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             {workflowSteps.map((step, i) => (
-              <div key={i} className="bg-[#f8fafc] rounded-2xl p-6 border border-gray-100 hover:shadow-md transition-shadow">
-                <div className="w-10 h-10 rounded-full bg-[#0c2e60] flex items-center justify-center text-white font-bold text-sm mb-4">
+              <div key={i} className="bg-[#F6F8FB] rounded-2xl p-6 border border-[#DDE3EA] hover:shadow-md transition-shadow">
+                <div className="w-10 h-10 rounded-full bg-[#0C2E60] flex items-center justify-center text-white font-bold text-[13px] mb-4">
                   {step.num}
                 </div>
-                <h3 className="text-[#0c2e60] font-bold text-base md:text-lg mb-2">{step.title}</h3>
-                <p className="text-gray-600 text-sm md:text-base leading-relaxed">{step.desc}</p>
+                <h3 className="text-[#0C2E60] font-bold text-[18px] md:text-[20px] mb-2">{step.title}</h3>
+                <p className="text-[#4B5563] text-[15px] leading-[1.65]">{step.desc}</p>
               </div>
             ))}
           </div>
@@ -546,9 +550,9 @@ export default function GISServicePageClient() {
           <div className="text-center">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center py-3.5 px-8 rounded-full bg-[#0c2e60] hover:bg-[#082046] text-white font-bold text-sm transition-all duration-300 shadow-md w-full sm:w-auto"
+              className="inline-flex items-center justify-center gap-2 bg-[#1656B8] hover:bg-[#0C2E60] text-white font-bold text-[15px] sm:text-[16px] px-8 py-3 rounded-full transition-all duration-300 shadow-md hover:shadow-lg min-h-[46px] sm:min-h-[48px] w-full sm:w-auto"
             >
-              Discuss Your GIS Workflow &#8594;
+              Discuss Your GIS Workflow &rarr;
             </Link>
           </div>
 
@@ -556,17 +560,17 @@ export default function GISServicePageClient() {
       </section>
 
       {/* 6. DELIVERY FORMATS SECTION */}
-      <section className="py-10 md:py-16 bg-[#04203a] text-white" id="deliverables">
+      <section className="relative py-4 md:py-10 bg-[#0C2E60] text-white border-t border-white/10" id="deliverables">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
 
           <div className="text-center mb-8">
-            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-2 block">
+            <span className="text-[#5EEAD4] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] mb-2 block">
               DELIVERY FORMATS
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+            <h2 className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-white leading-[1.2] tracking-tight">
               GIS Outputs Prepared for Your Existing Workflow
             </h2>
-            <p className="text-blue-100/80 text-base md:text-[17px] mt-2 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-[#E8F5F3] text-[16px] md:text-[18px] font-normal leading-[1.65] mt-2.5 max-w-2xl mx-auto">
               Final deliverables depend on the project specification and available source information.
             </p>
           </div>
@@ -578,9 +582,9 @@ export default function GISServicePageClient() {
                 type="button"
                 key={idx}
                 onClick={() => setActiveFormatTab(cat)}
-                className={`px-5 py-2.5 rounded-full font-bold text-xs border transition-all duration-200 ${activeFormatTab === cat
-                    ? 'bg-[#1656b8] border-[#1656b8] text-white shadow-md'
-                    : 'bg-white/5 border-white/15 text-blue-100 hover:border-white/40 hover:text-white'
+                className={`px-5 py-2.5 rounded-full font-bold text-[13px] border transition-all duration-200 min-h-[40px] ${activeFormatTab === cat
+                    ? 'bg-[#1656B8] border-[#1656B8] text-white shadow-md'
+                    : 'bg-white/5 border-white/15 text-[#E8F5F3] hover:border-white/40 hover:text-white'
                   }`}
               >
                 {cat}
@@ -590,10 +594,10 @@ export default function GISServicePageClient() {
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
             {filteredFormats.map((fmt, i) => (
-              <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:border-[#6ac045]/50 hover:bg-white/10 transition-all shadow-sm">
-                <span className="text-[10px] font-bold text-[#6ac045] uppercase tracking-wider block mb-1">{fmt.cat}</span>
-                <strong className="block text-base text-white font-bold leading-tight">{fmt.name}</strong>
-                <span className="block text-xs text-blue-200/70 mt-1">{fmt.ext}</span>
+              <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:border-[#5EEAD4]/50 hover:bg-white/10 transition-all shadow-sm">
+                <span className="text-[10px] font-bold text-[#5EEAD4] uppercase tracking-wider block mb-1">{fmt.cat}</span>
+                <strong className="block text-[15px] text-white font-bold leading-tight">{fmt.name}</strong>
+                <span className="block text-[12px] text-[#E8F5F3]/70 mt-1">{fmt.ext}</span>
               </div>
             ))}
           </div>
@@ -602,17 +606,17 @@ export default function GISServicePageClient() {
       </section>
 
       {/* 7. INDUSTRIES / SECTORS SECTION */}
-      <section className="py-10 md:py-16 bg-white" id="sectors">
+      <section className="relative py-4 md:py-10 bg-white border-t border-[#DDE3EA]" id="sectors">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
 
           <div className="text-center mb-10">
-            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-2 block">
+            <span className="text-[#0F766E] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] mb-2 block">
               INDUSTRIES
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] tracking-tight">
+            <h2 className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-[#0C2E60] leading-[1.2] tracking-tight">
               GIS Services Aligned with Industry Requirements
             </h2>
-            <p className="text-gray-600 text-base md:text-[17px] mt-2 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-[#4B5563] text-[16px] md:text-[18px] font-normal leading-[1.65] mt-2.5 max-w-3xl mx-auto">
               Every sector works with different source data, feature definitions, technical specifications and delivery formats. Techmapperz adapts its GIS production workflow to the specific requirements of infrastructure, utilities, mining, land administration, urban planning and geospatial project teams.
             </p>
           </div>
@@ -623,15 +627,15 @@ export default function GISServicePageClient() {
               return (
                 <div
                   key={i}
-                  className="bg-[#f8fafc] text-gray-900 border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-[#1656b8]/30 transition-all duration-300 group"
+                  className="bg-[#F6F8FB] border border-[#DDE3EA] rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-[#1656B8]/30 transition-all duration-300 group"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-white border border-gray-200/80 shadow-xs flex items-center justify-center mb-4 text-[#1656b8] group-hover:bg-[#1656b8] group-hover:text-white transition-all duration-300">
+                  <div className="w-12 h-12 rounded-xl bg-white border border-[#DDE3EA] shadow-sm flex items-center justify-center mb-4 text-[#1656B8] group-hover:bg-[#1656B8] group-hover:text-white transition-all duration-300">
                     <Icon className="w-6 h-6" />
                   </div>
-                  <h3 className="font-bold text-base md:text-lg mb-2 text-[#0c2e60] group-hover:text-[#1656b8] transition-colors">
+                  <h3 className="font-bold text-[18px] md:text-[20px] mb-2 text-[#0C2E60] leading-[1.25]">
                     {ind.title}
                   </h3>
-                  <p className="text-sm md:text-base leading-relaxed text-gray-600">
+                  <p className="text-[15px] sm:text-[16px] leading-[1.65] text-[#4B5563]">
                     {ind.desc}
                   </p>
                 </div>
@@ -643,14 +647,14 @@ export default function GISServicePageClient() {
       </section>
 
       {/* 8. FEATURED GIS PROJECT EXPERIENCE */}
-      <section className="py-10 md:py-16 bg-[#04203a] text-white" id="experience">
+      <section className="relative py-4 md:py-10 bg-[#0C2E60] text-white border-t border-white/10" id="experience">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
 
           <div className="text-center mb-10">
-            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-2 block">
+            <span className="text-[#5EEAD4] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] mb-2 block">
               {featuredMiningProject.tag}
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+            <h2 className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-white leading-[1.2] tracking-tight">
               {featuredMiningProject.title}
             </h2>
           </div>
@@ -710,8 +714,10 @@ export default function GISServicePageClient() {
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   {featuredMiningProject.features.map((feat, k) => (
-                    <div key={k} className="flex items-start gap-2 text-blue-100/90 text-xs sm:text-sm">
-                      <span className="text-[#6ac045] font-bold flex-shrink-0 mt-0.5">&#10003;</span>
+                    <div key={k} className="flex items-start gap-2 text-[#E8F5F3] text-[14px] sm:text-[15px]">
+                      <span className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 bg-[#0F766E]/40 text-[#5EEAD4] border border-[#5EEAD4]/40">
+                        <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                      </span>
                       <span>{feat}</span>
                     </div>
                   ))}
@@ -738,22 +744,22 @@ export default function GISServicePageClient() {
       </section>
 
       {/* 11. WHY TECHMAPPERZ */}
-      <section className="py-10 md:py-16 bg-white" id="why-us">
+      <section className="relative py-4 md:py-10 bg-white border-t border-[#DDE3EA]" id="why-us">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
 
           <div className="text-center mb-10">
-            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-2 block">
+            <span className="text-[#0F766E] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] mb-2 block">
               WHY TECHMAPPERZ
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] tracking-tight">
+            <h2 className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-[#0C2E60] leading-[1.2] tracking-tight">
               Structured GIS Production from Scope Review to Final Delivery
             </h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {whyPoints.map((pt, i) => (
-              <div key={i} className="bg-[#f8fafc] rounded-2xl p-6 sm:p-7 border border-gray-100 hover:shadow-md transition-shadow">
-                <div className="w-12 h-12 rounded-xl bg-white border border-gray-100 shadow-sm flex items-center justify-center mb-5 p-2.5">
+              <div key={i} className="bg-[#F6F8FB] rounded-2xl p-6 sm:p-7 border border-[#DDE3EA] hover:shadow-md transition-shadow">
+                <div className="w-12 h-12 rounded-xl bg-white border border-[#DDE3EA] shadow-sm flex items-center justify-center mb-5 p-2.5">
                   <Image
                     src={pt.icon}
                     alt={pt.title}
@@ -762,8 +768,8 @@ export default function GISServicePageClient() {
                     className="w-full h-full object-contain"
                   />
                 </div>
-                <h3 className="text-[#0c2e60] font-bold text-base md:text-lg mb-2">{pt.title}</h3>
-                <p className="text-gray-600 text-sm md:text-base leading-relaxed">{pt.desc}</p>
+                <h3 className="text-[#0C2E60] font-bold text-[18px] md:text-[20px] mb-2">{pt.title}</h3>
+                <p className="text-[#4B5563] text-[15px] sm:text-[16px] leading-[1.65]">{pt.desc}</p>
               </div>
             ))}
           </div>
@@ -772,14 +778,14 @@ export default function GISServicePageClient() {
       </section>
 
       {/* 12. FREQUENTLY ASKED QUESTIONS */}
-      <section className="py-10 md:py-16 bg-[#04203a] text-white" id="faqs">
+      <section className="relative py-4 md:py-10 bg-[#0C2E60] text-white border-t border-white/10" id="faqs">
         <div className="max-w-4xl mx-auto px-4 sm:px-8">
 
           <div className="text-center mb-10">
-            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-2 block">
+            <span className="text-[#5EEAD4] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] mb-2 block">
               COMMON QUESTIONS
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+            <h2 className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-white leading-[1.2] tracking-tight">
               Questions Clients Ask Before Starting a GIS Project
             </h2>
           </div>
@@ -794,27 +800,33 @@ export default function GISServicePageClient() {
       </section>
 
       {/* 13. FINAL CTA BANNER */}
-      <section className="py-10 md:py-14 bg-white border-t border-gray-100" id="contact">
+      <section className="relative py-4 md:py-10 bg-white border-t border-[#DDE3EA]" id="contact">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
-          <div className="bg-gradient-to-br from-[#0c2e60] via-[#10477b] to-[#0b6b69] rounded-2xl sm:rounded-[32px] p-8 md:p-14 text-white relative overflow-hidden text-center shadow-xl">
+          <div className="bg-gradient-to-br from-[#0C2E60] via-[#0d4277] to-[#0F766E] rounded-2xl sm:rounded-[24px] p-6 sm:p-8 md:p-10 text-white relative overflow-hidden flex flex-col lg:flex-row lg:items-center justify-between gap-6 md:gap-8 shadow-xl border border-white/10">
             <div className="absolute right-[-80px] top-[-120px] w-[360px] h-[360px] border border-white/10 rounded-full shadow-[0_0_0_48px_rgba(255,255,255,0.05),0_0_0_96px_rgba(255,255,255,0.03)] pointer-events-none" />
-            <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
-              <div className="inline-flex items-center gap-2 text-[#6ac045] text-xs sm:text-sm font-bold uppercase tracking-[0.2em] mb-4">
-                <span className="w-6 h-[2px] bg-[#6ac045]"></span>
+            <div className="space-y-2.5 max-w-2xl relative z-10 text-left">
+              <span className="text-[#5EEAD4] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] block">
                 START YOUR GIS PROJECT
-                <span className="w-6 h-[2px] bg-[#6ac045]"></span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl md:text-[38px] font-bold text-white tracking-tight leading-tight mb-5">
+              </span>
+              <h2 className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-white tracking-tight leading-[1.2]">
                 Have a GIS Mapping Requirement? Let&rsquo;s Review the Scope.
               </h2>
-              <p className="text-white/90 text-sm sm:text-base md:text-[16px] leading-relaxed mb-8 font-normal">
-                Share whatever information is currently available&mdash;such as the project location, source data, approximate area or corridor length, required deliverables and expected timeline. If the scope is still being developed, our team can help identify the technical information needed for quotation and production planning.
+              <p className="text-[#E8F5F3] text-[15px] sm:text-[16px] leading-[1.65] font-normal">
+                Share whatever information is currently available&mdash;such as the project location, source data, approximate area or corridor length, required deliverables and expected timeline. Our team can help identify the technical information needed for quotation and production planning.
               </p>
+            </div>
+            <div className="flex flex-col sm:flex-row lg:flex-col gap-2.5 sm:gap-3 relative z-10 shrink-0 w-full lg:w-auto self-stretch sm:self-start lg:self-center">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-[#C92828] hover:bg-[#b02222] text-white font-bold text-sm sm:text-base shadow-lg shadow-[#C92828]/30 transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 min-h-[46px] sm:min-h-[48px] rounded-xl font-bold text-[15px] sm:text-[16px] text-white bg-[#1656B8] hover:bg-[#0C2E60] border border-white/20 shadow-sm hover:-translate-y-0.5 transition-all duration-200 text-center whitespace-nowrap w-full sm:w-auto"
               >
-                Discuss Your GIS Requirement &#8594;
+                Discuss Your GIS Requirement &rarr;
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center px-6 sm:px-8 py-3 min-h-[46px] sm:min-h-[48px] rounded-xl font-bold text-[15px] sm:text-[16px] text-[#0C2E60] bg-white border border-[#0C2E60] hover:bg-slate-50 hover:-translate-y-0.5 transition-all duration-200 text-center whitespace-nowrap w-full sm:w-auto"
+              >
+                Send Your Scope of Work
               </Link>
             </div>
           </div>

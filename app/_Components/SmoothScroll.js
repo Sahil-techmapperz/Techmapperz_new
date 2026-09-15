@@ -13,6 +13,17 @@ export default function SmoothScroll({ children }) {
             return
         }
 
+        // Disable on touch devices or small screens to preserve battery and use native momentum scrolling
+        const isTouch = typeof window !== 'undefined' && (
+            window.matchMedia('(pointer: coarse)').matches ||
+            window.innerWidth < 1024 ||
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        )
+
+        if (isTouch) {
+            return
+        }
+
         const lenis = new Lenis({
             duration: 1.2,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -24,14 +35,19 @@ export default function SmoothScroll({ children }) {
             infinite: false,
         })
 
+        let animationFrameId
+
         function raf(time) {
             lenis.raf(time)
-            requestAnimationFrame(raf)
+            animationFrameId = requestAnimationFrame(raf)
         }
 
-        requestAnimationFrame(raf)
+        animationFrameId = requestAnimationFrame(raf)
 
         return () => {
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId)
+            }
             lenis.destroy()
         }
     }, [pathname])

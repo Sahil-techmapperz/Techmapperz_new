@@ -11,10 +11,22 @@ const nextConfig = {
   // Performance optimizations
   compress: true,
   poweredByHeader: false,
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production' ? { exclude: ['error', 'warn'] } : false,
+  },
 
   // Security headers
   async headers() {
     return [
+      {
+        source: '/_next/static/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
       {
         source: '/:path*',
         headers: [
@@ -97,6 +109,9 @@ const nextConfig = {
       'react-icons/gi',
       'framer-motion',
       'lucide-react',
+      'swiper',
+      '@tinymce/tinymce-react',
+      '@hello-pangea/dnd',
     ],
     serverActions: {
       bodySizeLimit: '2mb',
@@ -123,7 +138,7 @@ const nextConfig = {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     qualities: [25, 50, 75, 80, 85, 90, 100],
-    minimumCacheTTL: 60,
+    minimumCacheTTL: 31536000,
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     unoptimized: process.env.NODE_ENV === 'development', // Disable optimization in development to avoid localhost issues
@@ -202,7 +217,7 @@ const nextConfig = {
     return [
       {
         source: '/service/mobile-app-development',
-        destination: '/service/it/mobile-app-development',
+        destination: '/service/mobile-app-development',
       },
     ];
   },

@@ -1,4 +1,4 @@
-import moment from 'moment';
+import { formatDate, formatDateTime } from '@/app/lib/dateFormat';
 import Image from 'next/image';
 import CommentForm from './CommentForm';
 
@@ -16,7 +16,7 @@ const SinglePost = ({ post }) => {
             <div className="flex justify-between text-sm font-bold mb-4">
               <div>{`BY ${post.author?.name?.toUpperCase() ?? "Unknown"}`}</div>
               <div>{`COMMENTS ${Array.isArray(post.comments) ? post.comments.length : 0}`}</div>
-              <div>{`${moment(post.created_at).format('YYYY-MM-DD')}`}</div>
+              <div>{`${formatDate(post.created_at)}`}</div>
             </div>
             <div className="text-2xl font-bold mb-2">{post.title}</div>
             <div dangerouslySetInnerHTML={{ __html: post.maincontent }} />
@@ -33,7 +33,7 @@ const SinglePost = ({ post }) => {
                   <div>
                     <div className="font-bold">{com.name}</div>
                     <div className="text-sm text-gray-400">{com.email}</div>
-                    <div className="text-sm text-gray-400">{moment(com.created_at).format('YYYY-MM-DD HH:mm')}</div>
+                    <div className="text-sm text-gray-400">{formatDateTime(com.created_at)}</div>
                   </div>
                 </div>
                 <div className="ml-16">
@@ -48,7 +48,7 @@ const SinglePost = ({ post }) => {
                           <div>
                             <div className="font-bold">{reply.name}</div>
                             <div className="text-sm text-gray-400">{reply.email}</div>
-                            <div className="text-sm text-gray-400">{moment(reply.created_at).format('YYYY-MM-DD HH:mm')}</div>
+                            <div className="text-sm text-gray-400">{formatDateTime(reply.created_at)}</div>
                             <div>{reply.content}</div>
                           </div>
                         </div>

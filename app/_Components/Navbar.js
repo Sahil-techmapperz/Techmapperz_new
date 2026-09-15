@@ -8,11 +8,10 @@ import Image from 'next/image';
 
 import company_logo from "@/public/logo.webp"
 import Resources from './Resources';
-import QuoteModal from './QuoteModal';
+import dynamic from 'next/dynamic';
 
-const Navbar = () => {
+const Navbar = ({ onOpenQuote }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isInsightsOpen, setIsInsightsOpen] = useState(false);
   const btnRef = useRef(null);
@@ -25,6 +24,44 @@ const Navbar = () => {
   };
 
   const pathname = usePathname();
+
+  useEffect(() => {
+    const handleOpen = () => setIsQuoteModalOpen(true);
+    window.addEventListener('open-quote-modal', handleOpen);
+
+    const handleGlobalClick = (e) => {
+      const trigger = e.target.closest('[data-open-modal="quote"], a, button');
+      if (!trigger) return;
+
+      // Ignore if clicking inside a form (like submit buttons) or already inside modal
+      if (trigger.closest('form')) return;
+
+      // Check for explicit data attribute
+      if (trigger.dataset?.openModal === 'quote') {
+        e.preventDefault();
+        setIsQuoteModalOpen(true);
+        return;
+      }
+
+      // Check text content for specified CTA buttons
+      const text = trigger.textContent?.trim().replace(/\s+/g, ' ') || '';
+      if (
+        text.includes('Discuss a Data-Processing Requirement') ||
+        text.includes('Discuss a Data Processing Requirement') ||
+        text.includes('Discuss Your Project')
+      ) {
+        e.preventDefault();
+        setIsQuoteModalOpen(true);
+      }
+    };
+
+    document.addEventListener('click', handleGlobalClick);
+
+    return () => {
+      window.removeEventListener('open-quote-modal', handleOpen);
+      document.removeEventListener('click', handleGlobalClick);
+    };
+  }, []);
 
 
 
@@ -188,8 +225,13 @@ const Navbar = () => {
                 View Work
               </Link>
               <button
-                onClick={() => setIsQuoteModalOpen(true)}
-                className="px-5 py-2.5 min-h-[46px] rounded-xl bg-[#1656B8] hover:bg-[#0C2E60] text-white font-bold text-[15px] shadow-md hover:shadow-lg transition-all whitespace-nowrap inline-flex items-center justify-center"
+                type="button"
+                data-open-modal="quote"
+                onClick={() => {
+                  if (onOpenQuote) onOpenQuote();
+                  else setIsQuoteModalOpen(true);
+                }}
+                className="px-5 py-2.5 min-h-[46px] rounded-xl bg-[#1656B8] hover:bg-[#0C2E60] text-white font-bold text-[15px] shadow-md hover:shadow-lg transition-all whitespace-nowrap inline-flex items-center justify-center cursor-pointer"
               >
                 Discuss Your Project
               </button>
@@ -369,11 +411,14 @@ const Navbar = () => {
                   View Work
                 </Link>
                 <button
+                  type="button"
+                  data-open-modal="quote"
                   onClick={() => {
-                    setIsQuoteModalOpen(true);
+                    if (onOpenQuote) onOpenQuote();
+                    else setIsQuoteModalOpen(true);
                     onClose();
                   }}
-                  className="w-full text-center py-3 min-h-[46px] rounded-xl bg-[#1656B8] hover:bg-[#0C2E60] text-white font-bold text-sm shadow-md flex items-center justify-center transition-colors"
+                  className="w-full text-center py-3 min-h-[46px] rounded-xl bg-[#1656B8] hover:bg-[#0C2E60] text-white font-bold text-sm shadow-md flex items-center justify-center transition-colors cursor-pointer"
                 >
                   Discuss Your Project
                 </button>
@@ -382,8 +427,6 @@ const Navbar = () => {
           </div>
         )}
       </div>
-
-      <QuoteModal isOpen={isQuoteModalOpen} onClose={() => setIsQuoteModalOpen(false)} />
     </>
   );
 };

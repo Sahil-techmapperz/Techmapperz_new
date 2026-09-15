@@ -53,15 +53,15 @@ export default function TechnologyFilter() {
   return (
     <div className="w-full max-w-[1250px] mx-auto">
       {/* Category Tabs */}
-      <div className="flex flex-wrap justify-center gap-2.5 mb-10">
+      <div className="flex flex-wrap justify-center gap-2 mb-8">
         {categories.map((cat) => (
           <button
             key={cat}
             onClick={() => setActiveCategory(cat)}
-            className={`px-5 py-2 rounded-full text-xs sm:text-sm font-semibold border transition-all duration-300 ${
+            className={`px-4 py-1.5 rounded-full text-xs font-semibold border transition-all duration-200 ${
               activeCategory === cat
-                ? 'bg-[#0c2e60] border-[#0c2e60] text-white shadow-md'
-                : 'bg-white border-gray-200 text-[#0c2e60] hover:border-[#0c2e60] hover:bg-[#0c2e60]/5'
+                ? 'bg-[#1656B8] border-[#1656B8] text-white shadow-sm'
+                : 'bg-white border-[#DDE3EA] text-[#0C2E60] hover:border-[#1656B8] hover:bg-[#1656B8]/5'
             }`}
           >
             {cat}
@@ -70,30 +70,30 @@ export default function TechnologyFilter() {
       </div>
 
       {/* Grid of Mobile Tech Cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-5 text-left">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4 text-left">
         {filteredItems.map((item, idx) => {
           const IconComponent = item.icon;
           return (
             <div
               key={idx}
-              className="group bg-white p-4 sm:p-5 rounded-2xl border border-gray-200/80 shadow-sm hover:shadow-lg hover:border-[#6ac045]/50 hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-3.5 cursor-default"
+              className="group bg-white p-4 rounded-xl border border-[#DDE3EA] shadow-xs hover:shadow-md hover:border-[#1656B8]/40 hover:-translate-y-0.5 transition-all duration-200 flex items-center gap-3 cursor-default"
             >
               <div
-                className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-gray-50 flex items-center justify-center border border-gray-100 group-hover:scale-110 group-hover:bg-white transition-all duration-300 shrink-0 shadow-xs"
+                className="w-11 h-11 rounded-xl bg-[#F6F8FB] flex items-center justify-center border border-[#DDE3EA] group-hover:scale-105 group-hover:bg-white group-hover:border-[#1656B8]/20 transition-all duration-200 shrink-0"
               >
                 <IconComponent
-                  className="w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300"
+                  className="w-5 h-5 transition-transform duration-200"
                   style={{ color: item.color }}
                 />
               </div>
               <div className="min-w-0 flex-1">
-                <span className="text-[#6ac045] text-[10px] font-bold uppercase tracking-wider block leading-tight">
+                <span className="text-[#0F766E] text-[10px] font-bold uppercase tracking-wider block leading-tight">
                   {item.category}
                 </span>
-                <h4 className="font-bold text-[#0c2e60] text-sm sm:text-[15px] leading-tight truncate mt-0.5">
+                <h4 className="font-bold text-[#0C2E60] text-sm leading-tight truncate mt-0.5 group-hover:text-[#1656B8] transition-colors">
                   {item.label}
                 </h4>
-                <p className="text-gray-500 text-[11px] leading-tight truncate mt-1">
+                <p className="text-[#4B5563] text-[11px] leading-tight truncate mt-1">
                   {item.sub}
                 </p>
               </div>

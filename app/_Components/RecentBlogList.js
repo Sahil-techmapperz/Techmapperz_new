@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import moment from 'moment';
+import { formatDate } from '@/app/lib/dateFormat';
 import getRecentblogs from '@/lib/getsingaleblogs';
 
 
@@ -24,7 +24,7 @@ const RecentBlogList = async () => {
             <h1 className="text-lg max-sm:text-[16px] font-semibold cursor-pointer">
               <Link href={`/blog/${recent._id}`}>{recent.title.slice(0, 100) + "..."}</Link>
             </h1>
-            <h1>{moment(recent.created_at).format('YYYY-MM-DD')}</h1>
+            <h1>{formatDate(recent.created_at)}</h1>
           </div>
         </div>
       )) : (

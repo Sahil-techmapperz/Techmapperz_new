@@ -28,12 +28,19 @@ const Homecontact = () => {
 
                     {/* Button Section */}
                     <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 relative z-10 w-full sm:w-auto shrink-0 self-stretch sm:self-start lg:self-center">
-                        <Link 
-                            href="/contact" 
-                            className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 min-h-[46px] sm:min-h-[48px] rounded-xl font-bold text-[15px] sm:text-[16px] text-white bg-[#1656B8] hover:bg-[#0C2E60] border border-white/20 shadow-sm hover:-translate-y-0.5 transition-all duration-200 w-full sm:w-auto text-center"
+                        <button 
+                            type="button"
+                            data-open-modal="quote"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                if (typeof window !== 'undefined') {
+                                    window.dispatchEvent(new CustomEvent('open-quote-modal'));
+                                }
+                            }}
+                            className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 min-h-[46px] sm:min-h-[48px] rounded-xl font-bold text-[15px] sm:text-[16px] text-white bg-[#1656B8] hover:bg-[#0C2E60] border border-white/20 shadow-sm hover:-translate-y-0.5 transition-all duration-200 w-full sm:w-auto text-center cursor-pointer"
                         >
                             Discuss Your Project →
-                        </Link>
+                        </button>
                         <Link 
                             href="/contact" 
                             className="inline-flex items-center justify-center px-5 sm:px-6 py-2.5 sm:py-3 min-h-[46px] sm:min-h-[48px] rounded-xl font-bold text-[15px] sm:text-[16px] text-[#0C2E60] bg-white border border-[#0C2E60] hover:bg-slate-50 hover:-translate-y-0.5 transition-all duration-200 w-full sm:w-auto text-center"

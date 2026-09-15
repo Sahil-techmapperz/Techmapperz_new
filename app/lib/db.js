@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 
+mongoose.set('strictQuery', false);
+
 const MONGODB_URI = process.env.MONGO_URL;
 
 if (!MONGODB_URI) {

@@ -150,9 +150,16 @@ const DronePartnership = () => {
               </div>
             </div>
 
-            <Link 
-              href="/contact" 
-              className="cta"
+            <button 
+              type="button"
+              data-open-modal="quote"
+              onClick={(e) => {
+                e.preventDefault();
+                if (typeof window !== 'undefined') {
+                  window.dispatchEvent(new CustomEvent('open-quote-modal'));
+                }
+              }}
+              className="cta cursor-pointer border-0 text-left"
               style={{
                 background: '#1656b8',
                 color: '#ffffff',
@@ -163,7 +170,8 @@ const DronePartnership = () => {
                 gap: '12px',
                 textDecoration: 'none',
                 boxShadow: '0 8px 22px rgba(22,86,184,0.28)',
-                maxWidth: '100%'
+                maxWidth: '100%',
+                cursor: 'pointer'
               }}
             >
               <span 
@@ -188,7 +196,7 @@ const DronePartnership = () => {
                 Discuss a Data-Processing Requirement
               </strong>
               <span className="arrow" style={{ fontSize: '20px', color: '#ffffff', fontWeight: '700', marginLeft: '2px', flexShrink: 0 }}>&rarr;</span>
-            </Link>
+            </button>
           </div>
         </div>
       </section>

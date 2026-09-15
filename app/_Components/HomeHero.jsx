@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -47,12 +49,19 @@ const HomeHero = ({ bannerData }) => {
                         >
                             Explore Our Services
                         </Link>
-                        <Link
-                            href="/contact"
-                            className="inline-flex items-center justify-center py-3 px-8 rounded-full bg-white hover:bg-gray-100 text-[#0C2E60] border-2 border-[#0C2E60] font-bold text-[15px] sm:text-[16px] transition-all duration-300 shadow-sm min-h-[46px] sm:min-h-[48px] w-full sm:w-auto text-center"
+                        <button
+                            type="button"
+                            data-open-modal="quote"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                if (typeof window !== 'undefined') {
+                                    window.dispatchEvent(new CustomEvent('open-quote-modal'));
+                                }
+                            }}
+                            className="inline-flex items-center justify-center py-3 px-8 rounded-full bg-white hover:bg-gray-100 text-[#0C2E60] border-2 border-[#0C2E60] font-bold text-[15px] sm:text-[16px] transition-all duration-300 shadow-sm min-h-[46px] sm:min-h-[48px] w-full sm:w-auto text-center cursor-pointer"
                         >
                             Discuss Your Project
-                        </Link>
+                        </button>
                     </div>
                 </div>
 

@@ -30,17 +30,17 @@ import { FaTrain, FaIndustry, FaTree } from "react-icons/fa";
 const FaqItem = ({ faq, defaultOpen = false }) => {
   const [open, setOpen] = useState(defaultOpen);
   return (
-    <div className="border-b border-gray-200">
+    <div className="border-b border-[#DDE3EA] last:border-b-0">
       <button
         onClick={() => setOpen(!open)}
         className="w-full text-left py-5 flex items-start justify-between gap-4 group"
         aria-expanded={open}
       >
-        <span className="text-[#0c2e60] font-semibold text-sm md:text-base leading-snug group-hover:text-[#1656b8] transition-colors">
+        <span className="text-[#0C2E60] font-bold text-[16px] md:text-[18px] leading-snug group-hover:text-[#1656B8] transition-colors">
           {faq.q}
         </span>
         <span
-          className={`text-[#1656b8] font-bold text-xl flex-shrink-0 transition-transform duration-300 ${
+          className={`text-[#1656B8] font-bold text-xl flex-shrink-0 transition-transform duration-300 ${
             open ? "rotate-45" : ""
           }`}
         >
@@ -48,7 +48,7 @@ const FaqItem = ({ faq, defaultOpen = false }) => {
         </span>
       </button>
       {open && (
-        <p className="text-gray-600 text-sm md:text-[15px] leading-relaxed pb-5">
+        <p className="text-[#4B5563] text-[15px] sm:text-[16px] leading-[1.65] pb-5">
           {faq.a}
         </p>
       )}
@@ -61,8 +61,7 @@ export default function DroneDataProcessingPageClient() {
   const coreServices = [
     {
       id: "orthomosaic",
-      icon: <FiGrid className="w-6 h-6 transition-colors duration-300" />,
-      color: "text-[#d2292b]",
+      icon: <FiGrid className="w-6 h-6" />,
       title: "Orthomosaic Production",
       desc: "Georeferenced orthomosaics prepared in the agreed coordinate system, resolution and tiling plan. Coverage gaps, visible distortion and seam issues are reviewed and corrected where the source imagery allows.",
       features: [
@@ -74,8 +73,7 @@ export default function DroneDataProcessingPageClient() {
     },
     {
       id: "lidar-processing",
-      icon: <FiActivity className="w-6 h-6 transition-colors duration-300" />,
-      color: "text-[#1267b1]",
+      icon: <FiActivity className="w-6 h-6" />,
       title: "LiDAR Point-Cloud Processing",
       desc: "LAS/LAZ data review, noise identification, cleaning, classification and ground/non-ground separation. Required classes and feature groups are agreed before production begins.",
       features: [
@@ -87,8 +85,7 @@ export default function DroneDataProcessingPageClient() {
     },
     {
       id: "terrain-elevation",
-      icon: <FiSliders className="w-6 h-6 transition-colors duration-300" />,
-      color: "text-[#078a86]",
+      icon: <FiSliders className="w-6 h-6" />,
       title: "Terrain & Elevation Products",
       desc: "DTM, DSM, DEM, contours, slope and surface products prepared from suitable classified point clouds. Cut-fill or stockpile volumes can be calculated where the required boundaries and reference surfaces are available.",
       features: [
@@ -100,8 +97,7 @@ export default function DroneDataProcessingPageClient() {
     },
     {
       id: "corridor-drawings",
-      icon: <FiCompass className="w-6 h-6 transition-colors duration-300" />,
-      color: "text-[#e33434]",
+      icon: <FiCompass className="w-6 h-6" />,
       title: "Profiles, Sections & Corridor Drawings",
       desc: "Longitudinal profiles, cross-sections, L-sections and gradient drawings for railway, road, pipeline and other corridor assignments, prepared at agreed intervals and drawing standards.",
       features: [
@@ -113,8 +109,7 @@ export default function DroneDataProcessingPageClient() {
     },
     {
       id: "photogrammetric",
-      icon: <FiBox className="w-6 h-6 transition-colors duration-300" />,
-      color: "text-[#1267b1]",
+      icon: <FiBox className="w-6 h-6" />,
       title: "Photogrammetric Reconstruction",
       desc: "Image alignment, camera optimisation and dense reconstruction from suitable overlapping drone photographs. Depending on the project, outputs can include an aligned image block, dense RGB point cloud and 3D surface or mesh.",
       features: [
@@ -126,8 +121,7 @@ export default function DroneDataProcessingPageClient() {
     },
     {
       id: "feature-extraction",
-      icon: <FiLayers className="w-6 h-6 transition-colors duration-300" />,
-      color: "text-[#0c2e60]",
+      icon: <FiLayers className="w-6 h-6" />,
       title: "GIS/CAD Feature Extraction",
       desc: "Specified visible features—such as roads, railways, buildings, utilities, water bodies, mine features and land parcels—captured into structured GIS or CAD layers with the required attributes and layer organisation.",
       features: [
@@ -142,7 +136,7 @@ export default function DroneDataProcessingPageClient() {
   const deliverables = [
     {
       category: "Imagery & Raster Products",
-      icon: <FiGrid className="w-5 h-5 text-[#d2292b]" />,
+      icon: <FiGrid className="w-5 h-5" />,
       items: [
         { num: "01", name: "Georeferenced orthomosaic" },
         { num: "02", name: "Tiled orthomosaic or area-wise GeoTIFF" },
@@ -154,7 +148,7 @@ export default function DroneDataProcessingPageClient() {
     },
     {
       category: "Point-Cloud & 3D Products",
-      icon: <FiActivity className="w-5 h-5 text-[#1267b1]" />,
+      icon: <FiActivity className="w-5 h-5" />,
       items: [
         { num: "07", name: "Dense photogrammetric point cloud" },
         { num: "08", name: "Cleaned or classified LAS/LAZ point cloud" },
@@ -165,7 +159,7 @@ export default function DroneDataProcessingPageClient() {
     },
     {
       category: "GIS, CAD & Engineering Outputs",
-      icon: <FiLayers className="w-5 h-5 text-[#078a86]" />,
+      icon: <FiLayers className="w-5 h-5" />,
       items: [
         { num: "12", name: "Contours at the agreed interval" },
         { num: "13", name: "GIS feature layers and attribute data" },
@@ -207,32 +201,32 @@ export default function DroneDataProcessingPageClient() {
 
   const applications = [
     {
-      icon: <FiTruck className="w-6 h-6 text-[#1267b1]" />,
+      icon: <FiTruck className="w-6 h-6" />,
       title: "Infrastructure & Transportation",
       desc: "Orthomosaics, terrain models, contours, corridor profiles and mapping outputs for roads, railways, bridges and construction assignments."
     },
     {
-      icon: <FaIndustry className="w-6 h-6 text-[#d2292b]" />,
+      icon: <FaIndustry className="w-6 h-6" />,
       title: "Mining & Natural Resources",
       desc: "Mine-feature mapping, haul-road extraction, surface models, stockpile volumes, contours and change or surface-comparison outputs."
     },
     {
-      icon: <FiZap className="w-6 h-6 text-[#078a86]" />,
+      icon: <FiZap className="w-6 h-6" />,
       title: "Utilities & Pipelines",
       desc: "Corridor terrain products, alignment mapping, asset and feature extraction, profiles, cross-sections and GIS/CAD preparation."
     },
     {
-      icon: <FiMaximize2 className="w-6 h-6 text-[#1267b1]" />,
+      icon: <FiMaximize2 className="w-6 h-6" />,
       title: "Land Development & Planning",
       desc: "Existing-condition maps, terrain surfaces, contours, land and site features, planning base maps and CAD/GIS datasets."
     },
     {
-      icon: <FaTree className="w-6 h-6 text-[#0c2e60]" />,
+      icon: <FaTree className="w-6 h-6" />,
       title: "Agriculture & Plantations",
       desc: "Farm or plantation boundaries, terrain and elevation products, drainage-related mapping and feature extraction from suitable imagery or LiDAR data."
     },
     {
-      icon: <FiCpu className="w-6 h-6 text-[#d2292b]" />,
+      icon: <FiCpu className="w-6 h-6" />,
       title: "Drone & Survey Companies",
       desc: "Processing-only support for organisations that capture their own drone or LiDAR data but require additional production capacity or GIS/CAD deliverables."
     }
@@ -240,32 +234,32 @@ export default function DroneDataProcessingPageClient() {
 
   const whyChooseUs = [
     {
-      icon: <FiFolder className="w-5 h-5 text-[#1267b1]" />,
+      icon: <FiFolder className="w-5 h-5" />,
       title: "Processing-Only Assignments",
       desc: "We can begin with imagery or point-cloud data already captured by your team, without repeating the field survey."
     },
     {
-      icon: <FiShield className="w-5 h-5 text-[#d2292b]" />,
+      icon: <FiShield className="w-5 h-5" />,
       title: "Inputs Reviewed Before Commitment",
       desc: "Coverage, metadata, control, coordinate system and requested outputs are reviewed before the full production workflow is confirmed."
     },
     {
-      icon: <FiCpu className="w-5 h-5 text-[#078a86]" />,
+      icon: <FiCpu className="w-5 h-5" />,
       title: "Photogrammetry, LiDAR & GIS/CAD Together",
       desc: "The assignment can continue from raw imagery or point clouds through terrain preparation, feature extraction and final mapping outputs."
     },
     {
-      icon: <FiFileText className="w-5 h-5 text-[#e33434]" />,
+      icon: <FiFileText className="w-5 h-5" />,
       title: "Support for Engineering Drawings",
       desc: "Profiles, cross-sections, L-sections and gradient drawings can be included where the terrain data and project specification support them."
     },
     {
-      icon: <FiCompass className="w-5 h-5 text-[#1267b1]" />,
+      icon: <FiCompass className="w-5 h-5" />,
       title: "Project-Specific Delivery",
       desc: "Coordinate system, layer structure, file formats, drawing standards and review stages are agreed for each assignment."
     },
     {
-      icon: <FiCheckCircle className="w-5 h-5 text-[#0c2e60]" />,
+      icon: <FiCheckCircle className="w-5 h-5" />,
       title: "Structured QA/QC",
       desc: "Outputs are reviewed for projection, coverage, classification, geometry, attributes, completeness and final file organisation."
     }
@@ -303,7 +297,7 @@ export default function DroneDataProcessingPageClient() {
   ];
 
   return (
-    <div className="bg-white text-gray-900 font-sans antialiased selection:bg-[#1267b1]/10">
+    <div className="bg-white text-[#17202A] selection:bg-[#1656B8]/10">
       <ScrollToTop />
 
       {/* ── HERO SECTION ── */}
@@ -335,26 +329,26 @@ export default function DroneDataProcessingPageClient() {
             </ol>
           </nav>
 
-          <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em]">
+          <span className="text-[#5EEAD4] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em]">
             DRONE DATA PROCESSING SERVICES IN INDIA
           </span>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-bold leading-tight tracking-tight max-w-3xl text-white">
+          <h1 className="text-[32px] sm:text-[34px] md:text-[54px] lg:text-[56px] font-bold leading-[1.18] tracking-tight max-w-3xl text-white">
             Drone Data Processing Services for Mapping-Ready Deliverables
           </h1>
 
-          <p className="text-gray-200 text-sm sm:text-base md:text-[17px] max-w-2xl leading-relaxed">
+          <p className="text-[#E8F5F3] text-[16px] md:text-[18px] max-w-2xl leading-[1.65]">
             Already completed the flight? Techmapperz processes client-supplied drone imagery and LiDAR point clouds into mapping, terrain and engineering outputs for infrastructure, mining, utilities, land and planning projects. Before production begins, we review the available coverage, metadata, survey control, coordinate system and required deliverables.
           </p>
 
           <div className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-5 mt-2 w-full sm:w-auto">
             <Link href="/contact" className="w-full sm:w-auto">
-              <button className="w-full sm:w-auto py-[12px] px-8 rounded-full border border-[#1656b8] bg-[#1656b8] text-white font-semibold text-[15px] hover:bg-[#1656b8] transition-all duration-300">
-                Discuss Your Processing Requirement
+              <button className="inline-flex items-center justify-center gap-2 bg-[#1656B8] hover:bg-[#0C2E60] text-white font-bold text-[15px] sm:text-[16px] px-8 py-3 rounded-full transition-all duration-300 shadow-md hover:shadow-lg min-h-[46px] sm:min-h-[48px] w-full sm:w-auto">
+                Discuss Your Processing Requirement &rarr;
               </button>
             </Link>
             <Link href="/contact" className="w-full sm:w-auto">
-              <button className="w-full sm:w-auto py-[12px] px-8 rounded-full border border-gray-300 bg-transparent text-white font-semibold text-[15px] hover:bg-white/10 transition-all duration-300">
+              <button className="inline-flex items-center justify-center gap-2 bg-transparent hover:bg-white/10 text-white font-bold text-[15px] sm:text-[16px] px-8 py-3 rounded-full border border-white/60 transition-all duration-300 min-h-[46px] sm:min-h-[48px] w-full sm:w-auto">
                 Share Sample Data
               </button>
             </Link>
@@ -363,81 +357,80 @@ export default function DroneDataProcessingPageClient() {
       </section>
 
       {/* ── INTRODUCTION SECTION ── */}
-      <section className="py-16 md:py-24 bg-white border-b border-gray-200">
+      <section className="py-4 md:py-10 bg-white border-t border-[#DDE3EA]">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
             {/* Left Column: Heading & Narrative */}
-            <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.2em] text-[#d2292b]">
-                <span className="w-6 h-0.5 bg-[#d2292b] rounded-full" />
+            <div className="lg:col-span-7 space-y-4 sm:space-y-5">
+              <span className="text-[#0F766E] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] block">
                 FROM RAW DATA TO USABLE DELIVERABLES
-              </div>
+              </span>
 
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-extrabold text-[#0c2e60] leading-tight">
+              <h2 className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-[#0C2E60] leading-[1.2] tracking-tight">
                 The Flight Is Complete. The Mapping Work Is Not.
               </h2>
 
-              <p className="text-gray-700 text-base sm:text-[17px] leading-relaxed">
+              <p className="text-[#4B5563] text-[16px] md:text-[18px] leading-[1.65]">
                 Drone photographs and point clouds become useful only after they are checked, processed and structured for their intended purpose. A visually good orthomosaic may be suitable for site reference, but engineering, terrain or GIS/CAD work can require additional control, classification and quality checks.
               </p>
 
-              <p className="text-gray-700 text-base sm:text-[17px] leading-relaxed">
+              <p className="text-[#4B5563] text-[16px] md:text-[18px] leading-[1.65]">
                 Techmapperz supports processing-only assignments using data captured by clients, drone operators and project contractors. Depending on the available inputs and agreed scope, our work can continue from photogrammetry and LiDAR processing to terrain products, profiles, sections, feature extraction and final GIS/CAD preparation.
               </p>
 
               {/* Link back to Drone Survey & Mapping for clients needing field capture */}
-              <div className="pt-2 flex flex-wrap items-center gap-2 text-sm sm:text-base text-gray-600">
+              <div className="pt-2 flex flex-wrap items-center gap-2 text-[15px] sm:text-[16px] text-[#4B5563]">
                 <span>Need complete drone data capture as well?</span>
                 <Link
                   href="/service/drone-survey-mapping"
-                  className="font-bold text-[#1267b1] hover:text-[#0c2e60] inline-flex items-center gap-1 hover:underline"
+                  className="font-bold text-[#1656B8] hover:text-[#0C2E60] inline-flex items-center gap-1 hover:underline"
                 >
-                  Explore Drone Survey &amp; Mapping Services →
+                  Explore Drone Survey &amp; Mapping Services &rarr;
                 </Link>
               </div>
             </div>
 
             {/* Right Column: Pre-Processing Review & Reliability Check Card */}
             <div className="lg:col-span-5">
-              <div className="bg-[#f0f4f9] border border-blue-100 rounded-3xl p-7 sm:p-8 shadow-sm space-y-5">
+              <div className="bg-[#F6F8FB] border border-[#DDE3EA] rounded-2xl p-6 sm:p-7 shadow-sm space-y-5">
                 <div className="flex items-center gap-3.5">
-                  <div className="w-12 h-12 rounded-2xl bg-[#0c2e60] text-white flex items-center justify-center font-bold shadow-md">
-                    <FiShield className="w-6 h-6 text-[#8fc2f2]" />
+                  <div className="w-12 h-12 rounded-xl bg-[#0C2E60] text-white flex items-center justify-center font-bold shadow-md flex-shrink-0">
+                    <FiShield className="w-6 h-6 text-[#5EEAD4]" />
                   </div>
                   <div>
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#1267b1] block">
+                    <span className="text-[12px] font-bold uppercase tracking-wider text-[#0F766E] block">
                       Quality Assurance
                     </span>
-                    <h3 className="text-lg sm:text-xl font-bold text-[#0c2e60]">
+                    <h3 className="text-[18px] md:text-[20px] font-bold text-[#0C2E60]">
                       Pre-Processing Review &amp; Reliability Check
                     </h3>
                   </div>
                 </div>
 
-                <p className="text-sm sm:text-[15px] text-gray-700 leading-relaxed">
+                <p className="text-[15px] sm:text-[16px] text-[#4B5563] leading-[1.65]">
                   Before confirming the workflow, we review image overlap and sharpness, geotags or flight metadata, GCP/RTK/PPK information, coordinate reference system, point-cloud condition and expected outputs. If the source data has limitations, we explain what can be produced reliably before full processing begins.
                 </p>
 
                 {/* Key Verification Checks Grid */}
-                <div className="pt-4 border-t border-blue-200/60 space-y-3">
-                  <p className="text-xs font-bold text-[#0c2e60] uppercase tracking-wider">
+                <div className="pt-4 border-t border-[#DDE3EA] space-y-3">
+                  <p className="text-xs font-bold text-[#0C2E60] uppercase tracking-wider">
                     What We Review First:
                   </p>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs font-semibold text-gray-700">
-                    <div className="flex items-center gap-2.5 bg-white px-3.5 py-2.5 rounded-xl border border-blue-100/80 shadow-xs">
-                      <span className="w-2 h-2 rounded-full bg-[#1267b1] flex-shrink-0" />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs sm:text-sm font-semibold text-[#17202A]">
+                    <div className="flex items-center gap-2.5 bg-white px-3.5 py-2.5 rounded-xl border border-[#DDE3EA] shadow-xs">
+                      <span className="w-2 h-2 rounded-full bg-[#1656B8] flex-shrink-0" />
                       <span>Overlap &amp; Sharpness</span>
                     </div>
-                    <div className="flex items-center gap-2.5 bg-white px-3.5 py-2.5 rounded-xl border border-blue-100/80 shadow-xs">
-                      <span className="w-2 h-2 rounded-full bg-[#1267b1] flex-shrink-0" />
+                    <div className="flex items-center gap-2.5 bg-white px-3.5 py-2.5 rounded-xl border border-[#DDE3EA] shadow-xs">
+                      <span className="w-2 h-2 rounded-full bg-[#1656B8] flex-shrink-0" />
                       <span>GCP &amp; RTK/PPK Data</span>
                     </div>
-                    <div className="flex items-center gap-2.5 bg-white px-3.5 py-2.5 rounded-xl border border-blue-100/80 shadow-xs">
-                      <span className="w-2 h-2 rounded-full bg-[#1267b1] flex-shrink-0" />
+                    <div className="flex items-center gap-2.5 bg-white px-3.5 py-2.5 rounded-xl border border-[#DDE3EA] shadow-xs">
+                      <span className="w-2 h-2 rounded-full bg-[#1656B8] flex-shrink-0" />
                       <span>CRS &amp; Datum Alignment</span>
                     </div>
-                    <div className="flex items-center gap-2.5 bg-white px-3.5 py-2.5 rounded-xl border border-blue-100/80 shadow-xs">
-                      <span className="w-2 h-2 rounded-full bg-[#1267b1] flex-shrink-0" />
+                    <div className="flex items-center gap-2.5 bg-white px-3.5 py-2.5 rounded-xl border border-[#DDE3EA] shadow-xs">
+                      <span className="w-2 h-2 rounded-full bg-[#1656B8] flex-shrink-0" />
                       <span>Point Cloud Density</span>
                     </div>
                   </div>
@@ -449,47 +442,45 @@ export default function DroneDataProcessingPageClient() {
       </section>
 
       {/* ── OUR SERVICES: CORE PROCESSING CAPABILITIES ── */}
-      <section className="py-16 md:py-24 bg-[#0B2B59] text-white relative">
+      <section className="py-4 md:py-10 bg-[#0C2E60] text-white border-t border-white/10 relative">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
           {/* Section Header */}
-          <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-            <div className="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.2em] text-[#e33434]">
-              <span className="w-6 h-0.5 bg-[#e33434] rounded-full" />
+          <div className="text-center max-w-3xl mx-auto mb-10 space-y-2">
+            <span className="text-[#5EEAD4] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] block">
               CORE PROCESSING CAPABILITIES
-              <span className="w-6 h-0.5 bg-[#e33434] rounded-full" />
-            </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+            </span>
+            <h2 className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-white tracking-tight leading-[1.2]">
               Data Processing Services for Imagery, LiDAR and Mapping Outputs
             </h2>
-            <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
+            <p className="text-[#E8F5F3] text-[16px] md:text-[18px] leading-[1.65]">
               Not every dataset requires the same workflow. We select the processing stages after reviewing the source data, project specification and intended use of the final deliverables.
             </p>
           </div>
 
           {/* Service Cards Grid (H3 cards) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {coreServices.map((service) => (
               <div
                 key={service.id}
-                className="group bg-white text-gray-900 rounded-2xl border border-gray-150 p-7 shadow-lg hover:shadow-2xl hover:border-[#1267b1] transition-all duration-300 flex flex-col justify-between"
+                className="group bg-white text-[#17202A] rounded-2xl border border-[#DDE3EA] p-6 sm:p-7 shadow-sm hover:shadow-md hover:border-[#1656B8]/30 transition-all duration-300 flex flex-col justify-between"
               >
-                <div className="space-y-4">
-                  <div className={`w-12 h-12 rounded-xl bg-gray-50 border border-gray-150 flex items-center justify-center ${service.color} group-hover:scale-110 group-hover:bg-[#0c2e60] group-hover:text-white transition-all duration-300`}>
+                <div className="space-y-3">
+                  <div className="w-12 h-12 rounded-xl bg-[#F0F4F8] border border-[#DDE3EA] flex items-center justify-center text-[#1656B8] group-hover:bg-[#1656B8] group-hover:text-white transition-all duration-300">
                     {service.icon}
                   </div>
-                  <h3 className="text-xl font-bold text-[#0c2e60] group-hover:text-[#1267b1] transition-colors">
+                  <h3 className="text-[18px] md:text-[20px] font-bold text-[#0C2E60] group-hover:text-[#1656B8] transition-colors">
                     {service.title}
                   </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
+                  <p className="text-[#4B5563] text-[15px] sm:text-[16px] leading-[1.65]">
                     {service.desc}
                   </p>
                 </div>
 
-                <div className="pt-6 mt-6 border-t border-gray-100">
+                <div className="pt-5 mt-5 border-t border-[#DDE3EA]">
                   <ul className="space-y-2">
                     {service.features.map((feat, idx) => (
-                      <li key={idx} className="flex items-center gap-2 text-xs font-medium text-gray-700">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#d2292b] shrink-0" />
+                      <li key={idx} className="flex items-center gap-2 text-xs sm:text-sm font-medium text-[#4B5563]">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#0F766E] shrink-0" />
                         <span>{feat}</span>
                       </li>
                     ))}
@@ -500,56 +491,55 @@ export default function DroneDataProcessingPageClient() {
           </div>
 
           {/* Combined Service CTA */}
-          <div className="mt-12 text-center">
+          <div className="mt-10 text-center">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-[#d2292b] hover:bg-[#b01e20] text-white font-bold text-sm sm:text-base shadow-lg hover:shadow-xl transition-all duration-200"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full bg-[#1656B8] hover:bg-white hover:text-[#0C2E60] text-white font-bold text-[15px] sm:text-[16px] shadow-md hover:shadow-lg transition-all duration-300 min-h-[46px]"
             >
-              Discuss Your Required Outputs
-              <FiArrowRight className="w-5 h-5 text-white" />
+              Discuss Your Required Outputs &rarr;
             </Link>
           </div>
         </div>
       </section>
 
       {/* ── OUTPUTS WE CAN PREPARE / DELIVERABLES ── */}
-      <section className="py-16 md:py-24 bg-white border-y border-gray-200">
+      <section className="py-4 md:py-10 bg-white border-t border-[#DDE3EA]">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
-          <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-            <div className="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.2em] text-[#d2292b]">
-              <span className="w-6 h-0.5 bg-[#d2292b] rounded-full" />
+          <div className="text-center max-w-3xl mx-auto mb-10 space-y-2">
+            <span className="text-[#0F766E] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] block">
               OUTPUTS WE CAN PREPARE
-              <span className="w-6 h-0.5 bg-[#d2292b] rounded-full" />
-            </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0c2e60] tracking-tight">
+            </span>
+            <h2 className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-[#0C2E60] tracking-tight leading-[1.2]">
               Deliverables Built Around the Project Requirement
             </h2>
-            <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+            <p className="text-[#4B5563] text-[16px] md:text-[18px] leading-[1.65]">
               The final package is agreed after data review. Depending on the source data and scope, deliverables may include:
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {deliverables.map((col, idx) => (
               <div
                 key={idx}
-                className="bg-[#f8fafc] rounded-2xl border border-gray-200 p-6 sm:p-8 flex flex-col justify-between"
+                className="bg-[#F6F8FB] rounded-2xl border border-[#DDE3EA] p-6 sm:p-7 flex flex-col justify-between"
               >
                 <div>
-                  <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-200">
-                    <div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center">
+                  <div className="flex items-center gap-3 mb-5 pb-4 border-b border-[#DDE3EA]">
+                    <div className="w-10 h-10 rounded-xl bg-white border border-[#DDE3EA] shadow-xs flex items-center justify-center text-[#1656B8]">
                       {col.icon}
                     </div>
-                    <h3 className="text-lg font-bold text-[#0c2e60]">
+                    <h3 className="text-[18px] md:text-[20px] font-bold text-[#0C2E60]">
                       {col.category}
                     </h3>
                   </div>
 
-                  <ul className="space-y-3.5">
+                  <ul className="space-y-3">
                     {col.items.map((item, i) => (
-                      <li key={i} className="flex items-start gap-2.5 text-sm text-gray-700">
-                        <FiCheckCircle className="w-4 h-4 text-[#1267b1] shrink-0 mt-0.5" />
-                        <span className="font-medium text-gray-800">{item.name}</span>
+                      <li key={i} className="flex items-start gap-2 text-[15px] text-[#17202A]">
+                        <span className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 bg-[#E8F5F3] text-[#0F766E] border border-[#0F766E]/30">
+                          <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                        </span>
+                        <span>{item.name}</span>
                       </li>
                     ))}
                   </ul>
@@ -561,15 +551,13 @@ export default function DroneDataProcessingPageClient() {
       </section>
 
       {/* ── PROCESSING WORKFLOW: HOW WE WORK ── */}
-      <section className="py-16 md:py-24 bg-gradient-to-b from-[#0c2e60] to-[#0a1f40] text-white">
+      <section className="py-4 md:py-10 bg-[#0C2E60] text-white border-t border-white/10">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-            <div className="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.2em] text-[#8fc2f2]">
-              <span className="w-6 h-0.5 bg-[#8fc2f2] rounded-full" />
+          <div className="text-center max-w-3xl mx-auto mb-10 space-y-2">
+            <span className="text-[#5EEAD4] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] block">
               HOW WE WORK
-              <span className="w-6 h-0.5 bg-[#8fc2f2] rounded-full" />
-            </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+            </span>
+            <h2 className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-white tracking-tight leading-[1.2]">
               A Practical Workflow from Data Review to Final Delivery
             </h2>
           </div>
@@ -578,16 +566,16 @@ export default function DroneDataProcessingPageClient() {
             {workflowSteps.map((step, idx) => (
               <div
                 key={idx}
-                className="relative bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm flex flex-col justify-between hover:bg-white/10 transition-all duration-200"
+                className="bg-white/10 border border-white/10 rounded-2xl p-6 backdrop-blur-sm flex flex-col justify-between hover:bg-white/15 transition-all duration-200"
               >
-                <div className="space-y-4">
-                  <span className="text-3xl font-black text-[#8fc2f2] opacity-80">
+                <div className="space-y-3">
+                  <div className="w-10 h-10 rounded-full bg-[#0F766E]/40 text-[#5EEAD4] border border-[#5EEAD4]/40 flex items-center justify-center font-bold text-sm mb-2">
                     {step.step}
-                  </span>
-                  <h3 className="text-base font-bold text-white leading-snug">
+                  </div>
+                  <h3 className="text-[16px] md:text-[18px] font-bold text-white leading-snug">
                     {step.title}
                   </h3>
-                  <p className="text-xs text-gray-300 leading-relaxed">
+                  <p className="text-[#E8F5F3] text-[13px] sm:text-[14px] leading-[1.6]">
                     {step.desc}
                   </p>
                 </div>
@@ -598,15 +586,13 @@ export default function DroneDataProcessingPageClient() {
       </section>
 
       {/* ── APPLICATIONS & CLIENT TYPES ── */}
-      <section className="py-16 md:py-24 bg-[#f8fafc]">
+      <section className="py-4 md:py-10 bg-[#F6F8FB] border-t border-[#DDE3EA]">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
-          <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-            <div className="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.2em] text-[#d2292b]">
-              <span className="w-6 h-0.5 bg-[#d2292b] rounded-full" />
+          <div className="text-center max-w-3xl mx-auto mb-10 space-y-2">
+            <span className="text-[#0F766E] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] block">
               WHERE WE CAN SUPPORT
-              <span className="w-6 h-0.5 bg-[#d2292b] rounded-full" />
-            </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0c2e60] tracking-tight">
+            </span>
+            <h2 className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-[#0C2E60] tracking-tight leading-[1.2]">
               Drone Data Processing for Different Project Requirements
             </h2>
           </div>
@@ -615,15 +601,15 @@ export default function DroneDataProcessingPageClient() {
             {applications.map((app, idx) => (
               <div
                 key={idx}
-                className="bg-white rounded-2xl border border-gray-200 p-7 shadow-sm hover:shadow-md transition-shadow space-y-3"
+                className="bg-white rounded-2xl border border-[#DDE3EA] p-6 sm:p-7 shadow-sm hover:shadow-md hover:border-[#1656B8]/30 transition-all duration-300 group"
               >
-                <div className="w-12 h-12 rounded-xl bg-gray-50 border border-gray-150 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-xl bg-[#F0F4F8] border border-[#DDE3EA] flex items-center justify-center mb-4 text-[#1656B8] group-hover:bg-[#1656B8] group-hover:text-white transition-all duration-300">
                   {app.icon}
                 </div>
-                <h3 className="text-lg font-bold text-[#0c2e60]">
+                <h3 className="text-[18px] md:text-[20px] font-bold text-[#0C2E60] mb-2 group-hover:text-[#1656B8] transition-colors">
                   {app.title}
                 </h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
+                <p className="text-[#4B5563] text-[15px] sm:text-[16px] leading-[1.65]">
                   {app.desc}
                 </p>
               </div>
@@ -633,13 +619,13 @@ export default function DroneDataProcessingPageClient() {
       </section>
 
       {/* ── SELECTED PROJECT EXPERIENCE ── */}
-      <section className="py-12 md:py-20 bg-[#0c2e60] text-white">
+      <section className="py-4 md:py-10 bg-[#0C2E60] text-white border-t border-white/10">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
-          <div className="text-center mb-10 md:mb-12">
-            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-2 block">
+          <div className="text-center mb-10">
+            <span className="text-[#5EEAD4] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] mb-2 block">
               SELECTED PROJECT EXPERIENCE
             </span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
+            <h2 className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-white tracking-tight leading-[1.2]">
               Drone LiDAR Survey &amp; Mapping for a 173 km Railway Corridor
             </h2>
           </div>
@@ -655,46 +641,58 @@ export default function DroneDataProcessingPageClient() {
                 className="object-cover object-center"
               />
             </div>
-            <div className="p-8 md:p-10 lg:p-12 flex flex-col justify-center gap-5">
-              <p className="text-[#6ac045] text-xs font-bold uppercase tracking-widest">
+            <div className="p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col justify-center gap-5">
+              <span className="text-[#5EEAD4] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em]">
                 RAILWAY CORRIDOR MAPPING
-              </p>
-              <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight">
+              </span>
+              <h3 className="text-[22px] md:text-[28px] font-bold text-white leading-[1.2]">
                 173 km Drone LiDAR &amp; Topographic Mapping Assignment
               </h3>
-              <p className="text-blue-100 text-sm md:text-[15px] leading-relaxed">
+              <p className="text-[#E8F5F3] text-[15px] sm:text-[16px] leading-[1.65]">
                 Techmapperz carried out a Drone LiDAR and topographic survey along a 173 km railway corridor, covering an approximately 100 m-wide survey band through rural, semi-urban and agricultural areas.
               </p>
-              <p className="text-blue-200 text-sm md:text-[15px] leading-relaxed">
+              <p className="text-[#E8F5F3] text-[15px] sm:text-[16px] leading-[1.65]">
                 The work extended beyond aerial data capture. LiDAR point clouds and synchronized RGB imagery were processed to prepare terrain models, orthomosaics, contours and CAD/GIS topographical maps. The terrain information was further used to produce cross-sections, longitudinal sections and gradient drawings required for railway corridor planning and engineering use.
               </p>
               <div>
                 <p className="text-white font-bold text-xs sm:text-sm uppercase tracking-wider mb-3">
                   KEY PROJECT DELIVERABLES
                 </p>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5 text-blue-100 text-xs sm:text-sm">
-                  <li className="flex items-start gap-2">
-                    <span className="text-[#6ac045] font-bold flex-shrink-0 mt-0.5">&#10003;</span>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-[#E8F5F3] text-[15px]">
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 bg-[#0F766E]/40 text-[#5EEAD4] border border-[#5EEAD4]/40">
+                      <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                    </span>
                     <span>Drone LiDAR point-cloud data</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-[#6ac045] font-bold flex-shrink-0 mt-0.5">&#10003;</span>
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 bg-[#0F766E]/40 text-[#5EEAD4] border border-[#5EEAD4]/40">
+                      <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                    </span>
                     <span>DTM and DSM preparation</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-[#6ac045] font-bold flex-shrink-0 mt-0.5">&#10003;</span>
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 bg-[#0F766E]/40 text-[#5EEAD4] border border-[#5EEAD4]/40">
+                      <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                    </span>
                     <span>Orthomosaic generation</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-[#6ac045] font-bold flex-shrink-0 mt-0.5">&#10003;</span>
-                    <span>Minor and major contours at the specified 1 m and 5 m intervals</span>
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 bg-[#0F766E]/40 text-[#5EEAD4] border border-[#5EEAD4]/40">
+                      <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                    </span>
+                    <span>Minor and major contours at 1 m and 5 m intervals</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-[#6ac045] font-bold flex-shrink-0 mt-0.5">&#10003;</span>
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 bg-[#0F766E]/40 text-[#5EEAD4] border border-[#5EEAD4]/40">
+                      <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                    </span>
                     <span>CAD/GIS topographical maps at 1:5,000 scale</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-[#6ac045] font-bold flex-shrink-0 mt-0.5">&#10003;</span>
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 bg-[#0F766E]/40 text-[#5EEAD4] border border-[#5EEAD4]/40">
+                      <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                    </span>
                     <span>Cross-sections, L-sections and gradient drawings</span>
                   </li>
                 </ul>
@@ -704,8 +702,8 @@ export default function DroneDataProcessingPageClient() {
                   href="/portfolios/topographical_railway_survey"
                   className="inline-block w-full sm:w-fit"
                 >
-                  <button className="w-full sm:w-auto py-3 px-7 rounded-full bg-[#6ac045] hover:bg-[#5aad38] text-white font-bold text-sm transition-all duration-300 shadow-md">
-                    Explore the 173 km Railway Project &#8594;
+                  <button className="inline-flex items-center justify-center gap-2 bg-[#1656B8] hover:bg-[#0C2E60] text-white border border-white/20 font-bold text-[15px] sm:text-[16px] px-8 py-3 rounded-full transition-all duration-300 shadow-md min-h-[46px] w-full sm:w-auto">
+                    Explore the 173 km Railway Project &rarr;
                   </button>
                 </Link>
               </div>
@@ -715,15 +713,13 @@ export default function DroneDataProcessingPageClient() {
       </section>
 
       {/* ── WHY CHOOSE TECHMAPPERZ ── */}
-      <section className="py-16 md:py-24 bg-[#f8fafc]">
+      <section className="py-4 md:py-10 bg-white border-t border-[#DDE3EA]">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
-          <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-            <div className="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.2em] text-[#d2292b]">
-              <span className="w-6 h-0.5 bg-[#d2292b] rounded-full" />
+          <div className="text-center max-w-3xl mx-auto mb-10 space-y-2">
+            <span className="text-[#0F766E] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] block">
               WHY TECHMAPPERZ
-              <span className="w-6 h-0.5 bg-[#d2292b] rounded-full" />
-            </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0c2e60] tracking-tight">
+            </span>
+            <h2 className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-[#0C2E60] tracking-tight leading-[1.2]">
               Practical Support from Data Review to Final Mapping
             </h2>
           </div>
@@ -732,15 +728,15 @@ export default function DroneDataProcessingPageClient() {
             {whyChooseUs.map((item, idx) => (
               <div
                 key={idx}
-                className="bg-white rounded-2xl border border-gray-200 p-7 shadow-sm hover:shadow-md transition-shadow space-y-3"
+                className="bg-[#F6F8FB] rounded-2xl border border-[#DDE3EA] p-6 sm:p-7 shadow-sm hover:shadow-md hover:border-[#1656B8]/30 transition-all duration-300 group"
               >
-                <div className="w-10 h-10 rounded-xl bg-[#0c2e60]/5 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-xl bg-white border border-[#DDE3EA] shadow-xs flex items-center justify-center mb-4 text-[#1656B8] group-hover:bg-[#1656B8] group-hover:text-white transition-all duration-300">
                   {item.icon}
                 </div>
-                <h3 className="text-base font-bold text-[#0c2e60]">
+                <h3 className="text-[18px] md:text-[20px] font-bold text-[#0C2E60] mb-2 group-hover:text-[#1656B8] transition-colors">
                   {item.title}
                 </h3>
-                <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">
+                <p className="text-[#4B5563] text-[15px] sm:text-[16px] leading-[1.65]">
                   {item.desc}
                 </p>
               </div>
@@ -750,18 +746,18 @@ export default function DroneDataProcessingPageClient() {
       </section>
 
       {/* ── FREQUENTLY ASKED QUESTIONS ── */}
-      <section className="py-12 md:py-20 bg-white">
+      <section className="py-4 md:py-10 bg-[#F6F8FB] border-t border-[#DDE3EA]">
         <div className="max-w-4xl mx-auto px-4 sm:px-8">
-          <div className="text-center mb-10 md:mb-12">
-            <span className="text-[#6ac045] text-xs font-bold uppercase tracking-[0.2em] mb-2 block">
+          <div className="text-center mb-10">
+            <span className="text-[#0F766E] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] mb-2 block">
               COMMON QUESTIONS
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0c2e60] tracking-tight">
+            <h2 className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-[#0C2E60] tracking-tight leading-[1.2]">
               Frequently Asked Questions
             </h2>
           </div>
 
-          <div className="border-t border-gray-200">
+          <div className="bg-white rounded-2xl border border-[#DDE3EA] p-6 sm:p-8 shadow-sm divide-y divide-[#DDE3EA]">
             {faqs.map((faq, i) => (
               <FaqItem key={i} faq={faq} defaultOpen={i === 0} />
             ))}
@@ -770,27 +766,33 @@ export default function DroneDataProcessingPageClient() {
       </section>
 
       {/* ── FINAL CALL TO ACTION BANNER ── */}
-      <section className="py-10 md:py-16 bg-white border-t border-gray-100" id="contact">
+      <section className="relative py-4 md:py-10 bg-white border-t border-[#DDE3EA]" id="contact">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
-          <div className="bg-gradient-to-br from-[#0c2e60] via-[#10477b] to-[#0b6b69] rounded-2xl sm:rounded-[32px] p-8 md:p-14 text-white relative overflow-hidden text-center shadow-xl">
+          <div className="bg-gradient-to-br from-[#0C2E60] via-[#0d4277] to-[#0F766E] rounded-2xl sm:rounded-[24px] p-6 sm:p-8 md:p-10 text-white relative overflow-hidden flex flex-col lg:flex-row lg:items-center justify-between gap-6 md:gap-8 shadow-xl border border-white/10">
             <div className="absolute right-[-80px] top-[-120px] w-[360px] h-[360px] border border-white/10 rounded-full shadow-[0_0_0_48px_rgba(255,255,255,0.05),0_0_0_96px_rgba(255,255,255,0.03)] pointer-events-none" />
-            <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
-              <div className="inline-flex items-center gap-2 text-[#6ac045] text-xs sm:text-sm font-bold uppercase tracking-[0.2em] mb-4">
-                <span className="w-6 h-[2px] bg-[#6ac045]" />
+            <div className="space-y-2.5 max-w-2xl relative z-10 text-left">
+              <span className="text-[#5EEAD4] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] block">
                 START YOUR DRONE PROJECT
-                <span className="w-6 h-[2px] bg-[#6ac045]" />
-              </div>
-              <h2 className="text-2xl sm:text-3xl md:text-[38px] font-bold text-white tracking-tight leading-tight mb-5">
+              </span>
+              <h2 className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-white tracking-tight leading-[1.2]">
                 Planning a Drone Survey or Have Drone Data to Process?
               </h2>
-              <p className="text-white/90 text-sm sm:text-base md:text-[16px] leading-relaxed mb-8 font-normal">
-                Share whatever information is available—project location, approximate area or corridor length, existing imagery or LAS/LAZ files, required outputs and timeline. If the scope is still being prepared, send what you have and we’ll help confirm the remaining inputs.
+              <p className="text-[#E8F5F3] text-[15px] sm:text-[16px] leading-[1.65] font-normal">
+                Share whatever information is available&mdash;project location, approximate area or corridor length, existing imagery or LAS/LAZ files, required outputs and timeline. If the scope is still being prepared, send what you have and we’ll help confirm the remaining inputs.
               </p>
+            </div>
+            <div className="flex flex-col sm:flex-row lg:flex-col gap-2.5 sm:gap-3 relative z-10 shrink-0 w-full lg:w-auto self-stretch sm:self-start lg:self-center">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-[#C92828] hover:bg-[#b02222] text-white font-bold text-sm sm:text-base shadow-lg shadow-[#C92828]/30 transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 min-h-[46px] sm:min-h-[48px] rounded-xl font-bold text-[15px] sm:text-[16px] text-white bg-[#1656B8] hover:bg-[#0C2E60] border border-white/20 shadow-sm hover:-translate-y-0.5 transition-all duration-200 text-center whitespace-nowrap w-full sm:w-auto"
               >
-                Discuss Your Drone Requirement &#8594;
+                Discuss Your Drone Requirement &rarr;
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center px-6 sm:px-8 py-3 min-h-[46px] sm:min-h-[48px] rounded-xl font-bold text-[15px] sm:text-[16px] text-[#0C2E60] bg-white border border-[#0C2E60] hover:bg-slate-50 hover:-translate-y-0.5 transition-all duration-200 text-center whitespace-nowrap w-full sm:w-auto"
+              >
+                Share Sample / Point Cloud Data
               </Link>
             </div>
           </div>

@@ -84,7 +84,7 @@ const Footer = () => {
 
             {/* Col 1 — Brand */}
             <div className="col-span-2 lg:col-span-1 flex flex-col gap-3.5 sm:gap-4">
-              <Link href="/" className="inline-block bg-white rounded-xl px-3 py-2 shadow-md hover:shadow-lg transition-shadow" style={{ width: 'fit-content' }}>
+              <Link href="/" className="inline-block bg-white rounded-[10px] px-3 py-2 shadow-md hover:shadow-lg transition-shadow" style={{ width: 'fit-content' }}>
                 <Image
                   src={company_logo}
                   alt="Techmapperz"

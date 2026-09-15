@@ -43,9 +43,9 @@ const techItems = [
   { category: 'Integration', label: 'Analytics', sub: 'Traffic & Conversion Tracking', icon: FiBarChart2, color: '#F4B400' },
   
   // Specialised Capability
-  { category: 'Specialised', label: 'Web GIS', sub: 'Interactive Map Applications', icon: FiMap, color: '#1656b8' },
-  { category: 'Specialised', label: 'Spatial Databases', sub: 'Geo-enabled Data Queries', icon: FiDatabase, color: '#6ac045' },
-  { category: 'Specialised', label: 'Map Apps', sub: 'Custom Location Workflows', icon: FiNavigation, color: '#d2292b' }
+  { category: 'Specialised', label: 'Web GIS', sub: 'Interactive Map Applications', icon: FiMap, color: '#1656B8' },
+  { category: 'Specialised', label: 'Spatial Databases', sub: 'Geo-enabled Data Queries', icon: FiDatabase, color: '#0F766E' },
+  { category: 'Specialised', label: 'Map Apps', sub: 'Custom Location Workflows', icon: FiNavigation, color: '#1656B8' }
 ];
 
 const categories = ['All', 'Frontend', 'Backend', 'Data', 'Integration', 'Specialised'];
@@ -67,7 +67,7 @@ export default function WebTechFilter() {
             onClick={() => setActiveCategory(cat)}
             className={`px-4 py-1.5 rounded-full text-xs font-semibold border transition-all duration-200 ${
               activeCategory === cat
-                ? 'bg-[#1656b8] border-[#1656b8] text-white shadow-sm'
+                ? 'bg-[#1656B8] border-[#1656B8] text-white shadow-sm'
                 : 'bg-white/10 border-white/15 text-white/80 hover:bg-white/20 hover:text-white'
             }`}
           >
@@ -87,7 +87,7 @@ export default function WebTechFilter() {
             >
               <div className="w-10 h-10 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center group-hover:scale-105 group-hover:bg-white transition-all duration-200">
                 <IconComponent 
-                  className="w-5 h-5 transition-colors duration-200 group-hover:!text-[#0c2e60]" 
+                  className="w-5 h-5 transition-colors duration-200 group-hover:!text-[#0C2E60]" 
                   style={{ color: item.color || '#ffffff' }} 
                 />
               </div>
