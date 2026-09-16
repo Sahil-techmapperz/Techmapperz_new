@@ -1,27 +1,8 @@
 import { NextResponse } from 'next/server';
 import connectDB from '@/app/lib/db';
 import Testimonial from '@/app/lib/models/Testimonial';
-import ImageKit from 'imagekit';
-
-const imagekit = new ImageKit({
-  publicKey: 'public_uw+Iy20W6XHXO3AjkXEW2K+2tgo=',
-  privateKey: 'private_B4IrCM6a0Q7Q+r/03UZGZINFyrE=',
-  urlEndpoint: 'https://ik.imagekit.io/lrrkr27gr',
-});
-
-const uploadFile = async (fileBuffer, fileName) => {
-  try {
-    const response = await imagekit.upload({
-      file: fileBuffer,
-      fileName: fileName,
-      folder: '/uploads',
-    });
-    return response.url;
-  } catch (error) {
-    console.log(error);
-    return null;
-  }
-};
+import { uploadFile } from '@/app/lib/imagekit';
+import { verifyAdminAuth } from '@/app/lib/auth';
 
 export async function GET() {
   try {
@@ -85,6 +66,11 @@ export async function POST(request) {
 }
 
 export async function DELETE(request) {
+  const auth = verifyAdminAuth(request);
+  if (!auth.authorized) {
+    return NextResponse.json({ error: auth.error || 'Unauthorized' }, { status: 401 });
+  }
+
   try {
     await connectDB();
     const body = await request.json();

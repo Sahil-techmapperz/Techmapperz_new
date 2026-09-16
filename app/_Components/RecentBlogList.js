@@ -2,12 +2,12 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { formatDate } from '@/app/lib/dateFormat';
 import getRecentblogs from '@/lib/getsingaleblogs';
-
+import { FiCalendar, FiArrowRight } from 'react-icons/fi';
 
 const RecentBlogList = async () => {
   const recentPostsResponse = await getRecentblogs();
   
-  // Handle the response structure and ensure we have an array
+  // Handle response structure
   const recentPosts = Array.isArray(recentPostsResponse) 
     ? recentPostsResponse 
     : (recentPostsResponse?.data && Array.isArray(recentPostsResponse.data)) 
@@ -15,23 +15,58 @@ const RecentBlogList = async () => {
       : [];
 
   return (
-    <div className="p-4 max-sm:px-2 shadow-lg rounded-lg">
-      <h1 className="text-2xl max-sm:text-[18px] font-bold mb-4">Recent Posts</h1>
-      {recentPosts.length > 0 ? recentPosts.map((recent) => (
-        <div key={recent._id} className="flex max-sm:flex-col gap-4 mb-4">
-          <Image src={recent.images?.[0]?.trim() || '/placeholder-image.jpg'} alt={recent.title || 'Recent post image'} width={100} height={100} className="w-[100px] max-sm:w-full h-[100px] max-sm:h-auto object-cover rounded-md" sizes="(max-width: 640px) 100vw, 100px" />
-          <div>
-            <h1 className="text-lg max-sm:text-[16px] font-semibold cursor-pointer">
-              <Link href={`/blog/${recent._id}`}>{recent.title.slice(0, 100) + "..."}</Link>
-            </h1>
-            <h1>{formatDate(recent.created_at)}</h1>
-          </div>
+    <div className="p-6 bg-white rounded-2xl border border-[#DDE3EA] shadow-sm">
+      <span className="text-[#0F766E] text-[12px] font-bold uppercase tracking-[0.15em] block mb-1">
+        LATEST PERSPECTIVES
+      </span>
+      <h3 className="text-[19px] sm:text-[20px] font-bold text-[#0C2E60] mb-5 pb-3 border-b border-[#DDE3EA]">
+        Recent Articles
+      </h3>
+
+      {recentPosts.length > 0 ? (
+        <div className="space-y-4">
+          {recentPosts.slice(0, 5).map((recent) => (
+            <Link
+              key={recent._id}
+              href={`/blog/${recent._id}`}
+              className="group flex items-start gap-3.5 p-2 -mx-2 rounded-xl hover:bg-[#F6F8FB] transition-all duration-200"
+            >
+              <div className="relative w-20 h-20 shrink-0 rounded-xl overflow-hidden bg-[#F6F8FB] border border-[#DDE3EA]">
+                <Image
+                  src={recent.images?.[0]?.trim() || '/placeholder-image.jpg'}
+                  alt={recent.title || 'Recent post thumbnail'}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  sizes="80px"
+                />
+              </div>
+              <div className="flex-1 min-w-0">
+                <h4 className="text-sm font-bold text-[#0C2E60] group-hover:text-[#1656B8] transition-colors line-clamp-2 leading-snug">
+                  {recent.title}
+                </h4>
+                <div className="flex items-center gap-1 text-[11px] text-[#6B7280] mt-2">
+                  <FiCalendar className="w-3 h-3 text-[#0F766E]" />
+                  <span>{formatDate(recent.created_at)}</span>
+                </div>
+              </div>
+            </Link>
+          ))}
         </div>
-      )) : (
-        <div className="text-center py-4">
-          <p className="text-gray-500">No recent posts available.</p>
-        </div>
+      ) : (
+        <p className="text-[#6B7280] text-sm py-3 text-center">
+          No recent posts available.
+        </p>
       )}
+
+      <div className="mt-6 pt-4 border-t border-[#DDE3EA]">
+        <Link
+          href="/contact"
+          className="group flex items-center justify-between text-xs font-bold uppercase tracking-wider text-[#1656B8] hover:text-[#0C2E60] transition-colors"
+        >
+          <span>Need Project Assistance?</span>
+          <FiArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+        </Link>
+      </div>
     </div>
   );
 };

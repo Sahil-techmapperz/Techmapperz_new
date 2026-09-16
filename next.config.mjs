@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+// Reload trigger
 const nextConfig = {
   // Build configuration for better error handling
   typescript: {

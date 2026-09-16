@@ -8,10 +8,7 @@
     "build": "cross-env NODE_OPTIONS=--max-old-space-size=1536 next build",
     "build:production": "cross-env NODE_OPTIONS=--max-old-space-size=2048 next build",
     "start": "next start",
-    "lint": "next lint",
-    "health-check": "node health-check.js",
-    "backend:dev": "cd backend && npm run dev",
-    "backend:start": "cd backend && npm start"
+    "lint": "next lint"
   },
   "dependencies": {
     "@hello-pangea/dnd": "^18.0.1",

@@ -3,6 +3,7 @@ Allow: /
 Disallow: /api/
 Disallow: /admin/
 Disallow: /tmp/
+Disallow: /test
 Disallow: /404
 Disallow: /500
 

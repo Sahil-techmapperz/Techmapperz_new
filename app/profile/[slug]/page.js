@@ -6,7 +6,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://www.techmapperz.co
 
 // Generate metadata for each portfolio item
 export async function generateMetadata({ params }) {
-  const { slug } = params;
+  const { slug } = await params;
   
   // Find the portfolio item by slug or name
   const portfolioItem = enhancedPortfolioData.find(item => {
@@ -58,8 +58,8 @@ export async function generateStaticParams() {
   });
 }
 
-export default function ProfileDetailPage({ params }) {
-  const { slug } = params;
+export default async function ProfileDetailPage({ params }) {
+  const { slug } = await params;
 
   // Find the portfolio item by slug or name matching
   const portfolioItem = enhancedPortfolioData.find(item => {

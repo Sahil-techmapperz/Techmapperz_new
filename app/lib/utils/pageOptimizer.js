@@ -17,11 +17,6 @@ export const OptimizedComponents = {
     ...createOptimizedLoader("400px", "bg-gray-900")
   }),
   
-  // Technology and features
-  Technology: dynamic(() => import('../../_Components/Technology'), {
-    ...createOptimizedLoader("300px", "bg-gray-800")
-  }),
-  
   // Testimonials
   Testimonial: dynamic(() => import('../../_Components/Testimonial'), {
     ...createOptimizedLoader("300px", "bg-black")
@@ -92,7 +87,6 @@ export const createServiceBanner = (backgroundImage, title, subtitle, ctaText = 
 // Common service page layout
 export const ServicePageLayout = ({ 
   children, 
-  showTechnology = true, 
   showTestimonials = true, 
   showContact = true,
   revalidate = ISR_CONFIGS.service 
@@ -101,7 +95,6 @@ export const ServicePageLayout = ({
     <>
       <OptimizedComponents.ScrollToTop />
       {children}
-      {showTechnology && <OptimizedComponents.Technology />}
       {showTestimonials && <OptimizedComponents.Testimonial />}
       {showContact && <OptimizedComponents.Homecontact />}
     </>

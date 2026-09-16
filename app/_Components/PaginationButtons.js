@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { AiOutlineRight, AiOutlineLeft } from 'react-icons/ai';
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
 const PaginationButtons = ({ page, totalPages }) => {
   const currentPage = Number(page) || 1;
@@ -10,41 +10,55 @@ const PaginationButtons = ({ page, totalPages }) => {
   const prevPage = Math.max(1, currentPage - 1);
   const nextPage = Math.min(total, currentPage + 1);
 
+  if (total <= 1) return null;
+
   return (
-    <div className="flex justify-center items-center gap-4 mt-8">
+    <nav aria-label="Blog pagination" className="flex justify-center items-center gap-3 mt-10 pt-8 border-t border-[#DDE3EA]">
       {/* Previous Page Button */}
       {currentPage > 1 ? (
         <Link
           href={`/blog?page=${prevPage}`}
-          className="p-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 transition-colors"
+          aria-label="Previous Page"
+          className="inline-flex items-center justify-center gap-1 px-4 py-2.5 min-h-[42px] rounded-xl font-bold text-sm text-[#0C2E60] bg-white border border-[#DDE3EA] hover:border-[#1656B8] hover:text-[#1656B8] hover:bg-[#F6F8FB] shadow-sm transition-all duration-200"
         >
-          <AiOutlineLeft />
+          <FiChevronLeft className="w-4 h-4" />
+          <span className="hidden sm:inline">Previous</span>
         </Link>
       ) : (
-        <div className="p-2 rounded-md bg-gray-400 cursor-not-allowed text-white">
-          <AiOutlineLeft />
-        </div>
+        <span
+          aria-disabled="true"
+          className="inline-flex items-center justify-center gap-1 px-4 py-2.5 min-h-[42px] rounded-xl font-medium text-sm text-gray-400 bg-gray-50 border border-[#DDE3EA] cursor-not-allowed opacity-60"
+        >
+          <FiChevronLeft className="w-4 h-4" />
+          <span className="hidden sm:inline">Previous</span>
+        </span>
       )}
 
-      {/* Page Information */}
-      <div className="text-white">
-        Page {currentPage} of {total}
+      {/* Page Information Badge */}
+      <div className="px-4 py-2 min-h-[42px] flex items-center justify-center rounded-xl bg-[#E8F5F3] border border-[#0F766E]/20 text-[#0C2E60] text-sm font-bold shadow-sm">
+        <span>Page <strong className="text-[#0F766E]">{currentPage}</strong> of {total}</span>
       </div>
 
       {/* Next Page Button */}
       {currentPage < total ? (
         <Link
           href={`/blog?page=${nextPage}`}
-          className="p-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 transition-colors"
+          aria-label="Next Page"
+          className="inline-flex items-center justify-center gap-1 px-4 py-2.5 min-h-[42px] rounded-xl font-bold text-sm text-white bg-[#1656B8] hover:bg-[#0C2E60] border border-[#1656B8] shadow-sm transition-all duration-200"
         >
-          <AiOutlineRight />
+          <span className="hidden sm:inline">Next</span>
+          <FiChevronRight className="w-4 h-4" />
         </Link>
       ) : (
-        <div className="p-2 rounded-md bg-gray-400 cursor-not-allowed text-white">
-          <AiOutlineRight />
-        </div>
+        <span
+          aria-disabled="true"
+          className="inline-flex items-center justify-center gap-1 px-4 py-2.5 min-h-[42px] rounded-xl font-medium text-sm text-gray-400 bg-gray-50 border border-[#DDE3EA] cursor-not-allowed opacity-60"
+        >
+          <span className="hidden sm:inline">Next</span>
+          <FiChevronRight className="w-4 h-4" />
+        </span>
       )}
-    </div>
+    </nav>
   );
 };
 

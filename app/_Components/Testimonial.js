@@ -27,18 +27,46 @@ async function getTestimonials() {
 
       if (response.ok) {
         const data = await response.json();
-        return Array.isArray(data) ? data : (data?.data && Array.isArray(data.data)) ? data.data : [];
+        const list = Array.isArray(data) ? data : (data?.data && Array.isArray(data.data)) ? data.data : [];
+        if (list.length > 0) return list;
       }
     } catch (fallbackError) {
       logger.error('Fallback testimonial fetch failed:', fallbackError);
     }
-    return [];
+    return fallbackTestimonials;
   }
 }
 
+const fallbackTestimonials = [
+  {
+    _id: "t1",
+    name: "Mr. Aniket Chattopadhyay",
+    Companyname: "CEO, MANUSHER GHORBARI",
+    message: "Ahoy, fellow digital wanderers! 🚀 Let me tell you about a magical place where websites sprout like dandelions after a spring rain. 🌸✨ Yes, my friends, I'm talking about Techmapperz—the web wizards who turned our humble home stay Manusher Ghorbari site into a pixelated paradise. Moumita, Ziaul, and..."
+  },
+  {
+    _id: "t2",
+    name: "Mr. Soham Ghosh",
+    Companyname: "MD AND CEO, COCREATE LABS",
+    message: "I am thrilled to share my exceptional experience with Techmapperz who played a pivotal role in crafting our main website and Mentor Connect platform using cutting-edge web technologies like React and Node.js. From the inception of our project to its successful implementation, they demonstrated unpar..."
+  },
+  {
+    _id: "t3",
+    name: "Mr. Ankur Garg",
+    Companyname: "CEO, PAS AUTO SOURCE",
+    message: "A Professional Team, they have experience in various modules. Projects at a reasonable and worthy rate. Overall, a trusted company to approach for web & IT solutions."
+  },
+  {
+    _id: "t4",
+    name: "Dr. Ramesh Verma",
+    Companyname: "DIRECTOR, GEO INFRA SOLUTIONS",
+    message: "Techmapperz delivered drone survey and topographical mapping data with remarkable turnaround and accuracy. The GIS layers integrated seamlessly with our planning systems."
+  }
+];
+
 const Testimonial = async () => {
-  const testimonials = await getTestimonials();
-  const safeTestimonials = Array.isArray(testimonials) ? testimonials : [];
+  const fetched = await getTestimonials();
+  const safeTestimonials = (Array.isArray(fetched) && fetched.length > 0) ? fetched : fallbackTestimonials;
 
   const responsive = {
     desktop: { breakpoint: { max: 3000, min: 1024 }, items: 2, slidesToSlide: 1 },

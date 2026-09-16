@@ -1,8 +1,14 @@
 import { NextResponse } from 'next/server';
 import connectDB from '@/app/lib/db';
 import Contact from '@/app/lib/models/Contact';
+import { verifyAdminAuth } from '@/app/lib/auth';
 
-export async function GET() {
+export async function GET(request) {
+  const auth = verifyAdminAuth(request);
+  if (!auth.authorized) {
+    return NextResponse.json({ error: auth.error || 'Unauthorized' }, { status: 401 });
+  }
+
   try {
     await connectDB();
     const allContact = await Contact.find();
@@ -61,6 +67,11 @@ export async function POST(request) {
 }
 
 export async function DELETE(request) {
+  const auth = verifyAdminAuth(request);
+  if (!auth.authorized) {
+    return NextResponse.json({ error: auth.error || 'Unauthorized' }, { status: 401 });
+  }
+
   try {
     await connectDB();
     const body = await request.json();

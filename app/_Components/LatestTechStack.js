@@ -30,7 +30,6 @@ import {
   AwsIcon,
   GitIcon
 } from "./TechIcons";
-import Link from "next/link";
 
 const categorizedTechStack = {
   Frontend: [
@@ -173,45 +172,44 @@ const LatestTechStack = () => {
                 animate="visible"
                 exit={{ opacity: 0, y: -20, transition: { duration: 0.2 } }}
               >
-                {categorizedTechStack[selectedCategory].map((tech, index) => (
-                  <Link key={tech.name} href={`/technology/${tech.name.toLowerCase().replace(/[^a-z0-9]/g, '')}`}>
-                    <motion.div
-                      className="group relative flex flex-col items-center justify-center p-4 sm:p-6 h-full rounded-2xl sm:rounded-[1.5rem] bg-[#111622]/80 backdrop-blur-xl border border-white/5 cursor-pointer overflow-hidden"
-                      variants={cardVariants}
-                      whileHover="hover"
-                      whileTap="tap"
-                    >
-                      {/* Neon Brand Hover Glow */}
-                      <div 
-                        className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500"
-                        style={{ background: `radial-gradient(circle at center, ${tech.brandColor} 0%, transparent 70%)` }}
-                      />
-                      
-                      {/* Brand Border Hover */}
-                      <div 
-                        className="absolute inset-0 rounded-[1.5rem] opacity-0 group-hover:opacity-50 transition-opacity duration-500 pointer-events-none"
-                        style={{ border: `1px solid ${tech.brandColor}` }}
-                      />
+                {categorizedTechStack[selectedCategory].map((tech) => (
+                  <motion.div
+                    key={tech.name}
+                    className="group relative flex flex-col items-center justify-center p-4 sm:p-6 h-full rounded-2xl sm:rounded-[1.5rem] bg-[#111622]/80 backdrop-blur-xl border border-white/5 cursor-default overflow-hidden"
+                    variants={cardVariants}
+                    whileHover="hover"
+                    whileTap="tap"
+                  >
+                    {/* Neon Brand Hover Glow */}
+                    <div 
+                      className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500"
+                      style={{ background: `radial-gradient(circle at center, ${tech.brandColor} 0%, transparent 70%)` }}
+                    />
+                    
+                    {/* Brand Border Hover */}
+                    <div 
+                      className="absolute inset-0 rounded-[1.5rem] opacity-0 group-hover:opacity-50 transition-opacity duration-500 pointer-events-none"
+                      style={{ border: `1px solid ${tech.brandColor}` }}
+                    />
 
-                      <motion.div
-                        className="text-5xl mb-4 text-gray-400 group-hover:text-white transition-colors duration-300 drop-shadow-lg relative z-10"
-                        whileHover={{ rotate: 360 }}
-                        transition={{ duration: 0.7, ease: "easeInOut" }}
-                        style={{ 
-                          filter: `drop-shadow(0 0 8px ${tech.brandColor}40)`
-                        }}
-                      >
-                        {/* Apply dynamic color using inline style to ensure it overrides classes if needed */}
-                        <div style={{ color: tech.brandColor }}>
-                          {tech.icon}
-                        </div>
-                      </motion.div>
-                      
-                      <p className="text-sm font-bold text-gray-300 group-hover:text-white transition-colors relative z-10 tracking-wide">
-                        {tech.name}
-                      </p>
+                    <motion.div
+                      className="text-5xl mb-4 text-gray-400 group-hover:text-white transition-colors duration-300 drop-shadow-lg relative z-10"
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.7, ease: "easeInOut" }}
+                      style={{ 
+                        filter: `drop-shadow(0 0 8px ${tech.brandColor}40)`
+                      }}
+                    >
+                      {/* Apply dynamic color using inline style to ensure it overrides classes if needed */}
+                      <div style={{ color: tech.brandColor }}>
+                        {tech.icon}
+                      </div>
                     </motion.div>
-                  </Link>
+                    
+                    <p className="text-sm font-bold text-gray-300 group-hover:text-white transition-colors relative z-10 tracking-wide">
+                      {tech.name}
+                    </p>
+                  </motion.div>
                 ))}
               </motion.div>
             </AnimatePresence>

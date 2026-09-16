@@ -30,7 +30,6 @@ const Sitemap = () => {
       links: [
         { name: 'Our Services', href: '/#Our_Services' },
         { name: 'Some Of Our Works', href: '/#some_of_our_works' },
-        { name: 'Technology', href: '/#technology' },
         { name: 'Industry Expertise', href: '/#Industry_Expertise' },
         { name: 'Why Choose Us', href: '/#partners' },
         { name: 'Blogs', href: '/#blog' },
@@ -60,36 +59,36 @@ const Sitemap = () => {
       links: [
         { 
           name: 'GIS Services', 
-          href: '/service/gis/gisservice',
+          href: '/service/gisservice',
           subLinks: [
-            { name: 'GIS Mapping', href: '/service/gis/gisservice/gismapping' },
-            { name: 'Data Digitization', href: '/service/gis/gisservice/datadigitization' },
-            { name: 'GIS Consulting', href: '/service/gis/gisservice/gisconsulting' },
-            { name: 'Web GIS Development', href: '/service/gis/gisservice/webgisdevelopment' },
-            { name: 'GIS Surveying', href: '/service/gis/gisservice/gissurveying' },
+            { name: 'GIS Mapping', href: '/service/gisservice/gismapping' },
+            { name: 'Data Digitization', href: '/service/gisservice/datadigitization' },
+            { name: 'GIS Consulting', href: '/service/gisservice/gisconsulting' },
+            { name: 'Web GIS Development', href: '/service/gisservice/webgisdevelopment' },
+            { name: 'GIS Surveying', href: '/service/gisservice/gissurveying' },
           ]
         },
         { 
-          name: 'Drone Survey & Mapping', 
+          name: 'Drone & LiDAR Services', 
           href: '/service/drone-survey-mapping',
           subLinks: [
-            { name: 'Drone Survey and Mapping', href: '/service/gis/droneservice/dronesurveyandmapping' },
-            { name: 'Inspection and Analysis', href: '/service/gis/droneservice/inspectionandanalysis' },
+            { name: 'Drone Survey & Topographic Mapping', href: '/service/drone-survey-mapping' },
             { name: 'Drone Data Processing', href: '/service/drone-data-processing' },
+            { name: 'Inspection and Analysis', href: '/service/droneservice/inspectionandanalysis' },
+            { name: 'LiDAR Survey & Point Cloud', href: '/service/lidar' },
           ]
         },
       ]
     },
     {
-      title: 'IT Services',
+      title: 'IT & Digital Services',
       icon: <FiCode className="w-6 h-6" />,
       color: 'from-orange-500 to-red-500',
       mainLink: '/service',
       links: [
-        { name: 'Mobile App Development', href: '/service/it/mobile-app-development' },
         { name: 'Website Development', href: '/service/webdevelopment' },
-        { name: 'CRM Software Solution', href: '/service/it/crmservice' },
-        { name: 'IT Consultancy', href: '/service/it/itconsultingservice' },
+        { name: 'Mobile App Development', href: '/service/mobile-app-development' },
+        { name: 'LiDAR Solutions', href: '/service/lidar' },
       ]
     },
     {

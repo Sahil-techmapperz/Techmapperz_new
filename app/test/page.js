@@ -1,3 +1,10 @@
+export const metadata = {
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
+
 export default function RailwayLidarPortfolioPage() {
   const stats = [
     { label: 'Project Type', value: 'Drone-Based LiDAR Topographic Survey' },

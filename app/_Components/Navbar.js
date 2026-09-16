@@ -25,44 +25,6 @@ const Navbar = ({ onOpenQuote }) => {
 
   const pathname = usePathname();
 
-  useEffect(() => {
-    const handleOpen = () => setIsQuoteModalOpen(true);
-    window.addEventListener('open-quote-modal', handleOpen);
-
-    const handleGlobalClick = (e) => {
-      const trigger = e.target.closest('[data-open-modal="quote"], a, button');
-      if (!trigger) return;
-
-      // Ignore if clicking inside a form (like submit buttons) or already inside modal
-      if (trigger.closest('form')) return;
-
-      // Check for explicit data attribute
-      if (trigger.dataset?.openModal === 'quote') {
-        e.preventDefault();
-        setIsQuoteModalOpen(true);
-        return;
-      }
-
-      // Check text content for specified CTA buttons
-      const text = trigger.textContent?.trim().replace(/\s+/g, ' ') || '';
-      if (
-        text.includes('Discuss a Data-Processing Requirement') ||
-        text.includes('Discuss a Data Processing Requirement') ||
-        text.includes('Discuss Your Project')
-      ) {
-        e.preventDefault();
-        setIsQuoteModalOpen(true);
-      }
-    };
-
-    document.addEventListener('click', handleGlobalClick);
-
-    return () => {
-      window.removeEventListener('open-quote-modal', handleOpen);
-      document.removeEventListener('click', handleGlobalClick);
-    };
-  }, []);
-
 
 
   const sections = [
