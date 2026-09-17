@@ -1269,106 +1269,140 @@ const itPortfolioData = [
 const gisPortfolioData = [
     {
         image: "/Photos/GIS_portfolio/Topographical Survey & Mapping of Proposed Railway Track/1.webp",
-        category: "GIS",
-        techStack: "LiDAR Survey , Railway Corridor Mapping , Point Cloud Data",
-        name: "Drone based LiDAR Topographic Survey for Railway Corridor Mapping",
+        category: "Drone LIDAR",
+        eyebrow: "Drone LIDAR · Railway infrastructure",
+        techStack: "Drone LiDAR, Railway Infrastructure, Corridor Mapping, Point Cloud, GIS",
+        name: "Railway Corridor LiDAR Survey",
+        headline: "Drone-Based LiDAR Topographic Survey for Railway Corridor Mapping",
+        breadcrumbTitle: "Railway Corridor LiDAR Survey",
+        client: "Railway Corridor LiDAR Survey",
+        showClientInHero: false,
+        summary: "We mapped a 100 m-wide railway alignment and developed the terrain, section and gradient outputs needed for planning and engineering work.",
         link: "/portfolios/topographical_railway_survey",
         slug: "topographical_railway_survey",
-        details: [
-            "The drone-based aerial LiDAR technology was used in the Topographical Survey and Mapping Project to conduct a detailed topography and elevation survey of the proposed elevated railway track path (100 m wide) between Gonda Railway Station and Anand Nagar Railway Station (173 KM) in Uttar Pradesh, India. This section is an important element of the regional railroad system that passes through rural, semi-urban, and agricultural areas, and the topography is the key factor in ensuring the accuracy of design and safety of infrastructure."
-        ],
+        aliases: ["railway-corridor-lidar-survey", "railway_corridor_lidar_survey"],
+        seoTitle: "Railway Corridor LiDAR Survey | Drone-Based Mapping Case Study | Techmapperz",
+        seoDescription: "Drone-based LiDAR and aerial imaging survey covering a 173 km railway alignment in Uttar Pradesh within a 100 m corridor for railway infrastructure planning and engineering design.",
         projectDetails: {
             year: "2024",
             location: "Uttar Pradesh, India",
             duration: "6 months",
             teamSize: "14 specialists",
-            industry: "Railway Infrastructure",
-            projectType: "Topographical Survey & LiDAR Mapping"
+            industry: "Railway infrastructure",
+            projectType: "Drone-Based LiDAR Survey & Corridor Mapping",
+            alignmentLength: "173 km",
+            corridorWidth: "100 m"
         },
-        objectives: [
+        overviewTitle: "High-Precision LiDAR Survey for Railway Corridor Mapping",
+        details: [
+            "Techmapperz conducted a drone-based LiDAR and aerial imaging survey for a railway corridor project in Uttar Pradesh.",
+            "The project covered a 173 km railway alignment, capturing high-accuracy terrain and elevation data within a 100-metre corridor to support railway infrastructure planning and engineering design.",
+            "The objective was to create a reliable, high-resolution digital terrain dataset that enables faster and more accurate decision-making for large-scale railway development."
+        ],
+        challengeTitle: "Client Challenge",
+        challengeIntro: "Railway corridor projects require accurate and continuous terrain data over long distances. Traditional survey methods can be time-consuming and may not provide the level of detail needed for modern infrastructure planning.",
+        challengeListIntro: "For this project, the key challenges included:",
+        challengeItems: [
+            "Mapping a 173 km alignment efficiently",
+            "Maintaining consistent accuracy across a 100 m corridor width",
+            "Generating detailed elevation and gradient data",
+            "Delivering outputs suitable for engineering design"
+        ],
+        solutionTitle: "Our Solution",
+        solutionsSummary: "Techmapperz implemented a drone-based LiDAR survey approach combined with aerial imaging to capture high-density terrain data across the entire corridor.",
+        solutionSecondary: "The project was structured to ensure clear data flow—from acquisition to processing to engineering outputs—so that the client could directly use the results for railway planning and design. This approach enabled faster execution while maintaining high accuracy and data reliability.",
+        deliverables: [
+            "LiDAR point cloud dataset",
+            "Topographic surface model",
+            "L-Section drawings",
+            "X-Section drawings",
+            "Gradient change analysis",
+            "Vertical curve calculations",
+            "Feature mapping including roads, bridges, and underpasses"
+        ],
+        processTitle: "Project Process",
+        executionSteps: [
             {
-                title: "High-Resolution Mapping",
-                description: "Prepare a precise map of the railway track of the proposed elevated corridor with not less than 3cm GSD/pixel standard."
+                step: "01",
+                title: "Plan",
+                desc: "Define alignment coverage, corridor width and output requirements."
             },
             {
-                title: "Developed LiDAR Usage",
-                description: "Use LiDAR technology to provide a clear identification and demarcation of the features, objects and assets of railways."
+                step: "02",
+                title: "Capture",
+                desc: "Acquire LiDAR and aerial imagery with consistent route coverage."
             },
             {
-                title: "Real-Time Data Fusion",
-                description: "Add LiDAR Point cloud data to RGB imagery to improve the quality of spatial data and display features on true color."
+                step: "03",
+                title: "Classify",
+                desc: "Process the point cloud and separate terrain information."
             },
             {
-                title: "Feature Mapping",
-                description: "Detailed mapping of approach roads, shoulders, FOBs, underpasses and bridges."
+                step: "04",
+                title: "Develop",
+                desc: "Build terrain models, features, profiles and section outputs."
+            },
+            {
+                step: "05",
+                title: "Deliver",
+                desc: "Structure the final data for planning, design and review."
             }
         ],
-        solutions: [
+        galleryEyebrow: "TRUSTED PROJECT CREDENTIALS",
+        galleryTitle: "Evidence from the actual corridor.",
+        galleryImages: [
             {
-                title: "Drone-Based LiDAR Survey",
-                description: "The high-density LiDAR sensors are used on the 100 m wide corridor to be covered by the UAV flights to collect accurate data on terrain and structures.",
-                features: [
-                    "High-density LiDAR sensors",
-                    "100m wide corridor coverage",
-                    "UAV-based data collection",
-                    "Terrain and structure mapping"
-                ],
-                image: "/Photos/GIS_portfolio/Topographical Survey & Mapping of Proposed Railway Track/2.webp"
+                step: "01 / CORRIDOR OVERVIEW",
+                title: "Orthomosaic alignment view",
+                caption: "A continuous visual reference for the mapped railway route and surrounding land.",
+                src: "/Photos/GIS_portfolio/Topographical Survey & Mapping of Proposed Railway Track/2.png",
+                alt: "Orthomosaic alignment view"
             },
             {
-                title: "Aerial Imagery Acquisition",
-                description: "Obtained synchronized high-resolution RGB images that are nurtured towards better data visualizations and feature localization.",
-                features: [
-                    "Synchronized RGB imagery",
-                    "High-resolution capture",
-                    "Enhanced data visualization",
-                    "Precise feature localization"
-                ],
-                image: "/Photos/GIS_portfolio/Topographical Survey & Mapping of Proposed Railway Track/3.webp"
+                step: "02 / CORRIDOR SEGMENT",
+                title: "Route-level detail",
+                caption: "A closer view of the alignment and its surrounding features.",
+                src: "/Photos/GIS_portfolio/Topographical Survey & Mapping of Proposed Railway Track/1.webp",
+                alt: "Route-level detail"
             },
             {
-                title: "Point Cloud Processing",
-                description: "Creation of Digital Terrain Models (DTM) and Digital Surface Models (DSM) creation with processed LiDAR data.",
-                features: [
-                    "Digital Terrain Models (DTM)",
-                    "Digital Surface Models (DSM)",
-                    "Point cloud processing",
-                    "Elevation data extraction"
-                ],
-                image: "/Photos/GIS_portfolio/Topographical Survey & Mapping of Proposed Railway Track/1.webp"
-            },
-            {
-                title: "Feature Extraction and Mapping",
-                description: "Identification and feature extraction of railway objects, topographical objects, access roads and buildings.",
-                features: [
-                    "Railway object extraction",
-                    "Topographical feature mapping",
-                    "Access road identification",
-                    "Building detection and mapping"
-                ],
-                image: "/Photos/GIS_portfolio/Topographical Survey & Mapping of Proposed Railway Track/1.webp"
+                step: "03 / TERRAIN OUTPUT",
+                title: "LiDAR terrain model",
+                caption: "Elevation information prepared from the processed corridor dataset.",
+                src: "/Photos/GIS_portfolio/Topographical Survey & Mapping of Proposed Railway Track/3.png",
+                alt: "LiDAR terrain model"
             }
         ],
-        benefits: [
+        resultsTitle: "Results & Business Impact",
+        resultsLead: "The project delivered a high-precision topographical dataset that improved railway planning and engineering efficiency.",
+        resultsSubtitle: "Key outcomes",
+        results: [
             {
-                label: "High Accuracy",
-                value: "Centimeter-level",
-                description: "Centimeter-level accuracy of elevation obtained with the help of drone-mounted LiDAR sensors",
-                icon: "🎯"
-            },
-            {
-                label: "Quick Data Imaging",
-                value: "Time Efficient",
-                description: "LiDAR in drones saves a lot of time in comparison to traditional surveys",
+                label: "Faster survey execution",
+                value: "Fast Execution",
+                description: "Significantly accelerated data collection over the 173 km alignment compared to conventional survey methods.",
                 icon: "⚡"
             },
             {
-                label: "Improved Visualization",
-                value: "Enhanced Analysis",
-                description: "LiDAR fusion with true colour is capable of greater feature recognition and analysis of space",
+                label: "Detailed terrain visualisation",
+                value: "High Resolution",
+                description: "Sub-centimeter terrain models and point cloud data for complete corridor visualization.",
                 icon: "👁️"
+            },
+            {
+                label: "Accurate elevation and gradient insights",
+                value: "Precision Data",
+                description: "High-accuracy gradient change and vertical curve computations tailored for engineering planning.",
+                icon: "📐"
+            },
+            {
+                label: "Better support for infrastructure planning",
+                value: "Design-Ready",
+                description: "Direct CAD and GIS-compatible datasets enabling confident decision-making across teams.",
+                icon: "🎯"
             }
-        ]
+        ],
+        conclusion: "The final output provides a reliable digital foundation for railway corridor design and development."
     },
     {
         image: "/Photos/GIS_portfolio/Ammonia and Water Pipeline Drone Survey & Digitization Project/1.webp",

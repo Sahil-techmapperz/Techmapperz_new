@@ -142,7 +142,7 @@ const nextConfig = {
     minimumCacheTTL: 31536000,
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    unoptimized: process.env.NODE_ENV === 'development', // Disable optimization in development to avoid localhost issues
+    unoptimized: true, // Local images with spaces in paths bypass optimization
     remotePatterns: [
       {
         protocol: 'https',

@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import "./case-study-template.css";
-import { FaCheck } from "react-icons/fa";
 
 export default function PortfolioDetailTemplate({
   portfolioItem,
@@ -67,8 +66,8 @@ export default function PortfolioDetailTemplate({
 
     const observer = new IntersectionObserver(observerCallback, {
       root: null,
-      rootMargin: "0px 0px -40px 0px",
-      threshold: 0.05,
+      rootMargin: "100px 0px -40px 0px",
+      threshold: 0.01,
     });
 
     const elements = document.querySelectorAll(
@@ -93,7 +92,7 @@ export default function PortfolioDetailTemplate({
     );
   }
 
-  // ── Safe Data Extraction ──
+  // â”€â”€ Safe Data Extraction â”€â”€
   const projectDetails = portfolioItem.projectDetails || {};
   const isGIS = (portfolioItem.category || "").toLowerCase().includes("gis") || 
                 (portfolioItem.category || "").toLowerCase().includes("drone") ||
@@ -107,7 +106,7 @@ export default function PortfolioDetailTemplate({
   // Client Name
   const clientName = isExpoGuru 
     ? "Project Expo Guru" 
-    : (portfolioItem.client || projectDetails.client || (portfolioItem.name ? portfolioItem.name.split("—")[0].split("-")[0].trim() : "Client Project"));
+    : (portfolioItem.client || projectDetails.client || (portfolioItem.name ? portfolioItem.name.split("â€”")[0].split("-")[0].trim() : "Client Project"));
 
   // Category
   const categoryLabel = isExpoGuru 
@@ -149,7 +148,7 @@ export default function PortfolioDetailTemplate({
     : [portfolioItem.description || portfolioItem.details || ""].filter(Boolean);
 
   const heroSummary = isExpoGuru
-    ? "We developed a dynamic website that brings Project Expo Guru’s interior design and creative services into one professional, easy-to-explore online presence."
+    ? "We developed a dynamic website that brings Project Expo Guruâ€™s interior design and creative services into one professional, easy-to-explore online presence."
     : (portfolioItem.summary || detailsArray[0] || "Comprehensive solution developed by Techmapperz to address business and operational objectives.");
 
   const overviewLead = isExpoGuru
@@ -286,7 +285,7 @@ export default function PortfolioDetailTemplate({
       {
         src: "/Photos/IT_portfolio/Expoguru/services.jpg",
         title: "03 / Service presentation",
-        caption: "Space to explain the client’s capabilities.",
+        caption: "Space to explain the clientâ€™s capabilities.",
         alt: "Project Expo Guru website service presentation"
       }
     ];
@@ -376,420 +375,500 @@ export default function PortfolioDetailTemplate({
       label: "Services brought together",
       value: "Coherent",
       description: "A coherent website structure for explaining interior design and related creative capabilities.",
-      icon: "✓"
+      icon: "âœ“"
     },
     {
       label: "A consistent brand presentation",
       value: "Professional",
       description: "Company information, service content and visuals presented within one professional experience.",
-      icon: "✓"
+      icon: "âœ“"
     },
     {
       label: "A clearer path to an inquiry",
       value: "Conversion",
       description: "Content organised to help prospective clients understand the business before getting in touch.",
-      icon: "✓"
+      icon: "âœ“"
     },
     {
       label: "Room for the next stage",
       value: "Scalable",
       description: "A dynamic website structure that can accommodate additional services, projects and content.",
-      icon: "✓"
+      icon: "âœ“"
     }
   ] : (rawResults.length > 0 ? rawResults : [
     {
       label: isGIS ? "Precision Datasets" : "Services brought together",
       value: "Standardized",
       description: isGIS ? "Comprehensive spatial dataset ready for direct CAD/GIS engineering integration." : "A coherent website structure for explaining services and capabilities clearly.",
-      icon: "✓"
+      icon: "âœ“"
     },
     {
       label: isGIS ? "Time Efficiency" : "Consistent brand presentation",
       value: "Streamlined",
       description: isGIS ? "Significantly reduced survey turnaround compared to conventional manual methods." : "Company information and visuals presented within one professional experience.",
-      icon: "✓"
+      icon: "âœ“"
     },
     {
       label: isGIS ? "Multi-Layer Intelligence" : "Clearer path to an inquiry",
       value: "Actionable",
       description: isGIS ? "Layered data supporting terrain analysis, hazard detection, and asset monitoring." : "Content organised to help prospective clients understand the business before getting in touch.",
-      icon: "✓"
+      icon: "âœ“"
     },
     {
       label: isGIS ? "Scalable Asset Register" : "Room for the next stage",
       value: "Future-Ready",
       description: isGIS ? "Structured geospatial schema enabling ongoing asset lifecycle tracking and expansion." : "A dynamic website structure that can accommodate additional services, projects, and content.",
-      icon: "✓"
+      icon: "âœ“"
     }
   ]);
 
   return (
     <main id="main" className="tm-case-study">
-      {/* ─────────────────────────────────────────────────────────────
+
+      {/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
           1. HERO SECTION
-          ───────────────────────────────────────────────────────────── */}
-      <section className="hero" aria-labelledby="case-title">
-        <div className="container">
-          {/* Breadcrumbs */}
-          <nav className="breadcrumbs tm-reveal" aria-label="Breadcrumb">
-            <Link href="/">Home</Link>
-            <span aria-hidden="true">›</span>
-            <Link href="/portfolios">Projects</Link>
-            <span aria-hidden="true">›</span>
-            <span aria-current="page">{clientName}</span>
-          </nav>
+          â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      <section className="relative py-10 md:py-16 bg-white border-b border-[#DDE3EA] overflow-hidden" aria-labelledby="case-title">
+        {/* Subtle grid overlay */}
+        <div className="absolute inset-0 pointer-events-none" style={{backgroundImage:'linear-gradient(rgba(12,46,96,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(12,46,96,0.03) 1px,transparent 1px)',backgroundSize:'48px 48px'}} />
+        {/* Radial glow */}
+        <div className="absolute inset-0 pointer-events-none" style={{background:'radial-gradient(circle at 8% 12%, rgba(22,86,184,0.08), transparent 35%), radial-gradient(circle at 94% 20%, rgba(15,118,110,0.07), transparent 35%)'}} />
 
-          <div className="hero-grid">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             {/* Left Copy */}
-            <div className="hero-copy tm-reveal-left tm-delay-1">
-              <p className="eyebrow">
-                <span></span> {categoryLabel} · Case study
-              </p>
-              <p className="client-name">{clientName}</p>
-              <h1 id="case-title">{formatHeadline(headline)}</h1>
+            <div className="tm-reveal-left tm-delay-1">
+              {/* Breadcrumbs — above eyebrow */}
+              <nav className="flex items-center gap-2 text-[13px] mb-5 flex-wrap" aria-label="Breadcrumb">
+                <Link href="/" className="text-[#1656B8] font-medium hover:text-[#0C2E60] hover:underline transition-colors duration-150">Home</Link>
+                <span aria-hidden="true" className="text-[#94a3b8]">&rsaquo;</span>
+                <Link href="/portfolios" className="text-[#1656B8] font-medium hover:text-[#0C2E60] hover:underline transition-colors duration-150">Projects</Link>
+                <span aria-hidden="true" className="text-[#94a3b8]">&rsaquo;</span>
+                <span aria-current="page" className="text-[#0C2E60] font-semibold">{portfolioItem.breadcrumbTitle || clientName}</span>
+              </nav>
 
-              <div className="hero-summary">
-                <p>{heroSummary}</p>
-                <div className="hero-actions">
-                  <a className="button" href="#project-images">
-                    View Project Images <span aria-hidden="true">↓</span>
-                  </a>
-                  <Link className="button button-outline" href="/contact">
-                    Start a Similar Project
-                  </Link>
-                </div>
-                {tags.length > 0 && (
-                  <div className="hero-tags">
-                    {tags.map((tag, idx) => (
-                      <span key={idx}>{tag}</span>
-                    ))}
-                  </div>
-                )}
+              <span className="text-[#0F766E] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] mb-3 block">
+                {portfolioItem.eyebrow || `${categoryLabel} · Case study`}
+              </span>
+              <h1 id="case-title" className="text-[32px] sm:text-[34px] md:text-[48px] lg:text-[54px] font-bold text-[#0C2E60] leading-[1.18] tracking-tight mb-5">
+                {formatHeadline(headline)}
+              </h1>
+              <p className="text-[#4B5563] text-[16px] md:text-[18px] font-normal leading-[1.65] mb-7 max-w-lg">
+                {heroSummary}
+              </p>
+
+              <div className="flex flex-wrap gap-3 mb-7">
+                <a
+                  href={portfolioItem.ctaButton1?.href || "#project-images"}
+                  className="inline-flex items-center justify-center gap-2 bg-[#1656B8] hover:bg-[#0C2E60] text-white font-bold text-[15px] sm:text-[16px] px-7 py-3 rounded-full transition-all duration-300 shadow-md hover:shadow-lg min-h-[46px] sm:min-h-[48px]"
+                >
+                  {portfolioItem.ctaButton1?.label || "View Project Images"} <span aria-hidden="true">{String.fromCharCode(8595)}</span>
+                </a>
+                <Link
+                  href={portfolioItem.ctaButton2?.href || "/contact"}
+                  className="inline-flex items-center justify-center px-6 sm:px-7 py-3 min-h-[46px] sm:min-h-[48px] rounded-xl font-bold text-[15px] sm:text-[16px] text-[#0C2E60] bg-white border border-[#0C2E60] hover:bg-slate-50 hover:-translate-y-0.5 transition-all duration-200 shadow-sm"
+                >
+                  {portfolioItem.ctaButton2?.label || "Start a Similar Project"}
+                </Link>
               </div>
+
+              {tags.length > 0 && (
+                <div className="flex flex-wrap gap-2">
+                  {tags.map((tag, idx) => (
+                    <span key={idx} className="text-[12px] font-semibold text-[#0F766E] bg-[#E8F5F3] border border-[#0F766E]/25 px-3 py-1 rounded-full">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
 
-            {/* Right Project Mockup Frame */}
+            {/* Right: Project Mockup Frame */}
             <figure className="hero-project tm-reveal-right tm-delay-2">
               <div className="image-header">
-                <span>{clientName.toUpperCase()}</span>
+                <span>{(portfolioItem.breadcrumbTitle || clientName).toUpperCase()}</span>
                 <span>{metaDelivery}</span>
               </div>
-              <div 
-                className="hero-project-image-wrap"
-                onClick={() => setLightbox({
-                  open: true,
-                  src: heroImageSrc,
-                  title: `${clientName} — Primary Overview`,
-                  caption: heroSummary
-                })}
-              >
+              <div className="hero-project-image-wrap">
                 <Image
                   src={heroImageSrc}
                   alt={`${clientName} project overview screenshot`}
                   width={1362}
                   height={935}
                   priority
+                  unoptimized
                   className="w-full h-auto"
                 />
               </div>
               <figcaption>
                 <span>01 / Overview</span>
-                <span 
-                  className="view-action"
-                  onClick={() => setLightbox({
-                    open: true,
-                    src: heroImageSrc,
-                    title: `${clientName} — Primary Overview`,
-                    caption: heroSummary
-                  })}
-                >
-                  View full image <span aria-hidden="true">↗</span>
-                </span>
               </figcaption>
             </figure>
           </div>
-
-          {/* 4-Column Project Meta Box */}
-          <dl className="project-meta tm-reveal tm-delay-2">
-            <div className="tm-reveal-scale tm-delay-1">
-              <dt>Client</dt>
-              <dd>{clientName}</dd>
-            </div>
-            <div className="tm-reveal-scale tm-delay-2">
-              <dt>Industry</dt>
-              <dd>{metaIndustry}</dd>
-            </div>
-            <div className="tm-reveal-scale tm-delay-3">
-              <dt>Our role</dt>
-              <dd>{metaRole}</dd>
-            </div>
-            <div className="tm-reveal-scale tm-delay-4">
-              <dt>Delivery</dt>
-              <dd>{metaDelivery}</dd>
-            </div>
-          </dl>
         </div>
       </section>
 
-      {/* ─────────────────────────────────────────────────────────────
+      {/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
           2. IN-PAGE STICKY NAVIGATION BAR
-          ───────────────────────────────────────────────────────────── */}
+          â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <nav className="case-nav" aria-label="On this page">
-        <div className="container">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12 flex items-center gap-6 h-full">
           <span className="nav-label">In this case study</span>
-          <a href="#overview" className={activeSection === "overview" ? "active" : ""}>
-            Overview
-          </a>
-          <a href="#solution" className={activeSection === "solution" ? "active" : ""}>
-            Our solution
-          </a>
-          <a href="#project-images" className={activeSection === "project-images" ? "active" : ""}>
-            Project images
-          </a>
-          <a href="#results" className={activeSection === "results" ? "active" : ""}>
-            Results
-          </a>
+          <a href="#overview" className={activeSection === "overview" ? "active" : ""}>Overview</a>
+          <a href="#solution" className={activeSection === "solution" ? "active" : ""}>Our solution</a>
+          <a href="#project-images" className={activeSection === "project-images" ? "active" : ""}>Project images</a>
+          <a href="#results" className={activeSection === "results" ? "active" : ""}>Results</a>
         </div>
       </nav>
 
-      {/* ─────────────────────────────────────────────────────────────
+      {/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
           3. SECTION 01: PROJECT OVERVIEW & CHALLENGE
-          ───────────────────────────────────────────────────────────── */}
-      <section className="section container editorial" id="overview" aria-labelledby="overview-title">
-        <div className="section-label tm-reveal">
-          <span>01</span> Project overview
-        </div>
-        <div className="section-content">
-          <h2 id="overview-title" className="tm-reveal tm-delay-1">
-            {isGIS 
-              ? "Transforming complex terrain into dependable engineering data." 
-              : "Helping visitors understand the business at a glance."}
-          </h2>
-          <div className="overview-layout">
+          â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      <section className="relative py-4 md:py-10 bg-white border-t border-[#DDE3EA]" id="overview" aria-labelledby="overview-title">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
+          <div className="mb-8 md:mb-12 tm-reveal">
+            <span className="text-[#0F766E] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] mb-2 block">
+              {portfolioItem.overviewEyebrow || "PROJECT OVERVIEW"}
+            </span>
+            <h2 id="overview-title" className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-[#0C2E60] leading-[1.2] tracking-tight max-w-3xl tm-reveal tm-delay-1">
+              {portfolioItem.overviewTitle || (isGIS
+                ? "Transforming complex terrain into dependable engineering data."
+                : "Helping visitors understand the business at a glance.")}
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-10 lg:gap-14">
+            {/* Left: overview text */}
             <div className="tm-reveal-left tm-delay-1">
-              <p className="lead">{overviewLead}</p>
-              <p>{overviewSecondary}</p>
+              <p className="text-[#4B5563] text-[16px] md:text-[18px] font-normal leading-[1.65] mb-5">{overviewLead}</p>
+              <p className="text-[#4B5563] text-[15px] sm:text-[16px] font-normal leading-[1.65] mb-5">{overviewSecondary}</p>
               {detailsArray.length > 2 && (
-                <p>{detailsArray[2]}</p>
+                <p className="text-[#4B5563] text-[15px] sm:text-[16px] font-normal leading-[1.65]">{detailsArray[2]}</p>
               )}
             </div>
-            <div className="challenge tm-reveal-right tm-delay-2">
-              <h3>The challenge</h3>
-              {challengesList.length > 0 ? (
+
+            {/* Right: challenge card */}
+            <div className="bg-[#F6F8FB] border border-[#DDE3EA] border-l-[3px] border-l-[#0F766E] rounded-2xl p-6 md:p-8 tm-reveal-right tm-delay-2 h-fit">
+              <h3 className="text-[19px] md:text-[20px] font-bold text-[#0C2E60] leading-[1.25] mb-4">
+                {portfolioItem.challengeTitle || "The challenge"}
+              </h3>
+              {portfolioItem.challengeIntro && (
+                <p className="text-[#4B5563] text-[15px] leading-[1.65] mb-4">{portfolioItem.challengeIntro}</p>
+              )}
+              {portfolioItem.challengeListIntro && (
+                <p className="font-semibold text-[#0C2E60] text-[14px] mb-3">{portfolioItem.challengeListIntro}</p>
+              )}
+              {portfolioItem.challengeItems && portfolioItem.challengeItems.length > 0 ? (
+                <ul className="space-y-3">
+                  {portfolioItem.challengeItems.map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-3">
+                      <span className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 bg-[#E8F5F3] text-[#0F766E] border border-[#0F766E]/30">
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                      </span>
+                      <span className="text-[#4B5563] text-[15px] leading-[1.65]">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              ) : challengesList.length > 0 ? (
                 challengesList.map((ch, idx) => (
-                  <div key={idx} className={idx > 0 ? "mt-4 pt-3 border-t border-slate-200" : ""}>
-                    {ch.title && <h4 className="text-[15px] font-bold text-[#0c2e60] mb-1">{ch.title}</h4>}
-                    <p>{ch.description || ch}</p>
+                  <div key={idx} className={idx > 0 ? "mt-4 pt-4 border-t border-[#DDE3EA]" : ""}>
+                    {ch.title && <h4 className="text-[15px] font-bold text-[#0C2E60] mb-1">{ch.title}</h4>}
+                    <p className="text-[#4B5563] text-[15px] leading-[1.65]">{ch.description || ch}</p>
                   </div>
                 ))
               ) : (
-                <p>{defaultChallenge}</p>
+                <p className="text-[#4B5563] text-[15px] leading-[1.65]">{defaultChallenge}</p>
               )}
             </div>
           </div>
         </div>
       </section>
 
-      {/* ─────────────────────────────────────────────────────────────
-          4. SECTION 02: THE SOLUTION & METHODOLOGY
-          ───────────────────────────────────────────────────────────── */}
-      <section className="solution-band section" id="solution" aria-labelledby="solution-title">
-        <div className="container editorial">
-          <div className="section-label tm-reveal">
-            <span>02</span> The solution
-          </div>
-          <div className="section-content">
-            <h2 id="solution-title" className="tm-reveal tm-delay-1">
-              {isGIS 
-                ? "A structured workflow built around engineering precision." 
-                : "A website built around the questions clients ask."}
-            </h2>
-            <p className="lead tm-reveal tm-delay-1">{solutionsSummary}</p>
 
-            {/* 4 Solution Pillars (2x2 Grid) */}
-            <div className="solution-list">
-              {solutionPillars.map((pillar, idx) => (
-                <article key={idx} className={`tm-reveal-scale tm-delay-${(idx % 4) + 1}`}>
-                  <span className="item-number">0{idx + 1} /</span>
-                  <div>
-                    <h3>{pillar.title}</h3>
-                    <p>{pillar.description}</p>
-                    {pillar.features && pillar.features.length > 0 && (
-                      <ul className="solution-features">
-                        {pillar.features.map((feat, fIdx) => (
-                          <li key={fIdx}>{feat}</li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                </article>
-              ))}
+      <section className="relative py-4 md:py-10 bg-[#F6F8FB] border-t border-[#DDE3EA]" id="solution" aria-labelledby="solution-title">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
+          <div className="mb-8 md:mb-12 tm-reveal">
+            <span className="text-[#0F766E] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] mb-2 block">
+              {portfolioItem.solutionEyebrow || "OUR APPROACH"}
+            </span>
+            <h2 id="solution-title" className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-[#0C2E60] leading-[1.2] tracking-tight max-w-3xl tm-reveal tm-delay-1">
+              {portfolioItem.solutionTitle || (isGIS
+                ? "A structured workflow built around engineering precision."
+                : "A website built around the questions clients ask.")}
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 mb-10 md:mb-14">
+            {/* Left: solution narrative */}
+            <div className="tm-reveal-left tm-delay-1">
+              <p className="text-[#4B5563] text-[16px] md:text-[18px] font-normal leading-[1.65] mb-5">{solutionsSummary}</p>
+              {portfolioItem.solutionSecondary && (
+                <p className="text-[#4B5563] text-[15px] sm:text-[16px] leading-[1.65]">{portfolioItem.solutionSecondary}</p>
+              )}
             </div>
 
-            {/* 4-Step Delivery Process */}
-            <div className="process tm-reveal">
-              <p className="small-heading">How we delivered it</p>
-              <ol>
-                {processSteps.map((stepItem, idx) => (
-                  <li key={idx} className={`tm-reveal tm-delay-${(idx % 4) + 1}`}>
-                    <div className="flex items-center gap-3">
-                      <span className="step-number">{stepItem.step || `0${idx + 1}`}</span>
-                      <span>{stepItem.title}</span>
+            {/* Right: key deliverables card */}
+            <div className="bg-white border border-[#DDE3EA] rounded-2xl p-6 md:p-8 shadow-sm tm-reveal-right tm-delay-2">
+              <h3 className="text-[19px] md:text-[20px] font-bold text-[#0C2E60] leading-[1.25] mb-5">
+                {portfolioItem.deliverablesTitle || "Key Deliverables"}
+              </h3>
+              <ul className="space-y-4">
+                {(portfolioItem.deliverables && portfolioItem.deliverables.length > 0
+                  ? portfolioItem.deliverables.map((d) => ({ title: d, description: null }))
+                  : solutionPillars
+                ).map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <span className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 bg-[#E8F5F3] text-[#0F766E] border border-[#0F766E]/30">
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </span>
+                    <div>
+                      <span className="font-bold text-[#0C2E60] text-[15px] block leading-snug">{item.title}</span>
+                      {item.description && (
+                        <span className="text-[#4B5563] text-[13px] leading-[1.6] mt-0.5 block">{item.description}</span>
+                      )}
                     </div>
-                    {stepItem.desc && (
-                      <p className="step-desc">{stepItem.desc}</p>
-                    )}
                   </li>
                 ))}
-              </ol>
+              </ul>
+            </div>
+          </div>
+
+          {/* Process Timeline */}
+          <div className="tm-reveal">
+            <p className="text-[#0F766E] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] mb-5">
+              {portfolioItem.processTitle || "PROJECT PROCESS"}
+            </p>
+            <div className="process-timeline-card">
+              {processSteps.map((stepItem, idx) => (
+                <div key={idx} className="process-timeline-step">
+                  <div className="step-top-row">
+                    <span className="step-number-badge">{stepItem.step || `0${idx + 1}`}</span>
+                  </div>
+                  {idx < processSteps.length - 1 && (
+                    <span className="step-arrow-pill" aria-hidden="true">
+                      <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.5 8H13.5M13.5 8L9 3.5M13.5 8L9 12.5" stroke="#1656b8" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </span>
+                  )}
+                  <h3 className="step-card-title">{stepItem.title}</h3>
+                  {stepItem.desc && <p className="step-card-desc">{stepItem.desc}</p>}
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* ─────────────────────────────────────────────────────────────
-          5. SECTION 03: VISUAL GALLERY
-          ───────────────────────────────────────────────────────────── */}
-      <section className="section container gallery-section" id="project-images" aria-labelledby="gallery-title">
-        <div className="gallery-heading tm-reveal">
-          <div>
-            <p className="eyebrow"><span></span> The project in detail</p>
-            <h2 id="gallery-title">See the work.</h2>
-          </div>
-          <p>
-            Real screens and deliverables from the project.<br />
-            Select an image to view it in full resolution.
-          </p>
-        </div>
-
-        <div className="gallery-grid">
-          {galleryItems.map((img, idx) => (
-            <figure key={idx} className={`tm-reveal-scale tm-delay-${idx + 1}`}>
-              <div 
-                className="gallery-img-wrap"
-                onClick={() => setLightbox({
-                  open: true,
-                  src: img.src,
-                  title: img.title,
-                  caption: img.caption
-                })}
-              >
-                <Image
-                  src={img.src}
-                  alt={img.alt || `${clientName} screen ${idx + 1}`}
-                  width={1362}
-                  height={935}
-                  className="w-full h-auto cursor-pointer"
-                  loading="lazy"
-                />
+     
+      <section className="gallery-dark-section" id="project-images" aria-labelledby="gallery-title">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
+          {/* Header row */}
+          <div className="gallery-dark-header tm-reveal">
+            <div>
+              <span className="text-[#5EEAD4] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] mb-3 block">
+                {portfolioItem.galleryEyebrow || "THE PROJECT IN DETAIL"}
+              </span>
+              <h2 id="gallery-title" className="text-[26px] sm:text-[28px] md:text-[38px] font-bold text-white leading-[1.2] tracking-tight">
+                {portfolioItem.galleryTitle || "Evidence from the work."}
+              </h2>
+            </div>
+            {/* Trust badge */}
+            <div className="gallery-trust-badge">
+              <span className="trust-check" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13.3334 4L6.00008 11.3333L2.66675 8" stroke="#22c55e" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </span>
+              <div>
+                <p className="trust-label">Published by Techmapperz</p>
+                <p className="trust-sub">Non-confidential project images</p>
               </div>
-              <figcaption>
-                <div>
-                  <span className="caption-title">{img.title}</span>
-                  <p>{img.caption}</p>
-                </div>
-                <span 
-                  className="view-action"
-                  onClick={() => setLightbox({
-                    open: true,
-                    src: img.src,
-                    title: img.title,
-                    caption: img.caption
-                  })}
-                >
-                  <span aria-hidden="true">↗</span>
-                </span>
-              </figcaption>
-            </figure>
-          ))}
+            </div>
+          </div>
+
+          {/* 3-image split: large left + two stacked right */}
+          {(() => {
+            const allImgs = portfolioItem.galleryImages && portfolioItem.galleryImages.length > 0
+              ? portfolioItem.galleryImages
+              : galleryItems;
+            const featured = allImgs[0];
+            const side = allImgs.slice(1, 3);
+            return (
+              <div className="gallery-dark-grid tm-reveal tm-delay-1">
+                {featured && (
+                  <figure
+                    className="gallery-dark-card gallery-dark-card--featured"
+                    onClick={() => setLightbox({ open: true, src: featured.src, title: featured.title, caption: featured.caption })}
+                  >
+                    <div className="gallery-dark-img-wrap">
+                      <Image src={featured.src} alt={featured.alt || featured.title} width={1200} height={900} className="gallery-dark-img" loading="lazy" unoptimized />
+                    </div>
+                    <figcaption className="gallery-dark-caption">
+                      {featured.step && <span className="gallery-step-label">{featured.step}</span>}
+                      <div className="gallery-caption-body">
+                        <div>
+                          <p className="gallery-caption-title">{featured.title}</p>
+                          {featured.caption && <p className="gallery-caption-text">{featured.caption}</p>}
+                        </div>
+                        <span className="gallery-expand-icon" aria-hidden="true">â†—</span>
+                      </div>
+                    </figcaption>
+                  </figure>
+                )}
+                {side.length > 0 && (
+                  <div className="gallery-dark-stack">
+                    {side.map((img, idx) => (
+                      <figure
+                        key={idx}
+                        className="gallery-dark-card"
+                        onClick={() => setLightbox({ open: true, src: img.src, title: img.title, caption: img.caption })}
+                      >
+                        <div className="gallery-dark-img-wrap">
+                          <Image src={img.src} alt={img.alt || img.title} width={800} height={500} className="gallery-dark-img" loading="lazy" unoptimized />
+                        </div>
+                        <figcaption className="gallery-dark-caption">
+                          {img.step && <span className="gallery-step-label">{img.step}</span>}
+                          <div className="gallery-caption-body">
+                            <div>
+                              <p className="gallery-caption-title">{img.title}</p>
+                              {img.caption && <p className="gallery-caption-text">{img.caption}</p>}
+                            </div>
+                            <span className="gallery-expand-icon" aria-hidden="true">â†—</span>
+                          </div>
+                        </figcaption>
+                      </figure>
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          })()}
         </div>
-        <p className="image-credit tm-reveal">
-          Screenshots and deliverables from project reference materials. Work executed and delivered by Techmapperz.
-        </p>
       </section>
 
-      {/* ─────────────────────────────────────────────────────────────
+      {/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
           6. SECTION 04: IMPACT & RESULTS
-          ───────────────────────────────────────────────────────────── */}
-      <section className="results-band section" id="results" aria-labelledby="results-title">
-        <div className="container editorial">
-          <div className="section-label tm-reveal">
-            <span>03</span> Impact & results
-          </div>
-          <div className="section-content">
-            <h2 id="results-title" className="tm-reveal tm-delay-1">
-              {isGIS 
-                ? "Reliable geospatial intelligence for critical decisions." 
-                : "A stronger starting point for client conversations."}
+          â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      <section className="relative py-4 md:py-10 bg-white border-t border-[#DDE3EA]" id="results" aria-labelledby="results-title">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
+          <div className="mb-8 md:mb-12 tm-reveal">
+            <span className="text-[#0F766E] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] mb-2 block">
+              {portfolioItem.resultsEyebrow || "IMPACT & RESULTS"}
+            </span>
+            <h2 id="results-title" className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold text-[#0C2E60] leading-[1.2] tracking-tight max-w-3xl tm-reveal tm-delay-1">
+              {portfolioItem.resultsTitle || (isGIS
+                ? "Reliable geospatial intelligence for critical decisions."
+                : "A stronger starting point for client conversations.")}
             </h2>
-            <p className="lead tm-reveal tm-delay-1">{resultsLead}</p>
+            <p className="text-[#4B5563] text-[16px] md:text-[18px] font-normal leading-[1.65] max-w-2xl mt-3 tm-reveal tm-delay-1">
+              {resultsLead}
+            </p>
+            {portfolioItem.resultsSubtitle && (
+              <p className="text-[#0F766E] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] mt-8 mb-0 tm-reveal">
+                {portfolioItem.resultsSubtitle}
+              </p>
+            )}
+          </div>
 
-            <ul className="results-list">
-              {resultsItems.map((res, idx) => (
-                <li key={idx} className={`tm-reveal tm-delay-${(idx % 4) + 1}`}>
-                  <span className="check-badge" aria-hidden="true">
-                    <FaCheck size={13} />
-                  </span>
-                  <div>
-                    {res.value && res.value !== "✓" && (
-                      <span className="metric-badge">{res.value}</span>
-                    )}
-                    <h3>{res.label || res.title}</h3>
-                    <p>{res.description || res.desc || ""}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-10">
+            {resultsItems.map((res, idx) => (
+              <li key={idx} className={`bg-white border border-[#DDE3EA] rounded-2xl p-6 md:p-7 flex items-start gap-4 shadow-sm hover:shadow-md transition-shadow duration-200 tm-reveal tm-delay-${(idx % 4) + 1}`}>
+                <span className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 bg-[#E8F5F3] text-[#0F766E] border border-[#0F766E]/30">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </span>
+                <div className="min-w-0">
+                  {res.value && res.value !== "âœ“" && (
+                    <span className="inline-block text-[#1656B8] text-[11px] font-bold uppercase tracking-[0.1em] bg-[#EDF3FC] px-2.5 py-0.5 rounded-full mb-2">{res.value}</span>
+                  )}
+                  <h3 className="text-[18px] md:text-[19px] font-bold text-[#0C2E60] leading-[1.25] mb-1.5">{res.label || res.title}</h3>
+                  <p className="text-[#4B5563] text-[15px] sm:text-[16px] leading-[1.65] m-0">{res.description || res.desc || ""}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
 
-            {/* Testimonial (if available) */}
-            {portfolioItem.testimonial && (
-              <div className="testimonial-wrap tm-reveal-scale tm-delay-2">
-                <p className="testimonial-quote">“{portfolioItem.testimonial.quote}”</p>
-                <div className="testimonial-author">
-                  <b>{portfolioItem.testimonial.author}</b>
+          {/* Testimonial */}
+          {portfolioItem.testimonial && (
+            <div className="bg-[#F6F8FB] border border-[#DDE3EA] rounded-2xl p-6 md:p-8 tm-reveal-scale tm-delay-2">
+              <p className="text-[#0C2E60] text-[18px] md:text-[20px] font-medium leading-[1.6] mb-5 italic">
+                &ldquo;{portfolioItem.testimonial.quote}&rdquo;
+              </p>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-[#0C2E60] flex items-center justify-center text-white font-bold text-[15px] flex-shrink-0">
+                  {portfolioItem.testimonial.author?.[0] || "T"}
+                </div>
+                <div>
+                  <b className="text-[#0C2E60] text-[15px] block">{portfolioItem.testimonial.author}</b>
                   {portfolioItem.testimonial.position && (
-                    <span>{portfolioItem.testimonial.position}</span>
+                    <span className="text-[#4B5563] text-[13px]">{portfolioItem.testimonial.position}</span>
                   )}
                 </div>
               </div>
-            )}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+          7. BOTTOM CONVERSION CTA BANNER
+          â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      <section className="relative py-4 md:py-10 bg-white border-t border-[#DDE3EA] overflow-hidden">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12">
+          <div className="bg-gradient-to-br from-[#0C2E60] via-[#0d4277] to-[#0F766E] rounded-2xl sm:rounded-[24px] p-6 sm:p-8 md:p-10 text-white relative overflow-hidden flex flex-col lg:flex-row lg:items-center justify-between gap-6 md:gap-8 shadow-xl border border-white/10 tm-reveal-scale">
+            {/* Decorative rings */}
+            <div className="absolute right-[-80px] top-[-120px] w-[360px] h-[360px] border border-white/10 rounded-full shadow-[0_0_0_48px_rgba(255,255,255,0.05),0_0_0_96px_rgba(255,255,255,0.03)] pointer-events-none" />
+
+            <div className="space-y-2.5 max-w-2xl relative z-10 text-left">
+              <span className="text-[#5EEAD4] text-[12px] md:text-[13px] font-bold uppercase tracking-[0.15em] block">
+                LET&apos;S DISCUSS YOUR REQUIREMENT
+              </span>
+              <h2 style={{color:'#ffffff'}} className="text-[26px] sm:text-[28px] md:text-[38px] lg:text-[40px] font-bold tracking-tight leading-[1.2]">
+                Planning a {isGIS ? "survey or mapping" : "digital"} project with us?
+              </h2>
+              <p className="text-[#E8F5F3] text-[15px] sm:text-[16px] leading-[1.65] font-normal">
+                Share your project details, specifications and timeline. Our team will review your requirements and suggest an optimal workflow.
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row lg:flex-col gap-2.5 sm:gap-3 relative z-10 shrink-0 w-full lg:w-auto self-stretch sm:self-start lg:self-center">
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 min-h-[46px] sm:min-h-[48px] rounded-xl font-bold text-[15px] sm:text-[16px] text-white bg-[#1656B8] hover:bg-[#0C2E60] border border-white/20 shadow-sm hover:-translate-y-0.5 transition-all duration-200 text-center whitespace-nowrap w-full sm:w-auto"
+              >
+                Discuss Your Project {String.fromCharCode(8594)}
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center px-6 sm:px-8 py-3 min-h-[46px] sm:min-h-[48px] rounded-xl font-bold text-[15px] sm:text-[16px] text-[#0C2E60] bg-white border border-[#DDE3EA] hover:bg-slate-50 hover:-translate-y-0.5 transition-all duration-200 text-center whitespace-nowrap w-full sm:w-auto"
+              >
+                Send Your Scope of Work
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ─────────────────────────────────────────────────────────────
-          7. BOTTOM CONVERSION CTA BANNER
-          ───────────────────────────────────────────────────────────── */}
-      <section className="cta container tm-reveal-scale" aria-labelledby="cta-title">
-        <div>
-          <p className="eyebrow">Have a project in mind?</p>
-          <h2 id="cta-title">
-            Make your {isGIS ? "data" : "website"} work harder for your business.
-          </h2>
-          <p>
-            Tell us what you need to survey, map, design, or develop.<br />
-            We’ll help you shape the right solution from scope to delivery.
-          </p>
-        </div>
-        <Link className="button" href="/contact">
-          Discuss Your Project <span aria-hidden="true">→</span>
-        </Link>
-      </section>
-
-      {/* ─────────────────────────────────────────────────────────────
+      {/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
           8. LIGHTBOX MODAL (Full Resolution Image Zoom)
-          ───────────────────────────────────────────────────────────── */}
+          â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       {lightbox.open && (
         <div className="tm-lightbox-overlay" onClick={() => setLightbox({ open: false, src: "", title: "", caption: "" })}>
           <div className="tm-lightbox-container" onClick={(e) => e.stopPropagation()}>
             <div className="tm-lightbox-header">
               <span className="tm-lightbox-title">{lightbox.title}</span>
-              <button 
-                className="tm-lightbox-close" 
+              <button
+                className="tm-lightbox-close"
                 onClick={() => setLightbox({ open: false, src: "", title: "", caption: "" })}
                 aria-label="Close image preview"
               >
-                ✕
+                âœ•
               </button>
             </div>
             <div className="tm-lightbox-body">

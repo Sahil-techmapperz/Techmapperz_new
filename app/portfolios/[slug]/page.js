@@ -13,8 +13,12 @@ function findLocalPortfolioItem(slug) {
   return enhancedPortfolioData.find(item => {
     const itemSlug = (item.slug || item.link?.replace('/portfolios/', '') || '').toLowerCase().trim();
     if (itemSlug === cleanSlug) return true;
+    if (Array.isArray(item.aliases) && item.aliases.some(a => a.toLowerCase().trim() === cleanSlug)) return true;
     const nameSlug = item.name?.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-    return nameSlug === cleanSlug;
+    if (nameSlug === cleanSlug) return true;
+    const clientSlug = item.client?.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    if (clientSlug === cleanSlug) return true;
+    return false;
   });
 }
 
@@ -25,7 +29,12 @@ export async function generateMetadata({ params }) {
   let portfolioItem = null;
   try {
     await connectDB();
-    portfolioItem = await Portfolio.findOne({ slug: slug }).lean();
+    portfolioItem = await Portfolio.findOne({
+      $or: [
+        { slug: slug },
+        { aliases: slug }
+      ]
+    }).lean();
   } catch (err) {
     console.warn("DB lookup error in generateMetadata, falling back to local PortfolioData:", err.message);
   }
@@ -83,9 +92,12 @@ export async function generateStaticParams() {
 
   try {
     await connectDB();
-    const portfolios = await Portfolio.find({}, 'slug').lean();
+    const portfolios = await Portfolio.find({}, 'slug aliases').lean();
     portfolios.forEach((item) => {
       if (item.slug) slugsSet.add(item.slug);
+      if (Array.isArray(item.aliases)) {
+        item.aliases.forEach(a => slugsSet.add(a));
+      }
     });
   } catch (err) {
     console.warn("DB lookup error in generateStaticParams:", err.message);
@@ -94,6 +106,9 @@ export async function generateStaticParams() {
   enhancedPortfolioData.forEach((item) => {
     const slug = item.slug || item.link?.replace('/portfolios/', '');
     if (slug) slugsSet.add(slug);
+    if (Array.isArray(item.aliases)) {
+      item.aliases.forEach(a => slugsSet.add(a));
+    }
   });
 
   return Array.from(slugsSet).map((slug) => ({
@@ -107,7 +122,12 @@ export default async function PortfolioDetailPage({ params }) {
   let portfolioItem = null;
   try {
     await connectDB();
-    const portfolioItemData = await Portfolio.findOne({ slug: slug }).lean();
+    const portfolioItemData = await Portfolio.findOne({
+      $or: [
+        { slug: slug },
+        { aliases: slug }
+      ]
+    }).lean();
     if (portfolioItemData) {
       portfolioItem = JSON.parse(JSON.stringify(portfolioItemData));
     }
