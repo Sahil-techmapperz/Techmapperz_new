@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { FiSearch, FiCalendar, FiArrowRight } from 'react-icons/fi';
 import Link from 'next/link';
 import Image from 'next/image';
+import BlogImage from './BlogImage';
 
 const SearchPosts = () => {
   const [search, setSearch] = useState("");
@@ -104,7 +105,7 @@ const SearchPosts = () => {
               <div className="flex items-start gap-3">
                 {result.images?.[0] && (
                   <div className="relative w-16 h-16 shrink-0 rounded-lg overflow-hidden bg-[#F6F8FB] border border-[#DDE3EA]">
-                    <Image
+                    <BlogImage
                       src={result.images[0]}
                       alt={result.title}
                       fill

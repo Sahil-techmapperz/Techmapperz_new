@@ -5,7 +5,7 @@ import RecentLogin from '@/app/lib/models/RecentLogin';
 export async function GET() {
   try {
     await connectDB();
-    const recentLogins = await RecentLogin.find().sort({ loginTime: -1 }).limit(10);
+    const recentLogins = await RecentLogin.find().sort({ _id: -1 }).limit(10);
     return NextResponse.json(recentLogins, { status: 200 });
   } catch (error) {
     return NextResponse.json({ message: 'Error fetching recent logins' }, { status: 500 });

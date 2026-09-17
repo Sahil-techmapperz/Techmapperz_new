@@ -18,6 +18,15 @@ const BlogPostSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
+  description: {
+    type: String,
+    trim: true,
+    default: '',
+  },
+  tags: {
+    type: [String],
+    default: [],
+  },
   comments: [
     {
       type: mongoose.Schema.Types.ObjectId,

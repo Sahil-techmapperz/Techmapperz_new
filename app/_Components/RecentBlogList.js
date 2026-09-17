@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import BlogImage from './BlogImage';
 import { formatDate } from '@/app/lib/dateFormat';
 import getRecentblogs from '@/lib/getsingaleblogs';
 import { FiCalendar, FiArrowRight } from 'react-icons/fi';
@@ -32,8 +33,8 @@ const RecentBlogList = async () => {
               className="group flex items-start gap-3.5 p-2 -mx-2 rounded-xl hover:bg-[#F6F8FB] transition-all duration-200"
             >
               <div className="relative w-20 h-20 shrink-0 rounded-xl overflow-hidden bg-[#F6F8FB] border border-[#DDE3EA]">
-                <Image
-                  src={recent.images?.[0]?.trim() || '/placeholder-image.jpg'}
+                <BlogImage
+                  src={recent.images?.[0]?.trim()}
                   alt={recent.title || 'Recent post thumbnail'}
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-300"

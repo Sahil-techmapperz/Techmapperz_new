@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import DataTable from '@/app/admin/_components/DataTable'
 import Form from '@/app/admin/_components/Form'
 import Modal from '@/app/admin/_components/Modal'
+import { Search, Loader2 } from 'lucide-react'
 import { contactsApi } from '@/app/admin/_utils/api'
 
 const formFields = [
@@ -29,6 +30,9 @@ export default function ContactsPage() {
   const [editingContact, setEditingContact] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [searchTerm, setSearchTerm] = useState('')
+  const [isDeleting, setIsDeleting] = useState(false)
+  const [deleteStatusText, setDeleteStatusText] = useState('')
 
   const handleViewDetails = (details) => {
     setSelectedDetails(details)
@@ -151,11 +155,32 @@ export default function ContactsPage() {
     }
 
     try {
+      setIsDeleting(true)
+      setDeleteStatusText(`Deleting contact "${contact.name || contact.email || ''}"...`)
       await contactsApi.delete(contact._id)
-      setContacts(contacts.filter(c => c._id !== contact._id))
+      setContacts(prev => prev.filter(c => c._id !== contact._id))
     } catch (err) {
       console.error('Error deleting contact:', err)
-      alert('Failed to delete contact')
+      alert('Failed to delete contact: ' + (err.response?.data?.message || err.message))
+    } finally {
+      setIsDeleting(false)
+      setDeleteStatusText('')
+    }
+  }
+
+  const handleBulkDelete = async (ids) => {
+    try {
+      setIsDeleting(true)
+      setDeleteStatusText(`Deleting ${ids.length} selected contact${ids.length > 1 ? 's' : ''}...`)
+      await contactsApi.delete(ids)
+      setContacts(prev => prev.filter(c => !ids.includes(c._id)))
+    } catch (err) {
+      console.error('Error bulk deleting contacts:', err)
+      alert('Failed to delete selected contacts: ' + (err.response?.data?.message || err.message))
+      fetchContacts()
+    } finally {
+      setIsDeleting(false)
+      setDeleteStatusText('')
     }
   }
 
@@ -163,14 +188,16 @@ export default function ContactsPage() {
     try {
       if (editingContact) {
         const response = await contactsApi.update(editingContact._id, formData)
-        setContacts(contacts.map(contact => 
+        const updated = response.data?.data || response.data
+        setContacts(prev => prev.map(contact => 
           contact._id === editingContact._id 
-            ? response.data
+            ? { ...contact, ...updated }
             : contact
         ))
       } else {
         const response = await contactsApi.create(formData)
-        setContacts([...contacts, response.data])
+        const created = response.data?.data || response.data
+        setContacts(prev => [...prev, created])
       }
       setIsModalOpen(false)
       setEditingContact(null)
@@ -179,6 +206,19 @@ export default function ContactsPage() {
       alert('Failed to save contact')
     }
   }
+
+  const filteredContacts = contacts.filter(contact => {
+    if (!searchTerm) return true
+    const term = searchTerm.toLowerCase()
+    return (
+      contact.name?.toLowerCase().includes(term) ||
+      contact.email?.toLowerCase().includes(term) ||
+      contact.mobile?.toLowerCase().includes(term) ||
+      contact.projectType?.toLowerCase().includes(term) ||
+      contact.projectdetails?.toLowerCase().includes(term) ||
+      String(contact.userId || '').includes(term)
+    )
+  })
 
   if (isLoading) {
     return (
@@ -198,19 +238,42 @@ export default function ContactsPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-semibold text-black">Contact Messages</h1>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div>
+          <h1 className="text-2xl font-semibold text-black">Contact Messages</h1>
+          <p className="text-sm text-gray-500 mt-0.5">Manage, review, and delete contact inquiries</p>
+        </div>
+        <div className="relative w-full sm:w-72">
+          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <Search className="h-4 w-4 text-gray-400" />
+          </div>
+          <input
+            type="text"
+            placeholder="Search contacts..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full pl-9 pr-8 py-2 border border-gray-300 rounded-lg text-sm text-black bg-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          />
+          {searchTerm && (
+            <button
+              type="button"
+              onClick={() => setSearchTerm('')}
+              className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
+            >
+              ✕
+            </button>
+          )}
+        </div>
       </div>
 
-      <div className="bg-white p-6 rounded-lg shadow-sm overflow-x-auto">
-        <div className="min-w-full">
-          <DataTable
-            columns={columns}
-            data={contacts}
-            onEdit={handleEdit}
-            onDelete={handleDelete}
-          />
-        </div>
+      <div className="bg-white p-6 rounded-lg shadow-sm">
+        <DataTable
+          columns={columns}
+          data={filteredContacts}
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+          onBulkDelete={handleBulkDelete}
+        />
       </div>
 
       <Modal
@@ -241,6 +304,14 @@ export default function ContactsPage() {
           </div>
         </div>
       </Modal>
+
+      {/* Delete in-progress floating toast indicator */}
+      {isDeleting && (
+        <div className="fixed bottom-6 right-6 bg-gray-900/95 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center gap-3 z-50 border border-gray-700 backdrop-blur-sm transition-all duration-200">
+          <Loader2 className="h-5 w-5 animate-spin text-indigo-400" />
+          <span className="text-sm font-medium">{deleteStatusText || 'Deleting contact(s)...'}</span>
+        </div>
+      )}
     </div>
   )
-} 
+}

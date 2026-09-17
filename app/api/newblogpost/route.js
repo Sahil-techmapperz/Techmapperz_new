@@ -58,17 +58,41 @@ export async function POST(request) {
   try {
     await connectDB();
     const body = await request.json();
-    const { title, content, author, images, category, maincontent } = body;
+    const { title, content, author, images, category, maincontent, description, tags } = body;
 
-    if (title && content && author && images && category && maincontent) {
-      const blogPost = new BlogPost({ title, content, author, images, category, maincontent });
+    const resolvedMainContent = maincontent || content;
+    const resolvedContent = content || description || (resolvedMainContent ? resolvedMainContent.replace(/<[^>]*>?/gm, '').slice(0, 200) : '');
+    const resolvedDescription = description || (resolvedContent ? resolvedContent.slice(0, 160) : '');
+    const resolvedImages = Array.isArray(images) ? images.filter(Boolean) : (images ? [images] : []);
+    const resolvedTags = Array.isArray(tags) ? tags.filter(Boolean) : [];
+
+    if (title && resolvedMainContent && author && resolvedImages.length > 0 && category) {
+      const blogPost = new BlogPost({
+        title: title.trim(),
+        content: resolvedContent,
+        author,
+        images: resolvedImages,
+        category: category.trim(),
+        maincontent: resolvedMainContent,
+        description: resolvedDescription,
+        tags: resolvedTags,
+      });
       await blogPost.save();
       return NextResponse.json(blogPost, { status: 200 });
     } else {
-      return NextResponse.json({ error: 'Please provide all required information' }, { status: 404 });
+      const missing = [];
+      if (!title) missing.push('Title');
+      if (!resolvedMainContent) missing.push('Content');
+      if (!author) missing.push('Author');
+      if (resolvedImages.length === 0) missing.push('Featured Image');
+      if (!category) missing.push('Category');
+      return NextResponse.json({ 
+        error: `Please provide all required information: ${missing.join(', ')}` 
+      }, { status: 400 });
     }
   } catch (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    console.error('Error creating blog post:', error);
+    return NextResponse.json({ error: error.message || 'Failed to create blog post' }, { status: 500 });
   }
 }
 

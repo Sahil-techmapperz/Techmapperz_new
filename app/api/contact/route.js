@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import mongoose from 'mongoose';
 import connectDB from '@/app/lib/db';
 import Contact from '@/app/lib/models/Contact';
 import { verifyAdminAuth } from '@/app/lib/auth';
@@ -74,19 +75,56 @@ export async function DELETE(request) {
 
   try {
     await connectDB();
-    const body = await request.json();
-    const { selectedContactIds } = body;
+    let body = {};
+    try {
+      body = await request.json();
+    } catch {
+      // Body might be empty
+    }
 
-    if (selectedContactIds && Array.isArray(selectedContactIds)) {
-      const result = await Contact.deleteMany({ _id: { $in: selectedContactIds } });
+    const { searchParams } = new URL(request.url);
+    const queryId = searchParams.get('id');
 
-      if (result.deletedCount > 0) {
-        return NextResponse.json({ message: 'Contacts deleted successfully.' }, { status: 200 });
-      } else {
-        return NextResponse.json({ message: 'No contacts found with the provided ids.' }, { status: 404 });
-      }
+    const { selectedContactIds, id, contactId } = body;
+    const rawIds = selectedContactIds || id || contactId || queryId;
+
+    if (!rawIds) {
+      return NextResponse.json({ message: 'Invalid request. Provide contact ID(s).' }, { status: 400 });
+    }
+
+    const idList = (Array.isArray(rawIds) ? rawIds : [rawIds])
+      .map(item => (typeof item === 'object' && item !== null ? item._id || item.id : item))
+      .filter(Boolean);
+
+    if (idList.length === 0) {
+      return NextResponse.json({ message: 'Invalid request. Empty ID list.' }, { status: 400 });
+    }
+
+    // Support both MongoDB _id and numeric userId
+    const validObjectIds = idList.filter(i => mongoose.Types.ObjectId.isValid(i));
+    const numericUserIds = idList.filter(i => !isNaN(Number(i)) && String(i).length < 10).map(Number);
+
+    const conditions = [];
+    if (validObjectIds.length > 0) {
+      conditions.push({ _id: { $in: validObjectIds } });
+    }
+    if (numericUserIds.length > 0) {
+      conditions.push({ userId: { $in: numericUserIds } });
+    }
+
+    const filter = conditions.length > 1 
+      ? { $or: conditions } 
+      : (conditions[0] || { _id: { $in: idList } });
+
+    const result = await Contact.deleteMany(filter);
+
+    if (result.deletedCount > 0) {
+      return NextResponse.json({ 
+        message: 'Contacts deleted successfully.', 
+        deletedCount: result.deletedCount 
+      }, { status: 200 });
     } else {
-      return NextResponse.json({ message: 'Invalid request. Provide an array of contact ids.' }, { status: 400 });
+      return NextResponse.json({ message: 'No contacts found with the provided ids.' }, { status: 404 });
     }
   } catch (error) {
     return NextResponse.json({ message: 'Error deleting contacts.', error: error.message }, { status: 500 });

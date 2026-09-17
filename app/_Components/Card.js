@@ -1,4 +1,5 @@
 import Image from "next/image";
+import BlogImage from "./BlogImage";
 import blogWatermark from "@/public/Photos/blog_watermark.webp"; 
 import { CalendarIcon, LinkedInIcon, RedditIcon, QuoraIcon, TwitterIcon } from "./SocialIcons"; 
 import Link from "next/link";
@@ -40,16 +41,10 @@ const Card = ({ post }) => {
           className="absolute top-3 right-3 z-20 object-contain opacity-90 drop-shadow-sm"
           alt="Techmapperz" 
         />
-        <Image
-          src={`${post.images?.[0]?.trim() || '/placeholder-image.jpg'}?tr=w-800,h-500,q-80,f-webp`}
-          srcSet={`
-            ${(post.images?.[0]?.trim() || '/placeholder-image.jpg')}?tr=w-300,h-200,q-75 300w,
-            ${(post.images?.[0]?.trim() || '/placeholder-image.jpg')}?tr=w-600,h-400,q-75 600w,
-            ${(post.images?.[0]?.trim() || '/placeholder-image.jpg')}?tr=w-800,h-500,q-80 800w
-          `}
-          sizes="(max-width: 600px) 300px, (max-width: 1200px) 600px, 800px"
-          width={800}
-          height={500}
+        <BlogImage
+          src={post.images?.[0]?.trim()}
+          fill
+          sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
           alt={post.title || 'Blog post image'}
           loading="lazy"

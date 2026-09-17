@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import BlogImage from './BlogImage';
 import { formatDate } from '@/app/lib/dateFormat';
 import { FiCalendar } from 'react-icons/fi';
 
@@ -22,8 +23,8 @@ const RelatedPosts = ({ relatedPosts }) => {
               className="group flex items-start gap-3.5 p-2 -mx-2 rounded-xl hover:bg-[#F6F8FB] transition-all duration-200"
             >
               <div className="relative w-20 h-20 shrink-0 rounded-xl overflow-hidden bg-[#F6F8FB] border border-[#DDE3EA]">
-                <Image
-                  src={post.images?.[0]?.trim() || '/placeholder-image.jpg'}
+                <BlogImage
+                  src={post.images?.[0]?.trim()}
                   alt={post.title || 'Related article thumbnail'}
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-300"

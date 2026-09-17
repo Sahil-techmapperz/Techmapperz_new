@@ -6,11 +6,27 @@ export async function PUT(request, { params }) {
   try {
     await connectDB();
     const { id } = await params;
-    const { title, content, author, images, category } = await request.json();
+    const body = await request.json();
+    const { title, content, author, images, category, maincontent, description, tags } = body;
+
+    const updateData = {};
+    if (title !== undefined) updateData.title = title;
+    if (content !== undefined) updateData.content = content;
+    if (maincontent !== undefined) {
+      updateData.maincontent = maincontent;
+      if (content === undefined) {
+        updateData.content = maincontent.replace(/<[^>]*>?/gm, '').slice(0, 200);
+      }
+    }
+    if (author !== undefined) updateData.author = author;
+    if (images !== undefined) updateData.images = Array.isArray(images) ? images : [images].filter(Boolean);
+    if (category !== undefined) updateData.category = category;
+    if (description !== undefined) updateData.description = description;
+    if (tags !== undefined) updateData.tags = Array.isArray(tags) ? tags : [];
 
     const updatedBlogPost = await BlogPost.findByIdAndUpdate(
       id,
-      { title, content, author, images, category },
+      updateData,
       { new: true }
     );
 

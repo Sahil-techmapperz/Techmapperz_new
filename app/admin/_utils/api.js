@@ -182,12 +182,18 @@ export const testimonialsApi = {
 // Contacts API
 export const contactsApi = {
   getAll: () => api.get('/contact').then(res => {
-    console.log('Raw API Response:', res); // Debug log
     return { data: Array.isArray(res.data) ? res.data : [] };
   }),
   getById: (id) => api.get(`/contact/${id}`),
   create: (data) => api.post('/contact', data),
-  delete: (id) => api.delete(`/contact/${id}`),
+  update: (id, data) => api.put(`/contact/${id}`, data),
+  delete: (ids) => {
+    // Handle both single ID and array of IDs
+    const selectedContactIds = Array.isArray(ids) ? ids : [ids]
+    return api.delete('/contact', {
+      data: { selectedContactIds }
+    })
+  },
 }
 
 // Auth API

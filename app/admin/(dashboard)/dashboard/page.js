@@ -36,9 +36,40 @@ export default function DashboardPage() {
   const fetchLoginActivities = async () => {
     try {
       const response = await authApi.getRecentLogins()
-      setLoginActivities(response.data)
+      const data = Array.isArray(response.data) ? response.data : (response.data?.data || [])
+      
+      const sorted = [...data].sort((a, b) => {
+        const parseTime = (str) => {
+          if (!str) return 0
+          const parts = str.split(' ')
+          if (parts.length >= 3) {
+            const [d, m, y] = parts[0].split('-').map(Number)
+            let [hh, mm, ss] = parts[1].split(':').map(Number)
+            if (parts[2] === 'PM' && hh < 12) hh += 12
+            if (parts[2] === 'AM' && hh === 12) hh = 0
+            const t = new Date(y, m - 1, d, hh, mm, ss || 0).getTime()
+            if (!isNaN(t)) return t
+          }
+          return 0
+        }
+        const parsedA = parseTime(a.loginTime)
+        const parsedB = parseTime(b.loginTime)
+        if (parsedA && parsedB && parsedA !== parsedB) return parsedB - parsedA
+
+        if (a.createdAt && b.createdAt) {
+          const timeA = new Date(a.createdAt).getTime()
+          const timeB = new Date(b.createdAt).getTime()
+          if (!isNaN(timeA) && !isNaN(timeB) && timeA !== timeB) return timeB - timeA
+        }
+
+        if (a._id && b._id) return String(b._id).localeCompare(String(a._id))
+        return 0
+      })
+
+      setLoginActivities(sorted.slice(0, 10))
     } catch (error) {
       console.error('Error fetching login activities:', error)
+      setLoginActivities([])
     }
   }
 
@@ -157,16 +188,16 @@ export default function DashboardPage() {
                 <div key={activity._id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                   <div>
                     <p className="text-sm font-medium text-black">{activity.email}</p>
-                    <p className="text-xs text-black">ID: {activity._id}</p>
+                    <p className="text-xs text-gray-500 font-mono">ID: {activity._id}</p>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm text-black">{activity.loginTime}</p>
-                    <p className="text-xs text-black">Successful</p>
+                    <p className="text-sm font-medium text-black">{activity.loginTime}</p>
+                    <span className="inline-block text-xs text-emerald-600 font-medium">Successful</span>
                   </div>
                 </div>
               ))
             ) : (
-              <p className="text-black">No recent login activities</p>
+              <p className="text-gray-500 text-sm py-2">No recent login activities</p>
             )}
           </div>
         </div>

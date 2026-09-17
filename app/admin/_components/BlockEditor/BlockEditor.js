@@ -118,9 +118,153 @@ export const blocksToHtml = (blocks) => {
     }).join('\n')
 }
 
+// Helper to extract alignment from a node or style
+const getNodeAlignment = (node) => {
+    if (!node) return 'left'
+    if (node.style && node.style.textAlign) {
+        return node.style.textAlign
+    }
+    const alignAttr = node.getAttribute && node.getAttribute('align')
+    if (alignAttr) {
+        return alignAttr
+    }
+    const styleAttr = node.getAttribute && node.getAttribute('style')
+    if (styleAttr) {
+        const match = styleAttr.match(/text-align:\s*([a-z]+)/i)
+        if (match) return match[1].toLowerCase()
+    }
+    return 'left'
+}
+
+// Helper to parse image attributes from figure or img
+const parseImageBlockNode = (node) => {
+    const isFigure = node.tagName.toLowerCase() === 'figure'
+    const img = isFigure ? node.querySelector('img') : (node.tagName.toLowerCase() === 'img' ? node : node.querySelector('img'))
+    if (!img) return null
+
+    const figcaption = isFigure ? node.querySelector('figcaption') : null
+    const linkEl = node.tagName.toLowerCase() === 'a' ? node : (node.querySelector('a') || img.closest('a'))
+
+    const block = createBlock('image')
+    block.url = img.getAttribute('src') || img.src || ''
+    block.alt = img.getAttribute('alt') || ''
+    block.caption = figcaption ? figcaption.innerHTML : ''
+    block.link = linkEl ? (linkEl.getAttribute('href') || '') : ''
+
+    // Alignment:
+    // Check figure text-align first, then img margins, then style
+    let align = 'center'
+    const figAlign = isFigure ? getNodeAlignment(node) : ''
+    if (figAlign && figAlign !== 'left') {
+        align = figAlign
+    } else if (img.style?.marginLeft === 'auto' && img.style?.marginRight === 'auto') {
+        align = 'center'
+    } else if (img.style?.marginLeft === 'auto') {
+        align = 'right'
+    } else if (img.style?.margin === '0 auto' || img.style?.margin === '0px auto') {
+        align = 'center'
+    } else if (figAlign === 'left') {
+        align = 'left'
+    } else {
+        const imgAlign = getNodeAlignment(img)
+        if (imgAlign) align = imgAlign
+    }
+    block.align = align
+
+    // Width
+    if (img.style?.width) {
+        block.width = img.style.width
+    } else if (img.getAttribute('width')) {
+        const w = img.getAttribute('width')
+        block.width = (w.endsWith('%') || w.endsWith('px')) ? w : `${w}px`
+    } else {
+        block.width = '100%'
+    }
+
+    // Height
+    if (img.style?.height && img.style.height !== 'auto') {
+        block.height = img.style.height
+    } else if (img.getAttribute('height')) {
+        const h = img.getAttribute('height')
+        block.height = (h.endsWith('%') || h.endsWith('px')) ? h : `${h}px`
+    } else {
+        block.height = 'auto'
+    }
+
+    // Border
+    if (img.style?.border && img.style.border !== 'none') {
+        block.border = img.style.border
+    } else {
+        block.border = 'none'
+    }
+
+    // Opacity
+    if (img.style?.opacity !== '' && img.style?.opacity !== undefined) {
+        const op = parseFloat(img.style.opacity)
+        if (!isNaN(op)) block.opacity = op
+    }
+
+    // Rotation / Transform
+    if (img.style?.transform) {
+        const rotMatch = img.style.transform.match(/rotate\((-?\d+)deg\)/)
+        if (rotMatch) {
+            block.rotate = parseInt(rotMatch[1], 10)
+        }
+    }
+
+    // Object Fit
+    if (img.style?.objectFit) {
+        block.objectFit = img.style.objectFit
+    }
+
+    // Border Radius & Shape
+    const br = img.style?.borderRadius
+    if (br) {
+        block.borderRadius = br
+        if (br === '50%') block.shape = 'circle'
+        else if (br === '9999px') block.shape = 'pill'
+        else if (br === '12px') block.shape = 'rounded'
+        else block.shape = 'none'
+    } else {
+        block.shape = 'none'
+        block.borderRadius = '0'
+    }
+
+    // Box Shadow
+    if (img.style?.boxShadow && img.style.boxShadow !== 'none') {
+        block.shadow = true
+    } else {
+        block.shadow = false
+    }
+
+    // Filters
+    const filterStr = img.style?.filter || ''
+    const grayMatch = filterStr.match(/grayscale\((\d+)%\)/)
+    const sepiaMatch = filterStr.match(/sepia\((\d+)%\)/)
+    const blurMatch = filterStr.match(/blur\((\d+)px\)/)
+    const brightMatch = filterStr.match(/brightness\((\d+)%\)/)
+
+    block.filters = {
+        grayscale: grayMatch ? parseInt(grayMatch[1], 10) : 0,
+        sepia: sepiaMatch ? parseInt(sepiaMatch[1], 10) : 0,
+        blur: blurMatch ? parseInt(blurMatch[1], 10) : 0,
+        brightness: brightMatch ? parseInt(brightMatch[1], 10) : 100
+    }
+
+    // Margins
+    if (img.style?.marginTop && img.style.marginTop !== '0px') {
+        block.marginTop = img.style.marginTop
+    }
+    if (img.style?.marginBottom && img.style.marginBottom !== '0px') {
+        block.marginBottom = img.style.marginBottom
+    }
+
+    return block
+}
+
 // Parse HTML to blocks
 export const htmlToBlocks = (html) => {
-    if (!html || html.trim() === '') {
+    if (!html || typeof html !== 'string' || html.trim() === '') {
         return [createBlock('paragraph', '')]
     }
 
@@ -128,51 +272,80 @@ export const htmlToBlocks = (html) => {
     const doc = parser.parseFromString(html, 'text/html')
     const blocks = []
 
-    doc.body.childNodes.forEach(node => {
-        if (node.nodeType !== Node.ELEMENT_NODE) return
+    const processNode = (node) => {
+        if (node.nodeType !== Node.ELEMENT_NODE) {
+            if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
+                blocks.push(createBlock('paragraph', node.textContent.trim()))
+            }
+            return
+        }
 
         const tag = node.tagName.toLowerCase()
 
         if (tag === 'p') {
-            blocks.push(createBlock('paragraph', node.innerHTML))
+            const img = node.querySelector('img')
+            if (img && node.children.length === 1 && (node.firstElementChild.tagName.toLowerCase() === 'img' || node.firstElementChild.tagName.toLowerCase() === 'figure' || node.firstElementChild.tagName.toLowerCase() === 'a')) {
+                const imgBlock = parseImageBlockNode(node.firstElementChild)
+                if (imgBlock) {
+                    blocks.push(imgBlock)
+                    return
+                }
+            }
+            const block = createBlock('paragraph', node.innerHTML)
+            block.align = getNodeAlignment(node)
+            blocks.push(block)
         } else if (tag.match(/^h[1-6]$/)) {
             const block = createBlock('heading', node.innerHTML)
-            block.level = parseInt(tag[1])
+            block.level = parseInt(tag[1], 10)
+            block.align = getNodeAlignment(node)
             blocks.push(block)
-        } else if (tag === 'figure') {
-            const img = node.querySelector('img')
-            const figcaption = node.querySelector('figcaption')
-            if (img) {
-                const block = createBlock('image')
-                block.url = img.src || ''
-                block.alt = img.alt || ''
-                block.caption = figcaption?.innerHTML || ''
-                blocks.push(block)
-            }
+        } else if (tag === 'figure' || tag === 'img') {
+            const imgBlock = parseImageBlockNode(node)
+            if (imgBlock) blocks.push(imgBlock)
         } else if (tag === 'ul' || tag === 'ol') {
-            const items = Array.from(node.querySelectorAll('li')).map(li => li.innerHTML)
+            const items = Array.from(node.querySelectorAll(':scope > li, li')).map(li => li.innerHTML)
             const block = createBlock('list')
             block.items = items.length ? items : ['']
             block.ordered = tag === 'ol'
+            block.align = getNodeAlignment(node)
             blocks.push(block)
         } else if (tag === 'blockquote') {
-            blocks.push(createBlock('quote', node.innerHTML))
+            const block = createBlock('quote', node.innerHTML)
+            block.align = getNodeAlignment(node)
+            blocks.push(block)
         } else if (tag === 'pre') {
             const code = node.querySelector('code')
-            blocks.push(createBlock('code', code?.textContent || node.textContent))
+            blocks.push(createBlock('code', code ? code.textContent : node.textContent))
         } else if (tag === 'hr') {
             blocks.push(createBlock('divider'))
-        } else if (tag === 'div' && node.classList.contains('video-embed')) {
-            const iframe = node.querySelector('iframe')
+        } else if ((tag === 'div' && node.classList.contains('video-embed')) || tag === 'iframe' || node.querySelector('iframe')) {
+            const iframe = tag === 'iframe' ? node : node.querySelector('iframe')
             if (iframe) {
                 const block = createBlock('video')
-                block.embedUrl = iframe.src
-                // Try to recover original URL if possible, otherwise use embed
-                block.url = iframe.src
+                block.embedUrl = iframe.getAttribute('src') || iframe.src || ''
+                block.url = block.embedUrl
                 blocks.push(block)
             }
+        } else if (tag === 'div' || tag === 'section' || tag === 'article') {
+            let hasChildElements = false
+            node.childNodes.forEach(child => {
+                if (child.nodeType === Node.ELEMENT_NODE) hasChildElements = true
+            })
+            if (hasChildElements) {
+                node.childNodes.forEach(child => processNode(child))
+            } else if (node.innerHTML.trim()) {
+                const block = createBlock('paragraph', node.innerHTML)
+                block.align = getNodeAlignment(node)
+                blocks.push(block)
+            }
+        } else if (node.innerHTML && node.innerHTML.trim()) {
+            const block = createBlock('paragraph', node.innerHTML)
+            block.align = getNodeAlignment(node)
+            blocks.push(block)
         }
-    })
+    }
+
+    doc.body.childNodes.forEach(node => processNode(node))
 
     return blocks.length ? blocks : [createBlock('paragraph', '')]
 }
@@ -218,6 +391,7 @@ const ParagraphBlock = ({ block, onChange }) => {
         <div
             ref={contentRef}
             className={styles.blockContent}
+            style={{ textAlign: block.align || 'left' }}
             contentEditable
             suppressContentEditableWarning
             onBlur={handleBlur}
@@ -268,6 +442,7 @@ const HeadingBlock = ({ block, onChange }) => {
             <div
                 ref={contentRef}
                 className={`${styles.blockContent} ${styles[`heading${block.level}`]}`}
+                style={{ textAlign: block.align || 'left' }}
                 contentEditable
                 suppressContentEditableWarning
                 onBlur={handleBlur}
@@ -766,6 +941,7 @@ const QuoteBlock = ({ block, onChange }) => {
             <div
                 ref={contentRef}
                 className={styles.blockContent}
+                style={{ textAlign: block.align || 'left' }}
                 contentEditable
                 suppressContentEditableWarning
                 onBlur={handleBlur}
@@ -849,7 +1025,7 @@ const VideoBlock = ({ block, onChange }) => {
 }
 
 // Block wrapper with drag handle and delete button
-const Block = ({ block, index, onChange, onDelete, onImageUpload, isDragging }) => {
+const Block = ({ block, index, onChange, onDelete, onImageUpload, isDragging, dragHandleProps }) => {
     const BlockComponent = {
         paragraph: ParagraphBlock,
         heading: HeadingBlock,
@@ -859,14 +1035,14 @@ const Block = ({ block, index, onChange, onDelete, onImageUpload, isDragging }) 
         code: CodeBlock,
         divider: DividerBlock,
         video: VideoBlock,
-    }[block.type]
+    }[block.type] || ParagraphBlock
 
     const BlockIcon = BLOCK_TYPES[block.type]?.icon || Type
 
     return (
         <div className={`${styles.block} ${isDragging ? styles.dragging : ''}`}>
             <div className={styles.blockSidebar}>
-                <div className={styles.dragHandle}>
+                <div className={styles.dragHandle} {...dragHandleProps}>
                     <GripVertical size={16} />
                 </div>
                 <div className={styles.blockType}>
@@ -1488,6 +1664,7 @@ const Toolbar = ({ onAction, onAddBlock, onSaveSelection, activeStyles = {} }) =
 
 // Main BlockEditor Component
 export default function BlockEditor({ value, onChange, name, onImageUpload }) {
+    const [isMounted, setIsMounted] = useState(false)
     const [blocks, setBlocks] = useState(() => htmlToBlocks(value))
     const [showAddMenu, setShowAddMenu] = useState(false)
     const [addMenuIndex, setAddMenuIndex] = useState(null)
@@ -1498,6 +1675,10 @@ export default function BlockEditor({ value, onChange, name, onImageUpload }) {
     const [contextMenu, setContextMenu] = useState({ visible: false, x: 0, y: 0 })
     const [activeStyles, setActiveStyles] = useState({})
     const savedRangeRef = useRef(null)
+
+    useEffect(() => {
+        setIsMounted(true)
+    }, [])
 
     // Detect active styles on selection change
     const detectActiveStyles = useCallback(() => {
@@ -1979,49 +2160,66 @@ export default function BlockEditor({ value, onChange, name, onImageUpload }) {
                     />
                 )}
 
-                <DragDropContext onDragEnd={handleDragEnd}>
-                    <Droppable droppableId="blocks">
-                        {(provided) => (
-                            <div
-                                ref={provided.innerRef}
-                                {...provided.droppableProps}
-                                className={styles.blocksContainer}
-                            >
-                                {blocks.map((block, index) => (
-                                    <Draggable key={block.id} draggableId={block.id} index={index}>
-                                        {(provided, snapshot) => (
-                                            <div
-                                                ref={provided.innerRef}
-                                                {...provided.draggableProps}
-                                                {...provided.dragHandleProps}
-                                                className={styles.blockWrapper}
-                                            >
-                                                <Block
-                                                    block={block}
-                                                    index={index}
-                                                    onChange={(updated) => updateBlock(index, updated)}
-                                                    onDelete={() => deleteBlock(index)}
-                                                    onImageUpload={onImageUpload}
-                                                    isDragging={snapshot.isDragging}
-                                                />
-                                                <div className={styles.addBetween}>
-                                                    <button
-                                                        type="button"
-                                                        onClick={() => addBlock('paragraph', index + 1)}
-                                                        className={styles.addBetweenBtn}
-                                                    >
-                                                        <Plus size={14} />
-                                                    </button>
+                {isMounted ? (
+                    <DragDropContext onDragEnd={handleDragEnd}>
+                        <Droppable droppableId="blocks">
+                            {(provided) => (
+                                <div
+                                    ref={provided.innerRef}
+                                    {...provided.droppableProps}
+                                    className={styles.blocksContainer}
+                                >
+                                    {blocks.map((block, index) => (
+                                        <Draggable key={block.id} draggableId={block.id} index={index}>
+                                            {(provided, snapshot) => (
+                                                <div
+                                                    ref={provided.innerRef}
+                                                    {...provided.draggableProps}
+                                                    className={styles.blockWrapper}
+                                                >
+                                                    <Block
+                                                        block={block}
+                                                        index={index}
+                                                        onChange={(updated) => updateBlock(index, updated)}
+                                                        onDelete={() => deleteBlock(index)}
+                                                        onImageUpload={onImageUpload}
+                                                        isDragging={snapshot.isDragging}
+                                                        dragHandleProps={provided.dragHandleProps}
+                                                    />
+                                                    <div className={styles.addBetween}>
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => addBlock('paragraph', index + 1)}
+                                                            className={styles.addBetweenBtn}
+                                                        >
+                                                            <Plus size={14} />
+                                                        </button>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        )}
-                                    </Draggable>
-                                ))}
-                                {provided.placeholder}
+                                            )}
+                                        </Draggable>
+                                    ))}
+                                    {provided.placeholder}
+                                </div>
+                            )}
+                        </Droppable>
+                    </DragDropContext>
+                ) : (
+                    <div className={styles.blocksContainer}>
+                        {blocks.map((block, index) => (
+                            <div key={block.id} className={styles.blockWrapper}>
+                                <Block
+                                    block={block}
+                                    index={index}
+                                    onChange={(updated) => updateBlock(index, updated)}
+                                    onDelete={() => deleteBlock(index)}
+                                    onImageUpload={onImageUpload}
+                                    isDragging={false}
+                                />
                             </div>
-                        )}
-                    </Droppable>
-                </DragDropContext>
+                        ))}
+                    </div>
+                )}
 
                 {!isFullscreen && (
                     <>

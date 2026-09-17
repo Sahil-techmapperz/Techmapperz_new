@@ -1,5 +1,6 @@
 import { formatDate, formatDateTime } from '@/app/lib/dateFormat';
 import Image from 'next/image';
+import BlogImage from './BlogImage';
 import CommentForm from './CommentForm';
 import { FiCalendar, FiUser, FiTag, FiMessageSquare } from 'react-icons/fi';
 
@@ -45,7 +46,7 @@ const SinglePost = ({ post }) => {
           {/* Featured Hero Image */}
           {post.images?.[0] && (
             <div className="relative w-full h-[280px] sm:h-[380px] md:h-[460px] mb-8 rounded-2xl overflow-hidden border border-[#DDE3EA] bg-[#F6F8FB]">
-              <Image 
+              <BlogImage 
                 src={post.images[0].trim()} 
                 alt={post.title || 'Blog post feature image'} 
                 fill
@@ -58,7 +59,7 @@ const SinglePost = ({ post }) => {
 
           {/* Article Body Content */}
           <div 
-            className="prose max-w-none text-[16px] sm:text-[17px] text-[#334155] leading-[1.75] space-y-5 font-normal"
+            className="blog-content prose max-w-none text-[16px] sm:text-[17px] text-[#334155] leading-[1.75] space-y-5 font-normal"
             dangerouslySetInnerHTML={{ __html: post.maincontent || post.content || '' }} 
           />
         </div>

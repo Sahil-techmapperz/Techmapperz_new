@@ -1,8 +1,13 @@
 'use client'
 
 import { useState } from 'react'
+import dynamic from 'next/dynamic'
 import ImageUpload from '@/app/admin/_components/ImageUpload'
-import BlockEditor from '@/app/admin/_components/BlockEditor/BlockEditor'
+
+const BlockEditor = dynamic(
+  () => import('@/app/admin/_components/BlockEditor/BlockEditor'),
+  { ssr: false }
+)
 
 // Image upload handler for the block editor
 const handleImageUpload = async (file) => {

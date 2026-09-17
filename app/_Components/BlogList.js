@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import BlogImage from './BlogImage';
 import { formatDate } from '@/app/lib/dateFormat';
 import PaginationButtons from './PaginationButtons';
 import getallblogs from '@/lib/getallblogs';
@@ -27,8 +28,8 @@ const BlogList = async ({ page }) => {
               >
                 {/* Image Header with Category & Date Overlays */}
                 <div className="relative w-full h-52 sm:h-56 bg-[#F6F8FB] overflow-hidden">
-                  <Image
-                    src={post.images?.[0]?.trim() || '/placeholder-image.jpg'}
+                  <BlogImage
+                    src={post.images?.[0]?.trim()}
                     alt={post.title || 'Blog article header'}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"

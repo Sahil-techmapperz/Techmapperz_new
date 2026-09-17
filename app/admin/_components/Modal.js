@@ -8,18 +8,20 @@ export default function Modal({ isOpen, onClose, title, children, size = 'md', f
     md: 'max-w-4xl',
     lg: 'max-w-6xl',
     xl: 'max-w-7xl',
-    full: 'w-full h-full m-0 rounded-none'
+    full: 'w-full max-w-[96vw] h-[94vh] rounded-2xl m-auto'
   }
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto">
-      <div className="flex min-h-screen items-center justify-center p-4">
-        <div className="fixed inset-0 bg-black bg-opacity-50 transition-opacity" onClick={onClose} />
+      <div className="flex min-h-screen items-center justify-center p-2 sm:p-4">
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity" onClick={onClose} />
         
-        <div className={`relative bg-white rounded-lg w-[50vw] shadow-xl transform transition-all ${fullPage ? sizeClasses.full : sizeClasses[size]}`}>
+        <div className={`relative bg-white shadow-2xl transform transition-all border border-[#DDE3EA] ${
+          fullPage ? sizeClasses.full : `w-full rounded-2xl ${sizeClasses[size] || 'max-w-4xl'}`
+        }`}>
           {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b">
-            <h2 className="text-xl font-semibold text-gray-900">{title}</h2>
+          <div className="flex items-center justify-between px-6 py-4 border-b border-[#DDE3EA] bg-white rounded-t-2xl">
+            <h2 className="text-xl font-bold text-[#0C2E60]">{title}</h2>
             <button
               onClick={onClose}
               className="text-gray-400 hover:text-gray-500 focus:outline-none"
