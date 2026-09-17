@@ -484,7 +484,7 @@ export default function PortfolioDetailTemplate({
             </div>
 
             {/* Right: Project Mockup Frame */}
-            <figure className="hero-project tm-reveal-right tm-delay-2">
+            <figure className="hero-project tm-reveal-right tm-delay-2" style={{marginTop:"30px !important"}}>
               <div className="image-header">
                 <span>{(portfolioItem.breadcrumbTitle || clientName).toUpperCase()}</span>
                 <span>{metaDelivery}</span>
@@ -677,18 +677,6 @@ export default function PortfolioDetailTemplate({
                 {portfolioItem.galleryTitle || "Evidence from the work."}
               </h2>
             </div>
-            {/* Trust badge */}
-            <div className="gallery-trust-badge">
-              <span className="trust-check" aria-hidden="true">
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M13.3334 4L6.00008 11.3333L2.66675 8" stroke="#22c55e" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </span>
-              <div>
-                <p className="trust-label">Published by Techmapperz</p>
-                <p className="trust-sub">Non-confidential project images</p>
-              </div>
-            </div>
           </div>
 
           {/* 3-image split: large left + two stacked right */}
@@ -715,7 +703,7 @@ export default function PortfolioDetailTemplate({
                           <p className="gallery-caption-title">{featured.title}</p>
                           {featured.caption && <p className="gallery-caption-text">{featured.caption}</p>}
                         </div>
-                        <span className="gallery-expand-icon" aria-hidden="true">â†—</span>
+                        <span className="gallery-expand-icon" aria-hidden="true">{String.fromCharCode(8599)}</span>
                       </div>
                     </figcaption>
                   </figure>
@@ -738,7 +726,7 @@ export default function PortfolioDetailTemplate({
                               <p className="gallery-caption-title">{img.title}</p>
                               {img.caption && <p className="gallery-caption-text">{img.caption}</p>}
                             </div>
-                            <span className="gallery-expand-icon" aria-hidden="true">â†—</span>
+                            <span className="gallery-expand-icon" aria-hidden="true">{String.fromCharCode(8599)}</span>
                           </div>
                         </figcaption>
                       </figure>
@@ -775,24 +763,47 @@ export default function PortfolioDetailTemplate({
             )}
           </div>
 
-          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-10">
-            {resultsItems.map((res, idx) => (
-              <li key={idx} className={`bg-white border border-[#DDE3EA] rounded-2xl p-6 md:p-7 flex items-start gap-4 shadow-sm hover:shadow-md transition-shadow duration-200 tm-reveal tm-delay-${(idx % 4) + 1}`}>
-                <span className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 bg-[#E8F5F3] text-[#0F766E] border border-[#0F766E]/30">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                </span>
-                <div className="min-w-0">
-                  {res.value && res.value !== "âœ“" && (
-                    <span className="inline-block text-[#1656B8] text-[11px] font-bold uppercase tracking-[0.1em] bg-[#EDF3FC] px-2.5 py-0.5 rounded-full mb-2">{res.value}</span>
-                  )}
-                  <h3 className="text-[18px] md:text-[19px] font-bold text-[#0C2E60] leading-[1.25] mb-1.5">{res.label || res.title}</h3>
-                  <p className="text-[#4B5563] text-[15px] sm:text-[16px] leading-[1.65] m-0">{res.description || res.desc || ""}</p>
-                </div>
-              </li>
-            ))}
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-8">
+            {resultsItems.map((res, idx) => {
+              const label = res.label || res.title || (typeof res === "string" ? res : "");
+              const hasDesc = Boolean(res.description || res.desc);
+              const hasValue = Boolean(res.value && res.value !== "✓" && res.value !== "âœ“");
+
+              return (
+                <li
+                  key={idx}
+                  className={`bg-white border border-[#DDE3EA] rounded-2xl p-5 md:p-6 flex ${hasDesc || hasValue ? "items-start" : "items-center"} gap-4 shadow-sm hover:shadow-md transition-shadow duration-200 tm-reveal tm-delay-${(idx % 4) + 1}`}
+                >
+                  <span className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 bg-[#E8F5F3] text-[#0F766E] border border-[#0F766E]/30">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </span>
+                  <div className="min-w-0">
+                    {hasValue && (
+                      <span className="inline-block text-[#1656B8] text-[11px] font-bold uppercase tracking-[0.1em] bg-[#EDF3FC] px-2.5 py-0.5 rounded-full mb-2">
+                        {res.value}
+                      </span>
+                    )}
+                    <h3 className={`text-[17px] md:text-[18px] font-bold text-[#0C2E60] leading-[1.3] ${hasDesc ? "mb-1.5" : "m-0"}`}>
+                      {label}
+                    </h3>
+                    {hasDesc && (
+                      <p className="text-[#4B5563] text-[15px] sm:text-[16px] leading-[1.65] m-0">
+                        {res.description || res.desc}
+                      </p>
+                    )}
+                  </div>
+                </li>
+              );
+            })}
           </ul>
+
+          {portfolioItem.conclusion && portfolioItem.conclusion !== resultsLead && (
+            <p className="text-[#4B5563] text-[16px] md:text-[18px] font-normal leading-[1.65] max-w-3xl mt-6 mb-8 tm-reveal">
+              {portfolioItem.conclusion}
+            </p>
+          )}
 
           {/* Testimonial */}
           {portfolioItem.testimonial && (

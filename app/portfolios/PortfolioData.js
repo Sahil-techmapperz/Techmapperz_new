@@ -1378,28 +1378,16 @@ const gisPortfolioData = [
         resultsSubtitle: "Key outcomes",
         results: [
             {
-                label: "Faster survey execution",
-                value: "Fast Execution",
-                description: "Significantly accelerated data collection over the 173 km alignment compared to conventional survey methods.",
-                icon: "⚡"
+                label: "Faster survey execution"
             },
             {
-                label: "Detailed terrain visualisation",
-                value: "High Resolution",
-                description: "Sub-centimeter terrain models and point cloud data for complete corridor visualization.",
-                icon: "👁️"
+                label: "Detailed terrain visualisation"
             },
             {
-                label: "Accurate elevation and gradient insights",
-                value: "Precision Data",
-                description: "High-accuracy gradient change and vertical curve computations tailored for engineering planning.",
-                icon: "📐"
+                label: "Accurate elevation and gradient insights"
             },
             {
-                label: "Better support for infrastructure planning",
-                value: "Design-Ready",
-                description: "Direct CAD and GIS-compatible datasets enabling confident decision-making across teams.",
-                icon: "🎯"
+                label: "Better support for infrastructure planning"
             }
         ],
         conclusion: "The final output provides a reliable digital foundation for railway corridor design and development."

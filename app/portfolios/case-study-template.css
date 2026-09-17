@@ -316,7 +316,7 @@
   color: #6c7e91;
   padding: 4px 6px 14px;
   border-bottom: 1px solid #f0f4f8;
-  margin-bottom: 14px;
+  margin-top: 24px;
 }
 
 .tm-case-study .image-header span:first-child {
@@ -1099,7 +1099,8 @@
 }
 
 .tm-case-study .gallery-dark-card--featured .gallery-dark-img-wrap {
-  min-height: 340px;
+  min-height: 240px;
+  max-height: 420px;
 }
 
 .tm-case-study .gallery-dark-stack .gallery-dark-img-wrap {
